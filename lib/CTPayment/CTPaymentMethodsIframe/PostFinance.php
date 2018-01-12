@@ -11,7 +11,7 @@ class PostFinance extends CTPaymentMethodIframe
      *
      * @var string
      */
-    protected $AccOwner;
+    protected $accOwner;
 
     public function __construct(
         $config,
@@ -25,6 +25,8 @@ class PostFinance extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
+        //TODO: generate order desc
+        $this->setOrderDesc('test');
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner' ));
     }
@@ -34,7 +36,7 @@ class PostFinance extends CTPaymentMethodIframe
      */
     public function setAccOwner($accOwner)
     {
-        $this->AccOwner = $accOwner;
+        $this->accOwner = $accOwner;
     }
 
     /**
@@ -42,7 +44,7 @@ class PostFinance extends CTPaymentMethodIframe
      */
     public function getAccOwner()
     {
-        return $this->AccOwner;
+        return $this->accOwner;
     }
 
 

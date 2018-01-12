@@ -27,6 +27,7 @@ namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCreditCard;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseEasyCredit;
+use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponsePaydirekt;
 
 class CTPaymentService extends Blowfish
 {

@@ -4,8 +4,9 @@ namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTAddress\CTAddress;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
+use Fatchip\CTPayment\CTOrder\CTOrder;
 
-class PayDirekt extends CTPaymentMethodIframe
+class Paydirekt extends CTPaymentMethodIframe
 {
     /**
      * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
@@ -113,6 +114,12 @@ class PayDirekt extends CTPaymentMethodIframe
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
+
+        if (empty($config['payDirektShopApiKey'])) {
+            throw new \RuntimeException('Paydirekt ShopApiKey is not set in Plugin Config');
+        }
+
+        $this->setShopApiKey($config['payDirektShopApiKey']);
 
         $this->setShippingAddress($order->getShippingAddress());
 

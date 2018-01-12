@@ -89,7 +89,7 @@ class PaypalStandard extends CTPaymentMethodIframe
 
     /**
      * @param $config
-     * @param \Fatchip\CTPayment\CTOrder $order
+     * @param CTOrder $order
      * @param $urlSuccess
      * @param $urlFailure
      * @param $urlNotify
@@ -106,7 +106,11 @@ class PaypalStandard extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setShippingAddress($order->getShippingAddress());
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'OrderDesc', 'mac',
+        //TODO: generate order desc
+        $this->setOrderDesc('test');
+        //TODO: Check if this should always be order
+        $this->setTxType('Order');
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc', 'mac',
           'urlSuccess', 'urlFailure', ));
     }
 
