@@ -196,7 +196,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
             if ($data === null || is_array($data)) {
                 continue;
             } else {
-                if ($key == 'MAC') {
+                if ($key == 'mac') {
                     $result[] = $key . '=' . $this->getMACHash();
                 } else {
                     $result[] = $key . '=' . $data;

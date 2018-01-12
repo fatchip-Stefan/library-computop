@@ -48,7 +48,7 @@ class Ideal extends CTPaymentMethodIframe
         $this->setUrlNotify($urlNotify);
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc', 'MAC',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc', 'mac',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 

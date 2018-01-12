@@ -106,7 +106,7 @@ class PaypalStandard extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setShippingAddress($order->getShippingAddress());
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'OrderDesc', 'MAC',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'OrderDesc', 'mac',
           'urlSuccess', 'urlFailure', ));
     }
 
