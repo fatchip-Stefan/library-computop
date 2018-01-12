@@ -5,7 +5,7 @@ namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 use Fatchip\CTPayment\CTAddress\CTAddress;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
-class Paydirekt extends CTPaymentMethodIframe
+class PayDirekt extends CTPaymentMethodIframe
 {
     /**
      * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
@@ -93,42 +93,37 @@ class Paydirekt extends CTPaymentMethodIframe
      */
     protected $sdEmail;
 
+
     /**
-     * @param $amount
-     * @param $currency
-     * @param $URLSuccess
-     * @param $URLFailure
-     * @param $URLNotify
+     * @param $config
+     * @param \Fatchip\CTPayment\CTOrder $order
+     * @param $urlSuccess
+     * @param $urlFailure
+     * @param $urlNotify
      * @param $OrderDesc
      * @param $UserData
      * @param $capture
+     * @param $shopApiKey
      */
     public function __construct(
-      $amount,
-      $currency,
-      $URLSuccess,
-      $URLFailure,
-      $URLNotify,
-      $OrderDesc,
-      $UserData,
-      $capture,
-      $shopApiKey
+        $config,
+        $order,
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify
     ) {
-        parent::__construct();
+        parent::__construct($config, $order);
 
-        $this->setAmount($amount);
-        $this->setCurrency($currency);
-        $this->setURLSuccess($URLSuccess);
-        $this->setURLFailure($URLFailure);
-        $this->setURLNotify($URLNotify);
-        $this->setOrderDesc($OrderDesc);
-        $this->setUserData($UserData);
-        $this->setCapture($capture);
-        $this->setShopApiKey($shopApiKey);
+        $this->setUrlSuccess($urlSuccess);
+        $this->setUrlFailure($urlFailure);
+        $this->setUrlNotify($urlNotify);
+
+        $this->setShippingAddress($order->getShippingAddress());
+
         //For Paydirekt, the transID has a max length of 20
         $this->TransID = substr($this->TransID, 0, 20);
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC',
-          'URLSuccess', 'URLFailure', 'ShopApiKey' ));
+          'urlSuccess', 'urlFailure', 'ShopApiKey' ));
     }
 
 
@@ -147,8 +142,6 @@ class Paydirekt extends CTPaymentMethodIframe
     {
         return $this->capture;
     }
-
-
 
     /**
      * @param string $shopAPIKey
@@ -313,17 +306,17 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
-     * @param $DeliveryAddress CTAddress
+     * @param $shippingAddress CTAddress
      */
-    public function setDeliveryAddress($DeliveryAddress)
+    public function setShippingAddress($shippingAddress)
     {
-        $this->setFirstName($DeliveryAddress->getFirstName());
-        $this->setLastName($DeliveryAddress->getLastName());
-        $this->setStreet($DeliveryAddress->getStreet());
-        $this->setStreetNr($DeliveryAddress->getStreetNr());
-        $this->setZip($DeliveryAddress->getZip());
-        $this->setCity($DeliveryAddress->getCity());
-        $this->setCountryCode($DeliveryAddress->getCountryCode());
+        $this->setFirstName($shippingAddress->getFirstName());
+        $this->setLastName($shippingAddress->getLastName());
+        $this->setStreet($shippingAddress->getStreet());
+        $this->setStreetNr($shippingAddress->getStreetNr());
+        $this->setZip($shippingAddress->getZip());
+        $this->setCity($shippingAddress->getCity());
+        $this->setCountryCode($shippingAddress->getCountryCode());
     }
 
     public function getCTPaymentURL()

@@ -26,32 +26,30 @@ class Ideal extends CTPaymentMethodIframe
     /**
      * @param $amount
      * @param $currency
-     * @param $URLSuccess
-     * @param $URLFailure
-     * @param $URLNotify
+     * @param $urlSuccess
+     * @param $urlFailure
+     * @param $urlNotify
      * @param $OrderDesc
      * @param $UserData
      */
     public function __construct(
-      $amount,
-      $currency,
-      $URLSuccess,
-      $URLFailure,
-      $URLNotify,
-      $OrderDesc,
-      $UserData
+        $config,
+        $order,
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify,
+        $OrderDesc,
+        $UserData
     ) {
-        parent::__construct();
+        parent::__construct($config, $order);
 
-        $this->setAmount($amount);
-        $this->setCurrency($currency);
-        $this->setURLSuccess($URLSuccess);
-        $this->setURLFailure($URLFailure);
-        $this->setURLNotify($URLNotify);
+        $this->setUrlSuccess($urlSuccess);
+        $this->setUrlFailure($urlFailure);
+        $this->setUrlNotify($urlNotify);
         $this->setOrderDesc($OrderDesc);
         $this->setUserData($UserData);
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc', 'MAC',
-          'URLSuccess', 'URLFailure', 'URLNotify', ));
+          'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
     /**

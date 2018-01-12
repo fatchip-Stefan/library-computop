@@ -42,19 +42,19 @@ class Sofort extends CTPaymentMethodIframe
     protected $AddrCountryCode;
 
     public function __construct(
-      $config,
-      $order,
-      $URLSuccess,
-      $URLFailure,
-      $URLNotify
+        $config,
+        $order,
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify
     ) {
         parent::__construct($config, $order);
-        $this->setURLSuccess($URLSuccess);
-        $this->setURLFailure($URLFailure);
-        $this->setURLNotify($URLNotify);
+        $this->setUrlSuccess($urlSuccess);
+        $this->setUrlFailure($urlFailure);
+        $this->setUrlNotify($urlNotify);
         $this->setAddrCountryCode($order->getBillingAddress()->getCountryCode());
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc', 'AddrCountryCode',
-          'MAC', 'URLSuccess', 'URLFailure', 'URLNotify', ));
+          'MAC', 'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
 

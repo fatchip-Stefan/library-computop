@@ -21,22 +21,22 @@ class Przelewy24 extends CTPaymentMethodIframe
     protected $Email;
 
     public function __construct(
-      $config,
-      $order,
-      $URLSuccess,
-      $URLFailure,
-      $URLNotify,
-      $email
+        $config,
+        $order,
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify,
+        $email
     ) {
         parent::__construct($config, $order);
-        $this->setURLSuccess($URLSuccess);
-        $this->setURLFailure($URLFailure);
-        $this->setURLNotify($URLNotify);
+        $this->setUrlSuccess($urlSuccess);
+        $this->setUrlFailure($urlFailure);
+        $this->setUrlNotify($urlNotify);
 
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
         $this->setEmail($email);
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'OrderDesc',
-          'URLSuccess', 'URLFailure', 'URLNotify', 'AccOwner', 'Email', ));
+          'urlSuccess', 'urlFailure', 'urlNotify', 'AccOwner', 'Email', ));
     }
 
     /**

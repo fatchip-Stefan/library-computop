@@ -15,7 +15,7 @@ class EasyCredit extends CTPaymentMethodIframe
      *
      * @var
      */
-    protected $EventToken;
+    protected $eventToken;
 
     /**
      * Anrede HERR oder FRAU
@@ -174,7 +174,7 @@ class EasyCredit extends CTPaymentMethodIframe
      */
     public function setEventToken($EventToken)
     {
-        $this->EventToken = $EventToken;
+        $this->eventToken = $EventToken;
     }
 
     /**
@@ -182,7 +182,7 @@ class EasyCredit extends CTPaymentMethodIframe
      */
     public function getEventToken()
     {
-        return $this->EventToken;
+        return $this->eventToken;
     }
 
     /**
@@ -479,24 +479,24 @@ class EasyCredit extends CTPaymentMethodIframe
     /**
      * @param $config
      * @param CTOrder $order
-     * @param $URLSuccess
-     * @param $URLFailure
-     * @param $URLNotify
-     * @param $EventToken
+     * @param $urlSuccess
+     * @param $urlFailure
+     * @param $urlNotify
+     * @param $eventToken
      */
     public function __construct(
-      $config,
-      $order,
-      $URLSuccess,
-      $URLFailure,
-      $URLNotify,
-      $EventToken
+        $config,
+        $order,
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify,
+        $eventToken
     ) {
         parent::__construct($config, $order);
 
-        $this->setURLSuccess($URLSuccess);
-        $this->setURLFailure($URLFailure);
-        $this->setURLNotify($URLNotify);
+        $this->setUrlSuccess($urlSuccess);
+        $this->setUrlFailure($urlFailure);
+        $this->setUrlNotify($urlNotify);
 
         $this->setShippingAddress($order->getShippingAddress());
         $this->setBillingAddress($order->getBillingAddress());
@@ -508,9 +508,9 @@ class EasyCredit extends CTPaymentMethodIframe
         }
 
 
-        $this->setEventToken($EventToken);
+        $this->setEventToken($eventToken);
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency',
-          'EventToken', 'URLSuccess', 'URLFailure', 'URLNotify', ));
+          'eventToken', 'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
 
@@ -587,19 +587,21 @@ class EasyCredit extends CTPaymentMethodIframe
         $url = 'https://www.computop-paygate.com/easyCreditDirect.aspx' . '?MerchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
         ;
 
-        try {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
           CURLOPT_RETURNTRANSFER => 1,
           CURLOPT_URL => $url,
         ));
+
+        try {
         $resp = curl_exec($curl);
 
-        if (FALSE === $resp)
+        if (FALSE === $resp) {
             throw new Exception(curl_error($curl), curl_errno($curl));
+        }
 
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             trigger_error(sprintf(
                 'Curl failed with error #%d: %s',
                 $e->getCode(), $e->getMessage()),

@@ -157,24 +157,24 @@ class CreditCard extends CTPaymentMethodIframe
     /**
      * @param $config - array, must contain at least 'mac', 'blowfishpass' and 'merchantID'
      * @param CTOrder $order
-     * @param $URLSuccess
-     * @param $URLFailure
-     * @param $URLNotify
+     * @param $urlSuccess
+     * @param $urlFailure
+     * @param $urlNotify
      */
     public function __construct(
         $config,
         $order,
-        $URLSuccess,
-        $URLFailure,
-        $URLNotify
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify
     ) {
         parent::__construct($config, $order);
 
-        $this->setURLSuccess($URLSuccess);
-        $this->setURLFailure($URLFailure);
-        $this->setURLNotify($URLNotify);
+        $this->setUrlSuccess($urlSuccess);
+        $this->setUrlFailure($urlFailure);
+        $this->setUrlNotify($urlNotify);
 
-        switch($config['creditCardAcquirer']) {
+        switch ($config['creditCardAcquirer']) {
             case 'GICC':
             case 'Omnipay':
                 $this->setAddrStreet($order->getBillingAddress()->getStreet());
@@ -200,9 +200,8 @@ class CreditCard extends CTPaymentMethodIframe
                 break;
         }
 
-        //$this->setUserData($UserData);
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency',
-        'MAC', 'URLSuccess', 'URLFailure', 'URLNotify', ));
+        'MAC', 'urlSuccess', 'urlFailure', 'urlNotify', ));
 
 
     }

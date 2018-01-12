@@ -112,6 +112,11 @@ abstract class CTController extends Blowfish
         return $info;
     }
 
+    /**
+     *  prints out data
+     *
+     * @return void
+     */
     public function render()
     {
         $plaintext = $this->ctDecrypt($this->getData(), $this->getLen(), '9q!JX2c(]D3og7?G');

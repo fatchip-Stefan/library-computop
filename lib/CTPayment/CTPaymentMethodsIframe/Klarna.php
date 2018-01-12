@@ -215,23 +215,23 @@ class Klarna extends CTPaymentMethodIframe
 
     public function __construct(
         $config,
-                          $order,
-                          $URLNotify,
-                          $OrderDesc,
-                          $UserData,
-                          $isCompany,
-                          $billingAddress,
-                          $shippingAddress,
-                          $email,
-                          $phone,
-                          $mobileNr,
-                          $dateOfBirth,
-                          $gender,
-                          $isFirm,
-                          $klarnaAction
+        $order,
+        $urlNotify,
+        $OrderDesc,
+        $UserData,
+        $isCompany,
+        $billingAddress,
+        $shippingAddress,
+        $email,
+        $phone,
+        $mobileNr,
+        $dateOfBirth,
+        $gender,
+        $isFirm,
+        $klarnaAction
     ) {
         parent::__construct($config, $order);
-        $this->setURLNotify($URLNotify);
+        $this->setUrlNotify($urlNotify);
         $this->setOrderDesc($OrderDesc);
         $this->setUserData($UserData);
         $this->setShippingAddress($shippingAddress, $isCompany);

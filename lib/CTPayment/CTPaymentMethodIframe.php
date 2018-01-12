@@ -37,7 +37,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      *
      * @var string
      */
-    protected $URLSuccess;
+    protected $urlSuccess;
 
     /**
      * Vollständige URL, die das Paygate aufruft, wenn die Zahlung gescheitert ist.
@@ -47,7 +47,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      *
      * @var string
      */
-    protected $URLFailure;
+    protected $urlFailure;
 
     /**
      * Vollständige URL, die das Paygate aufruft, um den Shop zu benachrichtigen.
@@ -56,7 +56,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      *
      * @var string
      */
-    protected $URLNotify;
+    protected $urlNotify;
 
 
     /**
@@ -186,11 +186,10 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         //check if all mandatory fields are set
         $arrMandatory = $this->getMandatoryFields();
 
-        foreach($arrMandatory as $manField) {
+        foreach ($arrMandatory as $manField) {
             if (!isset($this->$manField)) {
                 throw new \RuntimeException("Madatory field " . $manField . ' is not set');
             }
-
         }
 
         foreach ($this as $key => $data) {
@@ -292,33 +291,33 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     /**
      * @param string $URLSuccess
      */
-    public function setURLSuccess($URLSuccess)
+    public function setUrlSuccess($URLSuccess)
     {
-        $this->URLSuccess = $URLSuccess;
+        $this->urlSuccess = $URLSuccess;
     }
 
     /**
      * @return string
      */
-    public function getURLSuccess()
+    public function getUrlSuccess()
     {
-        return $this->URLSuccess;
+        return $this->urlSuccess;
     }
 
     /**
      * @param string $URLNotify
      */
-    public function setURLNotify($URLNotify)
+    public function setUrlNotify($URLNotify)
     {
-        $this->URLNotify = $URLNotify;
+        $this->urlNotify = $URLNotify;
     }
 
     /**
      * @return string
      */
-    public function getURLNotify()
+    public function getUrlNotify()
     {
-        return $this->URLNotify;
+        return $this->urlNotify;
     }
 
     /**
@@ -342,17 +341,17 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     /**
      * @param string $URLFailure
      */
-    public function setURLFailure($URLFailure)
+    public function setUrlFailure($URLFailure)
     {
-        $this->URLFailure = $URLFailure;
+        $this->urlFailure = $URLFailure;
     }
 
     /**
      * @return string
      */
-    public function getURLFailure()
+    public function getUrlFailure()
     {
-        return $this->URLFailure;
+        return $this->urlFailure;
     }
 
 

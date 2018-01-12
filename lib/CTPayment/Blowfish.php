@@ -140,6 +140,11 @@ class Blowfish
         424198748, 50039436, 29584100, -689184263, -1865090967, -1503863136, 1057563949, -1039604065, -1219600078,
         -831004069, 1469046755, 985887462);
 
+    private $pk;
+
+    private $sk;
+
+
     /**
      * @param string $MAC
      */
@@ -194,7 +199,7 @@ class Blowfish
     /**
      * @param $key
      */
-    protected function bf_set_key($key)
+    protected function bfSetKey($key)
     {
         if (strlen($key) <= 0) {
             $key = ' ';
@@ -374,7 +379,7 @@ class Blowfish
             return false;
         }
         $plaintext = $this->expand($plaintext);
-        $this->bf_set_key($password);
+        $this->bfSetKey($password);
 
         return bin2hex($this->encrypt($plaintext));
     }
@@ -399,7 +404,7 @@ class Blowfish
 
             return false;
         }
-        $this->bf_set_key($password);
+        $this->bfSetKey($password);
 
         return mb_substr($this->decrypt($cipher), 0, $len);
     }

@@ -17,25 +17,25 @@ class LastschriftDirekt extends Lastschrift
     /**
      * @param $amount
      * @param $currency
-     * @param $URLSuccess
-     * @param $URLFailure
-     * @param $URLNotify
+     * @param $urlSuccess
+     * @param $urlFailure
+     * @param $urlNotify
      * @param $OrderDesc
      * @param $UserData
      */
 
     public function __construct(
-      $config,
-      $order,
-      $URLSuccess,
-      $URLFailure,
-      $URLNotify,
-      $OrderDesc,
-      $UserData,
-      $capture,
-      $orderDesc2
+        $config,
+        $order,
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify,
+        $OrderDesc,
+        $UserData,
+        $capture,
+        $orderDesc2
     ) {
-        parent::__construct($config, $order, $URLSuccess, $URLFailure, $URLNotify, $OrderDesc, $UserData, $capture);
+        parent::__construct($config, $order, $urlSuccess, $urlFailure, $urlNotify, $OrderDesc, $UserData, $capture);
         $this->setOrderDesc2($orderDesc2);
     }
 

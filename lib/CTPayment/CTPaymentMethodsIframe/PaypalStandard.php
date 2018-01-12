@@ -90,27 +90,24 @@ class PaypalStandard extends CTPaymentMethodIframe
     /**
      * @param $config
      * @param \Fatchip\CTPayment\CTOrder $order
-     * @param $URLSuccess
-     * @param $URLFailure
-     * @param $URLNotify
-     * @param $OrderDesc
-     * @param $UserData
-     * @param $capture
+     * @param $urlSuccess
+     * @param $urlFailure
+     * @param $urlNotify
      */
     public function __construct(
-      $config,
-      $order,
-      $URLSuccess,
-      $URLFailure,
-      $URLNotify
+        $config,
+        $order,
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify
     ) {
         parent::__construct($config, $order);
-        $this->setURLSuccess($URLSuccess);
-        $this->setURLFailure($URLFailure);
-        $this->setURLNotify($URLNotify);
+        $this->setUrlSuccess($urlSuccess);
+        $this->setUrlFailure($urlFailure);
+        $this->setUrlNotify($urlNotify);
         $this->setShippingAddress($order->getShippingAddress());
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc', 'MAC',
-          'URLSuccess', 'URLFailure', ));
+          'urlSuccess', 'urlFailure', ));
     }
 
     /**
