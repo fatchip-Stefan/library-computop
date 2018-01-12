@@ -170,7 +170,7 @@ build:
 
     dependencies:
         before:
-            - export BUILD_HOME=/home/scrutinizer
+            # - export BUILD_HOME=/home/scrutinizer
     nodes:
         php56:
             environment:
