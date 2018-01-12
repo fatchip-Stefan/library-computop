@@ -13,21 +13,21 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
    * Bitte wenden Sie sich an den Helpdesk, wenn Sie Beträge < 100 (kleinste Wäh-rungseinheit) buchen möchten.
    * @var int
    */
-    private $Amount;
+    private $amount;
 
     /**
      * Währung, drei Zeichen DIN / ISO 4217
      *
      * @var
      */
-    private $Currency = 'EUR';
+    private $currency = 'EUR';
 
     /**
      * Wenn beim Aufruf angegeben, übergibt das Paygate die Parameter mit dem Zahlungsergebnis an den Shop
      *
      * @var string
      */
-    private $UserData;
+    private $userData;
 
     /**
      * Vollständige URL, die das Paygate aufruft, wenn die Zahlung erfolgreich war.
@@ -64,7 +64,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      *
      * @var string
      */
-    protected $OrderDesc;
+    protected $orderDesc;
 
 
 
@@ -72,12 +72,12 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     /**
      * @var
      */
-    protected $SettingsDefinitions;
+    protected $settingsDefinitions;
 
     /**
      * @var
      */
-    protected $TransactionDBFieldDefinitions;
+    protected $transactionDBFieldDefinitions;
 
 
     /**
@@ -87,7 +87,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      *
      * @var string
      */
-    protected $TransID;
+    protected $transID;
 
 
     /**
@@ -96,12 +96,12 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     protected $order;
 
     /**
-     * Die Status-Rückmeldung, die das Paygate an URLSuccess und URLFailure sendet, sollte verschlüsselt werden.
+     * Die Status-Rückmeldung, die das Paygate an urlSuccess und urlFailure sendet, sollte verschlüsselt werden.
      * Dazu übergeben Sie den Parameter Response=encrypt.
      *
      * @var string
      */
-    protected $Response = 'encrypt';
+    protected $response = 'encrypt';
 
     /**
      * Eindeutige Referenznummer des Händlers
@@ -138,10 +138,10 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         }
 
         mt_srand((double)microtime() * 1000000);
-        $this->TransID = (string)mt_rand();
-        $this->TransID .= date('yzGis');
+        $this->transID = (string)mt_rand();
+        $this->transID .= date('yzGis');
         $this->setResponse('encrypt');
-        $this->setMandatoryFields(array('Amount', 'Currency'));
+        $this->setMandatoryFields(array('amount', 'currency'));
     }
 
 
@@ -212,7 +212,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function setAmount($Amount)
     {
-        $this->Amount = $Amount;
+        $this->amount = $Amount;
     }
 
     /**
@@ -220,7 +220,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function getAmount()
     {
-        return $this->Amount;
+        return $this->amount;
     }
 
     /**
@@ -228,7 +228,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function setCurrency($Currency)
     {
-        $this->Currency = $Currency;
+        $this->currency = $Currency;
     }
 
     /**
@@ -236,7 +236,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function getCurrency()
     {
-        return $this->Currency;
+        return $this->currency;
     }
 
     /**
@@ -244,7 +244,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function setUserData($UserData)
     {
-        $this->UserData = $UserData;
+        $this->userData = $UserData;
     }
 
     /**
@@ -252,7 +252,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function getUserData()
     {
-        return $this->UserData;
+        return $this->userData;
     }
 
     /**
@@ -260,7 +260,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function setResponse($response)
     {
-        $this->Response = $response;
+        $this->response = $response;
     }
 
     /**
@@ -268,7 +268,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function getResponse()
     {
-        return $this->Response;
+        return $this->response;
     }
 
 
@@ -277,7 +277,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function setTransID($TransID)
     {
-        $this->TransID = $TransID;
+        $this->transID = $TransID;
     }
 
     /**
@@ -285,15 +285,15 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function getTransID()
     {
-        return $this->TransID;
+        return $this->transID;
     }
 
     /**
-     * @param string $URLSuccess
+     * @param string $urlSuccess
      */
-    public function setUrlSuccess($URLSuccess)
+    public function setUrlSuccess($urlSuccess)
     {
-        $this->urlSuccess = $URLSuccess;
+        $this->urlSuccess = $urlSuccess;
     }
 
     /**
@@ -305,11 +305,11 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
-     * @param string $URLNotify
+     * @param string $urlNotify
      */
-    public function setUrlNotify($URLNotify)
+    public function setUrlNotify($urlNotify)
     {
-        $this->urlNotify = $URLNotify;
+        $this->urlNotify = $urlNotify;
     }
 
     /**
@@ -325,7 +325,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function setOrderDesc($orderDesc)
     {
-        $this->OrderDesc = $orderDesc;
+        $this->orderDesc = $orderDesc;
     }
 
     /**
@@ -333,17 +333,17 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public function getOrderDesc()
     {
-        return $this->OrderDesc;
+        return $this->orderDesc;
     }
 
 
 
     /**
-     * @param string $URLFailure
+     * @param string $urlFailure
      */
-    public function setUrlFailure($URLFailure)
+    public function setUrlFailure($urlFailure)
     {
-        $this->urlFailure = $URLFailure;
+        $this->urlFailure = $urlFailure;
     }
 
     /**
@@ -367,12 +367,12 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      * {@inheritDoc}
      * ToDo: get rid of params?
      */
-    protected function ctHMAC($MerchantID, $Amount, $Currency, $HmacPassword, $PayId = '', $TransID = '')
+    protected function ctHMAC($merchantID, $amount, $currency, $hmacPassword, $payId = '', $transID = '')
     {
         return hash_hmac(
             "sha256",
-          "$PayId*$this->TransID*$this->MerchantID*$this->Amount*$this->Currency",
-            $this->getMAC()
+          "$payId*$this->transID*$this->MerchantID*$this->amount*$this->currency",
+            $this->getMac()
         );
     }
 
@@ -382,7 +382,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
           $this->getMerchantID(),
           $this->getAmount(),
           $this->getCurrency(),
-          $this->getMAC(),
+          $this->getMac(),
           $this->getPayID(),
           $this->getTransID()
         );
@@ -400,7 +400,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $query = $this->getTransactionQuery();
         $Len = mb_strlen($query);
         $data = $this->getEncryptedData();
-        return $this->getCTPaymentURL() . '?MerchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
+        return $this->getCTPaymentURL() . '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
     }
 
     public function getForm() {
@@ -411,7 +411,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $data = $this->getEncryptedData();
 
         $form = "<FORM method='POST' action='$URL'>
-                <INPUT type='hidden' name='MerchantID' value='$merchantID'>
+                <INPUT type='hidden' name='merchantID' value='$merchantID'>
                 <INPUT type='hidden' name='Len' value='$Len'>
                 <INPUT type='hidden' name='Data' value='$data'>
                 <INPUT type='hidden' name='Background'

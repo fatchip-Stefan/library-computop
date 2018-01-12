@@ -62,7 +62,7 @@ class PaypalStandard extends CTPaymentMethodIframe
 
     /**
      * optional, plficht für USA und Canada:
-     * Bundesland (Bundesstaat) der Lieferadresse. Die in AddrCity übergebene Stadt muss im angegebenen Bundesstaat
+     * Bundesland (Bundesstaat) der Lieferadresse. Die in addrCity übergebene Stadt muss im angegebenen Bundesstaat
      * liegen, sonst lehnt PayPal die Zahlung ab.
      * Mögliche Werte entnehmen Sie bitte der PayPal-API-Reference Dokumentation.
      *
@@ -127,11 +127,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $TxType
+     * @param string $txType
      */
-    public function setTxType($TxType)
+    public function setTxType($txType)
     {
-        $this->TxType = $TxType;
+        $this->TxType = $txType;
     }
 
     /**
@@ -143,11 +143,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrCity
+     * @param string $addrCity
      */
-    public function setAddrCity($AddrCity)
+    public function setAddrCity($addrCity)
     {
-        $this->AddrCity = $AddrCity;
+        $this->AddrCity = $addrCity;
     }
 
     /**
@@ -159,11 +159,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrCountryCode
+     * @param string $addrCountryCode
      */
-    public function setAddrCountryCode($AddrCountryCode)
+    public function setAddrCountryCode($addrCountryCode)
     {
-        $this->AddrCountryCode = $AddrCountryCode;
+        $this->AddrCountryCode = $addrCountryCode;
     }
 
     /**
@@ -175,11 +175,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrState
+     * @param string $addrState
      */
-    public function setAddrState($AddrState)
+    public function setAddrState($addrState)
     {
-        $this->AddrState = $AddrState;
+        $this->AddrState = $addrState;
     }
 
     /**
@@ -191,11 +191,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrStreet
+     * @param string $addrStreet
      */
-    public function setAddrStreet($AddrStreet)
+    public function setAddrStreet($addrStreet)
     {
-        $this->AddrStreet = $AddrStreet;
+        $this->AddrStreet = $addrStreet;
     }
 
     /**
@@ -207,11 +207,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrStreet2
+     * @param string $addrStreet2
      */
-    public function setAddrStreet2($AddrStreet2)
+    public function setAddrStreet2($addrStreet2)
     {
-        $this->AddrStreet2 = $AddrStreet2;
+        $this->AddrStreet2 = $addrStreet2;
     }
 
     /**
@@ -223,11 +223,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrZip
+     * @param string $addrZip
      */
-    public function setAddrZip($AddrZip)
+    public function setAddrZip($addrZip)
     {
-        $this->AddrZip = $AddrZip;
+        $this->AddrZip = $addrZip;
     }
 
     /**
@@ -239,11 +239,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $FirstName
+     * @param string $firstName
      */
-    public function setFirstName($FirstName)
+    public function setFirstName($firstName)
     {
-        $this->FirstName = $FirstName;
+        $this->FirstName = $firstName;
     }
 
     /**
@@ -255,11 +255,11 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $LastName
+     * @param string $lastName
      */
-    public function setLastName($LastName)
+    public function setLastName($lastName)
     {
-        $this->LastName = $LastName;
+        $this->LastName = $lastName;
     }
 
     /**

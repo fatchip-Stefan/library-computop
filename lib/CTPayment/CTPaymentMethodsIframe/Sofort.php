@@ -53,7 +53,7 @@ class Sofort extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setAddrCountryCode($order->getBillingAddress()->getCountryCode());
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc', 'AddrCountryCode',
+        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc', 'addrCountryCode',
           'MAC', 'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
@@ -92,11 +92,11 @@ class Sofort extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrCountryCode
+     * @param string $addrCountryCode
      */
-    public function setAddrCountryCode($AddrCountryCode)
+    public function setAddrCountryCode($addrCountryCode)
     {
-        $this->AddrCountryCode = $AddrCountryCode;
+        $this->AddrCountryCode = $addrCountryCode;
     }
 
     /**
@@ -106,24 +106,6 @@ class Sofort extends CTPaymentMethodIframe
     {
         return $this->AddrCountryCode;
     }
-
-
-    /*protected function getTransactionArray()
-    {
-        //first get obligitory from parent
-        $queryarray =  parent::getTransactionArray();
-        // obligatory for Sofort
-        $queryarray[] = "AddrCountryCode=" . $this->getAddrCountryCode();
-        //Optional for sofort
-        if (strlen($this->getSofortAction()) > 0) {
-            $queryarray[] = "Sofortaction=" . $this->getSofortAction();
-        }
-        if (strlen($this->getIssuerID()) > 0) {
-            $queryarray[] = "IssuerID=" . $this->getIssuerID();
-        }
-
-        return $queryarray;
-    }*/
 
     public function getCTPaymentURL()
     {

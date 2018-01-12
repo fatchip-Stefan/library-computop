@@ -105,11 +105,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     protected $BillingAgreementiD;
 
     /**
-     * @param string $AddrCity
+     * @param string $addrCity
      */
-    public function setAddrCity($AddrCity)
+    public function setAddrCity($addrCity)
     {
-        $this->AddrCity = $AddrCity;
+        $this->AddrCity = $addrCity;
     }
 
     /**
@@ -121,11 +121,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $AddrCountryCode
+     * @param string $addrCountryCode
      */
-    public function setAddrCountryCode($AddrCountryCode)
+    public function setAddrCountryCode($addrCountryCode)
     {
-        $this->AddrCountryCode = $AddrCountryCode;
+        $this->AddrCountryCode = $addrCountryCode;
     }
 
     /**
@@ -137,11 +137,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $AddrState
+     * @param string $addrState
      */
-    public function setAddrState($AddrState)
+    public function setAddrState($addrState)
     {
-        $this->AddrState = $AddrState;
+        $this->AddrState = $addrState;
     }
 
     /**
@@ -153,11 +153,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $AddrStreet
+     * @param string $addrStreet
      */
-    public function setAddrStreet($AddrStreet)
+    public function setAddrStreet($addrStreet)
     {
-        $this->AddrStreet = $AddrStreet;
+        $this->AddrStreet = $addrStreet;
     }
 
     /**
@@ -169,11 +169,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $AddrStreet2
+     * @param string $addrStreet2
      */
-    public function setAddrStreet2($AddrStreet2)
+    public function setAddrStreet2($addrStreet2)
     {
-        $this->AddrStreet2 = $AddrStreet2;
+        $this->AddrStreet2 = $addrStreet2;
     }
 
     /**
@@ -185,11 +185,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $AddrZIP
+     * @param string $addrZIP
      */
-    public function setAddrZIP($AddrZIP)
+    public function setAddrZIP($addrZIP)
     {
-        $this->AddrZIP = $AddrZIP;
+        $this->AddrZIP = $addrZIP;
     }
 
     /**
@@ -201,11 +201,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $BillingAgreementiD
+     * @param string $billingAgreementiD
      */
-    public function setBillingAgreementiD($BillingAgreementiD)
+    public function setBillingAgreementiD($billingAgreementiD)
     {
-        $this->BillingAgreementiD = $BillingAgreementiD;
+        $this->BillingAgreementiD = $billingAgreementiD;
     }
 
     /**
@@ -217,11 +217,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
- * @param string $EMail
+ * @param string $eMail
  */
-    public function setEMail($EMail)
+    public function setEMail($eMail)
     {
-        $this->EMail = $EMail;
+        $this->EMail = $eMail;
     }
 
 
@@ -235,11 +235,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $FirstName
+     * @param string $firstName
      */
-    public function setFirstName($FirstName)
+    public function setFirstName($firstName)
     {
-        $this->FirstName = $FirstName;
+        $this->FirstName = $firstName;
     }
 
     /**
@@ -251,11 +251,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $InfoText
+     * @param string $infoText
      */
-    public function setInfoText($InfoText)
+    public function setInfoText($infoText)
     {
-        $this->InfoText = $InfoText;
+        $this->InfoText = $infoText;
     }
 
     /**
@@ -267,11 +267,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $LastName
+     * @param string $lastName
      */
-    public function setLastName($LastName)
+    public function setLastName($lastName)
     {
-        $this->LastName = $LastName;
+        $this->LastName = $lastName;
     }
 
     /**
@@ -283,11 +283,11 @@ class CTResponsePaypalStandard extends CTResponseIframe
     }
 
     /**
-     * @param string $TransactionID
+     * @param string $transactionID
      */
-    public function setTransactionID($TransactionID)
+    public function setTransactionID($transactionID)
     {
-        $this->TransactionID = $TransactionID;
+        $this->TransactionID = $transactionID;
     }
 
     /**

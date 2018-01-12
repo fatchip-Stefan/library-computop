@@ -43,11 +43,11 @@ abstract class CTResponseIframe extends CTResponse
     protected $TransID = null;
 
     /**
-     * @param string $MID
+     * @param string $mid
      */
-    public function setMID($MID)
+    public function setMID($mid)
     {
-        $this->MID = $MID;
+        $this->MID = $mid;
     }
 
     /**
@@ -59,11 +59,11 @@ abstract class CTResponseIframe extends CTResponse
     }
 
     /**
-     * @param string $PayID
+     * @param string $payID
      */
-    public function setPayID($PayID)
+    public function setPayID($payID)
     {
-        $this->PayID = $PayID;
+        $this->PayID = $payID;
     }
 
     /**
@@ -75,11 +75,11 @@ abstract class CTResponseIframe extends CTResponse
     }
 
     /**
-     * @param string $XID
+     * @param string $xid
      */
-    public function setXID($XID)
+    public function setXID($xid)
     {
-        $this->XID = $XID;
+        $this->XID = $xid;
     }
 
     /**
@@ -91,11 +91,11 @@ abstract class CTResponseIframe extends CTResponse
     }
 
     /**
-     * @param string $TransID
+     * @param string $transID
      */
-    public function setTransID($TransID)
+    public function setTransID($transID)
     {
-        $this->TransID = $TransID;
+        $this->TransID = $transID;
     }
 
     /**

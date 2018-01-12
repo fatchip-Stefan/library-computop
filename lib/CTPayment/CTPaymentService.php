@@ -118,7 +118,7 @@ class CTPaymentService extends Blowfish
     {
         return array(
             array(
-                'name' => 'fatchip_computop_cc',
+                'name' => 'fatchip_computop_creditcard',
                 'shortname' => 'Kreditkarte',
                 'description' => 'Computop Kreditkarte',
             ),

@@ -75,11 +75,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     protected $TransactionID;
 
     /**
-     * @param string $AccBank
+     * @param string $accBank
      */
-    public function setAccBank($AccBank)
+    public function setAccBank($accBank)
     {
-        $this->AccBank = $AccBank;
+        $this->AccBank = $accBank;
     }
 
     /**
@@ -91,11 +91,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param string $AccIBAN
+     * @param string $accIBAN
      */
-    public function setAccIBAN($AccIBAN)
+    public function setAccIBAN($accIBAN)
     {
-        $this->AccIBAN = $AccIBAN;
+        $this->AccIBAN = $accIBAN;
     }
 
     /**
@@ -107,11 +107,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param string $AccNr
+     * @param string $accNr
      */
-    public function setAccNr($AccNr)
+    public function setAccNr($accNr)
     {
-        $this->AccNr = $AccNr;
+        $this->AccNr = $accNr;
     }
 
     /**
@@ -123,11 +123,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param mixed $AccOwner
+     * @param mixed $accOwner
      */
-    public function setAccOwner($AccOwner)
+    public function setAccOwner($accOwner)
     {
-        $this->AccOwner = $AccOwner;
+        $this->AccOwner = $accOwner;
     }
 
     /**
@@ -139,11 +139,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param string $BIC
+     * @param string $bic
      */
-    public function setBIC($BIC)
+    public function setBIC($bic)
     {
-        $this->BIC = $BIC;
+        $this->BIC = $bic;
     }
 
     /**
@@ -155,11 +155,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param string $IBAN
+     * @param string $iban
      */
-    public function setIBAN($IBAN)
+    public function setIBAN($iban)
     {
-        $this->IBAN = $IBAN;
+        $this->IBAN = $iban;
     }
 
     /**
@@ -171,11 +171,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param string $PaymentGuarantee
+     * @param string $paymentGuarantee
      */
-    public function setPaymentGuarantee($PaymentGuarantee)
+    public function setPaymentGuarantee($paymentGuarantee)
     {
-        $this->PaymentGuarantee = $PaymentGuarantee;
+        $this->PaymentGuarantee = $paymentGuarantee;
     }
 
     /**
@@ -187,11 +187,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param string $PaymentPurpose
+     * @param string $paymentPurpose
      */
-    public function setPaymentPurpose($PaymentPurpose)
+    public function setPaymentPurpose($paymentPurpose)
     {
-        $this->PaymentPurpose = $PaymentPurpose;
+        $this->PaymentPurpose = $paymentPurpose;
     }
 
     /**
@@ -203,11 +203,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param string $TID
+     * @param string $tid
      */
-    public function setTID($TID)
+    public function setTID($tid)
     {
-        $this->TID = $TID;
+        $this->TID = $tid;
     }
 
     /**
@@ -219,11 +219,11 @@ class CTResponsePrzelewy24 extends CTResponseIframe
     }
 
     /**
-     * @param string $TransactionID
+     * @param string $transactionID
      */
-    public function setTransactionID($TransactionID)
+    public function setTransactionID($transactionID)
     {
-        $this->TransactionID = $TransactionID;
+        $this->TransactionID = $transactionID;
     }
 
     /**

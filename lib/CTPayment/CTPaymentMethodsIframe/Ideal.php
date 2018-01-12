@@ -29,8 +29,8 @@ class Ideal extends CTPaymentMethodIframe
      * @param $urlSuccess
      * @param $urlFailure
      * @param $urlNotify
-     * @param $OrderDesc
-     * @param $UserData
+     * @param $orderDesc
+     * @param $userData
      */
     public function __construct(
         $config,
@@ -38,17 +38,17 @@ class Ideal extends CTPaymentMethodIframe
         $urlSuccess,
         $urlFailure,
         $urlNotify,
-        $OrderDesc,
-        $UserData
+        $orderDesc,
+        $userData
     ) {
         parent::__construct($config, $order);
 
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-        $this->setOrderDesc($OrderDesc);
-        $this->setUserData($UserData);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc', 'MAC',
+        $this->setOrderDesc($orderDesc);
+        $this->setUserData($userData);
+        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'orderDesc', 'MAC',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
@@ -106,8 +106,6 @@ class Ideal extends CTPaymentMethodIframe
         $queryarray[] = 'MerchantID=' . $this->getMerchantID();
 
         $query = join("&", $queryarray);
-        $Len = strlen($query);
-
 
         $Len = strlen($query);  // Length of the plain text string
         $data = $this->ctEncrypt($query, $Len, $this->getBlowfishPassword());

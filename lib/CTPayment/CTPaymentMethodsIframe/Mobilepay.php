@@ -23,7 +23,7 @@ class Mobilepay extends CTPaymentMethodIframe
 
     /**
      * //Telefonnummer des Mobilepay-Accounts im Format +4595000012.
-     * Der Parameter <MobileNr> kann, sofern bekannt aus dem Kundenkonto vorbelegt wreden.
+     * Der Parameter <mobileNr> kann, sofern bekannt aus dem Kundenkonto vorbelegt wreden.
      * Diese Option sollte aber im Backend auf aktiv bzw. inaktiv gestellt werden können.
      *
      * @var string
@@ -31,13 +31,13 @@ class Mobilepay extends CTPaymentMethodIframe
     protected $MobileNr;
 
     /**
-     * @param $amount
-     * @param $currency
+     * @param $config
+     * @param $order
      * @param $urlSuccess
      * @param $urlFailure
      * @param $urlNotify
-     * @param $OrderDesc
-     * @param $UserData
+     * @param $orderDesc
+     * @param $userData
      */
     public function __construct(
         $config,
@@ -45,25 +45,25 @@ class Mobilepay extends CTPaymentMethodIframe
         $urlSuccess,
         $urlFailure,
         $urlNotify,
-        $OrderDesc,
-        $UserData
+        $orderDesc,
+        $userData
     ) {
         parent::__construct($config, $order);
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-        $this->setOrderDesc($OrderDesc);
-        $this->setUserData($UserData);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'OrderDesc',
+        $this->setOrderDesc($orderDesc);
+        $this->setUserData($userData);
+        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
     /**
-     * @param string $MobileNr
+     * @param string $mobileNr
      */
-    public function setMobileNr($MobileNr)
+    public function setMobileNr($mobileNr)
     {
-        $this->MobileNr = $MobileNr;
+        $this->MobileNr = $mobileNr;
     }
 
     /**
@@ -115,7 +115,7 @@ class Mobilepay extends CTPaymentMethodIframe
             $queryarray[] = "Language=" . $this->getLanguage();
         }
         if ($this->getSendMobileNumber() && strlen($this->getMobileNr()) > 0) {
-            $queryarray[] = "MobileNr=" . $this->getMobileNr();
+            $queryarray[] = "mobileNr=" . $this->getMobileNr();
         }
         return $queryarray;
     }

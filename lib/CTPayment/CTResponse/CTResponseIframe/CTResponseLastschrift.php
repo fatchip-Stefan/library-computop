@@ -27,11 +27,11 @@ abstract class CTResponseLastschrift extends CTResponseIframe
     protected $Mdtseqtype;
 
     /**
-     * @param mixed $AccOwner
+     * @param mixed $accOwner
      */
-    public function setAccOwner($AccOwner)
+    public function setAccOwner($accOwner)
     {
-        $this->AccOwner = $AccOwner;
+        $this->AccOwner = $accOwner;
     }
 
     /**
@@ -43,11 +43,11 @@ abstract class CTResponseLastschrift extends CTResponseIframe
     }
 
     /**
-     * @param mixed $BIC
+     * @param mixed $bic
      */
-    public function setBIC($BIC)
+    public function setBIC($bic)
     {
-        $this->BIC = $BIC;
+        $this->BIC = $bic;
     }
 
     /**
@@ -59,11 +59,11 @@ abstract class CTResponseLastschrift extends CTResponseIframe
     }
 
     /**
-     * @param mixed $Dtofsgntr
+     * @param mixed $dtofsgntr
      */
-    public function setDtofsgntr($Dtofsgntr)
+    public function setDtofsgntr($dtofsgntr)
     {
-        $this->Dtofsgntr = $Dtofsgntr;
+        $this->Dtofsgntr = $dtofsgntr;
     }
 
     /**
@@ -75,11 +75,11 @@ abstract class CTResponseLastschrift extends CTResponseIframe
     }
 
     /**
-     * @param mixed $IBAN
+     * @param mixed $iban
      */
-    public function setIBAN($IBAN)
+    public function setIBAN($iban)
     {
-        $this->IBAN = $IBAN;
+        $this->IBAN = $iban;
     }
 
     /**
@@ -91,11 +91,11 @@ abstract class CTResponseLastschrift extends CTResponseIframe
     }
 
     /**
-     * @param mixed $Mandateid
+     * @param mixed $mandateId
      */
-    public function setMandateid($Mandateid)
+    public function setMandateid($mandateId)
     {
-        $this->Mandateid = $Mandateid;
+        $this->Mandateid = $mandateId;
     }
 
     /**
@@ -107,11 +107,11 @@ abstract class CTResponseLastschrift extends CTResponseIframe
     }
 
     /**
-     * @param mixed $Mdtseqtype
+     * @param mixed $mdtseqtype
      */
-    public function setMdtseqtype($Mdtseqtype)
+    public function setMdtseqtype($mdtseqtype)
     {
-        $this->Mdtseqtype = $Mdtseqtype;
+        $this->Mdtseqtype = $mdtseqtype;
     }
 
     /**
@@ -123,11 +123,11 @@ abstract class CTResponseLastschrift extends CTResponseIframe
     }
 
     /**
-     * @param mixed $Type
+     * @param mixed $type
      */
-    public function setType($Type)
+    public function setType($type)
     {
-        $this->Type = $Type;
+        $this->Type = $type;
     }
 
     /**

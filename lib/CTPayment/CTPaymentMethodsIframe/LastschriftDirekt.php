@@ -20,8 +20,8 @@ class LastschriftDirekt extends Lastschrift
      * @param $urlSuccess
      * @param $urlFailure
      * @param $urlNotify
-     * @param $OrderDesc
-     * @param $UserData
+     * @param $orderDesc
+     * @param $userData
      */
 
     public function __construct(
@@ -30,12 +30,12 @@ class LastschriftDirekt extends Lastschrift
         $urlSuccess,
         $urlFailure,
         $urlNotify,
-        $OrderDesc,
-        $UserData,
+        $orderDesc,
+        $userData,
         $capture,
         $orderDesc2
     ) {
-        parent::__construct($config, $order, $urlSuccess, $urlFailure, $urlNotify, $OrderDesc, $UserData, $capture);
+        parent::__construct($config, $order, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $capture);
         $this->setOrderDesc2($orderDesc2);
     }
 

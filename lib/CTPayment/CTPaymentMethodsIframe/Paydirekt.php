@@ -100,10 +100,6 @@ class PayDirekt extends CTPaymentMethodIframe
      * @param $urlSuccess
      * @param $urlFailure
      * @param $urlNotify
-     * @param $OrderDesc
-     * @param $UserData
-     * @param $capture
-     * @param $shopApiKey
      */
     public function __construct(
         $config,
@@ -121,7 +117,7 @@ class PayDirekt extends CTPaymentMethodIframe
         $this->setShippingAddress($order->getShippingAddress());
 
         //For Paydirekt, the transID has a max length of 20
-        $this->TransID = substr($this->TransID, 0, 20);
+        $this->transID = substr($this->transID, 0, 20);
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC',
           'urlSuccess', 'urlFailure', 'ShopApiKey' ));
     }
@@ -160,11 +156,11 @@ class PayDirekt extends CTPaymentMethodIframe
     }
 
     /**
-     * @param int $ShoppingBasketAmount
+     * @param int $shoppingBasketAmount
      */
-    public function setShoppingBasketAmount($ShoppingBasketAmount)
+    public function setShoppingBasketAmount($shoppingBasketAmount)
     {
-        $this->ShoppingBasketAmount = $ShoppingBasketAmount;
+        $this->ShoppingBasketAmount = $shoppingBasketAmount;
     }
 
     /**

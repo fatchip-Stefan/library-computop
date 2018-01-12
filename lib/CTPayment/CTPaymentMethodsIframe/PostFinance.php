@@ -26,15 +26,15 @@ class PostFinance extends CTPaymentMethodIframe
         $this->setUrlNotify($urlNotify);
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
         $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'OrderDesc',
-          'urlSuccess', 'urlFailure', 'urlNotify', 'AccOwner' ));
+          'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner' ));
     }
 
     /**
-     * @param string $AccOwner
+     * @param string $accOwner
      */
-    public function setAccOwner($AccOwner)
+    public function setAccOwner($accOwner)
     {
-        $this->AccOwner = $AccOwner;
+        $this->AccOwner = $accOwner;
     }
 
     /**

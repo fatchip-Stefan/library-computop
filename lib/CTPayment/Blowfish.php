@@ -19,7 +19,7 @@ class Blowfish
      *
      * @var string
      */
-    protected $MAC = '';
+    protected $mac = '';
 
     private $p = array(608135816, -2052912941, 320440878, 57701188, -1542899678, 698298832, 137296536, -330404727,
         1160258022, 953160567, -1101764913, 887688300, -1062458953, -914599715, 1065670069, -1253635817, -1843997223,
@@ -146,19 +146,19 @@ class Blowfish
 
 
     /**
-     * @param string $MAC
+     * @param string $mac
      */
-    public function setMAC($MAC)
+    public function setMac($mac)
     {
-        $this->MAC = $MAC;
+        $this->mac = $mac;
     }
 
     /**
      * @return string
      */
-    public function getMAC()
+    public function getMac()
     {
-        return $this->MAC;
+        return $this->mac;
     }
 
     /**
@@ -181,7 +181,7 @@ class Blowfish
     {
         $this->MerchantID = $merhantID;
         $this->blowfishPassword = $blowfishPassword;
-        $this->MAC = $mac;
+        $this->mac = $mac;
     }
 
     /**
@@ -222,12 +222,12 @@ class Blowfish
             ));
         }
         for ($i = 0; $i < 18; $i += 2) {
-            list($l, $r) = $this->bf_encrypt($l, $r);
+            list($l, $r) = $this->bfEncrypt($l, $r);
             $this->pk[$i] = $l;
             $this->pk[$i + 1] = $r;
         }
         for ($i = 0; $i < 1024; $i += 2) {
-            list($l, $r) = $this->bf_encrypt($l, $r);
+            list($l, $r) = $this->bfEncrypt($l, $r);
             $this->sk[$i] = $l;
             $this->sk[$i + 1] = $r;
         }
@@ -248,12 +248,12 @@ class Blowfish
      * @param $r
      * @return array
      */
-    protected function bf_encrypt($l, $r)
+    protected function bfEncrypt($l, $r)
     {
         $l ^= $this->pk[0];
         for ($i = 1; $i < 17; $i += 2) {
-            $r = $this->bf_enc($r, $l, $i);
-            $l = $this->bf_enc($l, $r, $i + 1);
+            $r = $this->bfEnc($r, $l, $i);
+            $l = $this->bfEnc($l, $r, $i + 1);
         }
         $r ^= $this->pk[17];
         return array($r, $l);
@@ -265,7 +265,7 @@ class Blowfish
      * @param $n
      * @return int
      */
-    protected function bf_enc($ll, $r, $n)
+    protected function bfEnc($ll, $r, $n)
     {
         $ll ^= $this->pk[$n];
 
@@ -274,7 +274,7 @@ class Blowfish
         $b3 = $this->sk[512 + (($r >> 8) & 0xff)];
         $b4 = $this->sk[768 + ($r & 0xff)];
 
-        return $ll ^ $this->sec_add(($this->sec_add($b1, $b2)
+        return $ll ^ $this->secAdd(($this->secAdd($b1, $b2)
                 ^ $b3), $b4);
     }
 
@@ -283,7 +283,7 @@ class Blowfish
      * @param $b
      * @return int
      */
-    protected function sec_add($a, $b)
+    protected function secAdd($a, $b)
     {
         $higha = ($a >> 16) & 0xffff;
         $lowa = $a & 0xffff;
@@ -311,7 +311,7 @@ class Blowfish
         for ($i = 0; $i < $len; $i += 8) {
             $l = $this->asc2int(substr($text, $i, 4));
             $r = $this->asc2int(substr($text, $i + 4, 4));
-            list($l, $r) = $this->bf_encrypt($l, $r);
+            list($l, $r) = $this->bfEncrypt($l, $r);
             $plain .= $this->int2asc($l) . $this->int2asc($r);
         }
         return $plain;
@@ -338,7 +338,7 @@ class Blowfish
         for ($i = 0; $i < $len; $i += 8) {
             $a = $this->asc2int(substr($text, $i, 4));
             $b = $this->asc2int(substr($text, $i + 4, 4));
-            list($a, $b) = $this->bf_decrypt($a, $b);
+            list($a, $b) = $this->bfDecrypt($a, $b);
             $plain .= $this->int2asc($a) . $this->int2asc($b);
         }
         return $plain;
@@ -349,12 +349,12 @@ class Blowfish
      * @param $r
      * @return array
      */
-    protected function bf_decrypt($l, $r)
+    protected function bfDecrypt($l, $r)
     {
         $l ^= $this->pk[17];
         for ($i = 16; $i > 0; $i -= 2) {
-            $r = $this->bf_enc($r, $l, $i);
-            $l = $this->bf_enc($l, $r, $i - 1);
+            $r = $this->bfEnc($r, $l, $i);
+            $l = $this->bfEnc($l, $r, $i - 1);
         }
         $r ^= $this->pk[0];
         return array($r, $l);
