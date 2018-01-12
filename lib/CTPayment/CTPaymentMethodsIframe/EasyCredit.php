@@ -509,7 +509,7 @@ class EasyCredit extends CTPaymentMethodIframe
 
 
         $this->setEventToken($eventToken);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency',
           'eventToken', 'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
@@ -584,7 +584,7 @@ class EasyCredit extends CTPaymentMethodIframe
         $query = $this->getTransactionQuery();
         $Len = strlen($query);
         $data = $this->getEncryptedData();
-        $url = 'https://www.computop-paygate.com/easyCreditDirect.aspx' . '?MerchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
+        $url = 'https://www.computop-paygate.com/easyCreditDirect.aspx' . '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
         ;
 
         $curl = curl_init();

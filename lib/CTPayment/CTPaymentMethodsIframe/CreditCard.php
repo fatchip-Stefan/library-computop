@@ -200,7 +200,7 @@ class CreditCard extends CTPaymentMethodIframe
                 break;
         }
 
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency',
         'MAC', 'urlSuccess', 'urlFailure', 'urlNotify', ));
 
 

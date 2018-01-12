@@ -54,7 +54,7 @@ class Mobilepay extends CTPaymentMethodIframe
         $this->setUrlNotify($urlNotify);
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'orderDesc',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'MAC', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 

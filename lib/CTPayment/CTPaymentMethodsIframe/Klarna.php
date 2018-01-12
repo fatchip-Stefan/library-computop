@@ -248,7 +248,7 @@ class Klarna extends CTPaymentMethodIframe
             $this->setCompanyOrPerson('P');
         }
         $this->setKlarnaAction($klarnaAction);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'orderDesc',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc',
             'bdStreet', 'bdZip', 'bdCity', 'bdCountryCode', 'sdStreet', 'sdZip', 'sdCity', 'sdCountryCode',
             'email', 'iPAddr', 'companyOrPerson', 'klarnaAction', 'invoiceFlag'));
     }

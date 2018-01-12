@@ -72,7 +72,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
         $this->setCapture($capture);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'orderDesc',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'MAC', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
 
     }

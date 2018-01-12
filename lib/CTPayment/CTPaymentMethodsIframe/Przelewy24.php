@@ -35,7 +35,7 @@ class Przelewy24 extends CTPaymentMethodIframe
 
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
         $this->setEmail($email);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'OrderDesc',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'MAC', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner', 'Email', ));
     }
 

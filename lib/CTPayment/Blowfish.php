@@ -9,7 +9,7 @@ class Blowfish
      *
      * @var string
      */
-    protected $MerchantID = '';
+    protected $merchantID = '';
     /**
      * Blowfish password
      */
@@ -179,7 +179,7 @@ class Blowfish
 
     public function setCredentials($merhantID, $blowfishPassword, $mac)
     {
-        $this->MerchantID = $merhantID;
+        $this->merchantID = $merhantID;
         $this->blowfishPassword = $blowfishPassword;
         $this->mac = $mac;
     }
@@ -414,7 +414,7 @@ class Blowfish
      */
     public function setMerchantID($merchantId)
     {
-        $this->MerchantID = $merchantId;
+        $this->merchantID = $merchantId;
     }
 
     /**
@@ -422,6 +422,6 @@ class Blowfish
      */
     public function getMerchantID()
     {
-        return $this->MerchantID;
+        return $this->merchantID;
     }
 }

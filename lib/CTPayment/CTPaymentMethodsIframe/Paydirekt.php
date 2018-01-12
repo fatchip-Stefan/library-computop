@@ -118,7 +118,7 @@ class PayDirekt extends CTPaymentMethodIframe
 
         //For Paydirekt, the transID has a max length of 20
         $this->transID = substr($this->transID, 0, 20);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'MAC',
           'urlSuccess', 'urlFailure', 'ShopApiKey' ));
     }
 

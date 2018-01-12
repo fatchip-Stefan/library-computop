@@ -371,7 +371,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     {
         return hash_hmac(
             "sha256",
-          "$payId*$this->transID*$this->MerchantID*$this->amount*$this->currency",
+          "$payId*$this->transID*$this->merchantID*$this->amount*$this->currency",
             $this->getMac()
         );
     }

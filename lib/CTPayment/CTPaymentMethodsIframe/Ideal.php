@@ -48,7 +48,7 @@ class Ideal extends CTPaymentMethodIframe
         $this->setUrlNotify($urlNotify);
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'orderDesc', 'MAC',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc', 'MAC',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
@@ -103,14 +103,14 @@ class Ideal extends CTPaymentMethodIframe
     public function getIssuerListURL()
     {
         $queryarray = array();
-        $queryarray[] = 'MerchantID=' . $this->getMerchantID();
+        $queryarray[] = 'merchantID=' . $this->getMerchantID();
 
         $query = join("&", $queryarray);
 
         $Len = strlen($query);  // Length of the plain text string
         $data = $this->ctEncrypt($query, $Len, $this->getBlowfishPassword());
 
-        return 'https://www.computop-paygate.com/idealIssuerList.aspx' .  '?MerchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
+        return 'https://www.computop-paygate.com/idealIssuerList.aspx' .  '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
         ;
     }
 

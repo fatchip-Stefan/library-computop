@@ -25,7 +25,7 @@ class PostFinance extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'OrderDesc',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'MAC', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner' ));
     }
 
