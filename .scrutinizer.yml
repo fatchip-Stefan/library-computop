@@ -42,9 +42,9 @@ checks:
 
 filter:
     excluded_paths:
-        - build/
-        - tests/
-        - vendor/
+        - build/*
+        - tests/*
+        - vendor/*
 
 coding_style:
     php:
