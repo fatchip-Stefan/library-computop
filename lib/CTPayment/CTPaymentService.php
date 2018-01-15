@@ -27,16 +27,22 @@ namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCreditCard;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseEasyCredit;
+use Fatchip\CTPayment\CTPaymentMethodsIframe\CreditCard;
 
 class CTPaymentService extends Blowfish
 {
     /**
      * @param $config
-     * @param $order CTOrder
      */
     public function __construct($blowfishPassword)
     {
         $this->blowfishPassword = $blowfishPassword;
+    }
+
+    public function getPaymentClass($className, $config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify)
+    {
+        $class = 'Fatchip\\CTPayment\\CTPaymentMethodsIframe\\' . $className;
+        return new $class($config,$ctOrder, $urlSuccess, $urlFailure, $urlNotify);
     }
 
 
