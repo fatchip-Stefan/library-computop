@@ -2,6 +2,7 @@
 
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
+use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
@@ -203,7 +204,11 @@ class CreditCard extends CTPaymentMethodIframe
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency',
         'mac', 'urlSuccess', 'urlFailure', 'urlNotify', ));
 
-
+        if ($config['creditCardCaption'] == CTEnumCapture::DELAYED && is_numeric($config['creditCardDelay'])) {
+            $this->setCapture($config['creditCardDelay']);
+        } else {
+            $this->setCapture($config['creditCardCaption']);
+        }
     }
 
     /**

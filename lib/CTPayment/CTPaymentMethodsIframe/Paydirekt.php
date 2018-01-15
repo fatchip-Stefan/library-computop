@@ -3,6 +3,7 @@
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTAddress\CTAddress;
+use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 
@@ -122,6 +123,12 @@ class Paydirekt extends CTPaymentMethodIframe
         $this->setShopApiKey($config['payDirektShopApiKey']);
 
         $this->setShippingAddress($order->getShippingAddress());
+
+        if ($config['payDirektCaption'] == CTEnumCapture::DELAYED && is_numeric($config['payDirektCardDelay'])) {
+            $this->setCapture($config['payDirektCardDelay']);
+        } else {
+            $this->setCapture($config['payDirektCaption']);
+        }
 
         //For Paydirekt, the transID has a max length of 20
         $this->transID = substr($this->transID, 0, 20);

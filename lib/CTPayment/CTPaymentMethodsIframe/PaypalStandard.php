@@ -110,6 +110,9 @@ class PaypalStandard extends CTPaymentMethodIframe
         $this->setOrderDesc('test');
         //TODO: Check if this should always be order
         $this->setTxType('Order');
+
+        $this->setCapture($config['paypalCaption']);
+
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc', 'mac',
           'urlSuccess', 'urlFailure', ));
     }
