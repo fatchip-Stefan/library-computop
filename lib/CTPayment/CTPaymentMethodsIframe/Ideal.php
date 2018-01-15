@@ -29,8 +29,8 @@ class Ideal extends CTPaymentMethodIframe
      * @param $urlSuccess
      * @param $urlFailure
      * @param $urlNotify
-     * @param $OrderDesc
-     * @param $UserData
+     * @param $orderDesc
+     * @param $userData
      */
     public function __construct(
         $config,
@@ -38,17 +38,17 @@ class Ideal extends CTPaymentMethodIframe
         $urlSuccess,
         $urlFailure,
         $urlNotify,
-        $OrderDesc,
-        $UserData
+        $orderDesc,
+        $userData
     ) {
         parent::__construct($config, $order);
 
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-        $this->setOrderDesc($OrderDesc);
-        $this->setUserData($UserData);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc', 'MAC',
+        $this->setOrderDesc($orderDesc);
+        $this->setUserData($userData);
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc', 'mac',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
@@ -103,16 +103,14 @@ class Ideal extends CTPaymentMethodIframe
     public function getIssuerListURL()
     {
         $queryarray = array();
-        $queryarray[] = 'MerchantID=' . $this->getMerchantID();
+        $queryarray[] = 'merchantID=' . $this->getMerchantID();
 
         $query = join("&", $queryarray);
-        $Len = strlen($query);
-
 
         $Len = strlen($query);  // Length of the plain text string
         $data = $this->ctEncrypt($query, $Len, $this->getBlowfishPassword());
 
-        return 'https://www.computop-paygate.com/idealIssuerList.aspx' .  '?MerchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
+        return 'https://www.computop-paygate.com/idealIssuerList.aspx' .  '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
         ;
     }
 

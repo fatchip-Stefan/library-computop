@@ -9,9 +9,9 @@ abstract class Lastschrift extends CTPaymentMethodIframe
 
   /**
    * Name der XSLT-Datei mit Ihrem individuellen Layout für das Bezahlformular.
-   * Wenn Sie das neugestaltete und abwärtskompatible Computop-Template nut-zen möchten,
+   * Wenn Sie das neugestaltete und abwärtskompatible Computop-template nut-zen möchten,
    * übergeben Sie den Templatenamen „ct_compatible“.
-   * Wenn Sie das Responsive Computop-Template für mobile Endgeräte nutzen möchten,
+   * Wenn Sie das Responsive Computop-template für mobile Endgeräte nutzen möchten,
    * übergeben Sie den Templatenamen „ct_responsive“.
    *
    * @var string
@@ -59,8 +59,8 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         $urlSuccess,
         $urlFailure,
         $urlNotify,
-        $OrderDesc,
-        $UserData,
+        $orderDesc,
+        $userData,
         $capture
     ) {
         parent::__construct($config, $order);
@@ -69,10 +69,10 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-        $this->setOrderDesc($OrderDesc);
-        $this->setUserData($UserData);
+        $this->setOrderDesc($orderDesc);
+        $this->setUserData($userData);
         $this->setCapture($capture);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'OrderDesc',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
 
     }
@@ -110,11 +110,11 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $Template
+     * @param string $template
      */
-    public function setTemplate($Template)
+    public function setTemplate($template)
     {
-        $this->Template = $Template;
+        $this->Template = $template;
     }
 
     /**
@@ -131,7 +131,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     public function setMandateID($mandateID)
     {
         $this->mandateID = $mandateID;
-        //if we set MandateID, also DtOfSgntr is obligatory
+        //if we set MandateID, also dtOfSgntr is obligatory
         $this->setDtOfSgntr(date('d-m-Y'));
     }
 
@@ -144,11 +144,11 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $DtOfSgntr
+     * @param string $dtOfSgntr
      */
-    public function setDtOfSgntr($DtOfSgntr)
+    public function setDtOfSgntr($dtOfSgntr)
     {
-        $this->DtOfSgntr = $DtOfSgntr;
+        $this->DtOfSgntr = $dtOfSgntr;
     }
 
     /**
@@ -169,24 +169,6 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     public function createMandateID($orderID)
     {
         return $orderID . date('yzGis');
-    }
-
-    protected function getTransactionArray()
-    {
-        //first get obligitory from parent
-        $queryarray =  parent::getTransactionArray();
-
-        $queryarray[] = "Capture=" . $this->getCapture();
-
-        if (strlen($this->getMandateID()) > 0) {
-            $queryarray[] = "MandateID=" . $this->getMandateID();
-        }
-
-        if (strlen($this->getDtOfSgntr()) > 0) {
-            $queryarray[] = "DtOfSgntr=" . $this->getDtOfSgntr();
-        }
-
-        return $queryarray;
     }
 
     public function getCTPaymentURL()

@@ -25,7 +25,7 @@ $Len = $_GET["Len"];
 // decrypt the data string
 $CTPaymentMethod = new CreditCard(null, null, '', '', '', '', '', '');
 
-$plaintext = $CTPaymentMethod->ctDecrypt($Data, $Len, $CTPaymentMethod->getMAC());
+$plaintext = $CTPaymentMethod->ctDecrypt($Data, $Len, $CTPaymentMethod->getMac());
 
 
 // prepare information string

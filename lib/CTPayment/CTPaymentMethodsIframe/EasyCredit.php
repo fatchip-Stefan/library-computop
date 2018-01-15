@@ -154,11 +154,11 @@ class EasyCredit extends CTPaymentMethodIframe
     protected $MobileNr;
 
     /**
-     * @param string $Email
+     * @param string $email
      */
-    public function setEmail($Email)
+    public function setEmail($email)
     {
-        $this->Email = $Email;
+        $this->Email = $email;
     }
 
     /**
@@ -170,11 +170,11 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
-     * @param mixed $EventToken
+     * @param mixed $eventToken
      */
-    public function setEventToken($EventToken)
+    public function setEventToken($eventToken)
     {
-        $this->eventToken = $EventToken;
+        $this->eventToken = $eventToken;
     }
 
     /**
@@ -188,11 +188,11 @@ class EasyCredit extends CTPaymentMethodIframe
     /**
      * Geburtsdatum im Format YYYY-MM-DD
      *
-     * @param string $DateOfBirth
+     * @param string $dateOfBirth
      */
-    public function setDateOfBirth($DateOfBirth)
+    public function setDateOfBirth($dateOfBirth)
     {
-        $this->DateOfBirth = $DateOfBirth;
+        $this->DateOfBirth = $dateOfBirth;
     }
 
     /**
@@ -204,11 +204,11 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $FirstName
+     * @param string $firstName
      */
-    public function setFirstName($FirstName)
+    public function setFirstName($firstName)
     {
-        $this->FirstName = $FirstName;
+        $this->FirstName = $firstName;
     }
 
     /**
@@ -220,11 +220,11 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $LastName
+     * @param string $lastName
      */
-    public function setLastName($LastName)
+    public function setLastName($lastName)
     {
-        $this->LastName = $LastName;
+        $this->LastName = $lastName;
     }
 
     /**
@@ -236,11 +236,11 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $Salutation
+     * @param string $salutation
      */
-    public function setSalutation($Salutation)
+    public function setSalutation($salutation)
     {
-        $this->Salutation = $Salutation;
+        $this->Salutation = $salutation;
     }
 
     /**
@@ -253,11 +253,11 @@ class EasyCredit extends CTPaymentMethodIframe
 
 
     /**
-     * @param string $MobileNr
+     * @param string $mobileNr
      */
-    public function setMobileNr($MobileNr)
+    public function setMobileNr($mobileNr)
     {
-        $this->MobileNr = $MobileNr;
+        $this->MobileNr = $mobileNr;
     }
 
     /**
@@ -269,11 +269,11 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $PackingStation
+     * @param string $packingStation
      */
-    public function setPackingStation($PackingStation)
+    public function setPackingStation($packingStation)
     {
-        $this->PackingStation = $PackingStation;
+        $this->PackingStation = $packingStation;
     }
 
     /**
@@ -509,7 +509,7 @@ class EasyCredit extends CTPaymentMethodIframe
 
 
         $this->setEventToken($eventToken);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency',
           'eventToken', 'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
@@ -584,7 +584,7 @@ class EasyCredit extends CTPaymentMethodIframe
         $query = $this->getTransactionQuery();
         $Len = strlen($query);
         $data = $this->getEncryptedData();
-        $url = 'https://www.computop-paygate.com/easyCreditDirect.aspx' . '?MerchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
+        $url = 'https://www.computop-paygate.com/easyCreditDirect.aspx' . '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
         ;
 
         $curl = curl_init();

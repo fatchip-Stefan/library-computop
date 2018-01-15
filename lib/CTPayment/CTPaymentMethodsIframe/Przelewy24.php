@@ -35,8 +35,8 @@ class Przelewy24 extends CTPaymentMethodIframe
 
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
         $this->setEmail($email);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC', 'OrderDesc',
-          'urlSuccess', 'urlFailure', 'urlNotify', 'AccOwner', 'Email', ));
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
+          'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner', 'Email', ));
     }
 
     /**
@@ -56,11 +56,11 @@ class Przelewy24 extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AccOwner
+     * @param string $accOwner
      */
-    public function setAccOwner($AccOwner)
+    public function setAccOwner($accOwner)
     {
-        $this->AccOwner = $AccOwner;
+        $this->AccOwner = $accOwner;
     }
 
     /**

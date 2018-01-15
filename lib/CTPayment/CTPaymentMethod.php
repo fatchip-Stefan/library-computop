@@ -11,7 +11,7 @@ abstract class CTPaymentMethod extends Blowfish
      *
      * @var string
      */
-    protected $PayID;
+    protected $payID;
 
 
     /**
@@ -23,15 +23,15 @@ abstract class CTPaymentMethod extends Blowfish
     /**
      * Calculate the MAC value.
      *
-     * @param string $PayId
-     * @param string $TransID
-     * @param string $MerchantID
-     * @param integer $Amount
-     * @param string $Currency
+     * @param string $payId
+     * @param string $transID
+     * @param string $merchantID
+     * @param integer $amount
+     * @param string $currency
      * @param string $mac
      * @return string
      */
-    abstract protected function ctHMAC($MerchantID, $Amount, $Currency, $mac, $PayId = "", $TransID = "");
+    abstract protected function ctHMAC($merchantID, $amount, $currency, $mac, $payId = "", $transID = "");
 
 
     /**
@@ -39,7 +39,7 @@ abstract class CTPaymentMethod extends Blowfish
      */
     public function setPayID($PayID)
     {
-        $this->PayID = $PayID;
+        $this->payID = $PayID;
     }
 
     /**
@@ -47,7 +47,7 @@ abstract class CTPaymentMethod extends Blowfish
      */
     public function getPayID()
     {
-        return $this->PayID;
+        return $this->payID;
     }
 
 
@@ -67,7 +67,7 @@ abstract class CTPaymentMethod extends Blowfish
         return $this->mandatoryFields;
     }
 
-    public function getPaymentMethods() {
+    /*public function getPaymentMethods() {
         return array(
           array(
             'name' => 'fatchip_computop_cc',
@@ -125,5 +125,5 @@ abstract class CTPaymentMethod extends Blowfish
             'description' => 'Computop SOFORT',
           ),
         );
-    }
+    }*/
 }

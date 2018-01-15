@@ -85,11 +85,11 @@ class CTResponsePaydirekt extends CTResponseIframe
     protected $TID;
 
     /**
-     * @param string $Reference
+     * @param string $reference
      */
-    public function setReference($Reference)
+    public function setReference($reference)
     {
-        $this->Reference = $Reference;
+        $this->Reference = $reference;
     }
 
     /**
@@ -231,11 +231,11 @@ class CTResponsePaydirekt extends CTResponseIframe
     }
 
     /**
-     * @param string $TID
+     * @param string $tid
      */
-    public function setTID($TID)
+    public function setTID($tid)
     {
-        $this->TID = $TID;
+        $this->TID = $tid;
     }
 
     /**

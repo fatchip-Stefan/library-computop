@@ -3,9 +3,11 @@
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTAddress\CTAddress;
+use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
+use Fatchip\CTPayment\CTOrder\CTOrder;
 
-class PayDirekt extends CTPaymentMethodIframe
+class Paydirekt extends CTPaymentMethodIframe
 {
     /**
      * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
@@ -100,10 +102,6 @@ class PayDirekt extends CTPaymentMethodIframe
      * @param $urlSuccess
      * @param $urlFailure
      * @param $urlNotify
-     * @param $OrderDesc
-     * @param $UserData
-     * @param $capture
-     * @param $shopApiKey
      */
     public function __construct(
         $config,
@@ -118,11 +116,23 @@ class PayDirekt extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
 
+        if (empty($config['payDirektShopApiKey'])) {
+            throw new \RuntimeException('Paydirekt ShopApiKey is not set in Plugin Config');
+        }
+
+        $this->setShopApiKey($config['payDirektShopApiKey']);
+
         $this->setShippingAddress($order->getShippingAddress());
 
+        if ($config['payDirektCaption'] == CTEnumCapture::DELAYED && is_numeric($config['payDirektCardDelay'])) {
+            $this->setCapture($config['payDirektCardDelay']);
+        } else {
+            $this->setCapture($config['payDirektCaption']);
+        }
+
         //For Paydirekt, the transID has a max length of 20
-        $this->TransID = substr($this->TransID, 0, 20);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'MAC',
+        $this->transID = substr($this->transID, 0, 20);
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac',
           'urlSuccess', 'urlFailure', 'ShopApiKey' ));
     }
 
@@ -160,11 +170,11 @@ class PayDirekt extends CTPaymentMethodIframe
     }
 
     /**
-     * @param int $ShoppingBasketAmount
+     * @param int $shoppingBasketAmount
      */
-    public function setShoppingBasketAmount($ShoppingBasketAmount)
+    public function setShoppingBasketAmount($shoppingBasketAmount)
     {
-        $this->ShoppingBasketAmount = $ShoppingBasketAmount;
+        $this->ShoppingBasketAmount = $shoppingBasketAmount;
     }
 
     /**

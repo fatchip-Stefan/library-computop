@@ -9,10 +9,10 @@ use Fatchip\CTPayment\CTAddress\CTAddress;
  */
 class CTOrder
 {
-    protected $Amount;
-    protected $Currency;
+    protected $amount;
+    protected $currency;
     protected $orderDesc;
-    protected $PayId;
+    protected $payId;
     /**
      * @var CTAddress
      */
@@ -32,7 +32,7 @@ class CTOrder
      */
     public function setAmount($Amount)
     {
-        $this->Amount = $Amount;
+        $this->amount = $Amount;
     }
 
     /**
@@ -40,7 +40,7 @@ class CTOrder
      */
     public function getAmount()
     {
-        return $this->Amount;
+        return $this->amount;
     }
 
     /**
@@ -48,7 +48,7 @@ class CTOrder
      */
     public function setCurrency($Currency)
     {
-        $this->Currency = $Currency;
+        $this->currency = $Currency;
     }
 
     /**
@@ -56,7 +56,7 @@ class CTOrder
      */
     public function getCurrency()
     {
-        return $this->Currency;
+        return $this->currency;
     }
 
     /**
@@ -64,7 +64,7 @@ class CTOrder
      */
     public function setPayId($PayId)
     {
-        $this->PayId = $PayId;
+        $this->payId = $PayId;
     }
 
     /**
@@ -72,7 +72,7 @@ class CTOrder
      */
     public function getPayId()
     {
-        return $this->PayId;
+        return $this->payId;
     }
 
     /**

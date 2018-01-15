@@ -2,6 +2,7 @@
 
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
+use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
@@ -200,10 +201,14 @@ class CreditCard extends CTPaymentMethodIframe
                 break;
         }
 
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency',
-        'MAC', 'urlSuccess', 'urlFailure', 'urlNotify', ));
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency',
+        'mac', 'urlSuccess', 'urlFailure', 'urlNotify', ));
 
-
+        if ($config['creditCardCaption'] == CTEnumCapture::DELAYED && is_numeric($config['creditCardDelay'])) {
+            $this->setCapture($config['creditCardDelay']);
+        } else {
+            $this->setCapture($config['creditCardCaption']);
+        }
     }
 
     /**
@@ -223,10 +228,10 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrStreet
+     * @param string $addrStreet
      */
-    public function setAddrStreet($AddrStreet) {
-        $this->AddrStreet = $AddrStreet;
+    public function setAddrStreet($addrStreet) {
+        $this->AddrStreet = $addrStreet;
     }
 
     /**
@@ -237,10 +242,10 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrStreetNr
+     * @param string $addrStreetNr
      */
-    public function setAddrStreetNr($AddrStreetNr) {
-        $this->AddrStreetNr = $AddrStreetNr;
+    public function setAddrStreetNr($addrStreetNr) {
+        $this->AddrStreetNr = $addrStreetNr;
     }
 
     /**
@@ -251,10 +256,10 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrCity
+     * @param string $addrCity
      */
-    public function setAddrCity($AddrCity) {
-        $this->AddrCity = $AddrCity;
+    public function setAddrCity($addrCity) {
+        $this->AddrCity = $addrCity;
     }
 
     /**
@@ -265,10 +270,10 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrZip
+     * @param string $addrZip
      */
-    public function setAddrZip($AddrZip) {
-        $this->AddrZip = $AddrZip;
+    public function setAddrZip($addrZip) {
+        $this->AddrZip = $addrZip;
     }
 
     /**
@@ -293,10 +298,10 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $AddrState
+     * @param string $addrState
      */
-    public function setAddrState($AddrState) {
-        $this->AddrState = $AddrState;
+    public function setAddrState($addrState) {
+        $this->AddrState = $addrState;
     }
 
     /**
@@ -307,10 +312,10 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param int $AmountAuth
+     * @param int $amountAuth
      */
-    public function setAmountAuth($AmountAuth) {
-        $this->AmountAuth = $AmountAuth;
+    public function setAmountAuth($amountAuth) {
+        $this->AmountAuth = $amountAuth;
     }
 
     /**
@@ -321,10 +326,10 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $FirstName
+     * @param string $firstName
      */
-    public function setFirstName($FirstName) {
-        $this->FirstName = $FirstName;
+    public function setFirstName($firstName) {
+        $this->FirstName = $firstName;
     }
 
     /**
@@ -335,10 +340,10 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $LastName
+     * @param string $lastName
      */
-    public function setLastName($LastName) {
-        $this->LastName = $LastName;
+    public function setLastName($lastName) {
+        $this->LastName = $lastName;
     }
 
     /**

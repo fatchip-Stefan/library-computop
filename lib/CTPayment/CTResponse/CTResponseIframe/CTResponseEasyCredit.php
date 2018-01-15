@@ -36,11 +36,11 @@ class CTResponseEasyCredit extends CTResponseIframe
     protected $RefNr;
 
     /**
-     * @param string $Desicion
+     * @param string $desicion
      */
-    public function setDesicion($Desicion)
+    public function setDesicion($desicion)
     {
-        $this->Desicion = $Desicion;
+        $this->Desicion = $desicion;
     }
 
     /**
@@ -55,11 +55,11 @@ class CTResponseEasyCredit extends CTResponseIframe
     }
 
     /**
-     * @param string $Financing
+     * @param string $financing
      */
-    public function setFinancing($Financing)
+    public function setFinancing($financing)
     {
-        $this->Financing = $Financing;
+        $this->Financing = $financing;
     }
 
     /**
@@ -71,11 +71,11 @@ class CTResponseEasyCredit extends CTResponseIframe
     }
 
     /**
-     * @param string $Process
+     * @param string $process
      */
-    public function setProcess($Process)
+    public function setProcess($process)
     {
-        $this->Process = $Process;
+        $this->Process = $process;
     }
 
     /**
@@ -87,11 +87,11 @@ class CTResponseEasyCredit extends CTResponseIframe
     }
 
     /**
-     * @param string $RefNr
+     * @param string $refNr
      */
-    public function setRefNr($RefNr)
+    public function setRefNr($refNr)
     {
-        $this->RefNr = $RefNr;
+        $this->RefNr = $refNr;
     }
 
     /**

@@ -30,14 +30,14 @@ class CTResponseCreditCard extends CTResponseIframe
     protected $PCNr;
 
     /**
-     * In Verbindung mit PCNr: Ablaufdatum der Kreditkarte im Format YYYYMM
+     * In Verbindung mit pcNr: Ablaufdatum der Kreditkarte im Format YYYYMM
      *
      * @var int
      */
     protected $CCExpiry;
 
     /**
-     * In Verbindung mit PCNr: Bezeichnung der Kreditkartenmarke
+     * In Verbindung mit pcNr: Bezeichnung der Kreditkartenmarke
      * Bitte beachten Sie die Schreibweise gemäß Tabelle der Kreditkartenmarken!
      *
      * @var string
@@ -45,11 +45,11 @@ class CTResponseCreditCard extends CTResponseIframe
     protected $CCBrand;
 
     /**
-     * @param string $CCBrand
+     * @param string $ccBrand
      */
-    public function setCCBrand($CCBrand)
+    public function setCCBrand($ccBrand)
     {
-        $this->CCBrand = $CCBrand;
+        $this->CCBrand = $ccBrand;
     }
 
     /**
@@ -61,11 +61,11 @@ class CTResponseCreditCard extends CTResponseIframe
     }
 
     /**
-     * @param int $CCExpiry
+     * @param int $ccExpiry
      */
-    public function setCCExpiry($CCExpiry)
+    public function setCCExpiry($ccExpiry)
     {
-        $this->CCExpiry = $CCExpiry;
+        $this->CCExpiry = $ccExpiry;
     }
 
     /**
@@ -77,11 +77,11 @@ class CTResponseCreditCard extends CTResponseIframe
     }
 
     /**
-     * @param int $PCNr
+     * @param int $pcNr
      */
-    public function setPCNr($PCNr)
+    public function setPCNr($pcNr)
     {
-        $this->PCNr = $PCNr;
+        $this->PCNr = $pcNr;
     }
 
     /**
@@ -93,11 +93,11 @@ class CTResponseCreditCard extends CTResponseIframe
     }
 
     /**
-     * @param string $Type
+     * @param string $type
      */
-    public function setType($Type)
+    public function setType($type)
     {
-        $this->Type = $Type;
+        $this->Type = $type;
     }
 
     /**

@@ -25,7 +25,7 @@ abstract class CTResponse
 
     /**
      * Nähere Beschreibung bei Ablehnung der Zahlung.
-     * Bitte nutzen Sie nicht den Parameter Description sondern Code für die Auswertung des Transaktionssta-tus!
+     * Bitte nutzen Sie nicht den Parameter description sondern code für die Auswertung des Transaktionssta-tus!
      *
      * @var string
      */
@@ -41,7 +41,7 @@ abstract class CTResponse
 
 
     /**
-     * Hash Message Authentication Code (HMAC) mit SHA-256-Algorithmus
+     * Hash Message Authentication code (HMAC) mit SHA-256-Algorithmus
      *
      * @var string
      */
@@ -119,11 +119,11 @@ abstract class CTResponse
     }
 
     /**
-     * @param int $Code
+     * @param int $code
      */
-    public function setCode($Code)
+    public function setCode($code)
     {
-        $this->Code = $Code;
+        $this->Code = $code;
     }
 
     /**
@@ -135,11 +135,11 @@ abstract class CTResponse
     }
 
     /**
-     * @param string $Description
+     * @param string $description
      */
-    public function setDescription($Description)
+    public function setDescription($description)
     {
-        $this->Description = $Description;
+        $this->Description = $description;
     }
 
     /**
@@ -151,11 +151,11 @@ abstract class CTResponse
     }
 
     /**
-     * @param string $MAC
+     * @param string $mac
      */
-    public function setMAC($MAC)
+    public function setMAC($mac)
     {
-        $this->MAC = $MAC;
+        $this->MAC = $mac;
     }
 
     /**
@@ -167,11 +167,11 @@ abstract class CTResponse
     }
 
     /**
-     * @param string $UserData
+     * @param string $userData
      */
-    public function setUserData($UserData)
+    public function setUserData($userData)
     {
-        $this->UserData = $UserData;
+        $this->UserData = $userData;
     }
 
     /**
@@ -247,7 +247,6 @@ abstract class CTResponse
 
     public function render()
     {
-        $arr = $this->toArray();
         $arr = get_object_vars($this);
 
         $result = '<table>';

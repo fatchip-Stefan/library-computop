@@ -17,7 +17,7 @@ class Klarna extends CTPaymentMethodIframe
     protected $Reference;
 
     /**
-     * Telefonnummer des Käufers. Pflicht, wenn der Parameter MobileNr nicht mitge-geben wird
+     * Telefonnummer des Käufers. Pflicht, wenn der Parameter mobileNr nicht mitge-geben wird
      *
      * @var string
      */
@@ -134,14 +134,14 @@ class Klarna extends CTPaymentMethodIframe
     protected $Email;
 
     /**
-     * Mobiltelefonnummer des Kunden. Pflicht, wenn der Parameter Phone nicht mit-gegeben wird
+     * Mobiltelefonnummer des Kunden. Pflicht, wenn der Parameter phone nicht mit-gegeben wird
      *
      * @var string
      */
     protected $MobileNr;
 
     /**
-     * Privatpersonen: Geburtsdatum im Format JJJJ-MM-TT Optional, wenn SocialSecurityNumber vollständig übergeben wird.
+     * Privatpersonen: Geburtsdatum im Format JJJJ-MM-TT Optional, wenn socialSecurityNumber vollständig übergeben wird.
      * Unternehmen: Darf nicht übergeben werden!
      *
      * @var datetime
@@ -151,7 +151,7 @@ class Klarna extends CTPaymentMethodIframe
     /**
      * Privatpersonen: Geschlecht <f> für weiblich, <m> für männlich.
      * Pflichtparame-ter, wenn der bdCountryCode den Wert DEU, AUT oder NLD hat.
-     * Optional, wenn SocialSecurityNumber vollständig übergeben wird. Unternehmen: Darf nicht übergeben werden!
+     * Optional, wenn socialSecurityNumber vollständig übergeben wird. Unternehmen: Darf nicht übergeben werden!
      *
      * @var string
      */
@@ -161,7 +161,7 @@ class Klarna extends CTPaymentMethodIframe
      * Privatpersonen: Teil der Sozialversicherungsnummer.
      * Nicht in DE, AT und NL. Pflichtfeld in SE, FI, DK mit 4stelligem Wert (NNNN).
      * Pflichtfeld in NO mit 5stelli-gem Wert (NNNNN). Kann auch vollständig 10- oder 11stellig in folgenden Formaten
-     * übergeben werden. In diesem Fall müssen die Parameter DateOfBirth und Gender nicht mehr mit übergeben werden.
+     * übergeben werden. In diesem Fall müssen die Parameter dateOfBirth und gender nicht mehr mit übergeben werden.
      * SE: YYMMDD-NNNN FI: DDMMYY-NNNN DK: DDMMYYNNNN NO: DDMMYYNNNNN Unternehmen: Handelsregisternummer
      *
      * @var string
@@ -217,8 +217,8 @@ class Klarna extends CTPaymentMethodIframe
         $config,
         $order,
         $urlNotify,
-        $OrderDesc,
-        $UserData,
+        $orderDesc,
+        $userData,
         $isCompany,
         $billingAddress,
         $shippingAddress,
@@ -232,8 +232,8 @@ class Klarna extends CTPaymentMethodIframe
     ) {
         parent::__construct($config, $order);
         $this->setUrlNotify($urlNotify);
-        $this->setOrderDesc($OrderDesc);
-        $this->setUserData($UserData);
+        $this->setOrderDesc($orderDesc);
+        $this->setUserData($userData);
         $this->setShippingAddress($shippingAddress, $isCompany);
         $this->setBillingAddress($billingAddress, $isCompany);
         $this->setEmail($email);
@@ -248,17 +248,17 @@ class Klarna extends CTPaymentMethodIframe
             $this->setCompanyOrPerson('P');
         }
         $this->setKlarnaAction($klarnaAction);
-        $this->setMandatoryFields(array('MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc',
+        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc',
             'bdStreet', 'bdZip', 'bdCity', 'bdCountryCode', 'sdStreet', 'sdZip', 'sdCity', 'sdCountryCode',
-            'Email', 'IPAddr', 'CompanyOrPerson', 'KlarnaAction', 'InvoiceFlag'));
+            'email', 'iPAddr', 'companyOrPerson', 'klarnaAction', 'invoiceFlag'));
     }
 
     /**
-     * @param int $AnnualSalary
+     * @param int $annualSalary
      */
-    public function setAnnualSalary($AnnualSalary)
+    public function setAnnualSalary($annualSalary)
     {
-        $this->AnnualSalary = $AnnualSalary;
+        $this->AnnualSalary = $annualSalary;
     }
 
     /**
@@ -270,11 +270,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $CompanyOrPerson
+     * @param string $companyOrPerson
      */
-    public function setCompanyOrPerson($CompanyOrPerson)
+    public function setCompanyOrPerson($companyOrPerson)
     {
-        $this->CompanyOrPerson = $CompanyOrPerson;
+        $this->CompanyOrPerson = $companyOrPerson;
     }
 
     /**
@@ -286,11 +286,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param \Fatchip\CTPayment\CTPaymentMethodsIframe\datetime $DateOfBirth
+     * @param \Fatchip\CTPayment\CTPaymentMethodsIframe\datetime $dateOfBirth
      */
-    public function setDateOfBirth($DateOfBirth)
+    public function setDateOfBirth($dateOfBirth)
     {
-        $this->DateOfBirth = $DateOfBirth;
+        $this->DateOfBirth = $dateOfBirth;
     }
 
     /**
@@ -302,11 +302,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $Email
+     * @param string $email
      */
-    public function setEmail($Email)
+    public function setEmail($email)
     {
-        $this->Email = $Email;
+        $this->Email = $email;
     }
 
     /**
@@ -318,11 +318,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $Gender
+     * @param string $gender
      */
-    public function setGender($Gender)
+    public function setGender($gender)
     {
-        $this->Gender = $Gender;
+        $this->Gender = $gender;
     }
 
     /**
@@ -334,11 +334,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $IPAddr
+     * @param string $iPAddr
      */
-    public function setIPAddr($IPAddr)
+    public function setIPAddr($iPAddr)
     {
-        $this->IPAddr = $IPAddr;
+        $this->IPAddr = $iPAddr;
     }
 
     /**
@@ -350,11 +350,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $InvoiceFlag
+     * @param string $invoiceFlag
      */
-    public function setInvoiceFlag($InvoiceFlag)
+    public function setInvoiceFlag($invoiceFlag)
     {
-        $this->InvoiceFlag = $InvoiceFlag;
+        $this->InvoiceFlag = $invoiceFlag;
     }
 
     /**
@@ -366,11 +366,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param int $KlarnaAction
+     * @param int $klarnaAction
      */
-    public function setKlarnaAction($KlarnaAction)
+    public function setKlarnaAction($klarnaAction)
     {
-        $this->KlarnaAction = $KlarnaAction;
+        $this->KlarnaAction = $klarnaAction;
     }
 
     /**
@@ -382,11 +382,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $MobileNr
+     * @param string $mobileNr
      */
-    public function setMobileNr($MobileNr)
+    public function setMobileNr($mobileNr)
     {
-        $this->MobileNr = $MobileNr;
+        $this->MobileNr = $mobileNr;
     }
 
     /**
@@ -398,11 +398,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $Phone
+     * @param string $phone
      */
-    public function setPhone($Phone)
+    public function setPhone($phone)
     {
-        $this->Phone = $Phone;
+        $this->Phone = $phone;
     }
 
     /**
@@ -414,11 +414,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $Reference
+     * @param string $reference
      */
-    public function setReference($Reference)
+    public function setReference($reference)
     {
-        $this->Reference = $Reference;
+        $this->Reference = $reference;
     }
 
     /**
@@ -430,11 +430,11 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $SocialSecurityNumber
+     * @param string $socialSecurityNumber
      */
-    public function setSocialSecurityNumber($SocialSecurityNumber)
+    public function setSocialSecurityNumber($socialSecurityNumber)
     {
-        $this->SocialSecurityNumber = $SocialSecurityNumber;
+        $this->SocialSecurityNumber = $socialSecurityNumber;
     }
 
     /**
