@@ -13,6 +13,8 @@ class CTOrder
     protected $currency;
     protected $orderDesc;
     protected $payId;
+    protected $email;
+
     /**
      * @var CTAddress
      */
@@ -118,5 +120,21 @@ class CTOrder
     public function getShippingAddress() {
         return $this->shippingAddress;
     }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail() {
+        return $this->email;
+    }
+
+
 
 }

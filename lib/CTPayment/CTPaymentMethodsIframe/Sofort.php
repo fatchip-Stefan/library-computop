@@ -39,7 +39,7 @@ class Sofort extends CTPaymentMethodIframe
      *
      * @var string
      */
-    protected $AddrCountryCode;
+    protected $addrCountryCode;
 
     public function __construct(
         $config,
@@ -98,7 +98,7 @@ class Sofort extends CTPaymentMethodIframe
      */
     public function setAddrCountryCode($addrCountryCode)
     {
-        $this->AddrCountryCode = $addrCountryCode;
+        $this->addrCountryCode = $addrCountryCode;
     }
 
     /**
@@ -106,7 +106,7 @@ class Sofort extends CTPaymentMethodIframe
      */
     public function getAddrCountryCode()
     {
-        return $this->AddrCountryCode;
+        return $this->addrCountryCode;
     }
 
     public function getCTPaymentURL()
