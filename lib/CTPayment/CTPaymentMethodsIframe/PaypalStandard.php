@@ -99,15 +99,16 @@ class PaypalStandard extends CTPaymentMethodIframe
         $order,
         $urlSuccess,
         $urlFailure,
-        $urlNotify
+        $urlNotify,
+        $orderDesc,
+        $userData
     ) {
-        parent::__construct($config, $order);
+        parent::__construct($config, $order, $orderDesc, $userData);
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setShippingAddress($order->getShippingAddress());
-        //TODO: generate order desc
-        $this->setOrderDesc('test');
+
         //TODO: Check if this should always be order
         $this->setTxType('Order');
 

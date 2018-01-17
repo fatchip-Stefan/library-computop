@@ -125,11 +125,13 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      * @param $config
      * @param $order CTOrder
      */
-    public function __construct($config, $order)
+    public function __construct($config, $order, $orderDesc, $userData)
     {
         $this->setAmount($order->getAmount());
         $this->setCurrency($order->getCurrency());
-        $this->setOrderDesc($order->getOrderDesc());
+        $this->setOrderDesc($orderDesc);
+        $this->setUserData($userData);
+
 
 
 

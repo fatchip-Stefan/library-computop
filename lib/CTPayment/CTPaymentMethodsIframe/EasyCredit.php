@@ -490,9 +490,11 @@ class EasyCredit extends CTPaymentMethodIframe
         $urlSuccess,
         $urlFailure,
         $urlNotify,
+        $orderDesc,
+        $userData,
         $eventToken
     ) {
-        parent::__construct($config, $order);
+        parent::__construct($config, $order, $orderDesc, $userData);
 
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
@@ -506,7 +508,6 @@ class EasyCredit extends CTPaymentMethodIframe
             $this->setLastName($order->getBillingAddress()->getLastName());
             $this->setSalutation($order->getBillingAddress()->getSalutation());
         }
-
 
         $this->setEventToken($eventToken);
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency',

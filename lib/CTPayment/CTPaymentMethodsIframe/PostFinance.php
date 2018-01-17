@@ -18,15 +18,16 @@ class PostFinance extends CTPaymentMethodIframe
         $order,
         $urlSuccess,
         $urlFailure,
-        $urlNotify
+        $urlNotify,
+        $orderDesc,
+        $userData
     ) {
-        parent::__construct($config, $order);
+        parent::__construct($config, $order, $orderDesc, $userData);
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
-        //TODO: generate order desc
-        $this->setOrderDesc('test');
+
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner' ));
     }

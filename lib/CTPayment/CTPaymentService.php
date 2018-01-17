@@ -39,10 +39,10 @@ class CTPaymentService extends Blowfish
         $this->blowfishPassword = $blowfishPassword;
     }
 
-    public function getPaymentClass($className, $config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify)
+    public function getPaymentClass($className, $config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData)
     {
         $class = 'Fatchip\\CTPayment\\CTPaymentMethodsIframe\\' . $className;
-        return new $class($config,$ctOrder, $urlSuccess, $urlFailure, $urlNotify);
+        return new $class($config,$ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
     }
 
 

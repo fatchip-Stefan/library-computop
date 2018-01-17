@@ -167,13 +167,16 @@ class CreditCard extends CTPaymentMethodIframe
         $order,
         $urlSuccess,
         $urlFailure,
-        $urlNotify
+        $urlNotify,
+        $orderDesc,
+        $userData
     ) {
-        parent::__construct($config, $order);
+        parent::__construct($config, $order, $orderDesc, $userData);
 
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
+
 
         switch ($config['creditCardAcquirer']) {
             case 'GICC':

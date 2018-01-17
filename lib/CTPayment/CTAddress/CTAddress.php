@@ -11,6 +11,7 @@ namespace Fatchip\CTPayment\CTAddress;
 class CTAddress
 {
     private $salutation;
+    private $company;
     private $firstName;
     private $lastName;
     private $street;
@@ -20,9 +21,11 @@ class CTAddress
     private $city;
     private $state;
     private $countryCode;
+    private $countryCodeIso3;
 
     public function __construct(
         $salutation,
+        $company,
         $firstName,
         $lastName,
         $street,
@@ -30,12 +33,15 @@ class CTAddress
         $zip,
         $city,
         $countryCode,
+        $countryCodeIso3,
         $street2 = '',
         $state = ''
     ) {
         $this->setSalutation($salutation);
+        $this->setCompany($company);
         $this->city = $city;
         $this->countryCode = $countryCode;
+        $this->countryCodeIso3 = $countryCodeIso3;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->state = $state;
@@ -94,6 +100,20 @@ class CTAddress
     public function getCountryCode()
     {
         return $this->countryCode;
+    }
+
+    /**
+     * @param mixed $countryCodeIso3
+     */
+    public function setCountryCodeIso3($countryCodeIso3) {
+        $this->countryCodeIso3 = $countryCodeIso3;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountryCodeIso3() {
+        return $this->countryCodeIso3;
     }
 
     /**
@@ -205,4 +225,20 @@ class CTAddress
     {
         return $this->streetNr;
     }
+
+    /**
+     * @param mixed $company
+     */
+    public function setCompany($company) {
+        $this->company = $company;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompany() {
+        return $this->company;
+    }
+
+
 }

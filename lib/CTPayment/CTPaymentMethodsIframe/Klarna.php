@@ -210,7 +210,7 @@ class Klarna extends CTPaymentMethodIframe
      *
      * @var string
      */
-    protected $InvoiceFlag = '-1';
+    protected $InvoiceFlag = '0';
 
 
     public function __construct(
@@ -219,9 +219,6 @@ class Klarna extends CTPaymentMethodIframe
         $urlNotify,
         $orderDesc,
         $userData,
-        $isCompany,
-        $billingAddress,
-        $shippingAddress,
         $email,
         $phone,
         $mobileNr,
@@ -230,12 +227,10 @@ class Klarna extends CTPaymentMethodIframe
         $isFirm,
         $klarnaAction
     ) {
-        parent::__construct($config, $order);
+        parent::__construct($config, $order, $orderDesc, $userData);
         $this->setUrlNotify($urlNotify);
-        $this->setOrderDesc($orderDesc);
-        $this->setUserData($userData);
-        $this->setShippingAddress($shippingAddress, $isCompany);
-        $this->setBillingAddress($billingAddress, $isCompany);
+        $this->setShippingAddress($order->getShippingAddress());
+        $this->setBillingAddress($order->getBillingAddress());
         $this->setEmail($email);
         $this->setIPAddr($_SERVER['REMOTE_ADDR']);
         $this->setPhone($phone);
@@ -250,7 +245,7 @@ class Klarna extends CTPaymentMethodIframe
         $this->setKlarnaAction($klarnaAction);
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc',
             'bdStreet', 'bdZip', 'bdCity', 'bdCountryCode', 'sdStreet', 'sdZip', 'sdCity', 'sdCountryCode',
-            'email', 'iPAddr', 'companyOrPerson', 'klarnaAction', 'invoiceFlag'));
+            'Email', 'IPAddr', 'CompanyOrPerson', 'KlarnaAction', 'InvoiceFlag'));
     }
 
     /**
@@ -674,9 +669,10 @@ class Klarna extends CTPaymentMethodIframe
 
 
 
-    public function setShippingAddress($shippingAddress, $isCompany = false)
+    public function setShippingAddress($shippingAddress)
     {
-        if (!$isCompany) {
+        //for companies, first name must be empty
+        if ($shippingAddress->getCompany() == '') {
             $this->setSdFirstName($shippingAddress->getFirstName());
         }
         $this->setSdLastName($shippingAddress->getLastName());
@@ -684,14 +680,14 @@ class Klarna extends CTPaymentMethodIframe
         $this->setSdStreetNr($shippingAddress->getStreetNr());
         $this->setSdZip($shippingAddress->getZip());
         $this->setSdCity($shippingAddress->getCity());
-        $this->setSdCountryCode($shippingAddress->getCountryCode());
+        $this->setSdCountryCode($shippingAddress->getCountryCodeIso3());
     }
 
 
-    public function setBillingAddress($billingAddress, $isCompany = false)
+    public function setBillingAddress($billingAddress)
     {
         //for companies, first name must be empty
-        if (!$isCompany) {
+        if ($billingAddress->getCompany() == '') {
             $this->setBDFirstName($billingAddress->getFirstName());
         }
         $this->setBdLastName($billingAddress->getLastName());
@@ -699,7 +695,7 @@ class Klarna extends CTPaymentMethodIframe
         $this->setBdStreetNr($billingAddress->getStreetNr());
         $this->setBdZip($billingAddress->getZip());
         $this->setBdCity($billingAddress->getCity());
-        $this->setBdCountryCode($billingAddress->getCountryCode());
+        $this->setBdCountryCode($billingAddress->getCountryCodeIso3());
     }
 
 

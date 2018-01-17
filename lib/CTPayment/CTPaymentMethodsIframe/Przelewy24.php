@@ -26,9 +26,11 @@ class Przelewy24 extends CTPaymentMethodIframe
         $urlSuccess,
         $urlFailure,
         $urlNotify,
+        $orderDesc,
+        $userData,
         $email
     ) {
-        parent::__construct($config, $order);
+        parent::__construct($config, $order, $orderDesc, $userData);
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
