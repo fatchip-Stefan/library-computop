@@ -11,7 +11,7 @@ class LastschriftEVO extends Lastschrift
      *
      * @var string
      */
-    private $orderDesc2;
+    public $orderDesc2;
 
     /**
      * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
@@ -21,19 +21,63 @@ class LastschriftEVO extends Lastschrift
      *
      * @var string
      */
-    private $capture;
-
-    /**
-     * für SEPA: SEPA-Mandatsnummer (Pflicht bei SEPA) sollte eindeutig sein, ist nicht case-sensitive
-     *
-     * @var string
-     */
-    private $mandateID;
+    public $capture;
 
     /**
      * für SEPA: Anzahl Banktage>0, die für das Ausführungsdatum einer Lastschrift zum aktuellen Datum addiert werden
      *
      * @var int
      */
-    private $DebitDelay;
+    public $DebitDelay;
+
+    /**
+     * @param $amount
+     * @param $currency
+     * @param $urlSuccess
+     * @param $urlFailure
+     * @param $urlNotify
+     * @param $orderDesc
+     * @param $userData
+     */
+
+    public function __construct(
+        $config,
+        $order,
+        $urlSuccess,
+        $urlFailure,
+        $urlNotify,
+        $orderDesc,
+        $userData,
+        $capture,
+        $orderDesc2
+    ) {
+        parent::__construct($config, $order, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $capture);
+        $this->setOrderDesc2('OrtderDesc 2');
+    }
+
+    /**
+     * @param string $orderDesc2
+     */
+    public function setOrderDesc2($orderDesc2)
+    {
+        $this->orderDesc2 = $orderDesc2;
+    }
+
+    /**
+     * @param string $orderDesc2
+     */
+    public function setDebitDelay($debitDelay)
+    {
+        $this->DebitDelay = $debitDelay;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderDesc2()
+    {
+        return $this->orderDesc2;
+    }
+
+
 }

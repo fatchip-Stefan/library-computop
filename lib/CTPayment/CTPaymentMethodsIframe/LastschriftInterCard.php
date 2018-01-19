@@ -14,14 +14,7 @@ class LastschriftInterCard extends Lastschrift
      *
      * @var string
      */
-    private $capture; //AUTO, MANUAL, ZAHL
-
-    /**
-     * für SEPA: SEPA-Mandatsnummer (Pflicht bei SEPA) sollte eindeutig sein, ist nicht case-sensitive
-     *
-     * @var string
-     */
-    private $mandateID;
+    protected $capture; //AUTO, MANUAL, ZAHL
 
     /**
      * Kundennummer beim Händler
