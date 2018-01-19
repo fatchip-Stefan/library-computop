@@ -219,11 +219,9 @@ class Klarna extends CTPaymentMethodIframe
         $urlNotify,
         $orderDesc,
         $userData,
-        $email,
         $phone,
         $mobileNr,
         $dateOfBirth,
-        $gender,
         $isFirm,
         $klarnaAction
     ) {
@@ -231,17 +229,23 @@ class Klarna extends CTPaymentMethodIframe
         $this->setUrlNotify($urlNotify);
         $this->setShippingAddress($order->getShippingAddress());
         $this->setBillingAddress($order->getBillingAddress());
-        $this->setEmail($email);
+        $this->setEmail($order->getEmail());
+        if ($order->getBillingAddress()->getSalutation == 'Herr') {
+            $this->setGender('m');
+        } else {
+            $this->setGender('f');
+        }
         $this->setIPAddr($_SERVER['REMOTE_ADDR']);
         $this->setPhone($phone);
         $this->setMobileNr($mobileNr);
         $this->setDateOfBirth($dateOfBirth);
-        $this->setGender($gender);
         if ($isFirm) {
             $this->setCompanyOrPerson('F');
         } else {
             $this->setCompanyOrPerson('P');
         }
+
+
         $this->setKlarnaAction($klarnaAction);
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc',
             'bdStreet', 'bdZip', 'bdCity', 'bdCountryCode', 'sdStreet', 'sdZip', 'sdCity', 'sdCountryCode',
