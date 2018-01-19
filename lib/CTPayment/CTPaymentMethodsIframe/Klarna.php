@@ -238,7 +238,7 @@ class Klarna extends CTPaymentMethodIframe
         $this->setIPAddr($_SERVER['REMOTE_ADDR']);
         $this->setPhone($phone);
         $this->setMobileNr($mobileNr);
-        $this->setDateOfBirth($dateOfBirth);
+            $this->setDateOfBirth($dateOfBirth);
         if ($isFirm) {
             $this->setCompanyOrPerson('F');
         } else {
