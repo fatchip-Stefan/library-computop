@@ -127,56 +127,68 @@ class CTPaymentService extends Blowfish
                 'name' => 'fatchip_computop_creditcard',
                 'shortname' => 'Kreditkarte',
                 'description' => 'Computop Kreditkarte',
+                'action' => 'FatchipCTCreditCard',
             ),
             array(
                 'name' => 'fatchip_computop_easycredit',
                 'shortname' => 'Easycredit',
                 'description' => 'Computop Easycredit',
+                'action' => 'FatchipCTEasyCredit',
+                'template' => 'fatchip_computop_payment_easycredit.tpl',
             ),
             array(
                 'name' => 'fatchip_computop_ideal',
                 'shortname' => 'iDEAL',
                 'description' => 'Computop iDEAL',
+                'action' => 'FatchipCTIdeal',
             ),
             array(
                 'name' => 'fatchip_computop_klarna',
                 'shortname' => 'Klarna',
                 'description' => 'Computop Klarna',
+                'action' => 'FatchipCTKlarna',
             ),
             array(
                 'name' => 'fatchip_computop_lastschrift',
                 'shortname' => 'Lastschrift',
                 'description' => 'Computop Lastschrift',
+                'action' => 'FatchipCTLastschrift',
             ),
             array(
                 'name' => 'fatchip_computop_mobilepay',
                 'shortname' => 'Mobile Pay',
                 'description' => 'Computop Mobile Pay',
+                'action' => 'FatchipCTMobilepay',
             ),
             array(
                 'name' => 'fatchip_computop_paydirekt',
                 'shortname' => 'Paydirekt',
                 'description' => 'Computop Paydirekt',
+                'action' => 'FatchipCTPaydirekt',
             ),
             array(
                 'name' => 'fatchip_computop_paypal_standard',
                 'shortname' => 'PayPal',
                 'description' => 'Computop PayPal Standard',
+                'action' => 'FatchipCTPaypalStandard',
             ),
             array(
                 'name' => 'fatchip_computop_postfinance',
                 'shortname' => 'Postfinance',
                 'description' => 'Computop Postfinance',
+                'action' => 'FatchipCTPostFinance',
             ),
             array(
                 'name' => 'fatchip_computop_przelewy24',
                 'shortname' => 'Przelewy24',
                 'description' => 'Przelewy24',
+                'action' => 'FatchipCTPrzelewy24',
             ),
             array(
                 'name' => 'fatchip_computop_sofort',
                 'shortname' => 'SOFORT',
                 'description' => 'Computop SOFORT',
+                'action' => 'FatchipCTSofort',
             ),
         );
     }
