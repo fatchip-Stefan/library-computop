@@ -25,7 +25,9 @@
 
 namespace Fatchip\CTPayment;
 
+use Fatchip\CTPayment\CTPaymentMethodsIframe\CRIF;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCreditCard;
+use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCRIF;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseEasyCredit;
 use Fatchip\CTPayment\CTPaymentMethodsIframe\CreditCard;
 
@@ -45,6 +47,10 @@ class CTPaymentService extends Blowfish
         return new $class($config,$ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
     }
 
+    public function getCRIFClass($config, $order, $orderDesc, $userData ) {
+        return new CRIF($config, $order, $orderDesc, $userData );
+    }
+
 
     /**
      * decrypts raw responses from computop api
@@ -60,6 +66,15 @@ class CTPaymentService extends Blowfish
         $decryptedRequest = $this->ctDecrypt($rawRequest['Data'], $rawRequest['Len'], $this->blowfishPassword);
         $requestArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
         $response = new CTResponseCreditCard($requestArray);
+        return $response;
+    }
+
+    public function createCRIFResponse(array $rawRequest)
+    {
+        // Instead if using getter / setter use constructor to simplify
+        $decryptedRequest = $this->ctDecrypt($rawRequest['Data'], $rawRequest['Len'], $this->blowfishPassword);
+        $requestArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
+        $response = new CTResponseCRIF($requestArray);
         return $response;
     }
 

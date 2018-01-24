@@ -53,25 +53,96 @@ class CRIF extends CTPaymentMethodIframe{
      */
     protected $addrCity;
 
+
+    /**
+     * Ländercode dreistellig gemäß ISO 3166. Nur AUT, DEU, CHE, NLD zulässig.
+     *
+     * @var string
+     */
+    protected $AddrCountryCode;
+
     /**
      * @var string
      */
     protected $addrZip;
 
+    /**
+     * @var
+     */
+    protected $sdLastName;
+
+    /**
+     * @var
+     */
+    protected $sdFirstName;
+
+    /**
+     * @var
+     */
+    protected $sdGender;
+
+    /**
+     * @var
+     */
+    protected $sdStreet;
+
+    /**
+     * @var
+     */
+    protected $sdStreetNr;
+
+    /**
+     * @var
+     */
+    protected $sdCity;
+
+    /**
+     * @var
+     */
+    protected $sdZip;
+
+    /**
+     * Ländercode dreistellig gemäß ISO 3166. Nur AUT, DEU, CHE, NLD zulässig.
+     *
+     * @var string
+     */
+    protected $sdCountryCode;
+
+    /**
+     * IP-Adresse des Kunden im Format IPv4 oder IPv6
+     *
+     * @var string
+     */
+    protected $IPAddr;
+
 
     public function __construct(
       $config,
-      $order
+      $order,
+      $orderDesc,
+      $userData
+
 
     ) {
-        parent::__construct($config, $order);
-
+        parent::__construct($config, $order, $orderDesc, $userData);
 
         $this->setLastName($order->getBillingAddress()->getLastName());
+        $this->setFirstName($order->getBillingAddress()->getFirstName());
         $this->setAddrStreet($order->getBillingAddress()->getStreet());
         $this->setAddrStreetNr($order->getBillingAddress()->getStreetNr());
         $this->setAddrZip($order->getBillingAddress()->getZip());
         $this->setAddrCity($order->getBillingAddress()->getCity());
+        $this->setAddrCountryCode($order->getBillingAddress()->setCountryCodeIso3());
+
+        $this->setSdFirstName($order->getShippingAddress()->getFirstName());
+        $this->setSdFirstName($order->getShippingAddress()->getFirstName());
+        $this->setSdStreet($order->getShippingAddress()->getStreet());
+        $this->setSdStreetNr($order->getShippingAddress()->getStreetNr());
+        $this->setSdZip($order->getShippingAddress()->getZip());
+        $this->setSdCity($order->getShippingAddress()->getCity());
+        $this->setSdCountryCode($order->getShippingAddress()->setCountryCodeIso3());
+
+        $this->setIPAddr($_SERVER['REMOTE_ADDR']);
 
         $this->setMandatoryFields(array('merchantID', 'transID', 'orderDesc', 'amount', 'currency',
           'mac', 'productName', 'customerID', 'lastName', 'addrStreet', 'addrZip' ));
@@ -86,8 +157,7 @@ class CRIF extends CTPaymentMethodIframe{
             }
         }
 
-        //TODO: orderdesc implementieren
-        $this->setOrderDesc('testDesc');
+        $this->setOrderDesc($orderDesc);
 
         //TODO: CustomerID übergeben
         $this->setCustomerID('1212');
@@ -206,6 +276,149 @@ class CRIF extends CTPaymentMethodIframe{
         return $this->productName;
     }
 
+    /**
+     * @param mixed $sdCity
+     */
+    public function setSdCity($sdCity) {
+        $this->sdCity = $sdCity;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSdCity() {
+        return $this->sdCity;
+    }
+
+    /**
+     * @param string $sdCountryCode
+     */
+    public function setSdCountryCode($sdCountryCode) {
+        $this->sdCountryCode = $sdCountryCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSdCountryCode() {
+        return $this->sdCountryCode;
+    }
+
+    /**
+     * @param mixed $sdFirstName
+     */
+    public function setSdFirstName($sdFirstName) {
+        $this->sdFirstName = $sdFirstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSdFirstName() {
+        return $this->sdFirstName;
+    }
+
+    /**
+     * @param mixed $sdGender
+     */
+    public function setSdGender($sdGender) {
+        $this->sdGender = $sdGender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSdGender() {
+        return $this->sdGender;
+    }
+
+    /**
+     * @param mixed $sdLastName
+     */
+    public function setSdLastName($sdLastName) {
+        $this->sdLastName = $sdLastName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSdLastName() {
+        return $this->sdLastName;
+    }
+
+    /**
+     * @param mixed $sdStreet
+     */
+    public function setSdStreet($sdStreet) {
+        $this->sdStreet = $sdStreet;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSdStreet() {
+        return $this->sdStreet;
+    }
+
+    /**
+     * @param mixed $sdStreetNr
+     */
+    public function setSdStreetNr($sdStreetNr) {
+        $this->sdStreetNr = $sdStreetNr;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSdStreetNr() {
+        return $this->sdStreetNr;
+    }
+
+    /**
+     * @param mixed $sdZip
+     */
+    public function setSdZip($sdZip) {
+        $this->sdZip = $sdZip;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSdZip() {
+        return $this->sdZip;
+    }
+
+    /**
+     * @param string $AddrCountryCode
+     */
+    public function setAddrCountryCode($AddrCountryCode) {
+        $this->AddrCountryCode = $AddrCountryCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddrCountryCode() {
+        return $this->AddrCountryCode;
+    }
+
+    /**
+     * @param string $iPAddr
+     */
+    public function setIPAddr($iPAddr)
+    {
+        $this->IPAddr = $iPAddr;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIPAddr()
+    {
+        return $this->IPAddr;
+    }
+
+
     public function getCTPaymentURL() {
         return 'https://www.computop-paygate.com/deltavista.aspx';
     }
@@ -222,8 +435,8 @@ class CRIF extends CTPaymentMethodIframe{
     {
 
         $url = $this->getHTTPGetURL();
-
         $curl = curl_init();
+        $resp = null;
 
         curl_setopt_array($curl, array(
           CURLOPT_RETURNTRANSFER => 1,
@@ -246,12 +459,9 @@ class CRIF extends CTPaymentMethodIframe{
 
         $arr = array();
         parse_str($resp, $arr);
-        $decryptedRequest = $this->ctDecrypt($arr['Data'], $arr['Len'], $this->blowfishPassword);
-        $requestArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
-        $response = new CTResponseCRIF($requestArray);
 
 
-        return $response;
+        return $arr;
     }
 
 
