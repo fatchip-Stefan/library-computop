@@ -16,7 +16,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
    *
    * @var string
    */
-    private $Template;
+    protected $Template;
 
     /**
      * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
@@ -26,7 +26,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
      *
      * @var string
      */
-    private $capture; //AUTO, MANUAL, ZAHL
+    protected $Capture; //AUTO, MANUAL, ZAHL
 
     /**
      * Über welchen Dienst wird Lastschrift angebunden`:
@@ -36,14 +36,14 @@ abstract class Lastschrift extends CTPaymentMethodIframe
      *
      * @var
      */
-    private $dienst;
+    protected $dienst;
 
     /**
      * für SEPA: SEPA-Mandatsnummer (Pflicht bei SEPA) sollte eindeutig sein, ist nicht case-sensitive
      *
      * @var string
      */
-    private $mandateID;
+    protected $MandateID;
 
     /**
      * für SEPA: Datum der Mandatserteilung im Format DD.MM.YYYY
@@ -51,7 +51,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
      *
      * @var string
      */
-    private $DtOfSgntr;
+    protected $DtOfSgntr;
 
     public function __construct(
         $config,
@@ -69,10 +69,10 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-        $this->setCapture($capture);
+        $this->setCapture('AUTO');
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
-
+        $this->setMandateID($this->createMandateID($order->getAmount()));
     }
 
     /**
@@ -80,7 +80,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
      */
     public function setCapture($capture)
     {
-        $this->capture = $capture;
+        $this->Capture = $capture;
     }
 
     /**
@@ -88,7 +88,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
      */
     public function getCapture()
     {
-        return $this->capture;
+        return $this->Capture;
     }
 
     /**
@@ -128,7 +128,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
      */
     public function setMandateID($mandateID)
     {
-        $this->mandateID = $mandateID;
+        $this->MandateID = $mandateID;
         //if we set MandateID, also dtOfSgntr is obligatory
         $this->setDtOfSgntr(date('d-m-Y'));
     }
@@ -138,7 +138,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
      */
     public function getMandateID()
     {
-        return $this->mandateID;
+        return $this->MandateID;
     }
 
     /**
