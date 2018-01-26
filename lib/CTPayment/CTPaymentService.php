@@ -156,12 +156,14 @@ class CTPaymentService extends Blowfish
                 'shortname' => 'iDEAL',
                 'description' => 'Computop iDEAL',
                 'action' => 'FatchipCTIdeal',
+                'template' => 'fatchip_computop_payment_ideal.tpl',
             ),
             array(
                 'name' => 'fatchip_computop_klarna',
                 'shortname' => 'Klarna',
                 'description' => 'Computop Klarna',
                 'action' => 'FatchipCTKlarna',
+                'template' => 'fatchip_computop_payment_klarna.tpl',
             ),
             array(
                 'name' => 'fatchip_computop_lastschrift',
