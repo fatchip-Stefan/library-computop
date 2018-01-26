@@ -116,6 +116,12 @@ class CRIF extends CTPaymentMethodIframe{
     protected $IPAddr;
 
 
+    /**
+     * @param $config
+     * @param CTOrder $order
+     * @param $orderDesc
+     * @param $userData
+     */
     public function __construct(
       $config,
       $order,
@@ -132,7 +138,7 @@ class CRIF extends CTPaymentMethodIframe{
         $this->setAddrStreetNr($order->getBillingAddress()->getStreetNr());
         $this->setAddrZip($order->getBillingAddress()->getZip());
         $this->setAddrCity($order->getBillingAddress()->getCity());
-        $this->setAddrCountryCode($order->getBillingAddress()->setCountryCodeIso3());
+        $this->setAddrCountryCode($order->getBillingAddress()->getCountryCodeIso3());
 
         $this->setSdFirstName($order->getShippingAddress()->getFirstName());
         $this->setSdFirstName($order->getShippingAddress()->getFirstName());
@@ -140,7 +146,7 @@ class CRIF extends CTPaymentMethodIframe{
         $this->setSdStreetNr($order->getShippingAddress()->getStreetNr());
         $this->setSdZip($order->getShippingAddress()->getZip());
         $this->setSdCity($order->getShippingAddress()->getCity());
-        $this->setSdCountryCode($order->getShippingAddress()->setCountryCodeIso3());
+        $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3());
 
         $this->setIPAddr($_SERVER['REMOTE_ADDR']);
 
@@ -159,8 +165,7 @@ class CRIF extends CTPaymentMethodIframe{
 
         $this->setOrderDesc($orderDesc);
 
-        //TODO: CustomerID übergeben
-        $this->setCustomerID('1212');
+        $this->setCustomerID($order->getCustomerID());
 
     }
 

@@ -14,6 +14,7 @@ class CTOrder
     protected $orderDesc;
     protected $payId;
     protected $email;
+    protected $customerID;
 
     /**
      * @var CTAddress
@@ -134,6 +135,23 @@ class CTOrder
     public function getEmail() {
         return $this->email;
     }
+
+    /**
+     * @param mixed $customerID
+     */
+    public function setCustomerID($customerID) {
+        $this->customerID = $customerID;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomerID() {
+        return $this->customerID;
+    }
+
+
+
 
 
 
