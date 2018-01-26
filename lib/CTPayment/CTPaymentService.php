@@ -206,6 +206,7 @@ class CTPaymentService extends Blowfish
                 'shortname' => 'SOFORT',
                 'description' => 'Computop SOFORT',
                 'action' => 'FatchipCTSofort',
+                'template' => 'fatchip_computop_payment_sofort.tpl',
             ),
         );
     }
