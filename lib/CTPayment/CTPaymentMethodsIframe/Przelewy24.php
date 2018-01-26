@@ -39,8 +39,6 @@ class Przelewy24 extends CTPaymentMethodIframe
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner', 'Email', ));
-        // override currency only "PLN" is aceepted see manual p. 6
-        $this->setCurrency('PLN');
     }
 
     /**
