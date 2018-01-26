@@ -142,7 +142,6 @@ class CreditCard extends CTPaymentMethodIframe
      * @var string
      */
 
-    //TODO: create possiblilty to get country code in 2 or 3 chars
     protected $sdCountryCode;
 
 
@@ -198,7 +197,7 @@ class CreditCard extends CTPaymentMethodIframe
                 $this->setSdLastName($order->getShippingAddress()->getLastName());
                 $this->setSdStreet($order->getShippingAddress()->getStreet() . ' ' . $order->getShippingAddress()->getStreetNr());
                 $this->setSdZip($order->getShippingAddress()->getZip());
-                $this->setSdCountryCode($order->getShippingAddress()->getCountryCode());
+                $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3()); //for CAPN: Country in Iso3 format
 
 
                 break;
