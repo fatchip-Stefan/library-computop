@@ -176,6 +176,7 @@ class CTPaymentService extends Blowfish
                 'shortname' => 'Mobile Pay',
                 'description' => 'Computop Mobile Pay',
                 'action' => 'FatchipCTMobilepay',
+                'countries' => array('DK', 'NO', 'FI', 'SE')
             ),
             array(
                 'name' => 'fatchip_computop_paydirekt',
@@ -200,6 +201,7 @@ class CTPaymentService extends Blowfish
                 'shortname' => 'Przelewy24',
                 'description' => 'Przelewy24',
                 'action' => 'FatchipCTPrzelewy24',
+                'countries' => array('PL',)
             ),
             array(
                 'name' => 'fatchip_computop_sofort',
