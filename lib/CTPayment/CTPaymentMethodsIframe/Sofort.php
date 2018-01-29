@@ -12,7 +12,7 @@ class Sofort extends CTPaymentMethodIframe
      *
      * @var string
      */
-    protected $sofortAction = 'ideal';
+    protected $sofortAction = '';
 
     /**
      * ID der Bank, über die iDEAL-Überweisungen erfolgen sollen;
