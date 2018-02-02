@@ -150,6 +150,7 @@ class CTPaymentService extends Blowfish
                 'description' => 'Computop Easycredit',
                 'action' => 'FatchipCTEasyCredit',
                 'template' => 'fatchip_computop_payment_easycredit.tpl',
+                'additionalDescription' => 'Rechnungs- und Lieferadresse müssen gleich sein, damit easyCredit genutzt werden kann',
             ),
             array(
                 'name' => 'fatchip_computop_ideal',
