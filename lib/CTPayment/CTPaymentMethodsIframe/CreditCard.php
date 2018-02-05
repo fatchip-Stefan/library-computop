@@ -129,12 +129,6 @@ class CreditCard extends CTPaymentMethodIframe
      */
     protected $sdStreet;
 
-    /**
-     * Postleitzahl in der Lieferadresse
-     *
-     * @var string
-     */
-    protected $sdZip;
 
     /**
      * Ländercode der Lieferadresse im Format ISO-3166-1, numerisch 3-stellig (für AVS)
@@ -353,20 +347,6 @@ class CreditCard extends CTPaymentMethodIframe
      */
     public function getLastName() {
         return $this->LastName;
-    }
-
-    /**
-     * @param string $sdZip
-     */
-    public function setSdZip($sdZip) {
-        $this->sdZip = $sdZip;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSdZip() {
-        return $this->sdZip;
     }
 
     /**

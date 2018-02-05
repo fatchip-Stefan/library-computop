@@ -127,11 +127,20 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     protected $IPAddr;
 
-
     /**
-     * @param $config
-     * @param $order CTOrder
+     * Postleitzahl in der Lieferadresse.
+     *
+     * @var string
      */
+    protected $sdZip;
+
+
+   /***
+    * @param $config
+    * @param $order
+    * @param $orderDesc
+    * @param $userData
+    */
     public function __construct($config, $order, $orderDesc, $userData)
     {
         $this->setAmount($order->getAmount());
@@ -139,7 +148,9 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
         $this->setIPAddr($_SERVER['REMOTE_ADDR']);
-
+        if ($order->getShippingAddress()) {
+            $this->setSdZip($order->getShippingAddress()->getZip());
+        }
 
 
         if (count($config) > 0) {
@@ -386,6 +397,20 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     public function getIPAddr()
     {
         return $this->IPAddr;
+    }
+
+    /**
+     * @param string $sdZip
+     */
+    public function setSdZip($sdZip) {
+        $this->sdZip = $sdZip;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSdZip() {
+        return $this->sdZip;
     }
 
 

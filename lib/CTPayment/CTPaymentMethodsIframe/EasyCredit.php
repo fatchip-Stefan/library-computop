@@ -118,13 +118,6 @@ class EasyCredit extends CTPaymentMethodIframe
     protected $sdAddressAddition;
 
     /**
-     * Postleitzahl
-     *
-     * @var int
-     */
-    protected $sdZip;
-
-    /**
      * Stadt
      *
      * @var string
@@ -460,28 +453,16 @@ class EasyCredit extends CTPaymentMethodIframe
         return $this->sdStreetNr;
     }
 
-    /**
-     * @param int $sdZip
-     */
-    public function setSdZip($sdZip)
-    {
-        $this->sdZip = $sdZip;
-    }
 
-    /**
-     * @return int
-     */
-    public function getSdZip()
-    {
-        return $this->sdZip;
-    }
 
-    /**
+    /***
      * @param $config
-     * @param CTOrder $order
+     * @param $order
      * @param $urlSuccess
      * @param $urlFailure
      * @param $urlNotify
+     * @param $orderDesc
+     * @param $userData
      * @param $eventToken
      */
     public function __construct(

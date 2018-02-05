@@ -105,13 +105,6 @@ class Klarna extends CTPaymentMethodIframe
     protected $sdStreetNr;
 
     /**
-     * Postleitzahl in der Lieferadresse
-     *
-     * @var string
-     */
-    protected $sdZip;
-
-    /**
      * Ort in der Lieferadresse
      *
      * @var string
@@ -612,22 +605,6 @@ class Klarna extends CTPaymentMethodIframe
     public function getSdStreetNr()
     {
         return $this->sdStreetNr;
-    }
-
-    /**
-     * @param string $sdZip
-     */
-    public function setSdZip($sdZip)
-    {
-        $this->sdZip = $sdZip;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSdZip()
-    {
-        return $this->sdZip;
     }
 
     /**

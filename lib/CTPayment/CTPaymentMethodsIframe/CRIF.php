@@ -96,10 +96,6 @@ class CRIF extends CTPaymentMethodIframe{
      */
     protected $sdCity;
 
-    /**
-     * @var
-     */
-    protected $sdZip;
 
     /**
      * Ländercode dreistellig gemäß ISO 3166. Nur AUT, DEU, CHE, NLD zulässig.
@@ -137,7 +133,7 @@ class CRIF extends CTPaymentMethodIframe{
         $this->setSdFirstName($order->getShippingAddress()->getFirstName());
         $this->setSdStreet($order->getShippingAddress()->getStreet());
         $this->setSdStreetNr($order->getShippingAddress()->getStreetNr());
-        $this->setSdZip($order->getShippingAddress()->getZip());
+        //sdZip is set in parent constructor.
         $this->setSdCity($order->getShippingAddress()->getCity());
         $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3());
 
@@ -369,20 +365,6 @@ class CRIF extends CTPaymentMethodIframe{
      */
     public function getSdStreetNr() {
         return $this->sdStreetNr;
-    }
-
-    /**
-     * @param mixed $sdZip
-     */
-    public function setSdZip($sdZip) {
-        $this->sdZip = $sdZip;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSdZip() {
-        return $this->sdZip;
     }
 
     /**
