@@ -120,6 +120,13 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     protected $reqID;
 
+    /**
+     * IP-Adresse des Kunden im Format IPv4 oder IPv6
+     *
+     * @var string
+     */
+    protected $IPAddr;
+
 
     /**
      * @param $config
@@ -131,7 +138,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $this->setCurrency($order->getCurrency());
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
-
+        $this->setIPAddr($_SERVER['REMOTE_ADDR']);
 
 
 
@@ -364,6 +371,23 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     {
         $this->order = $order;
     }
+
+    /**
+     * @param string $iPAddr
+     */
+    public function setIPAddr($iPAddr)
+    {
+        $this->IPAddr = $iPAddr;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIPAddr()
+    {
+        return $this->IPAddr;
+    }
+
 
     /**
      * {@inheritDoc}

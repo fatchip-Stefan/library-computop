@@ -108,13 +108,6 @@ class CRIF extends CTPaymentMethodIframe{
      */
     protected $sdCountryCode;
 
-    /**
-     * IP-Adresse des Kunden im Format IPv4 oder IPv6
-     *
-     * @var string
-     */
-    protected $IPAddr;
-
 
     /**
      * @param $config
@@ -148,7 +141,6 @@ class CRIF extends CTPaymentMethodIframe{
         $this->setSdCity($order->getShippingAddress()->getCity());
         $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3());
 
-        $this->setIPAddr($_SERVER['REMOTE_ADDR']);
 
         $this->setMandatoryFields(array('merchantID', 'transID', 'orderDesc', 'amount', 'currency',
           'mac', 'productName', 'customerID', 'lastName', 'addrStreet', 'addrZip' ));
@@ -405,22 +397,6 @@ class CRIF extends CTPaymentMethodIframe{
      */
     public function getAddrCountryCode() {
         return $this->AddrCountryCode;
-    }
-
-    /**
-     * @param string $iPAddr
-     */
-    public function setIPAddr($iPAddr)
-    {
-        $this->IPAddr = $iPAddr;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIPAddr()
-    {
-        return $this->IPAddr;
     }
 
 
