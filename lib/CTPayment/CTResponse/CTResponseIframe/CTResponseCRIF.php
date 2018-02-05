@@ -30,6 +30,19 @@ class CTResponseCRIF extends CTResponseIframe
 
     protected $partialResults;
 
+    protected $AddrStreet;
+
+    protected $AddrStreetNr;
+
+    protected $AddrCity;
+
+    protected $AddrZip;
+
+    protected $AddrCountryCode;
+
+    protected $FirstName;
+
+    protected $LastName;
 
 
     public function __construct(array $params = array())
@@ -78,6 +91,105 @@ class CTResponseCRIF extends CTResponseIframe
     public function getStatus() {
         return $this->status;
     }
+
+    /**
+     * @param mixed $AddrCity
+     */
+    public function setAddrCity($AddrCity) {
+        $this->AddrCity = $AddrCity;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddrCity() {
+        return $this->AddrCity;
+    }
+
+    /**
+     * @param mixed $AddrCountryCode
+     */
+    public function setAddrCountryCode($AddrCountryCode) {
+        $this->AddrCountryCode = $AddrCountryCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddrCountryCode() {
+        return $this->AddrCountryCode;
+    }
+
+    /**
+     * @param mixed $AddrStreet
+     */
+    public function setAddrStreet($AddrStreet) {
+        $this->AddrStreet = $AddrStreet;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddrStreet() {
+        return $this->AddrStreet;
+    }
+
+    /**
+     * @param mixed $AddrStreetNr
+     */
+    public function setAddrStreetNr($AddrStreetNr) {
+        $this->AddrStreetNr = $AddrStreetNr;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddrStreetNr() {
+        return $this->AddrStreetNr;
+    }
+
+    /**
+     * @param mixed $AddrZip
+     */
+    public function setAddrZip($AddrZip) {
+        $this->AddrZip = $AddrZip;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddrZip() {
+        return $this->AddrZip;
+    }
+
+    /**
+     * @param mixed $FirstName
+     */
+    public function setFirstName($FirstName) {
+        $this->FirstName = $FirstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName() {
+        return $this->FirstName;
+    }
+
+    /**
+     * @param mixed $LastName
+     */
+    public function setLastName($LastName) {
+        $this->LastName = $LastName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName() {
+        return $this->LastName;
+    }
+
 
 
 }

@@ -211,6 +211,12 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTSofort',
                 'template' => 'fatchip_computop_payment_sofort.tpl',
             ),
+            array(
+                'name' => 'fatchip_computop_amazonpay',
+                'shortname' => 'AmazonPay',
+                'description' => 'Computop AmazonPay',
+                'action' => 'FatchipCTAmazon',
+            ),
         );
     }
 }
