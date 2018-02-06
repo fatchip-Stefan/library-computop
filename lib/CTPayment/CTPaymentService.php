@@ -161,14 +161,14 @@ class CTPaymentService extends Blowfish
             ),
             array(
                 'name' => 'fatchip_computop_klarna_invoice',
-                'shortname' => 'Klarna',
+                'shortname' => 'Klarna Rechnungskauf',
                 'description' => 'Computop Klarna Rechnungskauf',
                 'action' => 'FatchipCTKlarna',
                 'template' => 'fatchip_computop_payment_klarna_invoice.tpl',
             ),
             array(
                 'name' => 'fatchip_computop_klarna_installment',
-                'shortname' => 'Klarna',
+                'shortname' => 'Klarna Ratenkauf',
                 'description' => 'Computop Klarna Ratenkauf',
                 'action' => 'FatchipCTKlarna',
                 'template' => 'fatchip_computop_payment_klarna_installment.tpl',
@@ -207,7 +207,7 @@ class CTPaymentService extends Blowfish
             array(
                 'name' => 'fatchip_computop_przelewy24',
                 'shortname' => 'Przelewy24',
-                'description' => 'Przelewy24',
+                'description' => 'Computop Przelewy24',
                 'action' => 'FatchipCTPrzelewy24',
                 'countries' => array('PL',)
             ),
