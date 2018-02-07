@@ -7,14 +7,6 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 class Ideal extends CTPaymentMethodIframe
 {
 
-
-  /**
-   *  Ideal kann entweder direkt aufgerufen werden, oder über Sofort. Hierzu soll es setting geben in Backend
-   *
-   * @var bool
-   */
-    private $idealDirekt = true;
-
     /**
      * Nicht bei PPRO: BIC der ausgewählten Bank (siehe Abfrage der hinterlegten iDEAL-Banken)
      *
@@ -87,11 +79,9 @@ class Ideal extends CTPaymentMethodIframe
 
     public function getCTPaymentURL()
     {
-        if ($this->idealDirekt) {
-            return 'https://www.computop-paygate.com/ideal.aspx';
-        } else {
-            return 'https://www.computop-paygate.com/sofort.aspx';
-        }
+
+        return 'https://www.computop-paygate.com/ideal.aspx';
+
     }
 
     public function getCTRefundURL()

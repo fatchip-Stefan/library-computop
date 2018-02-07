@@ -26,6 +26,7 @@
 namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTPaymentMethodsIframe\CRIF;
+use Fatchip\CTPayment\CTPaymentMethodsIframe\Sofort;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCreditCard;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCRIF;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseEasyCredit;
@@ -43,6 +44,14 @@ class CTPaymentService extends Blowfish
 
     public function getPaymentClass($className, $config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData)
     {
+        //Ideal can be called directly, or via Sofort with SofortAction=ideal.
+        //If set to 'via sofort' in Pluginsettings, return a class of type Sofort with Sofortaction = ideal
+        if ($className == 'Ideal' && $config['idealDirektOderUeberSofort'] == 'SOFORT') {
+            $obj = new Sofort($config,$ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
+            $obj->setSofortAction('ideal');
+            return $obj;
+        }
+
         $class = 'Fatchip\\CTPayment\\CTPaymentMethodsIframe\\' . $className;
         return new $class($config,$ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
     }
