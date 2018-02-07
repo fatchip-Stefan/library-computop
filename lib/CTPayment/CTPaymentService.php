@@ -167,6 +167,7 @@ class CTPaymentService extends Blowfish
                 'description' => 'Computop iDEAL',
                 'action' => 'FatchipCTIdeal',
                 'template' => 'fatchip_computop_payment_ideal.tpl',
+                'countries' => array('NL'),
             ),
             array(
                 'name' => 'fatchip_computop_klarna',
