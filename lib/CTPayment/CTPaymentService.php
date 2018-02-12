@@ -144,6 +144,11 @@ class CTPaymentService extends Blowfish
         return md5(implode('|', [$amount, $customerId]));
     }
 
+    /** Note: setting 'countries' => ['NL'], in shopware
+     * will make the payment available only for shippingCountry = nl
+     * not billingCountry as expected
+     * @return array
+     */
     public function getPaymentMethods()
     {
         return array(
@@ -167,7 +172,7 @@ class CTPaymentService extends Blowfish
                 'description' => 'Computop iDEAL',
                 'action' => 'FatchipCTIdeal',
                 'template' => 'fatchip_computop_payment_ideal.tpl',
-                'countries' => array('NL'),
+                'countries' => ['NL'],
             ),
             array(
                 'name' => 'fatchip_computop_klarna',
@@ -187,7 +192,7 @@ class CTPaymentService extends Blowfish
                 'shortname' => 'Mobile Pay',
                 'description' => 'Computop Mobile Pay',
                 'action' => 'FatchipCTMobilepay',
-                'countries' => array('DK', 'NO', 'FI', 'SE')
+                'countries' => ['DK', 'NO', 'FI', 'SE']
             ),
             array(
                 'name' => 'fatchip_computop_paydirekt',
@@ -212,7 +217,7 @@ class CTPaymentService extends Blowfish
                 'shortname' => 'Przelewy24',
                 'description' => 'Przelewy24',
                 'action' => 'FatchipCTPrzelewy24',
-                'countries' => array('PL',)
+                'countries' => ['PL',]
             ),
             array(
                 'name' => 'fatchip_computop_sofort',
