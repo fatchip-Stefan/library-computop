@@ -119,6 +119,11 @@ class Sofort extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/credit.aspx';
     }
 
+    public function getCTCaptureURL()
+    {
+        return null;
+    }
+
     public function getSettingsDefinitions()
     {
         return 'Sofort oder SofortIdent';

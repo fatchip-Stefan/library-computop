@@ -191,6 +191,11 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
     abstract public function getSettingsDefinitions();
 
+    public function getCTCaptureURL()
+    {
+        return 'https://www.computop-paygate.com/capture.aspx';
+    }
+
 
     public function getTransactionQuery()
     {
@@ -473,6 +478,68 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         return $form;
     }
 
+    public function refund($PayID, $Amount, $Currency) {
+        $this->setPayID($PayID);
+        $this->setAmount($Amount);
+        $this->setCurrency($Currency);
+
+        $arr = $this->makeServerToServerCall($this->getCTRefundURL());
+
+        $resp = new CTResponse\CTResponseIframe($arr);
+
+        return $resp;
+
+    }
+
+    public function capture($PayID, $Amount, $Currency) {
+        $this->setPayID($PayID);
+        $this->setAmount($Amount);
+        $this->setCurrency($Currency);
+
+        $arr = $this->makeServerToServerCall($this->getCTCaptureURL());
+
+        $resp = new CTResponse\CTResponseIframe($arr);
+
+        return $resp;
+
+    }
+
+    private function makeServerToServerCall($url) {
+        $query = $this->getTransactionQuery();
+        $Len = strlen($query);
+        $data = $this->getEncryptedData();
+        $url = $url . '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_RETURNTRANSFER => 1,
+          CURLOPT_URL => $url,
+        ));
+
+        try {
+            $resp = curl_exec($curl);
+
+            if (FALSE === $resp) {
+                throw new Exception(curl_error($curl), curl_errno($curl));
+            }
+
+        } catch (\Exception $e) {
+            trigger_error(sprintf(
+                'Curl failed with error #%d: %s',
+                $e->getCode(), $e->getMessage()),
+              E_USER_ERROR);
+        }
+        $arr = array();
+        parse_str($resp, $arr);
+
+        $plaintext = $this->ctDecrypt($arr['Data'], $arr['Len'], $this->getBlowfishPassword());
+        $arr = array();
+        parse_str($plaintext, $arr);
+
+        return $arr;
+
+    }
 
 
 }
