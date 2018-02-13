@@ -27,7 +27,7 @@ namespace Fatchip\CTPayment;
 
 class CTPaymentConfigForms
 {
-    public $formGeneralTextElements =
+    const formGeneralTextElements =
         [
             'merchantID' => [
                 'name' => 'merchantID',
@@ -55,7 +55,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formCreditCardSelectElements =
+    const formCreditCardSelectElements =
         [
             'creditCardCaption' => [
                 'name' => 'creditCardCaption',
@@ -89,7 +89,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formCreditCardNumberElements =
+    const formCreditCardNumberElements =
         [
             'creditCardDelay' => [
                 'name' => 'creditCardDelay',
@@ -101,7 +101,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formIdealSelectElements =
+    const formIdealSelectElements =
         [
             'idealDirektOderUeberSofort' => [
                 'name' => 'idealDirektOderUeberSofort',
@@ -134,7 +134,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formPayDirektTextElements =
+    const formPayDirektTextElements =
         [
             'payDirektShopApiKey' => [
                 'name' => 'payDirektShopApiKey',
@@ -146,7 +146,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formPayDirektSelectElements =
+    const formPayDirektSelectElements =
         [
             'payDirektCaption' => [
                 'name' => 'payDirektCaption',
@@ -165,7 +165,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formPayDirektNumberElements =
+    const formPayDirektNumberElements =
         [
             'payDirektCardDelay' => [
                 'name' => 'payDirektCardDelay',
@@ -177,7 +177,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formPayPalSelectElements =
+    const formPayPalSelectElements =
         [
             'paypalCaption' => [
                 'name' => 'paypalCaption',
@@ -196,7 +196,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formAmazonTextElements =
+    const formAmazonTextElements =
         [
             'amazonSellerId' => [
                 'name' => 'amazonSellerId',
@@ -217,7 +217,7 @@ class CTPaymentConfigForms
 
         ];
 
-    public $formAmazonSelectElements =
+    const formAmazonSelectElements =
         [
             'amazonButtonType' => [
                 'name' => 'amazonButtonType',
@@ -268,7 +268,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formBonitaetElements =
+    const formBonitaetElements =
         [
             'bonitaetusereturnaddress' => [
                 'name' => 'bonitaetusereturnaddress',
@@ -288,7 +288,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formBonitaetSelectElements =
+    const formBonitaetSelectElements =
         [
             'crifmethod' => [
                 'name' => 'crifmethod',
@@ -307,7 +307,7 @@ class CTPaymentConfigForms
             ],
         ];
 
-    public $formMobilePayBooleanElements =
+    const formMobilePayBooleanElements =
         [
             'mobilePaySendMobileNr' => [
                 'name' => 'mobilePaySendMobileNr',
