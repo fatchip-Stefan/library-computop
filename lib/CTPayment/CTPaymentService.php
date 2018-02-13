@@ -60,6 +60,10 @@ class CTPaymentService extends Blowfish
         return new CRIF($config, $order, $orderDesc, $userData );
     }
 
+    public function getPaymentConfigForms() {
+        return new CTPaymentConfigForms();
+    }
+
 
     /**
      * decrypts raw responses from computop api
