@@ -29,31 +29,35 @@ namespace Fatchip\CTPayment;
  * Class CTPaymentAttributes
  * @package Fatchip\CTPayment
  */
-class CTPaymentAttributes
-{
+class CTPaymentAttributes {
     /**
      * @var array
      */
     const orderAttributes = [
 
-        'Status' => [
-            'type' => 'VARCHAR(255)',
-        ],
-        'TransID' => [
-            'type' => 'VARCHAR(255)',
-        ],
-        'PayID' => [
-            'type' => 'VARCHAR(255)',
-        ],
-        'XID' => [
-            'type' => 'VARCHAR(255)',
-        ],
-        'ShipCaptured' => [
-            'type' => 'DOUBLE',
-        ],
-        'ShipDebit' => [
-            'type' => 'DOUBLE',
-        ],
+      'status' => [
+        'type' => 'VARCHAR(255)',
+      ],
+      'transid' => [
+        'type' => 'VARCHAR(255)',
+      ],
+      'payid' => [
+        'type' => 'VARCHAR(255)',
+      ],
+      'xid' => [
+        'type' => 'VARCHAR(255)',
+      ],
+      'shipcaptured' => [
+        'type' => 'DOUBLE',
+      ],
+      'shipdebit' => [
+        'type' => 'DOUBLE',
+        'additionalInfo' =>
+          ['label' => 'Versandkosten bisher gutgeschrieben:',
+            'helpText' => '',
+            'displayInBackend' => true,
+          ]
+      ],
     ];
 
     /**
@@ -61,18 +65,18 @@ class CTPaymentAttributes
      */
     const orderDetailsAttributes = [
 
-        'PaymentStatus' => [
-            'type' => 'VARCHAR(255)',
-        ],
-        'ShipmentDate' => [
-            'type' => 'DATE',
-        ],
-        'Captured' => [
-            'type' => 'DOUBLE',
-        ],
-        'Debit' => [
-            'type' => 'DOUBLE',
-        ]
+      'paymentstatus' => [
+        'type' => 'VARCHAR(255)',
+      ],
+      'shipmentdate' => [
+        'type' => 'DATE',
+      ],
+      'captured' => [
+        'type' => 'DOUBLE',
+      ],
+      'debit' => [
+        'type' => 'DOUBLE',
+      ]
     ];
 
     /**
@@ -81,17 +85,17 @@ class CTPaymentAttributes
      */
     const userAddressAttributes = [
 
-        'CrifResult' => [
-            'type' => 'VARCHAR(255)',
-        ],
-        'CrifDate' => [
-            'type' => 'DATE',
-        ],
-        'CrifStatus' => [
-            'type' => 'DOUBLE',
-        ],
-        'CrifDescription' => [
-            'type' => 'VARCHAR(255)',
-        ]
+      'crifresult' => [
+        'type' => 'VARCHAR(255)',
+      ],
+      'crifdate' => [
+        'type' => 'DATE',
+      ],
+      'crifstatus' => [
+        'type' => 'DOUBLE',
+      ],
+      'crifdescription' => [
+        'type' => 'VARCHAR(255)',
+      ]
     ];
 }
