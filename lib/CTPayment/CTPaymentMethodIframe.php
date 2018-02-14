@@ -196,6 +196,10 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         return 'https://www.computop-paygate.com/capture.aspx';
     }
 
+    public function getCTInquireURL() {
+        return 'https://www.computop-paygate.com/inquire.aspx';
+    }
+
 
     public function getTransactionQuery()
     {
@@ -499,6 +503,17 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $arr = $this->makeServerToServerCall($this->getCTCaptureURL());
 
         $resp = new CTResponse\CTResponseIframe($arr);
+
+        return $resp;
+
+    }
+
+    public function inquire($PayID) {
+        $this->setPayID($PayID);
+
+        $arr = $this->makeServerToServerCall($this->getCTInquireURL());
+
+        $resp = new CTResponse\CTResponseInquire($arr);
 
         return $resp;
 
