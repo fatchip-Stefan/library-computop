@@ -80,6 +80,11 @@ class Przelewy24 extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/p24.aspx';
     }
 
+    public function getCTCaptureURL()
+    {
+        return null;
+    }
+
     public function getCTRefundURL()
     {
         return 'https://www.computop-paygate.com/credit.aspx';
