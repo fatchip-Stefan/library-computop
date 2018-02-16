@@ -120,19 +120,37 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     protected $reqID;
 
+    /**
+     * IP-Adresse des Kunden im Format IPv4 oder IPv6
+     *
+     * @var string
+     */
+    protected $IPAddr;
 
     /**
-     * @param $config
-     * @param $order CTOrder
+     * Postleitzahl in der Lieferadresse.
+     *
+     * @var string
      */
+    protected $sdZip;
+
+
+   /***
+    * @param $config
+    * @param $order
+    * @param $orderDesc
+    * @param $userData
+    */
     public function __construct($config, $order, $orderDesc, $userData)
     {
         $this->setAmount($order->getAmount());
         $this->setCurrency($order->getCurrency());
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
-
-
+        $this->setIPAddr($_SERVER['REMOTE_ADDR']);
+        if ($order->getShippingAddress()) {
+            $this->setSdZip($order->getShippingAddress()->getZip());
+        }
 
 
         if (count($config) > 0) {
@@ -172,6 +190,15 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     abstract public function getCTRefundURL();
 
     abstract public function getSettingsDefinitions();
+
+    public function getCTCaptureURL()
+    {
+        return 'https://www.computop-paygate.com/capture.aspx';
+    }
+
+    public function getCTInquireURL() {
+        return 'https://www.computop-paygate.com/inquire.aspx';
+    }
 
 
     public function getTransactionQuery()
@@ -366,6 +393,37 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @param string $iPAddr
+     */
+    public function setIPAddr($iPAddr)
+    {
+        $this->IPAddr = $iPAddr;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIPAddr()
+    {
+        return $this->IPAddr;
+    }
+
+    /**
+     * @param string $sdZip
+     */
+    public function setSdZip($sdZip) {
+        $this->sdZip = $sdZip;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSdZip() {
+        return $this->sdZip;
+    }
+
+
+    /**
      * {@inheritDoc}
      * ToDo: get rid of params?
      */
@@ -424,6 +482,79 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         return $form;
     }
 
+    public function refund($PayID, $Amount, $Currency) {
+        $this->setPayID($PayID);
+        $this->setAmount($Amount);
+        $this->setCurrency($Currency);
+
+        $arr = $this->makeServerToServerCall($this->getCTRefundURL());
+
+        $resp = new CTResponse\CTResponseIframe($arr);
+
+        return $resp;
+
+    }
+
+    public function capture($PayID, $Amount, $Currency) {
+        $this->setPayID($PayID);
+        $this->setAmount($Amount);
+        $this->setCurrency($Currency);
+
+        $arr = $this->makeServerToServerCall($this->getCTCaptureURL());
+
+        $resp = new CTResponse\CTResponseIframe($arr);
+
+        return $resp;
+
+    }
+
+    public function inquire($PayID) {
+        $this->setPayID($PayID);
+
+        $arr = $this->makeServerToServerCall($this->getCTInquireURL());
+
+        $resp = new CTResponse\CTResponseInquire($arr);
+
+        return $resp;
+
+    }
+
+    private function makeServerToServerCall($url) {
+        $query = $this->getTransactionQuery();
+        $Len = strlen($query);
+        $data = $this->getEncryptedData();
+        $url = $url . '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_RETURNTRANSFER => 1,
+          CURLOPT_URL => $url,
+        ));
+
+        try {
+            $resp = curl_exec($curl);
+
+            if (FALSE === $resp) {
+                throw new Exception(curl_error($curl), curl_errno($curl));
+            }
+
+        } catch (\Exception $e) {
+            trigger_error(sprintf(
+                'Curl failed with error #%d: %s',
+                $e->getCode(), $e->getMessage()),
+              E_USER_ERROR);
+        }
+        $arr = array();
+        parse_str($resp, $arr);
+
+        $plaintext = $this->ctDecrypt($arr['Data'], $arr['Len'], $this->getBlowfishPassword());
+        $arr = array();
+        parse_str($plaintext, $arr);
+
+        return $arr;
+
+    }
 
 
 }

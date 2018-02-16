@@ -105,13 +105,6 @@ class Klarna extends CTPaymentMethodIframe
     protected $sdStreetNr;
 
     /**
-     * Postleitzahl in der Lieferadresse
-     *
-     * @var string
-     */
-    protected $sdZip;
-
-    /**
      * Ort in der Lieferadresse
      *
      * @var string
@@ -175,12 +168,6 @@ class Klarna extends CTPaymentMethodIframe
      */
     protected $AnnualSalary;
 
-    /**
-     * IP-Adresse des Kunden im Format IPv4 oder IPv6
-     *
-     * @var string
-     */
-    protected $IPAddr;
 
     /**
      * <F> für Firmen, <P> für Personen
@@ -235,7 +222,6 @@ class Klarna extends CTPaymentMethodIframe
         } else {
             $this->setGender('f');
         }
-        $this->setIPAddr($_SERVER['REMOTE_ADDR']);
         $this->setPhone($phone);
         $this->setMobileNr($mobileNr);
         $this->setDateOfBirth($dateOfBirth);
@@ -329,22 +315,6 @@ class Klarna extends CTPaymentMethodIframe
     public function getGender()
     {
         return $this->Gender;
-    }
-
-    /**
-     * @param string $iPAddr
-     */
-    public function setIPAddr($iPAddr)
-    {
-        $this->IPAddr = $iPAddr;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIPAddr()
-    {
-        return $this->IPAddr;
     }
 
     /**
@@ -635,22 +605,6 @@ class Klarna extends CTPaymentMethodIframe
     public function getSdStreetNr()
     {
         return $this->sdStreetNr;
-    }
-
-    /**
-     * @param string $sdZip
-     */
-    public function setSdZip($sdZip)
-    {
-        $this->sdZip = $sdZip;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSdZip()
-    {
-        return $this->sdZip;
     }
 
     /**

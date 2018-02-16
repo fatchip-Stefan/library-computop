@@ -26,6 +26,7 @@
 namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTPaymentMethodsIframe\CRIF;
+use Fatchip\CTPayment\CTPaymentMethodsIframe\Sofort;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCreditCard;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCRIF;
 use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseEasyCredit;
@@ -43,12 +44,24 @@ class CTPaymentService extends Blowfish
 
     public function getPaymentClass($className, $config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData)
     {
+        //Ideal can be called directly, or via Sofort with SofortAction=ideal.
+        //If set to 'via sofort' in Pluginsettings, return a class of type Sofort with Sofortaction = ideal
+        if ($className == 'Ideal' && $config['idealDirektOderUeberSofort'] == 'SOFORT') {
+            $obj = new Sofort($config,$ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
+            $obj->setSofortAction('ideal');
+            return $obj;
+        }
+
         $class = 'Fatchip\\CTPayment\\CTPaymentMethodsIframe\\' . $className;
         return new $class($config,$ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
     }
 
     public function getCRIFClass($config, $order, $orderDesc, $userData ) {
         return new CRIF($config, $order, $orderDesc, $userData );
+    }
+
+    public function getPaymentConfigForms() {
+        return new CTPaymentConfigForms();
     }
 
 
@@ -135,95 +148,120 @@ class CTPaymentService extends Blowfish
         return md5(implode('|', [$amount, $customerId]));
     }
 
+    /** Note: setting 'countries' => ['NL'], in shopware
+     * will make the payment available only for shippingCountry = nl
+     * not billingCountry as expected
+     * @return array
+     */
     public function getPaymentMethods()
     {
-        return array(
-            array(
+        return [
+            [
                 'name' => 'fatchip_computop_creditcard',
                 'shortname' => 'Kreditkarte',
                 'description' => 'Computop Kreditkarte',
                 'action' => 'FatchipCTCreditCard',
-            ),
-            array(
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_easycredit',
                 'shortname' => 'Easycredit',
                 'description' => 'Computop Easycredit',
                 'action' => 'FatchipCTEasyCredit',
-                'template' => 'fatchip_computop_payment_easycredit.tpl',
+                'template' => 'fatchip_computop_easycredit.tpl',
                 'additionalDescription' => 'Rechnungs- und Lieferadresse müssen gleich sein, damit easyCredit genutzt werden kann',
-            ),
-            array(
+            ],
+            [
                 'name' => 'fatchip_computop_ideal',
                 'shortname' => 'iDEAL',
                 'description' => 'Computop iDEAL',
                 'action' => 'FatchipCTIdeal',
-                'template' => 'fatchip_computop_payment_ideal.tpl',
-            ),
-            array(
+                'template' => 'fatchip_computop_ideal.tpl',
+                'additionalDescription' => '',
+                'countries' => ['NL'],
+            ],
+            [
                 'name' => 'fatchip_computop_klarna_invoice',
                 'shortname' => 'Klarna Rechnungskauf',
                 'description' => 'Computop Klarna Rechnungskauf',
                 'action' => 'FatchipCTKlarna',
-                'template' => 'fatchip_computop_payment_klarna_invoice.tpl',
-            ),
-            array(
+                'template' => 'fatchip_computop_klarna_invoice.tpl',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_klarna_installment',
                 'shortname' => 'Klarna Ratenkauf',
                 'description' => 'Computop Klarna Ratenkauf',
                 'action' => 'FatchipCTKlarna',
-                'template' => 'fatchip_computop_payment_klarna_installment.tpl',
-            ),
-            array(
+                'template' => 'fatchip_computop_klarna_installment.tpl',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_lastschrift',
                 'shortname' => 'Lastschrift',
                 'description' => 'Computop Lastschrift',
                 'action' => 'FatchipCTLastschrift',
-            ),
-            array(
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_mobilepay',
                 'shortname' => 'Mobile Pay',
                 'description' => 'Computop Mobile Pay',
                 'action' => 'FatchipCTMobilepay',
-                'countries' => array('DK', 'NO', 'FI', 'SE')
-            ),
-            array(
+                'countries' => ['DK', 'NO', 'FI', 'SE'],
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_paydirekt',
                 'shortname' => 'Paydirekt',
                 'description' => 'Computop Paydirekt',
                 'action' => 'FatchipCTPaydirekt',
-            ),
-            array(
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_paypal_standard',
                 'shortname' => 'PayPal',
                 'description' => 'Computop PayPal Standard',
                 'action' => 'FatchipCTPaypalStandard',
-            ),
-            array(
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_postfinance',
                 'shortname' => 'Postfinance',
                 'description' => 'Computop Postfinance',
                 'action' => 'FatchipCTPostFinance',
-            ),
-            array(
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_przelewy24',
                 'shortname' => 'Przelewy24',
                 'description' => 'Computop Przelewy24',
                 'action' => 'FatchipCTPrzelewy24',
-                'countries' => array('PL',)
-            ),
-            array(
+                'countries' => ['PL',],
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_sofort',
                 'shortname' => 'SOFORT',
                 'description' => 'Computop SOFORT',
                 'action' => 'FatchipCTSofort',
-                'template' => 'fatchip_computop_payment_sofort.tpl',
-            ),
-            array(
+                'template' => 'fatchip_computop_sofort.tpl',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_amazonpay',
                 'shortname' => 'AmazonPay',
                 'description' => 'Computop AmazonPay',
                 'action' => 'FatchipCTAmazon',
-            ),
-        );
-    }
-}
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+        ];
+    }}

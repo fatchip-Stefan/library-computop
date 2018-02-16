@@ -96,10 +96,6 @@ class CRIF extends CTPaymentMethodIframe{
      */
     protected $sdCity;
 
-    /**
-     * @var
-     */
-    protected $sdZip;
 
     /**
      * Ländercode dreistellig gemäß ISO 3166. Nur AUT, DEU, CHE, NLD zulässig.
@@ -107,13 +103,6 @@ class CRIF extends CTPaymentMethodIframe{
      * @var string
      */
     protected $sdCountryCode;
-
-    /**
-     * IP-Adresse des Kunden im Format IPv4 oder IPv6
-     *
-     * @var string
-     */
-    protected $IPAddr;
 
 
     /**
@@ -144,11 +133,10 @@ class CRIF extends CTPaymentMethodIframe{
         $this->setSdFirstName($order->getShippingAddress()->getFirstName());
         $this->setSdStreet($order->getShippingAddress()->getStreet());
         $this->setSdStreetNr($order->getShippingAddress()->getStreetNr());
-        $this->setSdZip($order->getShippingAddress()->getZip());
+        //sdZip is set in parent constructor.
         $this->setSdCity($order->getShippingAddress()->getCity());
         $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3());
 
-        $this->setIPAddr($_SERVER['REMOTE_ADDR']);
 
         $this->setMandatoryFields(array('merchantID', 'transID', 'orderDesc', 'amount', 'currency',
           'mac', 'productName', 'customerID', 'lastName', 'addrStreet', 'addrZip' ));
@@ -380,20 +368,6 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
-     * @param mixed $sdZip
-     */
-    public function setSdZip($sdZip) {
-        $this->sdZip = $sdZip;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSdZip() {
-        return $this->sdZip;
-    }
-
-    /**
      * @param string $AddrCountryCode
      */
     public function setAddrCountryCode($AddrCountryCode) {
@@ -405,22 +379,6 @@ class CRIF extends CTPaymentMethodIframe{
      */
     public function getAddrCountryCode() {
         return $this->AddrCountryCode;
-    }
-
-    /**
-     * @param string $iPAddr
-     */
-    public function setIPAddr($iPAddr)
-    {
-        $this->IPAddr = $iPAddr;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIPAddr()
-    {
-        return $this->IPAddr;
     }
 
 

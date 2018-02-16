@@ -64,14 +64,6 @@ class Paydirekt extends CTPaymentMethodIframe
     protected $sdStreetNr;
 
     /**
-     * Postleitzahl in der Lieferanschrift
-     * Pflicht, wenn ShoppingBasketCategory <> "DIGITAL" und <> "AUTHORI-TIES_PAYMENT" und <> "ANONYMOUS_DONATION"
-     *
-     * @var int
-     */
-    protected $sdZip;
-
-    /**
      * Ort in der Lieferanschrift #
      * Pflicht, wenn ShoppingBasketCategory <> "DIGITAL" und <> "AUTHORI-TIES_PAYMENT" und <> "ANONYMOUS_DONATION"
      *

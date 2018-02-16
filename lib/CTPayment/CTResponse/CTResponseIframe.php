@@ -9,7 +9,7 @@
 
 namespace Fatchip\CTPayment\CTResponse;
 
-abstract class CTResponseIframe extends CTResponse
+class CTResponseIframe extends CTResponse
 {
     /**
      * HändlerID, die von Computop vergeben wird
