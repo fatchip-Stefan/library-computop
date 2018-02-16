@@ -174,11 +174,6 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/paysdd.aspx';
     }
 
-    public function getCTRefundURL()
-    {
-        return 'https://www.computop-paygate.com/credit.aspx';
-    }
-
     public function getSettingsDefinitions()
     {
         return 'Welcher dienst wird benutzt';

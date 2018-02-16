@@ -303,11 +303,6 @@ class PaypalStandard extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/paypal.aspx';
     }
 
-    public function getCTRefundURL()
-    {
-        return 'https://www.computop-paygate.com/credit.aspx';
-    }
-
     public function getCaptureURL()
     {
         return 'https://www.computop-paygate.com/capture.aspx';

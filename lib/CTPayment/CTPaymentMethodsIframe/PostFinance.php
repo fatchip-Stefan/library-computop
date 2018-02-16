@@ -59,11 +59,6 @@ class PostFinance extends CTPaymentMethodIframe
         return null;
     }
 
-    public function getCTRefundURL()
-    {
-        return 'https://www.computop-paygate.com/credit.aspx';
-    }
-
     public function getSettingsDefinitions()
     {
         return null;

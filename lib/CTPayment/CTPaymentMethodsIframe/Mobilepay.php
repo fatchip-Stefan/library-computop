@@ -124,16 +124,6 @@ class Mobilepay extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/MobilePayDB.aspx';
     }
 
-    public function getCTRefundURL()
-    {
-        return 'https://www.computop-paygate.com/credit.aspx';
-    }
-
-    public function getCTCaptureURL()
-    {
-        return 'https://www.computop-paygate.com/capture.aspx';
-    }
-
     public function getSettingsDefinitions()
     {
         return 'SendMobileNr';
