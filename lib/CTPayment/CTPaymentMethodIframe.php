@@ -136,10 +136,10 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
 
    /***
-    * @param $config
-    * @param $order
-    * @param $orderDesc
-    * @param $userData
+    * @param array $config
+    * @param CTOrder\CTOrder $order
+    * @param string $orderDesc
+    * @param string $userData
     */
     public function __construct($config, $order, $orderDesc, $userData)
     {
@@ -522,7 +522,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
     }
 
-    private function makeServerToServerCall($url) {
+    protected function makeServerToServerCall($url) {
         $query = $this->getTransactionQuery();
         $Len = strlen($query);
         $data = $this->getEncryptedData();
@@ -539,7 +539,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
             $resp = curl_exec($curl);
 
             if (FALSE === $resp) {
-                throw new Exception(curl_error($curl), curl_errno($curl));
+                throw new \Exception(curl_error($curl), curl_errno($curl));
             }
 
         } catch (\Exception $e) {
