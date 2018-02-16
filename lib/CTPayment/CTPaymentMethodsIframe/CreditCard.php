@@ -405,15 +405,6 @@ class CreditCard extends CTPaymentMethodIframe
         return $this->sdStreet;
     }
 
-
-
-
-
-    public function getCTRefundURL()
-    {
-        return 'https://www.computop-paygate.com/credit.aspx';
-    }
-
     public function getSettingsDefinitions()
     {
         return 'Capture, Templateauswahl, Acquirerauswahl';

@@ -185,11 +185,14 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
 
+    abstract public function getSettingsDefinitions();
+
     abstract public function getCTPaymentURL();
 
-    abstract public function getCTRefundURL();
-
-    abstract public function getSettingsDefinitions();
+    public function getCTRefundURL()
+    {
+        return 'https://www.computop-paygate.com/credit.aspx';
+    }
 
     public function getCTCaptureURL()
     {

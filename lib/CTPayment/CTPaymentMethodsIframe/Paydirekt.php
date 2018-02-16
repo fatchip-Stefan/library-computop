@@ -328,11 +328,6 @@ class Paydirekt extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/paydirekt.aspx';
     }
 
-    public function getCTRefundURL()
-    {
-        return 'https://www.computop-paygate.com/credit.aspx';
-    }
-
     public function getCaptureURL()
     {
         return 'https://www.computop-paygate.com/capture.aspx';

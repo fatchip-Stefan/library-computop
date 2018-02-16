@@ -116,9 +116,8 @@ class CRIF extends CTPaymentMethodIframe{
       $order,
       $orderDesc,
       $userData
-
-
-    ) {
+    )
+    {
         parent::__construct($config, $order, $orderDesc, $userData);
 
         $this->setLastName($order->getBillingAddress()->getLastName());
@@ -160,237 +159,272 @@ class CRIF extends CTPaymentMethodIframe{
     /**
      * @param string $addrCity
      */
-    public function setAddrCity($addrCity) {
+    public function setAddrCity($addrCity)
+    {
         $this->addrCity = $addrCity;
     }
 
     /**
      * @return string
      */
-    public function getAddrCity() {
+    public function getAddrCity()
+    {
         return $this->addrCity;
     }
 
     /**
      * @param string $addrStreet
      */
-    public function setAddrStreet($addrStreet) {
+    public function setAddrStreet($addrStreet)
+    {
         $this->addrStreet = $addrStreet;
     }
 
     /**
      * @return string
      */
-    public function getAddrStreet() {
+    public function getAddrStreet()
+    {
         return $this->addrStreet;
     }
 
     /**
      * @param string $addrStreetNr
      */
-    public function setAddrStreetNr($addrStreetNr) {
+    public function setAddrStreetNr($addrStreetNr)
+    {
         $this->addrStreetNr = $addrStreetNr;
     }
 
     /**
      * @return string
      */
-    public function getAddrStreetNr() {
+    public function getAddrStreetNr()
+    {
         return $this->addrStreetNr;
     }
 
     /**
      * @param string $addrZip
      */
-    public function setAddrZip($addrZip) {
+    public function setAddrZip($addrZip)
+    {
         $this->addrZip = $addrZip;
     }
 
     /**
      * @return string
      */
-    public function getAddrZip() {
+    public function getAddrZip()
+    {
         return $this->addrZip;
     }
 
     /**
      * @param string $customerID
      */
-    public function setCustomerID($customerID) {
+    public function setCustomerID($customerID)
+    {
         $this->customerID = $customerID;
     }
 
     /**
      * @return string
      */
-    public function getCustomerID() {
+    public function getCustomerID()
+    {
         return $this->customerID;
     }
 
     /**
      * @param string $firstName
      */
-    public function setFirstName($firstName) {
+    public function setFirstName($firstName)
+    {
         $this->firstName = $firstName;
     }
 
     /**
      * @return string
      */
-    public function getFirstName() {
+    public function getFirstName()
+    {
         return $this->firstName;
     }
 
     /**
      * @param string $lastName
      */
-    public function setLastName($lastName) {
+    public function setLastName($lastName)
+    {
         $this->lastName = $lastName;
     }
 
     /**
      * @return string
      */
-    public function getLastName() {
+    public function getLastName()
+    {
         return $this->lastName;
     }
 
     /**
      * @param string $productName
      */
-    public function setProductName($productName) {
+    public function setProductName($productName)
+    {
         $this->productName = $productName;
     }
 
     /**
      * @return string
      */
-    public function getProductName() {
+    public function getProductName()
+    {
         return $this->productName;
     }
 
     /**
      * @param mixed $sdCity
      */
-    public function setSdCity($sdCity) {
+    public function setSdCity($sdCity)
+    {
         $this->sdCity = $sdCity;
     }
 
     /**
      * @return mixed
      */
-    public function getSdCity() {
+    public function getSdCity()
+    {
         return $this->sdCity;
     }
 
     /**
      * @param string $sdCountryCode
      */
-    public function setSdCountryCode($sdCountryCode) {
+    public function setSdCountryCode($sdCountryCode)
+    {
         $this->sdCountryCode = $sdCountryCode;
     }
 
     /**
      * @return string
      */
-    public function getSdCountryCode() {
+    public function getSdCountryCode()
+    {
         return $this->sdCountryCode;
     }
 
     /**
      * @param mixed $sdFirstName
      */
-    public function setSdFirstName($sdFirstName) {
+    public function setSdFirstName($sdFirstName)
+    {
         $this->sdFirstName = $sdFirstName;
     }
 
     /**
      * @return mixed
      */
-    public function getSdFirstName() {
+    public function getSdFirstName()
+    {
         return $this->sdFirstName;
     }
 
     /**
      * @param mixed $sdGender
      */
-    public function setSdGender($sdGender) {
+    public function setSdGender($sdGender)
+    {
         $this->sdGender = $sdGender;
     }
 
     /**
      * @return mixed
      */
-    public function getSdGender() {
+    public function getSdGender()
+    {
         return $this->sdGender;
     }
 
     /**
      * @param mixed $sdLastName
      */
-    public function setSdLastName($sdLastName) {
+    public function setSdLastName($sdLastName)
+    {
         $this->sdLastName = $sdLastName;
     }
 
     /**
      * @return mixed
      */
-    public function getSdLastName() {
+    public function getSdLastName()
+    {
         return $this->sdLastName;
     }
 
     /**
      * @param mixed $sdStreet
      */
-    public function setSdStreet($sdStreet) {
+    public function setSdStreet($sdStreet)
+    {
         $this->sdStreet = $sdStreet;
     }
 
     /**
      * @return mixed
      */
-    public function getSdStreet() {
+    public function getSdStreet()
+    {
         return $this->sdStreet;
     }
 
     /**
      * @param mixed $sdStreetNr
      */
-    public function setSdStreetNr($sdStreetNr) {
+    public function setSdStreetNr($sdStreetNr)
+    {
         $this->sdStreetNr = $sdStreetNr;
     }
 
     /**
      * @return mixed
      */
-    public function getSdStreetNr() {
+    public function getSdStreetNr()
+    {
         return $this->sdStreetNr;
     }
 
     /**
      * @param string $AddrCountryCode
      */
-    public function setAddrCountryCode($AddrCountryCode) {
+    public function setAddrCountryCode($AddrCountryCode)
+    {
         $this->AddrCountryCode = $AddrCountryCode;
     }
 
     /**
      * @return string
      */
-    public function getAddrCountryCode() {
+    public function getAddrCountryCode()
+    {
         return $this->AddrCountryCode;
     }
 
 
-    public function getCTPaymentURL() {
+    public function getCTPaymentURL()
+    {
         return 'https://www.computop-paygate.com/deltavista.aspx';
     }
 
-    public function getCTRefundURL() {
+    public function getCTRefundURL()
+    {
         return null;
     }
 
-    public function getSettingsDefinitions() {
+    public function getSettingsDefinitions()
+    {
         return null;
     }
 
@@ -428,4 +462,4 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
 
-} 
+}

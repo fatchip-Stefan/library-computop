@@ -182,11 +182,19 @@ class CTPaymentService extends Blowfish
                 'countries' => ['NL'],
             ],
             [
-                'name' => 'fatchip_computop_klarna',
-                'shortname' => 'Klarna',
-                'description' => 'Computop Klarna',
+                'name' => 'fatchip_computop_klarna_invoice',
+                'shortname' => 'Klarna Rechnungskauf',
+                'description' => 'Computop Klarna Rechnungskauf',
                 'action' => 'FatchipCTKlarna',
-                'template' => 'fatchip_computop_klarna.tpl',
+                'template' => 'fatchip_computop_klarna_invoice.tpl',
+                'additionalDescription' => '',
+            ],
+            [
+                'name' => 'fatchip_computop_klarna_installment',
+                'shortname' => 'Klarna Ratenkauf',
+                'description' => 'Computop Klarna Ratenkauf',
+                'action' => 'FatchipCTKlarna',
+                'template' => 'fatchip_computop_klarna_installment.tpl',
                 'additionalDescription' => '',
             ],
             [
