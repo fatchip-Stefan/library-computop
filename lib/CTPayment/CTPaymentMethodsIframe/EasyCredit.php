@@ -4,8 +4,8 @@ namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 use Fatchip\CTPayment\CTAddress\CTAddress;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseEasyCredit;
-use Fatchip\CTPayment\CTOrder\CTOrder;
+use Fatchip\CTPayment\CTResponse\CTResponse;
+
 use Exception;
 
 class EasyCredit extends CTPaymentMethodIframe
@@ -537,7 +537,7 @@ class EasyCredit extends CTPaymentMethodIframe
 
     /**
      * @param $payID
-     * @return CTResponseEasyCredit
+     * @return CTResponse
      */
     public function getDecision($payID)
     {
@@ -552,7 +552,7 @@ class EasyCredit extends CTPaymentMethodIframe
     /**
      * @param $payID
      * @param $EventToken
-     * @return CTResponseEasyCredit
+     * @return CTResponse
      */
     private function callEasyCreditDirect($payID, $EventToken)
     {
@@ -586,9 +586,22 @@ class EasyCredit extends CTPaymentMethodIframe
         }
 
         $arr = array();
-        parse_str($resp, $arr);
-        $respObj = new CTResponseEasyCredit($arr);
+        $respArray = $this->ctSplit(explode('&', $resp), '=');
+        $plaintext = $this->ctDecrypt($respArray['Data'], $respArray['Len'], $this->getBlowfishPassword());
+
+        parse_str($plaintext, $arr);
+        $respObj = new CTResponse($arr);
 
         return $respObj;
+    }
+
+    private function ctSplit($arText, $sSplit)
+    {
+        $arr = [];
+        foreach ($arText as $text) {
+            $str = explode($sSplit, $text);
+            $arr[$str[0]] = $str[1];
+        }
+        return $arr;
     }
 }

@@ -9,7 +9,8 @@
 namespace Fatchip\CTPayment\CTController\CTControllerIframe;
 
 use Fatchip\CTPayment\CTController\CTControllerIframe;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseLastschriftDirekt;
+use Fatchip\CTPayment\CTResponse\CTResponse;
+
 
 class CTControllerLastschriftDirekt extends CTControllerIframe
 {
@@ -20,7 +21,7 @@ class CTControllerLastschriftDirekt extends CTControllerIframe
         $plaintext = $this->ctDecrypt($data, $len, $this->getBlowfishPassword());
         $arr = array();
         parse_str($plaintext, $arr);
-        $response = new CTResponseLastschriftDirekt($arr);
+        $response = new CTResponse($arr);
         $this->setResponse($response);
         return $response;
     }

@@ -9,7 +9,7 @@
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 use Fatchip\CTPayment\CTOrder\CTOrder;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCRIF;
+
 
 class CRIF extends CTPaymentMethodIframe{
 

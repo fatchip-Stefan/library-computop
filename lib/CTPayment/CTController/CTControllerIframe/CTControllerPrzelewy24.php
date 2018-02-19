@@ -9,7 +9,7 @@
 namespace Fatchip\CTPayment\CTController\CTControllerIframe;
 
 use Fatchip\CTPayment\CTController\CTControllerIframe;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponsePrzelewy24;
+use Fatchip\CTPayment\CTResponse\CTResponse;
 
 class CTControllerPrzelewy24 extends CTControllerIframe
 {
@@ -20,7 +20,7 @@ class CTControllerPrzelewy24 extends CTControllerIframe
         $plaintext = $this->ctDecrypt($data, $len, $this->getBlowfishPassword());
         $arr = array();
         parse_str($plaintext, $arr);
-        $response = new CTResponsePrzelewy24($arr);
+        $response = new CTResponse($arr);
         $this->setResponse($response);
         return $response;
     }

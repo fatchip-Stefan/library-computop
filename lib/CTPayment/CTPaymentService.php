@@ -27,10 +27,8 @@ namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTPaymentMethodsIframe\CRIF;
 use Fatchip\CTPayment\CTPaymentMethodsIframe\Sofort;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCreditCard;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseCRIF;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseEasyCredit;
-use Fatchip\CTPayment\CTPaymentMethodsIframe\CreditCard;
+use Fatchip\CTPayment\CTResponse\CTResponse;
+
 
 class CTPaymentService extends Blowfish
 {
@@ -71,25 +69,17 @@ class CTPaymentService extends Blowfish
      * ToDO check phpdocblocks and define the $rawRequest array
      *
      * @param $rawRequest array
-     * @return CTResponseCreditCard
+     * @return CTResponse
      */
     public function createPaymentResponse(array $rawRequest)
     {
         // Instead if using getter / setter use constructor to simplify
         $decryptedRequest = $this->ctDecrypt($rawRequest['Data'], $rawRequest['Len'], $this->blowfishPassword);
         $requestArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
-        $response = new CTResponseCreditCard($requestArray);
+        $response = new CTResponse($requestArray);
         return $response;
     }
 
-    public function createCRIFResponse(array $rawRequest)
-    {
-        // Instead if using getter / setter use constructor to simplify
-        $decryptedRequest = $this->ctDecrypt($rawRequest['Data'], $rawRequest['Len'], $this->blowfishPassword);
-        $requestArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
-        $response = new CTResponseCRIF($requestArray);
-        return $response;
-    }
 
     /**
      * decrypts raw responses from computop api
@@ -97,14 +87,14 @@ class CTPaymentService extends Blowfish
      * ToDO check phpdocblocks and define the $rawRequest array
      *
      * @param $rawRequest array
-     * @return CTResponseEasyCredit
+     * @return CTResponse
      */
     public function createECPaymentResponse(array $rawRequest)
     {
         // Instead if using getter / setter use constructor to simplify
-        //$decryptedRequest = $this->ctDecrypt($rawRequest['Data'], $rawRequest['Len'], $this->blowfishPassword);
-        //$requestArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
-        $response = new CTResponseEasyCredit($rawRequest);
+        $decryptedRequest = $this->ctDecrypt($rawRequest['Data'], $rawRequest['Len'], $this->blowfishPassword);
+        $requestArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
+        $response = new CTResponse($requestArray);
         return $response;
     }
 
@@ -129,11 +119,11 @@ class CTPaymentService extends Blowfish
 
 
     /**
-     * @param CTResponseCreditCard $response
+     * @param CTResponse $response
      * @param string $token
      * @return bool
      */
-    public function isValidToken(CTResponseCreditCard $response, $token)
+    public function isValidToken(CTResponse $response, $token)
     {
         return hash_equals($token, $response->getUserData());
     }

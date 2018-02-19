@@ -9,7 +9,8 @@
 namespace Fatchip\CTPayment\CTController\CTControllerIframe;
 
 use Fatchip\CTPayment\CTController\CTControllerIframe;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponsePostFinance;
+use Fatchip\CTPayment\CTResponse\CTResponse;
+
 
 class CTControllerPostFinance extends CTControllerIframe
 {
@@ -20,7 +21,7 @@ class CTControllerPostFinance extends CTControllerIframe
         $plaintext = $this->ctDecrypt($data, $len, $this->getBlowfishPassword());
         $arr = array();
         parse_str($plaintext, $arr);
-        $response = new CTResponsePostFinance($arr);
+        $response = new CTResponse($arr);
         $this->setResponse($response);
         return $response;
     }

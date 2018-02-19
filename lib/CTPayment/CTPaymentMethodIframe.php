@@ -3,6 +3,7 @@
 namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTOrder;
+use Fatchip\CTPayment\CTResponse\CTResponse;
 
 
 abstract class CTPaymentMethodIframe extends CTPaymentMethod
@@ -492,7 +493,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
         $arr = $this->makeServerToServerCall($this->getCTRefundURL());
 
-        $resp = new CTResponse\CTResponseIframe($arr);
+        $resp = new CTResponse($arr);
 
         return $resp;
 
@@ -505,7 +506,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
         $arr = $this->makeServerToServerCall($this->getCTCaptureURL());
 
-        $resp = new CTResponse\CTResponseIframe($arr);
+        $resp = new CTResponse($arr);
 
         return $resp;
 
@@ -516,7 +517,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
         $arr = $this->makeServerToServerCall($this->getCTInquireURL());
 
-        $resp = new CTResponse\CTResponseInquire($arr);
+        $resp = new CTResponse($arr);
 
         return $resp;
 

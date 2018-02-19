@@ -9,7 +9,7 @@
 namespace Fatchip\CTPayment\CTController\CTControllerIframe;
 
 use Fatchip\CTPayment\CTController\CTControllerIframe;
-use Fatchip\CTPayment\CTResponse\CTResponseIframe\CTResponseEasyCredit;
+use Fatchip\CTPayment\CTResponse\CTResponse;
 
 class CTControllerEasyCredit extends CTControllerIframe
 {
@@ -20,7 +20,7 @@ class CTControllerEasyCredit extends CTControllerIframe
         $plaintext = $this->ctDecrypt($data, $len, $this->getBlowfishPassword());
         $arr = array();
         parse_str($plaintext, $arr);
-        $response = new CTResponseEasyCredit($arr);
+        $response = new CTResponse($arr);
         $this->setResponse($response);
         return $response;
     }
