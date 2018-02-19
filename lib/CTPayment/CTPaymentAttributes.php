@@ -49,6 +49,11 @@ class CTPaymentAttributes {
       ],
       'shipcaptured' => [
         'type' => 'DOUBLE',
+        'additionalInfo' =>
+          ['label' => 'Versandkosten bisher eingezogen:',
+            'helpText' => '',
+            'displayInBackend' => true,
+          ]
       ],
       'shipdebit' => [
         'type' => 'DOUBLE',
