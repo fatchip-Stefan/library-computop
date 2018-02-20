@@ -221,6 +221,14 @@ class CTPaymentService extends Blowfish
                 'additionalDescription' => '',
             ],
             [
+                'name' => 'fatchip_computop_paypal_express',
+                'shortname' => 'PayPalExpress',
+                'description' => 'Computop PayPal Express',
+                'action' => 'FatchipCTPaypalExpress',
+                'template' => '',
+                'additionalDescription' => '',
+            ],
+            [
                 'name' => 'fatchip_computop_postfinance',
                 'shortname' => 'Postfinance',
                 'description' => 'Computop Postfinance',
