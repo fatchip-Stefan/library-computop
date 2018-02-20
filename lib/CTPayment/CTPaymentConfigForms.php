@@ -55,6 +55,24 @@ class CTPaymentConfigForms
             ],
         ];
 
+    const formGeneralSelectElements =
+        [
+            'debuglog' => [
+                'name' => 'debuglog',
+                'type' => 'select',
+                'value' => 'inactive',
+                'label' => 'Debug Protokoll',
+                'required' => true,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['inactive', 'keine Protokollierung'],
+                        ['active', 'Protokollierung'],
+                    ],
+                'description' => '',
+            ],
+        ];
+
     const formCreditCardSelectElements =
         [
             'creditCardCaption' => [
