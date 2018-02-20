@@ -86,6 +86,8 @@ class PaypalStandard extends CTPaymentMethodIframe
      */
     protected $AddrCountryCode;
 
+    protected $PayPalMethod = '';
+
 
     /**
      * @param $config
@@ -268,6 +270,22 @@ class PaypalStandard extends CTPaymentMethodIframe
     public function setLastName($lastName)
     {
         $this->LastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPayPalMethod()
+    {
+        return $this->PayPalMethod;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setPayPalMethod($payPalMethod)
+    {
+        $this->PayPalMethod = $payPalMethod;
     }
 
     /**
