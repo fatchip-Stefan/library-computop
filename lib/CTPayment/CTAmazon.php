@@ -57,7 +57,7 @@ class CTAmazon extends Blowfish
             'Currency' => $currency,
             'OrderDesc' => $orderDesc,
             'OrderReferenceID' => $referenceID,
-            'Eventtoken' => 'SOD',
+            'EventToken' => 'SOD',
         ];
 
         return $params;
@@ -70,7 +70,7 @@ class CTAmazon extends Blowfish
             'MerchantID' => $this->merchantID,
             'OrderDesc' => $orderDesc,
             'OrderReferenceID' => $referenceID,
-            'Eventtoken' => 'GOD',
+            'EventToken' => 'GOD',
         ];
 
         return $params;
@@ -86,7 +86,7 @@ class CTAmazon extends Blowfish
             'Currency' => $currency,
             'OrderDesc' => $orderDesc,
             'OrderReferenceID' => $referenceID,
-            'Eventtoken' => 'SCO',
+            'EventToken' => 'SCO',
         ];
 
         return $params;
