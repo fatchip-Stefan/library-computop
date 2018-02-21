@@ -2,10 +2,9 @@
 
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
-use Fatchip\CTPayment\CTAddress\CTAddress;
-use Fatchip\CTPayment\CTPaymentMethodIframe;
+use Fatchip\CTPayment;
 
-class Klarna extends CTPaymentMethodIframe
+class Klarna extends CTPayment\CTPaymentMethodIframe
 {
     /**
      * Für Privatpersonen optional, für Unternehmen Pflicht, z.B. Kontaktperson für den Kauf.
@@ -23,7 +22,8 @@ class Klarna extends CTPaymentMethodIframe
      */
     protected $Phone;
 
-    //Billingaddress
+    // Billing address fields
+
     /**
      * Bei Privatperson Pflicht: Vorname des Kunden Unternehmen: Darf nicht übergeben werden!
      *
@@ -73,11 +73,12 @@ class Klarna extends CTPaymentMethodIframe
      * Ländercode der Rechnungsadresse dreistellig gemäß ISO-3166-1.
      * Erlaubt sind derzeit Deutschland, Österreich, Niederlande, Dänemark, Schweden, Norwegen und Finnland.
      *
-     * @var strung
+     * @var string
      */
     protected $bdCountryCode;
 
-    //Shippingaddress
+    // Shipping address fields
+
     /**
      * Bei Privatperson Pflicht: Vorname des Kunden Unternehmen: Darf nicht übergeben werden!
      *
@@ -91,6 +92,7 @@ class Klarna extends CTPaymentMethodIframe
      * @var string
      */
     protected $sdLastName;
+
     /**
      * @var string
      */
@@ -137,7 +139,7 @@ class Klarna extends CTPaymentMethodIframe
      * Privatpersonen: Geburtsdatum im Format JJJJ-MM-TT Optional, wenn socialSecurityNumber vollständig übergeben wird.
      * Unternehmen: Darf nicht übergeben werden!
      *
-     * @var datetime
+     * @var string
      */
     protected $DateOfBirth;
 
@@ -200,6 +202,20 @@ class Klarna extends CTPaymentMethodIframe
     protected $InvoiceFlag = '0';
 
 
+    /**
+     * Klarna constructor.
+     *
+     * @param array $config
+     * @param CTPayment\CTOrder\CTOrder $order
+     * @param string $urlNotify
+     * @param string $orderDesc
+     * @param string $userData
+     * @param string $phone
+     * @param string $mobileNr
+     * @param string $dateOfBirth
+     * @param boolean $isFirm
+     * @param integer $klarnaAction
+     */
     public function __construct(
         $config,
         $order,
@@ -270,7 +286,7 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param \Fatchip\CTPayment\CTPaymentMethodsIframe\datetime $dateOfBirth
+     * @param string $dateOfBirth
      */
     public function setDateOfBirth($dateOfBirth)
     {
@@ -278,7 +294,7 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @return \Fatchip\CTPayment\CTPaymentMethodsIframe\datetime
+     * @return string
      */
     public function getDateOfBirth()
     {
@@ -414,7 +430,7 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @param \Fatchip\CTPayment\CTPaymentMethodsIframe\strung $bdCountryCode
+     * @param string $bdCountryCode
      */
     public function setBdCountryCode($bdCountryCode)
     {
@@ -422,7 +438,7 @@ class Klarna extends CTPaymentMethodIframe
     }
 
     /**
-     * @return \Fatchip\CTPayment\CTPaymentMethodsIframe\strung
+     * @return string
      */
     public function getBdCountryCode()
     {
@@ -508,8 +524,6 @@ class Klarna extends CTPaymentMethodIframe
     {
         return $this->bdZip;
     }
-
-
 
     /**
      * @param string $sdCity
@@ -623,9 +637,6 @@ class Klarna extends CTPaymentMethodIframe
         return $this->bdCity;
     }
 
-
-
-
     public function setShippingAddress($shippingAddress)
     {
         //for companies, first name must be empty
@@ -666,7 +677,6 @@ class Klarna extends CTPaymentMethodIframe
         return null;
     }
 
-
     /**
      * Zusätzlich können Sie per E-Mail eine Rechnung an den Endkunden versenden. Dazu rufen Sie fol-gende URL auf:
      * https://www.computop-paygate.com/KlarnaEmail.aspx
@@ -676,6 +686,15 @@ class Klarna extends CTPaymentMethodIframe
      */
     public function sendEmailWithInvoice($merchantID, $payID)
     {
-        //TODO: implementieren
+        // TODO - Implement this method
+    }
+
+    /**
+     * @return CTPayment\CTResponse\CTResponseIframe\CTResponseKlarna
+     */
+    public function callKlarnaDirect()
+    {
+        $arr = $this->makeServerToServerCall($this->getCTPaymentURL());
+        return new CTPayment\CTResponse\CTResponseIframe\CTResponseKlarna($arr);
     }
 }
