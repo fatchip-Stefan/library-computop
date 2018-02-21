@@ -250,7 +250,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
         $this->setKlarnaAction($klarnaAction);
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc',
             'bdStreet', 'bdZip', 'bdCity', 'bdCountryCode', 'sdStreet', 'sdZip', 'sdCity', 'sdCountryCode',
-            'Email', 'IPAddr', 'CompanyOrPerson', 'KlarnaAction', 'InvoiceFlag'));
+            'Email', 'IPAddr', 'CompanyOrPerson'));
     }
 
     /**
@@ -690,11 +690,11 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
-     * @return CTPayment\CTResponse\CTResponseIframe\CTResponseKlarna
+     * @return CTPayment\CTResponse\CTResponse
      */
     public function callKlarnaDirect()
     {
         $arr = $this->makeServerToServerCall($this->getCTPaymentURL());
-        return new CTPayment\CTResponse\CTResponseIframe\CTResponseKlarna($arr);
+        return new CTPayment\CTResponse\CTResponse($arr);
     }
 }

@@ -103,4 +103,13 @@ class CTPaymentAttributes {
         'type' => 'VARCHAR(255)',
       ]
     ];
+
+    const userAttributes = [
+      'SocialSecurityNumber' => [
+        'type' => 'VARCHAR(12)',
+      ],
+      'AnnualSalary' => [
+          'type' => 'DOUBLE',
+      ]
+    ];
 }
