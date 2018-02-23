@@ -233,18 +233,21 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
         $this->setShippingAddress($order->getShippingAddress());
         $this->setBillingAddress($order->getBillingAddress());
         $this->setEmail($order->getEmail());
-        if ($order->getBillingAddress()->getSalutation == 'Herr') {
-            $this->setGender('m');
-        } else {
-            $this->setGender('f');
-        }
         $this->setPhone($phone);
         $this->setMobileNr($mobileNr);
-        $this->setDateOfBirth($dateOfBirth);
+        //date of birth and gender should not be sent for firms, only for Private persons
         if ($isFirm) {
             $this->setCompanyOrPerson('F');
+            //for companies, set billing firstname + billing lastname in reference#
+            $this->setReference($order->getBillingAddress()->getFirstName() . ' ' . $order->getBillingAddress()->getLastName());
         } else {
             $this->setCompanyOrPerson('P');
+            if ($order->getBillingAddress()->getSalutation == 'Herr') {
+                $this->setGender('m');
+            } else {
+                $this->setGender('f');
+            }
+            $this->setDateOfBirth($dateOfBirth);
         }
 
         $this->setKlarnaAction($klarnaAction);
