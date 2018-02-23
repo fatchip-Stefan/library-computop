@@ -2,7 +2,7 @@
 
 namespace Fatchip\CTPayment;
 
-class CTAmazon extends Blowfish
+class CTPaypalExpress extends Blowfish
 {
     public function __construct(
         $config
@@ -24,30 +24,13 @@ class CTAmazon extends Blowfish
         $len = strlen($request);  // Length of the plain text string
         $data = $this->ctEncrypt($request, $len, $this->blowfishPassword);
 
-        return 'https://www.computop-paygate.com/AmazonAPA.aspx' .
+        return 'https://www.computop-paygate.com/paypalComplete.aspx' .
             '?MerchantID=' . $this->merchantID .
             '&Len=' . $len .
             '&Data=' . $data;
     }
 
-    public function getAmazonLGNParams($transID, $accessToken, $tokenType, $expiry, $scope, $countryCode, $urlNotify)
-    {
-        $params = [
-            'MerchantID' => $this->merchantID,
-            'TransID' => $transID,
-            'CountryCode' => $countryCode,
-            'URLNotify' => $urlNotify,
-            'AccessToken' => $accessToken,
-            'TokenType' => $tokenType,
-            'Expiry' => $expiry,
-            'Scope' => $scope,
-            'EventToken' => 'LGN',
-        ];
-
-        return $params;
-    }
-
-    public function getAmazonSODParams($payID, $transID, $amount, $currency, $orderDesc, $referenceID)
+    public function getPaypalExpressCompleteParams($payID, $transID, $amount, $currency, $orderDesc)
     {
         $params = [
             'PayID' => $payID,
@@ -55,38 +38,6 @@ class CTAmazon extends Blowfish
             'TransID' => $transID,
             'Amount' => $amount,
             'Currency' => $currency,
-            'OrderDesc' => $orderDesc,
-            'OrderReferenceID' => $referenceID,
-            'EventToken' => 'SOD',
-        ];
-
-        return $params;
-    }
-
-    public function getAmazonGODParams($payID, $orderDesc, $referenceID)
-    {
-        $params = [
-            'PayID' => $payID,
-            'MerchantID' => $this->merchantID,
-            'OrderDesc' => $orderDesc,
-            'OrderReferenceID' => $referenceID,
-            'EventToken' => 'GOD',
-        ];
-
-        return $params;
-    }
-
-    public function getAmazonSCOParams($payID, $transID, $amount, $currency, $orderDesc, $referenceID)
-    {
-        $params = [
-            'PayID' => $payID,
-            'MerchantID' => $this->merchantID,
-            'TransID' => $transID,
-            'Amount' => $amount,
-            'Currency' => $currency,
-            'OrderDesc' => $orderDesc,
-            'OrderReferenceID' => $referenceID,
-            'EventToken' => 'SCO',
         ];
 
         return $params;
