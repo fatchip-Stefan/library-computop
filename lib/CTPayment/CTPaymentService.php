@@ -153,6 +153,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTCreditCard',
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => 'CreditCard',
             ],
             [
                 'name' => 'fatchip_computop_easycredit',
@@ -161,6 +162,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTEasyCredit',
                 'template' => 'fatchip_computop_easycredit.tpl',
                 'additionalDescription' => 'Rechnungs- und Lieferadresse müssen gleich sein, damit easyCredit genutzt werden kann',
+                'className' => 'EasyCredit',
             ],
             [
                 'name' => 'fatchip_computop_ideal',
@@ -169,8 +171,8 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTIdeal',
                 'template' => 'fatchip_computop_ideal.tpl',
                 'additionalDescription' => '',
+                'className' => 'Ideal',
                 'countries' => ['NL'],
-
             ],
             [
                 'name' => 'fatchip_computop_klarna_invoice',
@@ -179,6 +181,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTKlarna',
                 'template' => 'fatchip_computop_klarna_invoice.tpl',
                 'additionalDescription' => '',
+                'className' => 'Klarna',
                 'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
@@ -188,6 +191,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTKlarna',
                 'template' => 'fatchip_computop_klarna_installment.tpl',
                 'additionalDescription' => '',
+                'className' => 'Klarna',
                 'countries' => ['NL'],
             ],
             [
@@ -197,6 +201,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTLastschrift',
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => 'Lastschrift',
             ],
             [
                 'name' => 'fatchip_computop_mobilepay',
@@ -206,6 +211,7 @@ class CTPaymentService extends Blowfish
                 'countries' => ['DK', 'NO', 'FI', 'SE'],
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => 'MobilePay',
             ],
             [
                 'name' => 'fatchip_computop_paydirekt',
@@ -214,6 +220,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTPaydirekt',
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => 'Paydirekt',
             ],
             [
                 'name' => 'fatchip_computop_paypal_standard',
@@ -222,6 +229,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTPaypalStandard',
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => 'PaypalStandard',
             ],
             [
                 'name' => 'fatchip_computop_paypal_express',
@@ -230,6 +238,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTPaypalExpress',
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => '',
             ],
             [
                 'name' => 'fatchip_computop_postfinance',
@@ -238,6 +247,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTPostFinance',
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => 'PostFinance',
             ],
             [
                 'name' => 'fatchip_computop_przelewy24',
@@ -247,6 +257,7 @@ class CTPaymentService extends Blowfish
                 'countries' => ['PL',],
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => 'Przelewy24',
             ],
             [
                 'name' => 'fatchip_computop_sofort',
@@ -255,6 +266,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTSofort',
                 'template' => 'fatchip_computop_sofort.tpl',
                 'additionalDescription' => '',
+                'className' => 'Sofort',
             ],
             [
                 'name' => 'fatchip_computop_amazonpay',
@@ -263,6 +275,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTAmazon',
                 'template' => '',
                 'additionalDescription' => '',
+                'className' => 'CTAmazon',
             ],
         ];
     }}
