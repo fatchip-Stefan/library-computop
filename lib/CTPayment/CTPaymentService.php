@@ -170,6 +170,7 @@ class CTPaymentService extends Blowfish
                 'template' => 'fatchip_computop_ideal.tpl',
                 'additionalDescription' => '',
                 'countries' => ['NL'],
+
             ],
             [
                 'name' => 'fatchip_computop_klarna_invoice',
@@ -178,6 +179,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTKlarna',
                 'template' => 'fatchip_computop_klarna_invoice.tpl',
                 'additionalDescription' => '',
+                'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_klarna_installment',
@@ -186,6 +188,7 @@ class CTPaymentService extends Blowfish
                 'action' => 'FatchipCTKlarna',
                 'template' => 'fatchip_computop_klarna_installment.tpl',
                 'additionalDescription' => '',
+                'countries' => ['NL'],
             ],
             [
                 'name' => 'fatchip_computop_lastschrift',
