@@ -325,12 +325,6 @@ class PaypalStandard extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/capture.aspx';
     }
 
-    public function getCTPaymentShortcutURL()
-    {
-        return 'https://www.computop-paygate.com/paypalComplete.aspx';
-    }
-
-
     public function getReverseURL()
     {
         return 'https://www.computop-paygate.com/reverse.aspx';
