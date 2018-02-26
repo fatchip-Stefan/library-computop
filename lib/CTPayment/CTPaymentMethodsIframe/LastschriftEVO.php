@@ -52,7 +52,7 @@ class LastschriftEVO extends Lastschrift
         $orderDesc2
     ) {
         parent::__construct($config, $order, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $capture);
-        $this->setOrderDesc2('OrtderDesc 2');
+        $this->setOrderDesc2($orderDesc2);
     }
 
     /**
