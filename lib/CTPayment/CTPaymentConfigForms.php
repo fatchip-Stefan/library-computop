@@ -113,7 +113,7 @@ class CTPaymentConfigForms
                 'name' => 'creditCardDelay',
                 'type' => 'number',
                 'value' => '1',
-                'label' => 'creditCardDelay',
+                'label' => 'Kreditkarte - Verzögerung Einzug',
                 'required' => true,
                 'description' => 'Verzögerung in Stunden wenn als Caption Methode "Verzögert" gewählt wurde',
             ],
