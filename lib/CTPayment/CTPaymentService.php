@@ -221,7 +221,6 @@ class CTPaymentService extends Blowfish
                 'shortname' => 'Mobile Pay',
                 'description' => 'Computop Mobile Pay',
                 'action' => 'FatchipCTMobilepay',
-                'countries' => ['DK', 'NO', 'FI', 'SE'],
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'MobilePay',
