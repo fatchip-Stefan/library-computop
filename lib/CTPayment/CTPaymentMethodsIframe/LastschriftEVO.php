@@ -13,17 +13,7 @@ class LastschriftEVO extends Lastschrift
      */
     public $orderDesc2;
 
-    /**
-     * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
-     * AUTO: Buchung so-fort nach Autorisierung (Standardwert).
-     * MANUAL: Buchung erfolgt durch den Händler.
-     * <Zahl>: Verzögerung in Stunden bis zur Buchung (ganze Zahl; 1 bis 696).
-     *
-     * @var string
-     */
-    public $capture;
-
-    /**
+     /**
      * für SEPA: Anzahl Banktage>0, die für das Ausführungsdatum einer Lastschrift zum aktuellen Datum addiert werden
      *
      * @var int

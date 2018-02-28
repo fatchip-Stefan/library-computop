@@ -79,7 +79,7 @@ class CTPaymentConfigForms
                 'name' => 'creditCardCaption',
                 'type' => 'select',
                 'value' => 'AUTO',
-                'label' => 'Kreditkarte - Caption Methode',
+                'label' => 'Kreditkarte - Capture Modus',
                 'required' => true,
                 'editable' => false,
                 'store' =>
@@ -115,7 +115,7 @@ class CTPaymentConfigForms
                 'value' => '1',
                 'label' => 'Kreditkarte - Verzögerung Einzug',
                 'required' => true,
-                'description' => 'Verzögerung in Stunden wenn als Caption Methode "Verzögert" gewählt wurde',
+                'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
             ],
         ];
 
@@ -135,22 +135,54 @@ class CTPaymentConfigForms
                     ],
                 'description' => '',
             ],
-            'lastschriftDienst' => [
-                'name' => 'lastschriftDienst',
-                'type' => 'select',
-                'value' => 'DIREKT',
-                'label' => 'Lastschrift - Anbinden über Dienst',
-                'required' => true,
-                'editable' => false,
-                'store' =>
-                    [
-                        ['DIREKT', 'Direktanbindung'],
-                        ['EVO', 'EVO Payments'],
-                        ['INTERCARD', 'Intercard'],
-                    ],
-                'description' => '',
-            ],
         ];
+
+
+    const formLastschriftSelectElements =
+      [
+        'lastschriftDienst' => [
+          'name' => 'lastschriftDienst',
+          'type' => 'select',
+          'value' => 'DIREKT',
+          'label' => 'Lastschrift - Anbinden über Dienst',
+          'required' => true,
+          'editable' => false,
+          'store' =>
+            [
+              ['DIREKT', 'Direktanbindung'],
+              ['EVO', 'EVO Payments'],
+              ['INTERCARD', 'Intercard'],
+            ],
+          'description' => '',
+        ],
+        'lastschriftCaption' => [
+          'name' => 'lastschriftCaption',
+          'type' => 'select',
+          'value' => 'AUTO',
+          'label' => 'Lastschrift - Capture Modus',
+          'required' => true,
+          'editable' => false,
+          'store' =>
+            [
+              ['AUTO', 'Automatisch'],
+              ['MANUAL', 'Manuell'],
+              ['DELAYED', 'Verzögert'],
+            ],
+          'description' => '',
+        ],
+      ];
+
+    const formLastschriftNumberElements =
+      [
+        'lastschriftDelay' => [
+          'name' => 'lastschriftDelay',
+          'type' => 'number',
+          'value' => '1',
+          'label' => 'Lastschrift - Verzögerung Einzug',
+          'required' => true,
+          'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
+        ],
+      ];
 
     const formPayDirektTextElements =
         [
@@ -170,7 +202,7 @@ class CTPaymentConfigForms
                 'name' => 'payDirektCaption',
                 'type' => 'select',
                 'value' => 'AUTO',
-                'label' => 'Paydirekt Capture Modus',
+                'label' => 'Paydirekt - Capture Modus',
                 'required' => true,
                 'editable' => false,
                 'store' =>
@@ -191,7 +223,7 @@ class CTPaymentConfigForms
                 'value' => '1',
                 'label' => 'Paydirekt - Verzögerung Einzug',
                 'required' => true,
-                'description' => 'Verzögerung in Stunden wenn als Caption Methode "Verzögert" gewählt wurde',
+                'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
             ],
         ];
 
@@ -201,7 +233,7 @@ class CTPaymentConfigForms
                 'name' => 'paypalCaption',
                 'type' => 'select',
                 'value' => 'AUTO',
-                'label' => 'Paypal - Caption Methode',
+                'label' => 'Paypal - Capture Modus',
                 'required' => true,
                 'editable' => false,
                 'store' =>
@@ -220,7 +252,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonSellerId',
                 'type' => 'text',
                 'value' => '',
-                'label' => 'AmazonPay SellerId',
+                'label' => 'AmazonPay - SellerId',
                 'required' => true,
                 'description' => 'Ihre SellerId',
             ],
@@ -228,7 +260,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonClientId',
                 'type' => 'text',
                 'value' => '',
-                'label' => 'AmazonPay ClientId',
+                'label' => 'AmazonPay - ClientId',
                 'required' => true,
                 'description' => 'Ihre ClientId',
             ],
@@ -241,7 +273,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonButtonType',
                 'type' => 'select',
                 'value' => 'PwA',
-                'label' => 'AmazonPay Button Typ',
+                'label' => 'AmazonPay - Button Typ',
                 'required' => true,
                 'editable' => false,
                 'store' =>
@@ -259,7 +291,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonButtonColor',
                 'type' => 'select',
                 'value' => 'Gold',
-                'label' => 'AmazonPay Button Farbe',
+                'label' => 'AmazonPay - Button Farbe',
                 'required' => 'true',
                 'editable' => false,
                 'store' =>
@@ -274,7 +306,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonButtonSize',
                 'type' => 'select',
                 'value' => 'small',
-                'label' => 'AmazonPay Button Größe',
+                'label' => 'AmazonPay - Button Größe',
                 'required' => 'true',
                 'editable' => false,
                 'store' =>
@@ -302,7 +334,7 @@ class CTPaymentConfigForms
                 'value' => '30',
                 'label' => 'Bonitätsprüfung - Wiederholen nach wieviele Tage',
                 'required' => true,
-                'description' => 'Verzögerung in Stunden wenn als Caption Methode "Verzögert" gewählt wurde',
+                'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
             ],
         ];
 

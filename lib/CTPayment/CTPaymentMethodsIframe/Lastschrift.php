@@ -3,6 +3,7 @@
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTPaymentMethodIframe;
+use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 
 abstract class Lastschrift extends CTPaymentMethodIframe
 {
@@ -69,10 +70,15 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-        $this->setCapture('AUTO');
         $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
           'urlSuccess', 'urlFailure', 'urlNotify', ));
         $this->setMandateID($this->createMandateID($order->getAmount()));
+
+        if ($config['lastschriftCaption'] == CTEnumCapture::DELAYED && is_numeric($config['lastschriftDelay'])) {
+            $this->setCapture($config['lastschriftDelay']);
+        } else {
+            $this->setCapture($config['lastschriftCaption']);
+        }
     }
 
     /**
