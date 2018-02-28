@@ -357,15 +357,4 @@ class CTPaymentConfigForms
             ],
         ];
 
-    const formMobilePayBooleanElements =
-        [
-            'mobilePaySendMobileNr' => [
-                'name' => 'mobilePaySendMobileNr',
-                'type' => 'boolean',
-                'value' => false,
-                'label' => 'MobilePay - Handynummer übermitteln',
-                'required' => false,
-                'description' => '',
-            ],
-        ];
 }
