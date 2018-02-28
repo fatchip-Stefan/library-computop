@@ -88,6 +88,7 @@ class PaypalStandard extends CTPaymentMethodIframe
 
     protected $PayPalMethod = '';
 
+    protected $NoShipping = 1;
 
     /**
      * @param $config
@@ -295,6 +296,19 @@ class PaypalStandard extends CTPaymentMethodIframe
         return $this->LastName;
     }
 
+    /**
+     * @param int $NoShipping
+     */
+    public function setNoShipping($NoShipping) {
+        $this->NoShipping = $NoShipping;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNoShipping() {
+        return $this->NoShipping;
+    }
 
     /**
      * @param $shippingAddress CTAddress
