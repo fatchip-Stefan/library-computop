@@ -13,27 +13,6 @@ abstract class CTPaymentMethod extends Blowfish
      */
     protected $payID;
 
-
-    /**
-     * Array of mandatory field names. Has to be set in constructor
-     * @var array
-     */
-    protected $mandatoryFields;
-
-    /**
-     * Calculate the MAC value.
-     *
-     * @param string $payId
-     * @param string $transID
-     * @param string $merchantID
-     * @param integer $amount
-     * @param string $currency
-     * @param string $mac
-     * @return string
-     */
-    abstract protected function ctHMAC($merchantID, $amount, $currency, $mac, $payId = "", $transID = "");
-
-
     /**
      * @param string $PayID
      */
@@ -50,20 +29,68 @@ abstract class CTPaymentMethod extends Blowfish
         return $this->payID;
     }
 
-
-    /**
-     * @param array $mandatoryFields
-     */
-    public function setMandatoryFields($mandatoryFields)
+    protected function ctHMAC($params)
     {
-        $this->mandatoryFields = $mandatoryFields;
+        $data = $params['payID'].'*'.$params['transID'].'*'.$params['merchantID'].'*'.$params['amount'].'*'.$params['currency'];
+        return hash_hmac("sha256", $data, $this->mac);
     }
 
-    /**
-     * @return array
-     */
-    public function getMandatoryFields()
+    public function prepareComputopRequest($params, $url)
     {
-        return $this->mandatoryFields;
+        $requestParams = [];
+        foreach ($params as $key => $value) {
+            $requestParams[] = "$key=" . $value;
+        }
+        $requestParams[] = "MAC=" . $this->ctHMAC($params);
+        $request = join('&', $requestParams);
+        $len = mb_strlen($request);  // Length of the plain text string
+        $data = $this->ctEncrypt($request, $len, $this->blowfishPassword);
+
+        return $url .
+            '?MerchantID=' . $this->merchantID .
+            '&Len=' . $len .
+            '&Data=' . $data;
+    }
+
+    public function callComputop($ctRequest, $url)
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl,
+            [ CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => $this->prepareComputopRequest($ctRequest, $url)
+            ]);
+        try {
+            $resp = curl_exec($curl);
+
+            if (false === $resp) {
+                throw new \Exception(curl_error($curl), curl_errno($curl));
+            }
+
+        } catch (\Exception $e) {
+            trigger_error(sprintf(
+                'Curl failed with error #%d: %s',
+                $e->getCode(), $e->getMessage()),
+                E_USER_ERROR);
+        }
+        $arr = [];
+        parse_str($resp, $arr);
+        $plaintext = $this->ctDecrypt($arr['Data'], $arr['Len'], $this->blowfishPassword);
+        $response = new CTResponse($this->ctSplit(explode('&', $plaintext), '='));
+        return $response;
+    }
+
+    public function getCTRefundURL()
+    {
+        return 'https://www.computop-paygate.com/credit.aspx';
+    }
+
+    public function getCTCaptureURL()
+    {
+        return 'https://www.computop-paygate.com/capture.aspx';
+    }
+
+    public function getCTInquireURL() {
+        return 'https://www.computop-paygate.com/inquire.aspx';
     }
 }

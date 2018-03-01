@@ -8,6 +8,8 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 class CreditCard extends CTPaymentMethodIframe
 {
+    const paymentClass = 'CreditCard';
+
     /**
      * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
      * AUTO: Buchung so-fort nach Autorisierung (Standardwert).
@@ -84,7 +86,7 @@ class CreditCard extends CTPaymentMethodIframe
      *
      * @var string
      */
-    protected  $addrCountryCode;
+    protected $addrCountryCode;
 
     /* FIELDS FOR AMEX/CAPN*/
     /**
@@ -139,9 +141,6 @@ class CreditCard extends CTPaymentMethodIframe
     protected $sdCountryCode;
 
 
-
-
-
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/payssl.aspx';
@@ -163,7 +162,8 @@ class CreditCard extends CTPaymentMethodIframe
         $urlNotify,
         $orderDesc,
         $userData
-    ) {
+    )
+    {
         parent::__construct($config, $order, $orderDesc, $userData);
 
         $this->setUrlSuccess($urlSuccess);
@@ -191,14 +191,9 @@ class CreditCard extends CTPaymentMethodIframe
                 $this->setSdLastName($order->getShippingAddress()->getLastName());
                 $this->setSdStreet($order->getShippingAddress()->getStreet() . ' ' . $order->getShippingAddress()->getStreetNr());
                 $this->setSdZip($order->getShippingAddress()->getZip());
-                $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3()); //for CAPN: Country in Iso3 format
-
-
+                $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3());
                 break;
         }
-
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency',
-        'mac', 'urlSuccess', 'urlFailure', 'urlNotify', ));
 
         if ($config['creditCardCaption'] == CTEnumCapture::DELAYED && is_numeric($config['creditCardDelay'])) {
             $this->setCapture($config['creditCardDelay']);
@@ -226,182 +221,208 @@ class CreditCard extends CTPaymentMethodIframe
     /**
      * @param string $addrStreet
      */
-    public function setAddrStreet($addrStreet) {
+    public function setAddrStreet($addrStreet)
+    {
         $this->AddrStreet = $addrStreet;
     }
 
     /**
      * @return string
      */
-    public function getAddrStreet() {
+    public function getAddrStreet()
+    {
         return $this->AddrStreet;
     }
 
     /**
      * @param string $addrStreetNr
      */
-    public function setAddrStreetNr($addrStreetNr) {
+    public function setAddrStreetNr($addrStreetNr)
+    {
         $this->AddrStreetNr = $addrStreetNr;
     }
 
     /**
      * @return string
      */
-    public function getAddrStreetNr() {
+    public function getAddrStreetNr()
+    {
         return $this->AddrStreetNr;
     }
 
     /**
      * @param string $addrCity
      */
-    public function setAddrCity($addrCity) {
+    public function setAddrCity($addrCity)
+    {
         $this->AddrCity = $addrCity;
     }
 
     /**
      * @return string
      */
-    public function getAddrCity() {
+    public function getAddrCity()
+    {
         return $this->AddrCity;
     }
 
     /**
      * @param string $addrZip
      */
-    public function setAddrZip($addrZip) {
+    public function setAddrZip($addrZip)
+    {
         $this->AddrZip = $addrZip;
     }
 
     /**
      * @return string
      */
-    public function getAddrZip() {
+    public function getAddrZip()
+    {
         return $this->AddrZip;
     }
 
     /**
      * @param string $addrCountryCode
      */
-    public function setAddrCountryCode($addrCountryCode) {
+    public function setAddrCountryCode($addrCountryCode)
+    {
         $this->addrCountryCode = $addrCountryCode;
     }
 
     /**
      * @return string
      */
-    public function getAddrCountryCode() {
+    public function getAddrCountryCode()
+    {
         return $this->addrCountryCode;
     }
 
     /**
      * @param string $addrState
      */
-    public function setAddrState($addrState) {
+    public function setAddrState($addrState)
+    {
         $this->AddrState = $addrState;
     }
 
     /**
      * @return string
      */
-    public function getAddrState() {
+    public function getAddrState()
+    {
         return $this->AddrState;
     }
 
     /**
      * @param int $amountAuth
      */
-    public function setAmountAuth($amountAuth) {
+    public function setAmountAuth($amountAuth)
+    {
         $this->AmountAuth = $amountAuth;
     }
 
     /**
      * @return int
      */
-    public function getAmountAuth() {
+    public function getAmountAuth()
+    {
         return $this->AmountAuth;
     }
 
     /**
      * @param string $firstName
      */
-    public function setFirstName($firstName) {
+    public function setFirstName($firstName)
+    {
         $this->FirstName = $firstName;
     }
 
     /**
      * @return string
      */
-    public function getFirstName() {
+    public function getFirstName()
+    {
         return $this->FirstName;
     }
 
     /**
      * @param string $lastName
      */
-    public function setLastName($lastName) {
+    public function setLastName($lastName)
+    {
         $this->LastName = $lastName;
     }
 
     /**
      * @return string
      */
-    public function getLastName() {
+    public function getLastName()
+    {
         return $this->LastName;
     }
 
     /**
      * @param string $sdCountryCode
      */
-    public function setSdCountryCode($sdCountryCode) {
+    public function setSdCountryCode($sdCountryCode)
+    {
         $this->sdCountryCode = $sdCountryCode;
     }
 
     /**
      * @return string
      */
-    public function getSdCountryCode() {
+    public function getSdCountryCode()
+    {
         return $this->sdCountryCode;
     }
 
     /**
      * @param string $sdFirstName
      */
-    public function setSdFirstName($sdFirstName) {
+    public function setSdFirstName($sdFirstName)
+    {
         $this->sdFirstName = $sdFirstName;
     }
 
     /**
      * @return string
      */
-    public function getSdFirstName() {
+    public function getSdFirstName()
+    {
         return $this->sdFirstName;
     }
 
     /**
      * @param string $sdLastName
      */
-    public function setSdLastName($sdLastName) {
+    public function setSdLastName($sdLastName)
+    {
         $this->sdLastName = $sdLastName;
     }
 
     /**
      * @return string
      */
-    public function getSdLastName() {
+    public function getSdLastName()
+    {
         return $this->sdLastName;
     }
 
     /**
      * @param string $sdStreet
      */
-    public function setSdStreet($sdStreet) {
+    public function setSdStreet($sdStreet)
+    {
         $this->sdStreet = $sdStreet;
     }
 
     /**
      * @return string
      */
-    public function getSdStreet() {
+    public function getSdStreet()
+    {
         return $this->sdStreet;
     }
 

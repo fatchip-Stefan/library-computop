@@ -10,6 +10,8 @@ use Exception;
 
 class EasyCredit extends CTPaymentMethodIframe
 {
+    const paymentClass = 'EasyCredit';
+
     /**
      * Definiert die bei easyCredit auszuführende Anfrage: <INT> zur Initialisierung eines Vorgangs
      *
@@ -454,7 +456,6 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
 
-
     /***
      * @param $config
      * @param $order
@@ -474,7 +475,8 @@ class EasyCredit extends CTPaymentMethodIframe
         $orderDesc,
         $userData,
         $eventToken
-    ) {
+    )
+    {
         parent::__construct($config, $order, $orderDesc, $userData);
 
         $this->setUrlSuccess($urlSuccess);
@@ -489,10 +491,7 @@ class EasyCredit extends CTPaymentMethodIframe
             $this->setLastName($order->getBillingAddress()->getLastName());
             $this->setSalutation($order->getBillingAddress()->getSalutation());
         }
-
         $this->setEventToken($eventToken);
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency',
-          'eventToken', 'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
 
@@ -530,78 +529,41 @@ class EasyCredit extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/easyCredit.aspx';
     }
 
-    public function getSettingsDefinitions()
+    public function getCTCreditCheckURL()
     {
-        return null;
+        return 'https://www.computop-paygate.com/easyCreditDirect.aspx';
     }
 
-    /**
-     * @param $payID
-     * @return CTResponse
-     */
-    public function getDecision($payID)
+    public function getDecisionParams($payID, $transID, $amount, $currency)
     {
-        return $this->callEasyCreditDirect($payID, 'GET');
+        $params = [
+            'payID' => $payID,
+            'merchantID' => $this->merchantID,
+            'transID' => $transID,
+            'amount' => $amount,
+            'currency' => $currency,
+            'EventToken' => 'GET',
+        ];
+        return $params;
     }
 
-    public function confirm($payID)
-    {
-        return $this->callEasyCreditDirect($payID, 'CON');
-    }
-
-    /**
-     * @param $payID
-     * @param $EventToken
-     * @return CTResponse
-     */
-    private function callEasyCreditDirect($payID, $EventToken)
+    public function getConfirmParams($payID)
     {
         $this->setPayID($payID);
-        $this->setEventToken($EventToken);
-        $query = $this->getTransactionQuery();
-        $Len = strlen($query);
-        $data = $this->getEncryptedData();
-        $url = 'https://www.computop-paygate.com/easyCreditDirect.aspx' . '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
-        ;
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-          CURLOPT_RETURNTRANSFER => 1,
-          CURLOPT_URL => $url,
-        ));
-
-        try {
-        $resp = curl_exec($curl);
-
-        if (FALSE === $resp) {
-            throw new Exception(curl_error($curl), curl_errno($curl));
-        }
-
-        } catch (\Exception $e) {
-            trigger_error(sprintf(
-                'Curl failed with error #%d: %s',
-                $e->getCode(), $e->getMessage()),
-              E_USER_ERROR);
-        }
-
-        $arr = array();
-        $respArray = $this->ctSplit(explode('&', $resp), '=');
-        $plaintext = $this->ctDecrypt($respArray['Data'], $respArray['Len'], $this->getBlowfishPassword());
-
-        parse_str($plaintext, $arr);
-        $respObj = new CTResponse($arr);
-
-        return $respObj;
+        return $this->getRedirectUrlParams();
     }
 
-    private function ctSplit($arText, $sSplit)
+    /**
+     * @param $payID
+     * @return CTResponse
+     */
+    public function getDecision($ctRequest)
     {
-        $arr = [];
-        foreach ($arText as $text) {
-            $str = explode($sSplit, $text);
-            $arr[$str[0]] = $str[1];
-        }
-        return $arr;
+        return $this->prepareComputopRequest($ctRequest, $this->getCTCreditCheckURL());
+    }
+
+    public function confirm($ctRequest)
+    {
+        return  $this->prepareComputopRequest($ctRequest, $this->getCTCreditCheckURL());
     }
 }

@@ -144,46 +144,6 @@ class Blowfish
 
     private $sk;
 
-
-    /**
-     * @param string $mac
-     */
-    public function setMac($mac)
-    {
-        $this->mac = $mac;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMac()
-    {
-        return $this->mac;
-    }
-
-    /**
-     * @param mixed $blowfishPassword
-     */
-    public function setBlowfishPassword($blowfishPassword)
-    {
-        $this->blowfishPassword = $blowfishPassword;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBlowfishPassword()
-    {
-        return $this->blowfishPassword;
-    }
-
-    public function setCredentials($merhantID, $blowfishPassword, $mac)
-    {
-        $this->merchantID = $merhantID;
-        $this->blowfishPassword = $blowfishPassword;
-        $this->mac = $mac;
-    }
-
     /**
      * @param $text
      * @return string
@@ -360,6 +320,16 @@ class Blowfish
         return array($r, $l);
     }
 
+    protected function ctSplit($arText, $sSplit)
+    {
+        $arr = [];
+        foreach ($arText as $text) {
+            $str = explode($sSplit, $text);
+            $arr[$str[0]] = $str[1];
+        }
+        return $arr;
+    }
+
     /**
      * Encrypt the passed text (any encoding) with Blowfish.
      *
@@ -423,5 +393,37 @@ class Blowfish
     public function getMerchantID()
     {
         return $this->merchantID;
+    }
+
+    /**
+     * @param mixed $blowfishPassword
+     */
+    public function setBlowfishPassword($blowfishPassword)
+    {
+        $this->blowfishPassword = $blowfishPassword;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBlowfishPassword()
+    {
+        return $this->blowfishPassword;
+    }
+
+    /**
+     * @param string $mac
+     */
+    public function setMac($mac)
+    {
+        $this->mac = $mac;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMac()
+    {
+        return $this->mac;
     }
 }

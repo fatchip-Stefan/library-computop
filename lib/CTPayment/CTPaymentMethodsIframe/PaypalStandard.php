@@ -7,6 +7,9 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 class PaypalStandard extends CTPaymentMethodIframe
 {
+
+    const paymentClass = 'PaypalStandard';
+
     /**
      * Auto oder Manual: bestimmt, ob der angefragte Betrag sofort oder erst später abgebucht wird.
      * Wichtiger Hinweis: Bitte kontaktieren Sie den Computop Support für Manual,
@@ -110,14 +113,9 @@ class PaypalStandard extends CTPaymentMethodIframe
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-
         //TODO: Check if this should always be order
         $this->setTxType('Order');
-
         $this->setCapture($config['paypalCaption']);
-
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc', 'mac',
-          'urlSuccess', 'urlFailure', ));
     }
 
     /**
@@ -327,7 +325,6 @@ class PaypalStandard extends CTPaymentMethodIframe
         $this->setAddrCity($shippingAddress->getCity());
         $this->setAddrCountryCode($shippingAddress->getCountryCode());
     }
-
 
     public function getCTPaymentURL()
     {
