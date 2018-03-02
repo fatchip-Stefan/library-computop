@@ -6,6 +6,8 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 class Przelewy24 extends CTPaymentMethodIframe
 {
+    const paymentClass = 'Przelewy24';
+
     /**
      * Name des Kontoinhabers
      *
@@ -37,8 +39,6 @@ class Przelewy24 extends CTPaymentMethodIframe
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
         $this->setEmail($order->getEmail());
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
-          'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner', 'Email', ));
     }
 
     /**

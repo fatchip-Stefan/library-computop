@@ -6,6 +6,8 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 class Mobilepay extends CTPaymentMethodIframe
 {
+    const paymentClass = 'Mobilepay';
+
     /**
      * Der param MobielNr kann, sofern bekannt aus dem Kundenkonto vorbelegt werden.
      * Diese option sollte aber im Backend auf aktiv bzw inaktiv gestellt werden können.
@@ -52,8 +54,6 @@ class Mobilepay extends CTPaymentMethodIframe
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
-          'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
     /**

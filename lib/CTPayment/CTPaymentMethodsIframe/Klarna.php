@@ -6,6 +6,8 @@ use Fatchip\CTPayment;
 
 class Klarna extends CTPayment\CTPaymentMethodIframe
 {
+    const paymentClass = 'Klarna';
+
     /**
      * Für Privatpersonen optional, für Unternehmen Pflicht, z.B. Kontaktperson für den Kauf.
      * Über diesen Parameter können Mitteilungen und wichtige Informationen an den Kunden
@@ -211,20 +213,20 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
      * @param string $orderDesc
      * @param string $userData
      * @param string $phone
-     * @param string $mobileNr
      * @param string $dateOfBirth
      * @param boolean $isFirm
      * @param integer $klarnaAction
      */
+
     public function __construct(
         $config,
         $order,
+        $urlSuccess,
+        $urlFailure,
         $urlNotify,
         $orderDesc,
         $userData,
-        $phone,
-        $mobileNr,
-        $dateOfBirth,
+        $eventToken,
         $isFirm,
         $klarnaAction
     ) {
@@ -233,8 +235,6 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
         $this->setShippingAddress($order->getShippingAddress());
         $this->setBillingAddress($order->getBillingAddress());
         $this->setEmail($order->getEmail());
-        $this->setPhone($phone);
-        $this->setMobileNr($mobileNr);
         //date of birth and gender should not be sent for firms, only for Private persons
         if ($isFirm) {
             $this->setCompanyOrPerson('F');
@@ -242,18 +242,14 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
             $this->setReference($order->getBillingAddress()->getFirstName() . ' ' . $order->getBillingAddress()->getLastName());
         } else {
             $this->setCompanyOrPerson('P');
-            if ($order->getBillingAddress()->getSalutation == 'Herr') {
+            if ($order->getBillingAddress()->getSalutation() == 'Herr') {
                 $this->setGender('m');
             } else {
                 $this->setGender('f');
             }
-            $this->setDateOfBirth($dateOfBirth);
         }
 
         $this->setKlarnaAction($klarnaAction);
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc',
-            'bdStreet', 'bdZip', 'bdCity', 'bdCountryCode', 'sdStreet', 'sdZip', 'sdCity', 'sdCountryCode',
-            'Email', 'IPAddr', 'CompanyOrPerson'));
     }
 
     /**
@@ -675,11 +671,6 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/Klarna.aspx';
     }
 
-    public function getSettingsDefinitions()
-    {
-        return null;
-    }
-
     /**
      * Zusätzlich können Sie per E-Mail eine Rechnung an den Endkunden versenden. Dazu rufen Sie fol-gende URL auf:
      * https://www.computop-paygate.com/KlarnaEmail.aspx
@@ -690,14 +681,5 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     public function sendEmailWithInvoice($merchantID, $payID)
     {
         // TODO - Implement this method
-    }
-
-    /**
-     * @return CTPayment\CTResponse\CTResponse
-     */
-    public function callKlarnaDirect()
-    {
-        $arr = $this->makeServerToServerCall($this->getCTPaymentURL());
-        return new CTPayment\CTResponse\CTResponse($arr);
     }
 }

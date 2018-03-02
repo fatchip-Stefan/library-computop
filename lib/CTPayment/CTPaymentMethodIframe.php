@@ -374,7 +374,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     {
         $requestParams = [];
         foreach ($this as $key => $value) {
-            if (!empty ($value)){
+            if (!is_null($value)){
                 $requestParams[$key] = $value;
             }
         }
@@ -386,6 +386,17 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         return $this->prepareComputopRequest($ctRequest, $this->getCTPaymentURL());
     }
 
+    public function getRefundParams($PayID, $Amount, $Currency) {
+        $params = [
+            'merchantID' => $this->merchantID,
+            'payID' => $PayID,
+            'transID' => $this->transID,
+            'Amount' => $Amount,
+            'Currency' => $Currency,
+        ];
+
+        return $params;
+    }
 
     public function refund($PayID, $Amount, $Currency) {
         $this->setPayID($PayID);
@@ -423,43 +434,4 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         return $resp;
 
     }
-
-    protected function makeServerToServerCall($url) {
-        $query = $this->getTransactionQuery();
-        $Len = strlen($query);
-        $data = $this->getEncryptedData();
-        $url = $url . '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-          CURLOPT_RETURNTRANSFER => 1,
-          CURLOPT_URL => $url,
-        ));
-
-        try {
-            $resp = curl_exec($curl);
-
-            if (FALSE === $resp) {
-                throw new \Exception(curl_error($curl), curl_errno($curl));
-            }
-
-        } catch (\Exception $e) {
-            trigger_error(sprintf(
-                'Curl failed with error #%d: %s',
-                $e->getCode(), $e->getMessage()),
-              E_USER_ERROR);
-        }
-        $arr = array();
-        parse_str($resp, $arr);
-
-        $plaintext = $this->ctDecrypt($arr['Data'], $arr['Len'], $this->getBlowfishPassword());
-        $arr = array();
-        parse_str($plaintext, $arr);
-
-        return $arr;
-
-    }
-
-
 }

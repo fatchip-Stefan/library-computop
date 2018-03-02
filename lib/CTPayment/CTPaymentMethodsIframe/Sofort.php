@@ -6,6 +6,7 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 class Sofort extends CTPaymentMethodIframe
 {
+    const paymentClass = 'CreditCard';
     /**
      * „Ident“ für Sofort Ident oder „ideal“ für Sofort iDEAL
      * Ident müssen wir nicht implementieren, macht nur identification
@@ -55,8 +56,6 @@ class Sofort extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setAddrCountryCode($order->getBillingAddress()->getCountryCode());
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'orderDesc', 'addrCountryCode',
-          'mac', 'urlSuccess', 'urlFailure', 'urlNotify', ));
     }
 
 

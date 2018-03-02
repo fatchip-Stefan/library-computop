@@ -136,10 +136,6 @@ class CRIF extends CTPaymentMethodIframe{
         $this->setSdCity($order->getShippingAddress()->getCity());
         $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3());
 
-
-        $this->setMandatoryFields(array('merchantID', 'transID', 'orderDesc', 'amount', 'currency',
-          'mac', 'productName', 'customerID', 'lastName', 'addrStreet', 'addrZip' ));
-
         $basicMethod = $config['crifmethod'];
         if ($basicMethod != 'inactive') {
             $isCompany = strlen($order->getBillingAddress()->getCompany()) > 0;
@@ -422,44 +418,4 @@ class CRIF extends CTPaymentMethodIframe{
     {
         return null;
     }
-
-    public function getSettingsDefinitions()
-    {
-        return null;
-    }
-
-    public function callCRFDirect()
-    {
-
-        $url = $this->getHTTPGetURL();
-        $curl = curl_init();
-        $resp = null;
-
-        curl_setopt_array($curl, array(
-          CURLOPT_RETURNTRANSFER => 1,
-          CURLOPT_URL => $url,
-        ));
-
-        try {
-            $resp = curl_exec($curl);
-
-            if (FALSE === $resp) {
-                throw new Exception(curl_error($curl), curl_errno($curl));
-            }
-
-        } catch (\Exception $e) {
-            trigger_error(sprintf(
-                'Curl failed with error #%d: %s',
-                $e->getCode(), $e->getMessage()),
-              E_USER_ERROR);
-        }
-
-        $arr = array();
-        parse_str($resp, $arr);
-
-
-        return $arr;
-    }
-
-
 }

@@ -70,8 +70,6 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
-          'urlSuccess', 'urlFailure', 'urlNotify', ));
         $this->setMandateID($this->createMandateID($order->getAmount()));
 
         if ($config['lastschriftCaption'] == CTEnumCapture::DELAYED && is_numeric($config['lastschriftDelay'])) {
@@ -178,10 +176,5 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/paysdd.aspx';
-    }
-
-    public function getSettingsDefinitions()
-    {
-        return 'Welcher dienst wird benutzt';
     }
 }

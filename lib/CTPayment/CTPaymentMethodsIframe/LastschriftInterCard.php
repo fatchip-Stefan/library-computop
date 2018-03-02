@@ -6,6 +6,8 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 class LastschriftInterCard extends Lastschrift
 {
+    const paymentClass = 'LastschriftInterCard';
+
     /**
      * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
      * AUTO: Buchung so-fort nach Autorisierung (Standardwert).

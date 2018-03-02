@@ -6,6 +6,7 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 class LastschriftEVO extends Lastschrift
 {
+    const paymentClass = 'LastschriftEVO';
     /**
      * 2. Zeile der Warenbeschreibung, die auf dem Kontoauszug erscheint (27 Zei-chen).
      *

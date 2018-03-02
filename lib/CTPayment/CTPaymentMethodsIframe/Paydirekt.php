@@ -9,6 +9,9 @@ use Fatchip\CTPayment\CTOrder\CTOrder;
 
 class Paydirekt extends CTPaymentMethodIframe
 {
+
+    const paymentClass = 'Paydirekt';
+
     /**
      * Bestimmt Art und Zeitpunkt der Buchung (engl. Capture).
      * AUTO: Buchung so-fort nach der Autorisierung (Standardwert).
@@ -126,8 +129,6 @@ class Paydirekt extends CTPaymentMethodIframe
 
         //For Paydirekt, the transID has a max length of 20
         $this->transID = substr($this->transID, 0, 20);
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac',
-          'urlSuccess', 'urlFailure', 'ShopApiKey' ));
     }
 
 

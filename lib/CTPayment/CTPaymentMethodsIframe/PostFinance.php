@@ -6,6 +6,8 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 class PostFinance extends CTPaymentMethodIframe
 {
+    const paymentClass = 'PostFinance';
+
     /**
      * Name des Kontoinhabers
      *
@@ -27,9 +29,6 @@ class PostFinance extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setAccOwner($order->getBillingAddress()->getFirstName . ' ' . $order->getBillingAddress()->getLastName());
-
-        $this->setMandatoryFields(array('merchantID', 'transID', 'amount', 'currency', 'mac', 'orderDesc',
-          'urlSuccess', 'urlFailure', 'urlNotify', 'accOwner' ));
     }
 
     /**

@@ -40,7 +40,7 @@ class CTPaymentService extends Blowfish
         $this->mac = $config['mac'];
     }
 
-    public function getIframePaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc = null, $userData = null, $eventToken = null)
+    public function getIframePaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc = null, $userData = null, $eventToken = null, $isFirm = null, $klarnainvoice = null)
     {
         //Ideal can be called directly, or via Sofort with SofortAction=ideal.
         //If set to 'via sofort' in Pluginsettings, return a class of type Sofort with Sofortaction = ideal
@@ -51,7 +51,7 @@ class CTPaymentService extends Blowfish
         }
 
         $class = 'Fatchip\\CTPayment\\CTPaymentMethodsIframe\\' . $className;
-        return new $class($config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $eventToken);
+        return new $class($config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $eventToken, $isFirm, $klarnainvoice);
     }
 
     public function getPaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc, $userData = null)
