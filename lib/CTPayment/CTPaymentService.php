@@ -50,6 +50,17 @@ class CTPaymentService extends Blowfish
             return $obj;
         }
 
+        //Lastschrift is an abstract class and cannot be instantiated directly
+        if ($className == 'Lastschrift') {
+            if ($config['lastschriftDienst'] == 'EVO') {
+                $className = 'LastschriftEVO';
+            } else if ($config['lastschriftDienst'] == 'DIREKT') {
+                $className = 'LastschriftDirekt';
+            } else if ($config['lastschriftDienst'] == 'INTERCARD') {
+                $className = 'LastschriftInterCard';
+            }
+        }
+
         $class = 'Fatchip\\CTPayment\\CTPaymentMethodsIframe\\' . $className;
         return new $class($config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $eventToken, $isFirm, $klarnainvoice);
     }

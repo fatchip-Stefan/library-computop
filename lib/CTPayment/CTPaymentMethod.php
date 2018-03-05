@@ -31,7 +31,7 @@ abstract class CTPaymentMethod extends Blowfish
 
     protected function ctHMAC($params)
     {
-        $data = $params['payID'].'*'.$params['transID'].'*'.$params['merchantID'].'*'.$params['amount'].'*'.$params['currency'];
+        $data = $params['payID'].'*'.$params['transID'].'*'.$this->merchantID.'*'.$params['amount'].'*'.$params['currency'];
         return hash_hmac("sha256", $data, $this->mac);
     }
 
@@ -92,5 +92,33 @@ abstract class CTPaymentMethod extends Blowfish
 
     public function getCTInquireURL() {
         return 'https://www.computop-paygate.com/inquire.aspx';
+    }
+
+    public function getRefundParams($PayID, $Amount, $Currency) {
+        $params = [
+            'payID' => $PayID,
+            'amount' => $Amount,
+            'currency' => $Currency,
+        ];
+
+        return $params;
+    }
+
+    public function getCaptureParams($PayID, $Amount, $Currency) {
+        $params = [
+            'payID' => $PayID,
+            'amount' => $Amount,
+            'currency' => $Currency,
+        ];
+
+        return $params;
+    }
+
+    public function getInquireParams($PayID) {
+        $params = [
+            'payID' => $PayID,
+        ];
+
+        return $params;
     }
 }

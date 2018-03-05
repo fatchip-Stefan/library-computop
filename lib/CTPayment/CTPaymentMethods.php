@@ -125,7 +125,7 @@ class CTPaymentMethods
                 'action' => 'FatchipCTPaypalExpress',
                 'template' => '',
                 'additionalDescription' => '',
-                'className' => '',
+                'className' => 'PaypalExpress',
             ],
             [
                 'name' => 'fatchip_computop_postfinance',
