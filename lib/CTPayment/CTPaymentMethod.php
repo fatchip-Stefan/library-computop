@@ -99,16 +99,24 @@ abstract class CTPaymentMethod extends Blowfish
             'payID' => $PayID,
             'amount' => $Amount,
             'currency' => $Currency,
+            // used by easyCredit
+            'Date' =>  date("Y-m-d"),
         ];
 
         return $params;
     }
 
-    public function getCaptureParams($PayID, $Amount, $Currency) {
+    public function getCaptureParams($PayID, $Amount, $Currency, $transID = null, $xID = null) {
         $params = [
             'payID' => $PayID,
             'amount' => $Amount,
             'currency' => $Currency,
+            // used by easyCredit
+            'Date' =>  date("Y-m-d"),
+            // used by amazonpay
+            'transID' => $transID,
+            'xID' => $xID,
+
         ];
 
         return $params;

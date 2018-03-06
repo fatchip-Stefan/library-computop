@@ -25,7 +25,7 @@
 
 namespace Fatchip\CTPayment;
 
-use Fatchip\CTPayment\CTPaymentMethodsIframe\CRIF;
+use Fatchip\CTPayment\CTCrif\CRIF;
 use Fatchip\CTPayment\CTPaymentMethodsIframe\Sofort;
 use Fatchip\CTPayment\CTResponse;
 
