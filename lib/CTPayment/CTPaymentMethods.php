@@ -41,6 +41,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'CreditCard',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_easycredit',
@@ -50,6 +51,7 @@ class CTPaymentMethods
                 'template' => 'fatchip_computop_easycredit.tpl',
                 'additionalDescription' => 'Rechnungs- und Lieferadresse müssen gleich sein, damit easyCredit genutzt werden kann',
                 'className' => 'EasyCredit',
+                // 'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_ideal',
@@ -59,7 +61,7 @@ class CTPaymentMethods
                 'template' => 'fatchip_computop_ideal.tpl',
                 'additionalDescription' => '',
                 'className' => 'Ideal',
-                'countries' => ['NL'],
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_klarna_invoice',
@@ -69,7 +71,7 @@ class CTPaymentMethods
                 'template' => 'fatchip_computop_klarna_invoice.tpl',
                 'additionalDescription' => '',
                 'className' => 'Klarna',
-                'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_klarna_installment',
@@ -79,7 +81,7 @@ class CTPaymentMethods
                 'template' => 'fatchip_computop_klarna_installment.tpl',
                 'additionalDescription' => '',
                 'className' => 'Klarna',
-                'countries' => ['NL'],
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_lastschrift',
@@ -89,6 +91,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'Lastschrift',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_mobilepay',
@@ -99,6 +102,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'MobilePay',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_paydirekt',
@@ -108,6 +112,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'Paydirekt',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_paypal_standard',
@@ -117,6 +122,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'PaypalStandard',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_paypal_express',
@@ -126,6 +132,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'PaypalExpress',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_postfinance',
@@ -135,6 +142,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'PostFinance',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_przelewy24',
@@ -145,6 +153,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'Przelewy24',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_sofort',
@@ -154,6 +163,7 @@ class CTPaymentMethods
                 'template' => 'fatchip_computop_sofort.tpl',
                 'additionalDescription' => '',
                 'className' => 'Sofort',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
                 'name' => 'fatchip_computop_amazonpay',
@@ -163,6 +173,7 @@ class CTPaymentMethods
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'AmazonPay',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
         ];
 }
