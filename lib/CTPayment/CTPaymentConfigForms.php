@@ -101,9 +101,9 @@ class CTPaymentConfigForms
                 'editable' => false,
                 'store' =>
                     [
-                        ['GICC', ''],
-                        ['CAPN', ''],
-                        ['Omnipay', ''],
+                        ['GICC', 'GICC'],
+                        ['CAPN', 'CAPN'],
+                        ['Omnipay', 'Omnipay'],
                     ],
                 'description' => '<b>GICC</b>: Concardis, B+S Card Service, EVO Payments, American Express, Elavon, SIX Payment Service<BR>
                                   <b>CAPN</b>: American Express<BR>
