@@ -35,7 +35,7 @@ class CTPaymentConfigForms
                 'value' => '',
                 'label' => 'MerchantID',
                 'required' => true,
-                'description' => '',
+                'description' => 'Ihre Merchant Id (Benutzername)',
             ],
             'mac' => [
                 'name' => 'mac',
@@ -43,7 +43,7 @@ class CTPaymentConfigForms
                 'value' => '',
                 'label' => 'MAC',
                 'required' => true,
-                'description' => '',
+                'description' => 'Ihr HMAC-Key',
             ],
             'blowfishPassword' => [
                 'name' => 'blowfishPassword',
@@ -51,7 +51,7 @@ class CTPaymentConfigForms
                 'value' => '',
                 'label' => 'Blowfish Password',
                 'required' => true,
-                'description' => '',
+                'description' => 'Ihr Verschlüsselungs-Passwort',
             ],
         ];
 
@@ -69,7 +69,7 @@ class CTPaymentConfigForms
                         ['inactive', 'keine Protokollierung'],
                         ['active', 'Protokollierung'],
                     ],
-                'description' => '',
+                'description' => 'Erzeugt eine Log Datei <FatchipCTPayment_.log> mit Debug Ausgaben im Shopware Protokollverzeichnis.<BR>',
             ],
         ];
 
@@ -88,7 +88,9 @@ class CTPaymentConfigForms
                         ['MANUAL', 'Manuell'],
                         ['DELAYED', 'Verzögert'],
                     ],
-                'description' => '',
+                'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
+                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen selbst über Computop Analytics durchgeführt.<BR>
+                                  <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzügerung in Stunden',
             ],
             'creditCardAcquirer' => [
                 'name' => 'creditCardAcquirer',
@@ -99,11 +101,13 @@ class CTPaymentConfigForms
                 'editable' => false,
                 'store' =>
                     [
-                        ['GICC', 'GICC: Concardis, B+S Card Service, EVO Payments, American Express, Elavon, SIX Payment Service'],
-                        ['CAPN', 'CAPN: American Express'],
-                        ['Omnipay', 'Omnipay: EMS payment solutions, Global Payments, Paysquare'],
+                        ['GICC', ''],
+                        ['CAPN', ''],
+                        ['Omnipay', ''],
                     ],
-                'description' => '',
+                'description' => '<b>GICC</b>: Concardis, B+S Card Service, EVO Payments, American Express, Elavon, SIX Payment Service<BR>
+                                  <b>CAPN</b>: American Express<BR>
+                                  <b>Omnipay</b>: EMS payment solutions, Global Payments, Paysquare',
             ],
         ];
 
@@ -113,7 +117,7 @@ class CTPaymentConfigForms
                 'name' => 'creditCardDelay',
                 'type' => 'number',
                 'value' => '1',
-                'label' => 'Kreditkarte - Verzögerung Einzug',
+                'label' => 'Kreditkarte - Verzögerung Capture',
                 'required' => true,
                 'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
             ],
@@ -125,7 +129,7 @@ class CTPaymentConfigForms
                 'name' => 'idealDirektOderUeberSofort',
                 'type' => 'select',
                 'value' => 'DIREKT',
-                'label' => 'iDEAL - iDEAL Direkt oder über Sofort',
+                'label' => 'iDEAL - Dienst',
                 'required' => true,
                 'editable' => false,
                 'store' =>
@@ -133,7 +137,7 @@ class CTPaymentConfigForms
                         ['DIREKT', 'iDEAL Direkt'],
                         ['SOFORT', 'via Sofort'],
                     ],
-                'description' => '',
+                'description' => 'Ideal Zahlungen können direkt über Ideal oder über Sofort abgewickelt werden',
             ],
         ];
 
@@ -144,7 +148,7 @@ class CTPaymentConfigForms
           'name' => 'lastschriftDienst',
           'type' => 'select',
           'value' => 'DIREKT',
-          'label' => 'Lastschrift - Anbinden über Dienst',
+          'label' => 'Lastschrift - Dienst',
           'required' => true,
           'editable' => false,
           'store' =>
@@ -153,7 +157,7 @@ class CTPaymentConfigForms
               ['EVO', 'EVO Payments'],
               ['INTERCARD', 'Intercard'],
             ],
-          'description' => '',
+          'description' => 'Lastschrift Zahlungen können direkt, über EVO oder über INTERCARD abgewickelt werden.',
         ],
         'lastschriftCaption' => [
           'name' => 'lastschriftCaption',
@@ -168,7 +172,9 @@ class CTPaymentConfigForms
               ['MANUAL', 'Manuell'],
               ['DELAYED', 'Verzögert'],
             ],
-          'description' => '',
+          'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
+                            <b>MANUAL</b>: Geldeinzüge werden von Ihnen selbst über Computop Analytics durchgeführt.<BR>
+                            <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzügerung in Stunden',
         ],
       ];
 
@@ -178,7 +184,7 @@ class CTPaymentConfigForms
           'name' => 'lastschriftDelay',
           'type' => 'number',
           'value' => '1',
-          'label' => 'Lastschrift - Verzögerung Einzug',
+          'label' => 'Lastschrift - Verzögerung Capture',
           'required' => true,
           'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
         ],
@@ -192,7 +198,7 @@ class CTPaymentConfigForms
                 'value' => '',
                 'label' => 'Paydirekt - Shop Api Key',
                 'required' => true,
-                'description' => '',
+                'description' => 'Ihr Paydirekt Api Schlüssel',
             ],
         ];
 
@@ -211,7 +217,9 @@ class CTPaymentConfigForms
                         ['MANUAL', 'Manuell'],
                         ['DELAYED', 'Verzögert'],
                     ],
-                'description' => '',
+                'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
+                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen selbst über das Shopware Bestellungs- Backend durchgeführt.<BR>
+                                  <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzögerung in Stunden',
             ],
         ];
 
@@ -221,7 +229,7 @@ class CTPaymentConfigForms
                 'name' => 'payDirektCardDelay',
                 'type' => 'number',
                 'value' => '1',
-                'label' => 'Paydirekt - Verzögerung Einzug',
+                'label' => 'Paydirekt - Verzögerung Capture',
                 'required' => true,
                 'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
             ],
@@ -241,7 +249,7 @@ class CTPaymentConfigForms
                         ['AUTO', 'Automatisch'],
                         ['MANUAL', 'Manuell'],
                     ],
-                'description' => 'bestimmt, ob der angefragte Betrag sofort oder erst später abgebucht wird. <br>
+                'description' => 'bestimmt, ob der angefragte Betrag sofort oder erst später eingezogen wird. <br>
                                   <b>Wichtig:<br>Bitte kontaktieren Sie den Computop Support für Manual, um die unterschiedlichen Einsatzmöglichkeiten abzuklären.</b>',
             ],
         ];
@@ -254,7 +262,7 @@ class CTPaymentConfigForms
                 'value' => '',
                 'label' => 'AmazonPay - SellerId',
                 'required' => true,
-                'description' => 'Ihre SellerId',
+                'description' => 'Ihre Amazonpay SellerId',
             ],
             'amazonClientId' => [
                 'name' => 'amazonClientId',
@@ -262,7 +270,7 @@ class CTPaymentConfigForms
                 'value' => '',
                 'label' => 'AmazonPay - ClientId',
                 'required' => true,
-                'description' => 'Ihre ClientId',
+                'description' => 'Ihre Amazonpay ClientId',
             ],
 
         ];
@@ -273,7 +281,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonButtonType',
                 'type' => 'select',
                 'value' => 'PwA',
-                'label' => 'AmazonPay - Button Typ',
+                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_TYPE_PARAMETER">AmazonPay - Button Typ</a>',
                 'required' => true,
                 'editable' => false,
                 'store' =>
@@ -285,13 +293,15 @@ class CTPaymentConfigForms
                         ['Login', 'Login'],
 
                     ],
-                'description' => 'Typ des AmazonPay Buttons',
+                'description' => 'Typ des Amazon Buttons<BR>
+                                  Das Aussehen der verschiedenen Buttons.<BR>
+                                  Klicken Sie links auf den Link "AmazonPay - Button Typ"',
             ],
             'amazonButtonColor' => [
                 'name' => 'amazonButtonColor',
                 'type' => 'select',
                 'value' => 'Gold',
-                'label' => 'AmazonPay - Button Farbe',
+                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_COLOR_PARAMETER">AmazonPay - Button Farbe</a>',
                 'required' => 'true',
                 'editable' => false,
                 'store' =>
@@ -300,13 +310,15 @@ class CTPaymentConfigForms
                         ['LightGray', 'LightGray'],
                         ['DarkGray', 'DarkGray'],
                     ],
-                'description' => '',
+                'description' => 'Farbe des Amazon Buttons<BR>
+                                  Das Aussehen der verschiedenen Buttons.<BR>
+                                  Klicken Sie links auf den Link "AmazonPay - Button Farbe"',
             ],
             'amazonButtonSize' => [
                 'name' => 'amazonButtonSize',
                 'type' => 'select',
                 'value' => 'small',
-                'label' => 'AmazonPay - Button Größe',
+                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_SIZE_PARAMETER">AmazonPay - Button Größe</a>',
                 'required' => 'true',
                 'editable' => false,
                 'store' =>
@@ -314,7 +326,9 @@ class CTPaymentConfigForms
                         ['small', 'small'],
                         ['medium', 'medium'],
                     ],
-                'description' => '',
+                'description' => 'Größe des Amazon Buttons<BR>
+                                  Das Aussehen der verschiedenen Buttons.<BR>
+                                  Klicken Sie links auf den Link "AmazonPay - Button Größe"',
             ],
         ];
 
@@ -326,15 +340,15 @@ class CTPaymentConfigForms
                 'value' => false,
                 'label' => 'Bonitätsprüfung - Zurückgelieferte Adressdaten verwenden',
                 'required' => true,
-                'description' => '',
+                'description' => 'Ersetzt die Rechnungsaddresse mit u.U. korrigierten Adressen aus der Bonitätsprüfung',
             ],
             'bonitaetinvalidateafterdays' => [
                 'name' => 'bonitaetinvalidateafterdays',
                 'type' => 'number',
                 'value' => '30',
-                'label' => 'Bonitätsprüfung - Wiederholen nach wieviele Tage',
+                'label' => 'Bonitätsprüfung - Gültigkeit der Bonitätsprüfung in Tagen',
                 'required' => true,
-                'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
+                'description' => 'Stellen Sie hier ein, wie lange ein bereits durchgeführte Bontitätsprüfung gültig bleibt',
             ],
         ];
 
@@ -353,7 +367,10 @@ class CTPaymentConfigForms
                         ['QuickCheck', 'QuickCheck'],
                         ['CreditCheck', 'CreditCheck'],
                     ],
-                'description' => '',
+                'description' => 'führt eine Bonitätsprüfung aus, bevor ein Benutzer Zahlarten auswählen kann.<BR>
+                                  Erstellen Sie unter "Einstellungen->Riskmanagement" Regeln mit den Bedingungen<BR>
+                                  "Computop Risikoampel IST <Farbe>"<BR>und<BR>
+                                  "Computop Risikoampel IST NICHT <Farbe>"<BR>',
             ],
         ];
 
