@@ -281,7 +281,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonButtonType',
                 'type' => 'select',
                 'value' => 'PwA',
-                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_TYPE_PARAMETER">AmazonPay - Button Typ</a>',
+                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_TYPE_PARAMETER" target="_blank">AmazonPay - Button Typ</a>',
                 'required' => true,
                 'editable' => false,
                 'store' =>
@@ -301,7 +301,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonButtonColor',
                 'type' => 'select',
                 'value' => 'Gold',
-                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_COLOR_PARAMETER">AmazonPay - Button Farbe</a>',
+                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_COLOR_PARAMETER" target="_blank">AmazonPay - Button Farbe</a>',
                 'required' => 'true',
                 'editable' => false,
                 'store' =>
@@ -318,7 +318,7 @@ class CTPaymentConfigForms
                 'name' => 'amazonButtonSize',
                 'type' => 'select',
                 'value' => 'small',
-                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_SIZE_PARAMETER">AmazonPay - Button Größe</a>',
+                'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_SIZE_PARAMETER" target="_blank">AmazonPay - Button Größe</a>',
                 'required' => 'true',
                 'editable' => false,
                 'store' =>
