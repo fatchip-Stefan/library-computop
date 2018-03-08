@@ -94,6 +94,10 @@ abstract class CTPaymentMethod extends Blowfish
         return 'https://www.computop-paygate.com/inquire.aspx';
     }
 
+    public function getCTRefNrChangeURL() {
+        return 'https://www.computop-paygate.com/inquire.aspx';
+    }
+
     public function getRefundParams($PayID, $Amount, $Currency) {
         $params = [
             'payID' => $PayID,
@@ -125,6 +129,15 @@ abstract class CTPaymentMethod extends Blowfish
     public function getInquireParams($PayID) {
         $params = [
             'payID' => $PayID,
+        ];
+
+        return $params;
+    }
+
+    public function getRefNrChangeParams($PayID, $RefNr) {
+        $params = [
+          'payID' => $PayID,
+          'RefNr' => $RefNr,
         ];
 
         return $params;
