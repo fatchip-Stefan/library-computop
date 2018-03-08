@@ -95,7 +95,7 @@ abstract class CTPaymentMethod extends Blowfish
     }
 
     public function getCTRefNrChangeURL() {
-        return 'https://www.computop-paygate.com/inquire.aspx';
+        return 'https://www.computop-paygate.com/RefNrChange.aspx';
     }
 
     public function getRefundParams($PayID, $Amount, $Currency) {
