@@ -147,6 +147,10 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $this->transID = (string)mt_rand();
         $this->transID .= date('yzGis');
         $this->setResponse('encrypt');
+
+        mt_srand((double)microtime() * 1000000);
+        $this->reqID = (string)mt_rand();
+        $this->reqID .= date('yzGis');
     }
 
     protected function init(array $data = array())
