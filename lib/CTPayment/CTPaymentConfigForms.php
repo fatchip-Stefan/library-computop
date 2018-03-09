@@ -188,6 +188,14 @@ class CTPaymentConfigForms
           'required' => true,
           'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
         ],
+        'lastschriftEVODebitDelay' => [
+          'name' => 'lastschriftEvoDebitDelay',
+          'type' => 'number',
+          'value' => '1',
+          'label' => 'Lastschrift - EVO Debit Delay',
+          'required' => true,
+          'description' => 'Nur wenn Dienst = EVO Payments: Anzahl Banktage>0, die für das Ausführungsdatum einer Lastschrift zum aktuellen Datum addiert werden',
+        ],
       ];
 
     const formPayDirektTextElements =

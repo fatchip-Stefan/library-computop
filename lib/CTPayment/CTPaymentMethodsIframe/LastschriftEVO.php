@@ -44,6 +44,7 @@ class LastschriftEVO extends Lastschrift
     ) {
         parent::__construct($config, $order, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $capture);
         $this->setOrderDesc2($orderDesc2);
+        $this->setDebitDelay($config['lastschriftEvoDebitDelay']);
     }
 
     /**
