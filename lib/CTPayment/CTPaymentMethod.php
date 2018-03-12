@@ -110,7 +110,7 @@ abstract class CTPaymentMethod extends Blowfish
         return $params;
     }
 
-    public function getCaptureParams($PayID, $Amount, $Currency, $transID = null, $xID = null) {
+    public function getCaptureParams($PayID, $Amount, $Currency, $transID = null, $xID = null, $orderDesc = null) {
         $params = [
             'payID' => $PayID,
             'amount' => $Amount,
@@ -120,6 +120,8 @@ abstract class CTPaymentMethod extends Blowfish
             // used by amazonpay
             'transID' => $transID,
             'xID' => $xID,
+            //used by klarna
+            'orderDesc' => $orderDesc,
 
         ];
 
