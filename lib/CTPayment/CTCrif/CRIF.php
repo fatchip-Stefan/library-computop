@@ -129,7 +129,7 @@ class CRIF extends CTPaymentMethodIframe{
         $this->setAddrCountryCode($order->getBillingAddress()->getCountryCodeIso3());
 
         $this->setSdFirstName($order->getShippingAddress()->getFirstName());
-        $this->setSdFirstName($order->getShippingAddress()->getFirstName());
+        $this->setSdLastName($order->getShippingAddress()->getLastName());
         $this->setSdStreet($order->getShippingAddress()->getStreet());
         $this->setSdStreetNr($order->getShippingAddress()->getStreetNr());
         //sdZip is set in parent constructor.
@@ -141,6 +141,9 @@ class CRIF extends CTPaymentMethodIframe{
             $isCompany = strlen($order->getBillingAddress()->getCompany()) > 0;
             if ($isCompany) {
                 $this->setProductName($basicMethod . 'Business');
+                // set CompanyName in LastName field and remove Firstname field
+                $this->setLastName($order->getBillingAddress()->getCompany());
+                $this->setFirstName(null);
             } else {
                 $this->setProductName($basicMethod . 'Consumer');
             }
