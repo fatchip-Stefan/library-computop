@@ -110,6 +110,15 @@ class CTPaymentAttributes {
       ],
       'AnnualSalary' => [
           'type' => 'DOUBLE',
+      ],
+      'lastschriftbank' => [
+          'type' => 'VARCHAR(20)'
+      ],
+      'lastschriftaccowner' => [
+          'type' => 'VARCHAR(50)'
+      ],
+      'lastschriftiban' => [
+          'type' => 'VARCHAR(50)'
       ]
     ];
 }

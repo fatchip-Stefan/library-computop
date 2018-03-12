@@ -88,7 +88,7 @@ class CTPaymentMethods
                 'shortname' => 'Lastschrift',
                 'description' => 'Computop Lastschrift',
                 'action' => 'FatchipCTLastschrift',
-                'template' => '',
+                'template' => 'fatchip_computop_lastschrift.tpl',
                 'additionalDescription' => '',
                 'className' => 'Lastschrift',
                 //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],

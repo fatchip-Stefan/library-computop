@@ -54,6 +54,26 @@ abstract class Lastschrift extends CTPaymentMethodIframe
      */
     protected $DtOfSgntr;
 
+    /**
+     * Bezeichnung Bank
+     * @var string
+     */
+    protected $AccBank;
+
+    /**
+     * Kontoinhaber
+     * @var string
+     */
+    protected $AccOwner;
+
+    /**
+     * International Bank Account Number
+     *
+     * @var string
+     */
+    protected $IBAN;
+
+
     public function __construct(
         $config,
         $order,
@@ -71,6 +91,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setMandateID($this->createMandateID($order->getAmount()));
+
 
         if ($config['lastschriftCaption'] == CTEnumCapture::DELAYED && is_numeric($config['lastschriftDelay'])) {
             $this->setCapture($config['lastschriftDelay']);
@@ -161,6 +182,49 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         return $this->DtOfSgntr;
     }
 
+    /**
+     * @param string $AccBank
+     */
+    public function setAccBank($AccBank) {
+        $this->AccBank = $AccBank;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccBank() {
+        return $this->AccBank;
+    }
+
+    /**
+     * @param string $AccOwner
+     */
+    public function setAccOwner($AccOwner) {
+        $this->AccOwner = $AccOwner;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccOwner() {
+        return $this->AccOwner;
+    }
+
+    /**
+     * @param string $IBAN
+     */
+    public function setIBAN($IBAN) {
+        $this->IBAN = $IBAN;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIBAN() {
+        return $this->IBAN;
+    }
+
+
 
     /**
      * Each ELV payment needs a unique mandateID.
@@ -175,6 +239,6 @@ abstract class Lastschrift extends CTPaymentMethodIframe
 
     public function getCTPaymentURL()
     {
-        return 'https://www.computop-paygate.com/paysdd.aspx';
+        return 'https://www.computop-paygate.com/edddirect.aspx';
     }
 }
