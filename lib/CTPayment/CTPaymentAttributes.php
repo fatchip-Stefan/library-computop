@@ -48,7 +48,7 @@ class CTPaymentAttributes {
         'type' => 'VARCHAR(255)',
       ],
       'shipcaptured' => [
-        'type' => 'DOUBLE',
+        'type' => 'float',
         'additionalInfo' =>
           ['label' => 'Versandkosten bisher eingezogen:',
             'helpText' => '',
@@ -56,7 +56,7 @@ class CTPaymentAttributes {
           ]
       ],
       'shipdebit' => [
-        'type' => 'DOUBLE',
+        'type' => 'float',
         'additionalInfo' =>
           ['label' => 'Versandkosten bisher gutgeschrieben:',
             'helpText' => '',
@@ -77,10 +77,10 @@ class CTPaymentAttributes {
         'type' => 'DATE',
       ],
       'captured' => [
-        'type' => 'DOUBLE',
+        'type' => 'float',
       ],
       'debit' => [
-        'type' => 'DOUBLE',
+        'type' => 'float',
       ]
     ];
 
@@ -97,7 +97,7 @@ class CTPaymentAttributes {
         'type' => 'DATE',
       ],
       'crifstatus' => [
-        'type' => 'DOUBLE',
+        'type' => 'float',
       ],
       'crifdescription' => [
         'type' => 'VARCHAR(255)',
@@ -109,7 +109,7 @@ class CTPaymentAttributes {
         'type' => 'VARCHAR(12)',
       ],
       'AnnualSalary' => [
-          'type' => 'DOUBLE',
+          'type' => 'float',
       ],
       'lastschriftbank' => [
           'type' => 'VARCHAR(20)'
