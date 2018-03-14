@@ -98,13 +98,19 @@ abstract class CTPaymentMethod extends Blowfish
         return 'https://www.computop-paygate.com/RefNrChange.aspx';
     }
 
-    public function getRefundParams($PayID, $Amount, $Currency) {
+    public function getRefundParams($PayID, $Amount, $Currency, $transID = null, $xID = null, $orderDesc = null, $klarnaInvNo = null) {
         $params = [
             'payID' => $PayID,
             'amount' => $Amount,
             'currency' => $Currency,
             // used by easyCredit
             'Date' =>  date("Y-m-d"),
+            // used by amazonpay
+            'transID' => $transID,
+            'xID' => $xID,
+            //used by klarna
+            'orderDesc' => $orderDesc,
+            'invNo' => $klarnaInvNo,
         ];
 
         return $params;
@@ -122,7 +128,6 @@ abstract class CTPaymentMethod extends Blowfish
             'xID' => $xID,
             //used by klarna
             'orderDesc' => $orderDesc,
-
         ];
 
         return $params;

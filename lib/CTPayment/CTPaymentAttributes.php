@@ -47,6 +47,9 @@ class CTPaymentAttributes {
       'xid' => [
         'type' => 'VARCHAR(255)',
       ],
+      'klarnainvno' => [
+        'type' => 'VARCHAR(30)',
+      ],
       'shipcaptured' => [
         'type' => 'float',
         'additionalInfo' =>
