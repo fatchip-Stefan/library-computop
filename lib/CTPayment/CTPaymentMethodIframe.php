@@ -378,7 +378,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     {
         $requestParams = [];
         foreach ($this as $key => $value) {
-            if (!is_null($value)){
+            if (!is_null($value) && !array_key_exists($key, $this::paramexcludes)){
                 $requestParams[$key] = $value;
             }
         }
