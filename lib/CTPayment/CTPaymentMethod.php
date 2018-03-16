@@ -5,6 +5,10 @@ namespace Fatchip\CTPayment;
 abstract class CTPaymentMethod extends Blowfish
 {
 
+    /**
+     * These params should not be send with the computop requests and are filtered out in prepareComputopRequest
+     */
+    const paramexcludes = ['MAC' => 'MAC', 'mac' => 'mac', 'blowfishPassword' => 'blowfishPassword', 'merchantID' => 'merchantID'];
 
     /**
      * Vom Paygate vergebene ID für die Zahlung. Z.B. zur Referenzierung in Batch-Dateien.
@@ -37,9 +41,12 @@ abstract class CTPaymentMethod extends Blowfish
 
     public function prepareComputopRequest($params, $url)
     {
+
         $requestParams = [];
         foreach ($params as $key => $value) {
-            $requestParams[] = "$key=" . $value;
+            if (!array_key_exists($key, $this::paramexcludes)) {
+                $requestParams[] = "$key=" . $value;
+            }
         }
         $requestParams[] = "MAC=" . $this->ctHMAC($params);
         $request = join('&', $requestParams);
