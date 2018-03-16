@@ -140,6 +140,12 @@ class CreditCard extends CTPaymentMethodIframe
 
     protected $sdCountryCode;
 
+    /**
+     * Optional: URL für Schaltfläche „Abbrechen“
+     * @var string
+     */
+    protected $URLBack;
+
 
     public function getCTPaymentURL()
     {
@@ -425,6 +431,22 @@ class CreditCard extends CTPaymentMethodIframe
     {
         return $this->sdStreet;
     }
+
+    /**
+     * @param string $urlBack
+     */
+    public function setURLBack($urlBack) {
+        $this->URLBack = $urlBack;
+    }
+
+    /**
+     * @return string
+     */
+    public function getURLBack() {
+        return $this->URLBack;
+    }
+
+
 
     public function getSettingsDefinitions()
     {
