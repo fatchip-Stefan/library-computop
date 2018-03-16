@@ -55,7 +55,7 @@ class CRIF extends CTPaymentMethodIframe{
 
 
     /**
-     * Ländercode dreistellig gemäß ISO 3166. Nur AUT, DEU, CHE, NLD zulässig.
+     * Ländercode dreistellig gemäß ISO 3166. Nur AUT, DEU, CHE, NLD zulässig..
      *
      * @var string
      */
