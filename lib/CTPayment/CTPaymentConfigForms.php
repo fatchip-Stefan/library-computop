@@ -75,6 +75,21 @@ class CTPaymentConfigForms
 
     const formCreditCardSelectElements =
         [
+          'creditCardMode' => [
+            'name' => 'creditCardMode',
+            'type' => 'select',
+            'value' => 'IFrame',
+            'label' => 'Kreditkarte - Modus',
+            'required' => true,
+            'editable' => false,
+            'store' =>
+              [
+                ['IFRAME', 'IFrame'],
+                ['SILENT', 'Silent Mode'],
+              ],
+            'description' => '<b>IFrame</b>: Kreditkartendaten werden nach klick auf "Zahlungsplichtig bestellen" in ein IFrame eingegeben<BR>
+                                  <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Zahlungsart wählen" eingegeben.<BR>'
+          ],
             'creditCardCaption' => [
                 'name' => 'creditCardCaption',
                 'type' => 'select',
@@ -89,7 +104,7 @@ class CTPaymentConfigForms
                         ['DELAYED', 'Verzögert'],
                     ],
                 'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
-                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen selbst über Computop Analytics durchgeführt.<BR>
+                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.<BR>
                                   <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzügerung in Stunden',
             ],
             'creditCardAcquirer' => [
@@ -173,7 +188,7 @@ class CTPaymentConfigForms
               ['DELAYED', 'Verzögert'],
             ],
           'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
-                            <b>MANUAL</b>: Geldeinzüge werden von Ihnen selbst über Computop Analytics durchgeführt.<BR>
+                            <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.<BR>
                             <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzügerung in Stunden',
         ],
       ];
@@ -226,7 +241,7 @@ class CTPaymentConfigForms
                         ['DELAYED', 'Verzögert'],
                     ],
                 'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
-                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen selbst über das Shopware Bestellungs- Backend durchgeführt.<BR>
+                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.<BR>
                                   <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzögerung in Stunden',
             ],
         ];
