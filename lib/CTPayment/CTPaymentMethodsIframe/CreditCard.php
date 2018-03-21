@@ -146,10 +146,52 @@ class CreditCard extends CTPaymentMethodIframe
      */
     protected $URLBack;
 
+    /***
+     * @var string
+     * For Paynow/Silentmode:
+     * Kreditkartennummer: mindestens 12stellig ohne Leerzeichen
+     */
+    protected $CCNr;
+
+    /***
+     * @var string
+     * For Paynow/Silentmode:
+     * Kartenprüfnummer: Die letzten 3 Ziffern auf dem Unterschriftsfeld der Kredit-karte     *
+     */
+    protected $CCCVC;
+
+    /***
+     * @var string
+     * For Paynow/Silentmode:
+     * Ablaufdatum der Kreditkarte im Format YYYYMM, z.B. 201807
+     */
+    protected $CCExpiry;
+
+    /***
+     * @var string
+     * For Paynow/Silentmode:
+     * Kreditkartenmarke. MasterCard, VISA oder AMEX
+     */
+    protected  $CCBrand;
+
+    /***
+     * @var string
+     *
+     * Übergeben Sie „Order“, um eine Zahlung zu initialisieren und diese später über die Schnittstelle authorize.aspx zu autorisieren.
+     * Bitte beachten Sie, dass in Ver-bindung mit dem genutzten 3D-Secure-Verfahren eine separate Einstellung notwendig ist.
+     *
+     */
+    protected  $TxType;
+
 
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/payssl.aspx';
+    }
+
+    public function getCTPayNowURL()
+    {
+        return 'https://www.computop-paygate.com/paynow.aspx';
     }
 
 
@@ -433,6 +475,77 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @param string $CCBrand
+     */
+    public function setCCBrand($CCBrand) {
+        $this->CCBrand = $CCBrand;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCCBrand() {
+        return $this->CCBrand;
+    }
+
+    /**
+     * @param string $CCCVC
+     */
+    public function setCCCVC($CCCVC) {
+        $this->CCCVC = $CCCVC;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCCCVC() {
+        return $this->CCCVC;
+    }
+
+    /**
+     * @param string $CCExpiry
+     */
+    public function setCCExpiry($CCExpiry) {
+        $this->CCExpiry = $CCExpiry;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCCExpiry() {
+        return $this->CCExpiry;
+    }
+
+    /**
+     * @param string $CCNr
+     */
+    public function setCCNr($CCNr) {
+        $this->CCNr = $CCNr;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCCNr() {
+        return $this->CCNr;
+    }
+
+    /**
+     * @param string $TxType
+     */
+    public function setTxType($TxType) {
+        $this->TxType = $TxType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxType() {
+        return $this->TxType;
+    }
+
+
+    /**
      * @param string $urlBack
      */
     public function setURLBack($urlBack) {
@@ -444,6 +557,13 @@ class CreditCard extends CTPaymentMethodIframe
      */
     public function getURLBack() {
         return $this->URLBack;
+    }
+
+
+
+    public function getPaynowURL($ctRequest)
+    {
+        return $this->prepareComputopRequest($ctRequest, $this->getCTPayNowURL());
     }
 
 
