@@ -397,4 +397,16 @@ class CTPaymentConfigForms
             ],
         ];
 
+    const formKlarnaTextElements =
+      [
+        'klarnaaction' => [
+          'name' => 'klarnaaction',
+          'type' => 'text',
+          'value' => '',
+          'label' => 'Klarna Aktionscode',
+          'required' => true,
+          'description' => 'Der Wert ist von Laufzeiten und Monatsraten abhängig, die Sie mit Klarna vereinbart haben. Dieser Wert kann per Subshop unterschiedlich sein.',
+        ],
+      ];
+
 }
