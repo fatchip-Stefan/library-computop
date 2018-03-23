@@ -558,18 +558,4 @@ class CreditCard extends CTPaymentMethodIframe
     public function getURLBack() {
         return $this->URLBack;
     }
-
-
-
-    public function getPaynowURL($ctRequest)
-    {
-        return $this->prepareComputopRequest($ctRequest, $this->getCTPayNowURL());
-    }
-
-
-
-    public function getSettingsDefinitions()
-    {
-        return 'Capture, Templateauswahl, Acquirerauswahl';
-    }
 }
