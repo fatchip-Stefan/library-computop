@@ -138,6 +138,18 @@ class CTPaymentConfigForms
             ],
         ];
 
+    const formCreditCardTextElements =
+      [
+        'creditCardTemplate' => [
+          'name' => 'creditCardTemplate',
+          'type' => 'text',
+          'value' => '',
+          'label' => 'Kreditkarte - Template Name',
+          'required' => false,
+          'description' => 'Name der XSLT-Datei mit Ihrem individuellen Layout für das Bezahlformular. Wenn Sie das neugestaltete und abwärtskompatible Computop-Template nutzen möchten, übergeben Sie den Templatenamen „ct_compatible“. Wenn Sie das Responsive Computop-Template für mobile Endgeräte nutzen möchten, übergeben Sie den Templatenamen „ct_responsive“.',
+        ],
+      ];
+
     const formIdealSelectElements =
         [
             'idealDirektOderUeberSofort' => [

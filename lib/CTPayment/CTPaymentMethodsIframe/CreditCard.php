@@ -1,11 +1,39 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
-
+/**
+ * Class CreditCard
+ */
 class CreditCard extends CTPaymentMethodIframe
 {
     const paymentClass = 'CreditCard';
@@ -30,7 +58,8 @@ class CreditCard extends CTPaymentMethodIframe
     protected $Template;
 
     /**
-     * @var
+     * Creditcard acquirer
+     * @var string
      */
     protected $acquirer;
 
@@ -146,49 +175,58 @@ class CreditCard extends CTPaymentMethodIframe
      */
     protected $URLBack;
 
-    /***
-     * @var string
+    /**
      * For Paynow/Silentmode:
      * Kreditkartennummer: mindestens 12stellig ohne Leerzeichen
+     * @var string
+     *
      */
     protected $CCNr;
 
-    /***
-     * @var string
+    /**
      * For Paynow/Silentmode:
      * Kartenprüfnummer: Die letzten 3 Ziffern auf dem Unterschriftsfeld der Kredit-karte     *
+     * @var string
      */
     protected $CCCVC;
 
-    /***
-     * @var string
+    /**
      * For Paynow/Silentmode:
      * Ablaufdatum der Kreditkarte im Format YYYYMM, z.B. 201807
+     * @var string
      */
     protected $CCExpiry;
 
-    /***
-     * @var string
+    /**
      * For Paynow/Silentmode:
      * Kreditkartenmarke. MasterCard, VISA oder AMEX
+     * @var string
      */
     protected  $CCBrand;
 
-    /***
-     * @var string
-     *
+    /**
      * Übergeben Sie „Order“, um eine Zahlung zu initialisieren und diese später über die Schnittstelle authorize.aspx zu autorisieren.
      * Bitte beachten Sie, dass in Ver-bindung mit dem genutzten 3D-Secure-Verfahren eine separate Einstellung notwendig ist.
+     *
+     * @var string
      *
      */
     protected  $TxType;
 
 
+    /**
+     * returns paymentURL
+     * @return string
+     */
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/payssl.aspx';
     }
 
+    /**
+     * returns PayNowURL
+     * @return string
+     */
     public function getCTPayNowURL()
     {
         return 'https://www.computop-paygate.com/paynow.aspx';
@@ -196,11 +234,15 @@ class CreditCard extends CTPaymentMethodIframe
 
 
     /**
-     * @param $config - array, must contain at least 'mac', 'blowfishpass' and 'merchantID'
-     * @param CTOrder $order
-     * @param $urlSuccess
-     * @param $urlFailure
+     * Creditcard constructor
+     *
+     * @param array $config
+     * @param CTOrder|null $order
+     * @param null|string $urlSuccess
+     * @param null|string $urlFailure
      * @param $urlNotify
+     * @param $orderDesc
+     * @param $userData
      */
     public function __construct(
         $config,
@@ -248,9 +290,15 @@ class CreditCard extends CTPaymentMethodIframe
         } else {
             $this->setCapture($config['creditCardCaption']);
         }
+
+        if (isset($config['creditCardTemplate'])) {
+            $this->setTemplate($config['creditCardTemplate']);
+        }
+
     }
 
     /**
+     * @ignore <description>
      * @param string $capture
      */
     public function setCapture($capture)
@@ -259,6 +307,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCapture()
@@ -267,6 +316,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrStreet
      */
     public function setAddrStreet($addrStreet)
@@ -275,6 +325,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrStreet()
@@ -283,6 +334,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrStreetNr
      */
     public function setAddrStreetNr($addrStreetNr)
@@ -291,6 +343,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrStreetNr()
@@ -299,6 +352,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrCity
      */
     public function setAddrCity($addrCity)
@@ -307,6 +361,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrCity()
@@ -315,6 +370,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrZip
      */
     public function setAddrZip($addrZip)
@@ -323,6 +379,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrZip()
@@ -331,6 +388,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrCountryCode
      */
     public function setAddrCountryCode($addrCountryCode)
@@ -339,6 +397,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrCountryCode()
@@ -347,6 +406,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrState
      */
     public function setAddrState($addrState)
@@ -355,6 +415,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrState()
@@ -363,6 +424,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param int $amountAuth
      */
     public function setAmountAuth($amountAuth)
@@ -371,6 +433,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getAmountAuth()
@@ -379,6 +442,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -387,6 +451,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getFirstName()
@@ -395,6 +460,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -403,6 +469,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getLastName()
@@ -411,6 +478,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCountryCode
      */
     public function setSdCountryCode($sdCountryCode)
@@ -419,6 +487,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdCountryCode()
@@ -427,6 +496,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdFirstName
      */
     public function setSdFirstName($sdFirstName)
@@ -435,6 +505,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdFirstName()
@@ -443,6 +514,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdLastName
      */
     public function setSdLastName($sdLastName)
@@ -451,6 +523,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdLastName()
@@ -459,6 +532,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdStreet
      */
     public function setSdStreet($sdStreet)
@@ -467,6 +541,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdStreet()
@@ -475,6 +550,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $CCBrand
      */
     public function setCCBrand($CCBrand) {
@@ -482,6 +558,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCCBrand() {
@@ -489,6 +566,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $CCCVC
      */
     public function setCCCVC($CCCVC) {
@@ -496,6 +574,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCCCVC() {
@@ -503,6 +582,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $CCExpiry
      */
     public function setCCExpiry($CCExpiry) {
@@ -510,6 +590,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCCExpiry() {
@@ -517,6 +598,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $CCNr
      */
     public function setCCNr($CCNr) {
@@ -524,6 +606,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCCNr() {
@@ -531,6 +614,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $TxType
      */
     public function setTxType($TxType) {
@@ -538,6 +622,7 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getTxType() {
@@ -546,6 +631,7 @@ class CreditCard extends CTPaymentMethodIframe
 
 
     /**
+     * @ignore <description>
      * @param string $urlBack
      */
     public function setURLBack($urlBack) {
@@ -553,6 +639,23 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
+     * @param string $Template
+     */
+    public function setTemplate($Template) {
+        $this->Template = $Template;
+    }
+
+    /**
+     * @ignore <description>
+     * @return string
+     */
+    public function getTemplate() {
+        return $this->Template;
+    }
+
+    /**
+     * @ignore <description>
      * @return string
      */
     public function getURLBack() {
@@ -560,16 +663,14 @@ class CreditCard extends CTPaymentMethodIframe
     }
 
 
-
+    /**
+     * returns paynowURL
+     *
+     * @param $ctRequest
+     * @return string
+     */
     public function getPaynowURL($ctRequest)
     {
         return $this->prepareComputopRequest($ctRequest, $this->getCTPayNowURL());
-    }
-
-
-
-    public function getSettingsDefinitions()
-    {
-        return 'Capture, Templateauswahl, Acquirerauswahl';
     }
 }
