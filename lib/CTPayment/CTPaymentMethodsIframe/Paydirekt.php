@@ -1,12 +1,42 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTAddress\CTAddress;
 use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 use Fatchip\CTPayment\CTOrder\CTOrder;
+use Zend\EventManager\Exception\RuntimeException;
 
+/**
+ * Class Paydirekt
+ * @package Fatchip\CTPayment\CTPaymentMethodsIframe
+ */
 class Paydirekt extends CTPaymentMethodIframe
 {
 
@@ -92,11 +122,16 @@ class Paydirekt extends CTPaymentMethodIframe
 
 
     /**
-     * @param $config
-     * @param \Fatchip\CTPayment\CTOrder $order
-     * @param $urlSuccess
-     * @param $urlFailure
+     * Paydirekt constructor
+     * @param array $config
+     * @param CTOrder|null $order
+     * @param null|string $urlSuccess
+     * @param null|string $urlFailure
      * @param $urlNotify
+     * @param $orderDesc
+     * @param $userData
+     *
+     * @throws \RuntimeException
      */
     public function __construct(
         $config,
@@ -133,6 +168,7 @@ class Paydirekt extends CTPaymentMethodIframe
 
 
     /**
+     * @ignore <description>
      * @param string $capture
      */
     public function setCapture($capture)
@@ -141,6 +177,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCapture()
@@ -149,6 +186,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $shopAPIKey
      */
     public function setShopApiKey($shopAPIKey)
@@ -157,6 +195,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getShopApiKey()
@@ -165,6 +204,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param int $shoppingBasketAmount
      */
     public function setShoppingBasketAmount($shoppingBasketAmount)
@@ -173,6 +213,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getShoppingBasketAmount()
@@ -183,6 +224,7 @@ class Paydirekt extends CTPaymentMethodIframe
 
 
     /**
+     * @ignore <description>
      * @param int $sdZip
      */
     public function setZip($sdZip)
@@ -191,6 +233,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getZip()
@@ -199,6 +242,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCity
      */
     public function setCity($sdCity)
@@ -207,6 +251,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCity()
@@ -215,6 +260,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCountryCode
      */
     public function setCountryCode($sdCountryCode)
@@ -223,6 +269,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCountryCode()
@@ -231,6 +278,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdEmail
      */
     public function setEmail($sdEmail)
@@ -239,6 +287,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getEmail()
@@ -247,6 +296,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdFirstName
      */
     public function setFirstName($sdFirstName)
@@ -255,6 +305,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getFirstName()
@@ -263,6 +314,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdLastName
      */
     public function setLastName($sdLastName)
@@ -271,6 +323,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getLastName()
@@ -279,6 +332,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdStreet
      */
     public function setStreet($sdStreet)
@@ -287,6 +341,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getStreet()
@@ -295,6 +350,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdsdStreetNr
      */
     public function setStreetNr($sdsdStreetNr)
@@ -303,6 +359,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getStreetNr()
@@ -311,6 +368,7 @@ class Paydirekt extends CTPaymentMethodIframe
     }
 
     /**
+     * sets all address fields for shipping address
      * @param $shippingAddress CTAddress
      */
     public function setShippingAddress($shippingAddress)
@@ -324,24 +382,31 @@ class Paydirekt extends CTPaymentMethodIframe
         $this->setCountryCode($shippingAddress->getCountryCode());
     }
 
+    /**
+     * returns paymentURL
+     * @return string
+     */
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/paydirekt.aspx';
     }
 
+    /**
+     * returns captureURL
+     * @return string
+     */
     public function getCaptureURL()
     {
         return 'https://www.computop-paygate.com/capture.aspx';
     }
 
+    /**
+     * returns ReverseURL
+     * @return string
+     */
     public function getReverseURL()
     {
         return 'https://www.computop-paygate.com/reverse.aspx';
     }
 
-
-    public function getSettingsDefinitions()
-    {
-        return 'Capture (3 ausprägungen), ShopApiKey';
-    }
 }

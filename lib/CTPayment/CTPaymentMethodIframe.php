@@ -1,11 +1,40 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 
 namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTOrder;
 use Fatchip\CTPayment\CTResponse;
 
-
+/**
+ * Class CTPaymentMethodIframe
+ * @package Fatchip\CTPayment
+ */
 abstract class CTPaymentMethodIframe extends CTPaymentMethod
 {
   /**
@@ -18,7 +47,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     /**
      * Währung, drei Zeichen DIN / ISO 4217
      *
-     * @var
+     * @var string
      */
     protected $currency = 'EUR';
 
@@ -76,6 +105,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
 
     /**
+     * CT Order object
      * @var CTOrder
      */
     protected $order;
@@ -120,7 +150,8 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     protected $sdZip;
 
 
-   /***
+   /**
+    * CTPaymentMethodIFrame constructor
     * @param array $config
     * @param CTOrder\CTOrder $order
     * @param string $orderDesc
@@ -153,6 +184,14 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $this->reqID .= date('yzGis');
     }
 
+    /**
+     * Initiates the PaymentMethod object from an array.
+     * It checks if a setter method exists for the array key, and calls it if it exists.
+     * If no setter is found, through reflection it cuts of the name of the paymentmethod from the setter
+     * and tries again.
+     *
+     * @param array $data
+     */
     protected function init(array $data = array())
     {
         foreach ($data as $key => $value) {
@@ -171,23 +210,40 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         }
     }
 
+    /**
+     * returns PaymentURL
+     * @return mixed
+     */
     abstract public function getCTPaymentURL();
 
+    /**
+     * returns the Refund/debit url
+     * @return string
+     */
     public function getCTRefundURL()
     {
         return 'https://www.computop-paygate.com/credit.aspx';
     }
 
+    /**
+     * returns CaptureURL
+     * @return string
+     */
     public function getCTCaptureURL()
     {
         return 'https://www.computop-paygate.com/capture.aspx';
     }
 
+    /**
+     * returns InquireURL, used to inquire at CT for payment status
+     * @return string
+     */
     public function getCTInquireURL() {
         return 'https://www.computop-paygate.com/inquire.aspx';
     }
 
     /**
+     * @ignore <description>
      * @param int $Amount
      */
     public function setAmount($Amount)
@@ -196,6 +252,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getAmount()
@@ -204,6 +261,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @param mixed $Currency
      */
     public function setCurrency($Currency)
@@ -212,6 +270,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getCurrency()
@@ -220,6 +279,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @param string $UserData
      */
     public function setUserData($UserData)
@@ -228,6 +288,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getUserData()
@@ -236,6 +297,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @param string $response
      */
     public function setResponse($response)
@@ -244,6 +306,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getResponse()
@@ -253,6 +316,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
 
     /**
+     * @ignore <description>
      * @param string $TransID
      */
     public function setTransID($TransID)
@@ -261,6 +325,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getTransID()
@@ -269,6 +334,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @param string $urlSuccess
      */
     public function setUrlSuccess($urlSuccess)
@@ -277,6 +343,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getUrlSuccess()
@@ -285,6 +352,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @param string $urlNotify
      */
     public function setUrlNotify($urlNotify)
@@ -293,6 +361,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getUrlNotify()
@@ -301,6 +370,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @param string $orderDesc
      */
     public function setOrderDesc($orderDesc)
@@ -309,6 +379,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getOrderDesc()
@@ -316,9 +387,8 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         return $this->orderDesc;
     }
 
-
-
     /**
+     * @ignore <description>
      * @param string $urlFailure
      */
     public function setUrlFailure($urlFailure)
@@ -327,6 +397,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getUrlFailure()
@@ -336,6 +407,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
 
     /**
+     * @ignore <description>
      * @param \Fatchip\CTPayment\CTOrder $order
      */
     public function setOrder($order)
@@ -344,6 +416,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @param string $iPAddr
      */
     public function setIPAddr($iPAddr)
@@ -352,6 +425,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getIPAddr()
@@ -360,6 +434,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @param string $sdZip
      */
     public function setSdZip($sdZip) {
@@ -367,6 +442,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdZip() {
@@ -374,6 +450,10 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     }
 
 
+    /**
+     * returns parameters for redirectURL
+     * @return array
+     */
     public function getRedirectUrlParams()
     {
         $requestParams = [];
@@ -385,6 +465,11 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         return $requestParams;
     }
 
+    /**
+     * returns encoded url for a request with encoded Data and LEN queryparameters
+     * @param $ctRequest
+     * @return string
+     */
     public function getHTTPGetURL($ctRequest)
     {
         return $this->prepareComputopRequest($ctRequest, $this->getCTPaymentURL());

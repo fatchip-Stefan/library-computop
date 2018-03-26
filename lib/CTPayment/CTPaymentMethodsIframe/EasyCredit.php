@@ -1,5 +1,30 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTPaymentMethodIframe;
@@ -8,6 +33,10 @@ use Fatchip\CTPayment\CTResponse\CTResponse;
 
 use Exception;
 
+/**
+ * Class EasyCredit
+ * @package Fatchip\CTPayment\CTPaymentMethodsIframe
+ */
 class EasyCredit extends CTPaymentMethodIframe
 {
     const paymentClass = 'EasyCredit';
@@ -149,6 +178,7 @@ class EasyCredit extends CTPaymentMethodIframe
     protected $MobileNr;
 
     /**
+     * @ignore <description>
      * @param string $email
      */
     public function setEmail($email)
@@ -157,6 +187,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getEmail()
@@ -165,6 +196,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param mixed $eventToken
      */
     public function setEventToken($eventToken)
@@ -173,6 +205,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getEventToken()
@@ -191,6 +224,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getDateOfBirth()
@@ -199,6 +233,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -207,6 +242,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getFirstName()
@@ -215,6 +251,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -223,6 +260,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getLastName()
@@ -231,6 +269,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $salutation
      */
     public function setSalutation($salutation)
@@ -239,6 +278,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSalutation()
@@ -248,6 +288,7 @@ class EasyCredit extends CTPaymentMethodIframe
 
 
     /**
+     * @ignore <description>
      * @param string $mobileNr
      */
     public function setMobileNr($mobileNr)
@@ -256,6 +297,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getMobileNr()
@@ -264,6 +306,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $packingStation
      */
     public function setPackingStation($packingStation)
@@ -272,6 +315,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getPackingStation()
@@ -280,6 +324,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdAddressAddition
      */
     public function setBdAddressAddition($bdAddressAddition)
@@ -288,6 +333,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdAddressAddition()
@@ -296,6 +342,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdCity
      */
     public function setBdCity($bdCity)
@@ -304,6 +351,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdCity()
@@ -312,6 +360,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdCountryCode
      */
     public function setBdCountryCode($bdCountryCode)
@@ -320,6 +369,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdCountryCode()
@@ -328,6 +378,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdStreet
      */
     public function setBdStreet($bdStreet)
@@ -336,6 +387,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdStreet()
@@ -344,6 +396,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdStreetNr
      */
     public function setBdStreetNr($bdStreetNr)
@@ -352,6 +405,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdStreetNr()
@@ -360,6 +414,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param int $bdZip
      */
     public function setBdZip($bdZip)
@@ -368,6 +423,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getBdZip()
@@ -376,6 +432,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdAddressAddition
      */
     public function setSdAddressAddition($sdAddressAddition)
@@ -384,6 +441,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdAddressAddition()
@@ -392,6 +450,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCity
      */
     public function setSdCity($sdCity)
@@ -400,6 +459,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdCity()
@@ -408,6 +468,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCountryCode
      */
     public function setSdCountryCode($sdCountryCode)
@@ -416,6 +477,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdCountryCode()
@@ -424,6 +486,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdStreet
      */
     public function setSdStreet($sdStreet)
@@ -432,6 +495,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdStreet()
@@ -440,6 +504,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdStreetNr
      */
     public function setSdStreetNr($sdStreetNr)
@@ -448,6 +513,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdStreetNr()
@@ -456,7 +522,9 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
 
-    /***
+    /**
+     * EasyCredit constructor
+     *
      * @param $config
      * @param $order
      * @param $urlSuccess
@@ -496,6 +564,7 @@ class EasyCredit extends CTPaymentMethodIframe
 
 
     /**
+     * Sets all address fields for shipping address
      * @param $shippingAddress CTAddress
      */
     public function setShippingAddress($shippingAddress)
@@ -510,6 +579,7 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
+     * Sets all address fields for billing address
      * @param $billingAddress CTAddress
      */
     public function setBillingAddress($billingAddress)
@@ -524,16 +594,33 @@ class EasyCredit extends CTPaymentMethodIframe
         }
     }
 
+    /**
+     * returns paymentURL
+     * @return string
+     */
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/easyCredit.aspx';
     }
 
+    /**
+     * returns creditcheckurl
+     * @return string
+     */
     public function getCTCreditCheckURL()
     {
         return 'https://www.computop-paygate.com/easyCreditDirect.aspx';
     }
 
+    /**
+     * Gets parameters to prepare for the getDecision server to server call
+     *
+     * @param $payID
+     * @param $transID
+     * @param $amount
+     * @param $currency
+     * @return array
+     */
     public function getDecisionParams($payID, $transID, $amount, $currency)
     {
         $params = [
@@ -547,6 +634,11 @@ class EasyCredit extends CTPaymentMethodIframe
         return $params;
     }
 
+    /**
+     * gets params to prepare for confirm call
+     * @param $payID
+     * @return array
+     */
     public function getConfirmParams($payID)
     {
         $this->setPayID($payID);
@@ -554,14 +646,20 @@ class EasyCredit extends CTPaymentMethodIframe
     }
 
     /**
-     * @param $payID
-     * @return CTResponse
+     * Gets the decision from Easycredit by making a server to server call
+     * @param $ctRequest
+     * @return string
      */
     public function getDecision($ctRequest)
     {
         return $this->prepareComputopRequest($ctRequest, $this->getCTCreditCheckURL());
     }
 
+    /**
+     * Calls confirm as a server to server call for EasyCredit
+     * @param $ctRequest
+     * @return string
+     */
     public function confirm($ctRequest)
     {
         return  $this->prepareComputopRequest($ctRequest, $this->getCTCreditCheckURL());

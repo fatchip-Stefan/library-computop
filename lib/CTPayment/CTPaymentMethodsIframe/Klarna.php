@@ -1,9 +1,38 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment;
 
+/**
+ * Class Klarna
+ * @package Fatchip\CTPayment\CTPaymentMethodsIframe
+ */
 class Klarna extends CTPayment\CTPaymentMethodIframe
 {
     const paymentClass = 'Klarna';
@@ -205,19 +234,19 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
 
 
     /**
-     * Klarna constructor.
+     * Klarna constructor
      *
      * @param array $config
-     * @param CTPayment\CTOrder\CTOrder $order
-     * @param string $urlNotify
-     * @param string $orderDesc
-     * @param string $userData
-     * @param string $phone
-     * @param string $dateOfBirth
-     * @param boolean $isFirm
-     * @param integer $klarnaAction
+     * @param CTPayment\CTOrder\CTOrder|null $order
+     * @param null|string $urlSuccess
+     * @param null|string $urlFailure
+     * @param $urlNotify
+     * @param $orderDesc
+     * @param $userData
+     * @param $eventToken
+     * @param $isFirm
+     * @param $klarnaAction
      */
-
     public function __construct(
         $config,
         $order,
@@ -253,6 +282,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param int $annualSalary
      */
     public function setAnnualSalary($annualSalary)
@@ -261,6 +291,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getAnnualSalary()
@@ -269,6 +300,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $companyOrPerson
      */
     public function setCompanyOrPerson($companyOrPerson)
@@ -277,6 +309,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCompanyOrPerson()
@@ -285,6 +318,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $dateOfBirth
      */
     public function setDateOfBirth($dateOfBirth)
@@ -293,6 +327,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getDateOfBirth()
@@ -301,6 +336,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $email
      */
     public function setEmail($email)
@@ -309,6 +345,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getEmail()
@@ -317,6 +354,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $gender
      */
     public function setGender($gender)
@@ -325,6 +363,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getGender()
@@ -333,6 +372,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $invoiceFlag
      */
     public function setInvoiceFlag($invoiceFlag)
@@ -341,6 +381,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getInvoiceFlag()
@@ -349,6 +390,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param int $klarnaAction
      */
     public function setKlarnaAction($klarnaAction)
@@ -357,6 +399,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getKlarnaAction()
@@ -365,6 +408,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $mobileNr
      */
     public function setMobileNr($mobileNr)
@@ -373,6 +417,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getMobileNr()
@@ -381,6 +426,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $phone
      */
     public function setPhone($phone)
@@ -389,6 +435,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getPhone()
@@ -397,6 +444,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $reference
      */
     public function setReference($reference)
@@ -405,6 +453,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getReference()
@@ -413,6 +462,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $socialSecurityNumber
      */
     public function setSocialSecurityNumber($socialSecurityNumber)
@@ -421,6 +471,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSocialSecurityNumber()
@@ -429,6 +480,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdCountryCode
      */
     public function setBdCountryCode($bdCountryCode)
@@ -437,6 +489,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdCountryCode()
@@ -445,6 +498,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdFirstName
      */
     public function setBdFirstName($bdFirstName)
@@ -453,6 +507,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdFirstName()
@@ -461,6 +516,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdLastName
      */
     public function setBdLastName($bdLastName)
@@ -469,6 +525,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdLastName()
@@ -477,6 +534,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdStreet
      */
     public function setBdStreet($bdStreet)
@@ -485,6 +543,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdStreet()
@@ -493,6 +552,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdStreetNr
      */
     public function setBdStreetNr($bdStreetNr)
@@ -501,6 +561,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdStreetNr()
@@ -509,6 +570,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdZip
      */
     public function setBdZip($bdZip)
@@ -517,6 +579,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdZip()
@@ -525,6 +588,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCity
      */
     public function setSdCity($sdCity)
@@ -533,6 +597,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdCity()
@@ -541,6 +606,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCountryCode
      */
     public function setSdCountryCode($sdCountryCode)
@@ -549,6 +615,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdCountryCode()
@@ -557,6 +624,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdFirstName
      */
     public function setSdFirstName($sdFirstName)
@@ -565,6 +633,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdFirstName()
@@ -573,6 +642,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdLastName
      */
     public function setSdLastName($sdLastName)
@@ -581,6 +651,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdLastName()
@@ -589,6 +660,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdStreet
      */
     public function setSdStreet($sdStreet)
@@ -597,6 +669,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdStreet()
@@ -605,6 +678,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $sdStreetNr
      */
     public function setSdStreetNr($sdStreetNr)
@@ -613,6 +687,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdStreetNr()
@@ -621,6 +696,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $bdCity
      */
     public function setBdCity($bdCity)
@@ -629,6 +705,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdCity()
@@ -636,6 +713,10 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
         return $this->bdCity;
     }
 
+    /**
+     * sets all address fields for shipping address
+     * @param $shippingAddress
+     */
     public function setShippingAddress($shippingAddress)
     {
         //for companies, first name must be empty
@@ -650,7 +731,10 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
         $this->setSdCountryCode($shippingAddress->getCountryCodeIso3());
     }
 
-
+    /**
+     * sets all address fields for shipping address
+     * @param $billingAddress
+     */
     public function setBillingAddress($billingAddress)
     {
         //for companies, first name must be empty
@@ -666,6 +750,10 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     }
 
 
+    /**
+     * returns the PaymentUZRL
+     * @return string
+     */
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/Klarna.aspx';

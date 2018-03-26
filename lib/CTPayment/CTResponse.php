@@ -1,13 +1,34 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
 /**
- * Created by PhpStorm.
- * User: stefan
- * Date: 01.12.17
- * Time: 14:58
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
  */
-
 namespace Fatchip\CTPayment;
-
+/**
+ * Class CTResponse
+ * @package Fatchip\CTPayment
+ */
 class CTResponse
 {
 
@@ -102,14 +123,17 @@ class CTResponse
      */
     protected $CCBrand;
     /**
+     * Decision
      * @var string
      */
     protected $Decision;
     /**
+     * Easycredit: Enthält allgemeine Vorgansdaten zur vorherigen Initialisie-rung. Diese werden im JSON-Format und Base64-encodiert zurückgegeben
      * @var string
      */
     protected $Process;
     /**
+     * Easycredit: Enthält Finanzierungsdaten zur vorherigen Initialisierung. Diese werden im JSON-Format und Base64-encodiert zu-rückgegeben.
      * @var string
      */
     protected $Financing;
@@ -333,10 +357,12 @@ class CTResponse
      */
     protected $AccNr;
     /**
+     * IBAN
      * @var string
      */
     protected $AccIBAN;
     /**
+     * Bank
      * @var string
      */
     protected $AccBank;
@@ -361,6 +387,10 @@ class CTResponse
      * @var int
      */
     protected $Age;
+    /**
+     * Streetnumber
+     * @var string
+     */
     protected $AddrStreetNr;
     /**
      *
@@ -369,18 +399,22 @@ class CTResponse
      * @var string
      */
     protected $result;
+    /**
+     * Einzelne detailliertere Teilprüfungen
+     * @var
+     */
     protected $partialResults;
-    /***
+    /**
      * Inquire: amount authorized for order
      * @var AmountAuth
      */
     protected $AmountAuth;
-    /***
+    /**
      * Inquire: Amount Captured for order
      * @var AmountCap
      */
     protected $AmountCap;
-    /***
+    /**
      * Inquire: Amount credited for order
      *
      * @var AmountCred
@@ -389,34 +423,83 @@ class CTResponse
 
 
     // Used by AmazonPay
+    /**
+     * Teil der Benutzerprofil-Informationen. Eindeutige von Amazon pro User verge-bene ID.
+     * @var string
+     */
     protected $userid;
 
+    /**
+     * Teil der Benutzerprofil-Informationen. Benutzername
+     * @var string
+     */
     protected $buyername;
 
+    /**
+     * Teil der Benutzerprofil-Informationen. E-Mail-Adresse
+     * @var string
+     */
     protected $buyermail;
 
+    /**
+     * Von Amazon vergebene eindeutige ID für die Bestellung. Entspricht der Order-ReferenceID
+     * @var string
+     */
     protected $orderid;
 
+    /**
+     * Status der Bestellung bei Amazon. Folgende Werte sind möglich: „Draft“, „O-pen“, „Suspended“, „Canceled“, „Closed“.
+     * @var string
+     */
     protected $amazonstatus;
 
+    /**
+     * Vorname und Nachname des Adressaten
+     * @var string
+     */
     protected $addrname;
 
+    /**
+     * Telefonnummer des Adressaten
+     * @var string
+     */
     protected $phonenumber;
 
+    /**
+     * Straßenname mit Hausnummer der Rechnungsadresse
+     * @var string
+     */
     protected $bdaddrstreet2;
 
+    /**
+     * OOrtsname der Rechnungsadresse
+     * @var string
+     */
     protected $bdaddrcity;
 
+    /**
+     * Ländercode des Rechnungslandes gemäß ISO 3166
+     * @var string
+     */
     protected $bdaddrcountrycode;
 
+    /**
+     * Vorname und Nachname des Adressaten der Rechnungsadresse
+     * @var string
+     */
     protected $bdaddrname;
 
+    /**
+     * @var string
+     * Postleitzahl der Rechnungsadresse
+     */
     protected $bdaddrzip;
 
     // END AmazonPay
 
 
     /**
+     * CTResponse constructor
      * @param array $params
      */
     public function __construct(array $params)
@@ -432,6 +515,7 @@ class CTResponse
     }
 
     /**
+     * Converts the response object into an array
      * @return array
      */
     public function toArray()
@@ -449,6 +533,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $status
      */
     public function setStatus($status)
@@ -457,6 +542,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getStatus()
@@ -465,6 +551,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param int $code
      */
     public function setCode($code)
@@ -473,6 +560,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getCode()
@@ -481,6 +569,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $description
      */
     public function setDescription($description)
@@ -489,6 +578,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getDescription()
@@ -497,6 +587,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $mac
      */
     public function setMAC($mac)
@@ -505,6 +596,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getMAC()
@@ -513,6 +605,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $userData
      */
     public function setUserData($userData)
@@ -521,6 +614,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getUserData()
@@ -529,6 +623,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $mid
      */
     public function setMID($mid) {
@@ -536,6 +631,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getMID() {
@@ -543,6 +639,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $payID
      */
     public function setPayID($payID) {
@@ -550,6 +647,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getPayID() {
@@ -557,6 +655,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $xid
      */
     public function setXID($xid) {
@@ -564,6 +663,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getXID() {
@@ -571,6 +671,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $transID
      */
     public function setTransID($transID) {
@@ -578,6 +679,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getTransID() {
@@ -585,6 +687,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $ccBrand
      */
     public function setCCBrand($ccBrand)
@@ -593,6 +696,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCCBrand() {
@@ -600,6 +704,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param int $ccExpiry
      */
     public function setCCExpiry($ccExpiry) {
@@ -607,6 +712,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getCCExpiry() {
@@ -614,6 +720,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param int $pcNr
      */
     public function setPCNr($pcNr) {
@@ -621,6 +728,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getPCNr() {
@@ -628,6 +736,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $type
      */
     public function setType($type) {
@@ -635,6 +744,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getType() {
@@ -642,6 +752,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $desicion
      */
     public function setDecision($desicion) {
@@ -659,6 +770,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $financing
      */
     public function setFinancing($financing) {
@@ -666,6 +778,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getFinancing() {
@@ -673,6 +786,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $process
      */
     public function setProcess($process) {
@@ -680,6 +794,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getProcess() {
@@ -687,6 +802,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $refNr
      */
     public function setRefNr($refNr) {
@@ -694,6 +810,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getRefNr() {
@@ -701,6 +818,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * for Lastschrift
      * @param mixed $accOwner
      */
@@ -709,6 +827,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getAccOwner() {
@@ -716,6 +835,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $bic
      */
     public function setBIC($bic) {
@@ -723,6 +843,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBIC() {
@@ -730,6 +851,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $dtofsgntr
      */
     public function setDtofsgntr($dtofsgntr) {
@@ -737,6 +859,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getDtofsgntr() {
@@ -744,6 +867,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $iban
      */
     public function setIBAN($iban) {
@@ -751,6 +875,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getIBAN() {
@@ -758,6 +883,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $mandateId
      */
     public function setMandateid($mandateId) {
@@ -765,6 +891,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getMandateid() {
@@ -772,6 +899,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $mdtseqtype
      */
     public function setMdtseqtype($mdtseqtype) {
@@ -779,6 +907,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getMdtseqtype() {
@@ -786,6 +915,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $reference
      */
     public function setReference($reference) {
@@ -793,6 +923,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getReference() {
@@ -800,6 +931,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCity
      */
     public function setSdCity($sdCity) {
@@ -807,6 +939,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdCity() {
@@ -814,6 +947,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCountryCode
      */
     public function setSdCountryCode($sdCountryCode) {
@@ -821,6 +955,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdCountryCode() {
@@ -828,6 +963,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $sdEmail
      */
     public function setSdEmail($sdEmail) {
@@ -835,6 +971,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdEmail() {
@@ -842,6 +979,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $sdFirstName
      */
     public function setSdFirstName($sdFirstName) {
@@ -849,6 +987,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdFirstName() {
@@ -856,6 +995,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $sdLastName
      */
     public function setSdLastName($sdLastName) {
@@ -863,6 +1003,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdLastName() {
@@ -870,6 +1011,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $sdStreet
      */
     public function setSdStreet($sdStreet) {
@@ -877,6 +1019,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdStreet() {
@@ -884,6 +1027,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $sdStreetNr
      */
     public function setSdStreetNr($sdStreetNr) {
@@ -891,6 +1035,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdStreetNr() {
@@ -898,6 +1043,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $sdZip
      */
     public function setSdZip($sdZip) {
@@ -905,6 +1051,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdZip() {
@@ -912,6 +1059,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $tid
      */
     public function setTID($tid) {
@@ -919,6 +1067,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getTID() {
@@ -926,6 +1075,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $addrCity
      */
     public function setAddrCity($addrCity) {
@@ -933,6 +1083,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrCity() {
@@ -940,6 +1091,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $addrCountryCode
      */
     public function setAddrCountryCode($addrCountryCode) {
@@ -947,6 +1099,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrCountryCode() {
@@ -954,6 +1107,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $addrState
      */
     public function setAddrState($addrState) {
@@ -961,6 +1115,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrState() {
@@ -968,6 +1123,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $addrStreet
      */
     public function setAddrStreet($addrStreet) {
@@ -975,6 +1131,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrStreet() {
@@ -982,6 +1139,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $addrStreet2
      */
     public function setAddrStreet2($addrStreet2) {
@@ -989,6 +1147,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrStreet2() {
@@ -996,6 +1155,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $addrZIP
      */
     public function setAddrZIP($addrZIP) {
@@ -1003,6 +1163,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrZIP() {
@@ -1010,6 +1171,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $billingAgreementiD
      */
     public function setBillingAgreementiD($billingAgreementiD) {
@@ -1017,6 +1179,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBillingAgreementiD() {
@@ -1024,13 +1187,15 @@ class CTResponse
     }
 
     /**
- * @param string $eMail
- */
+     * @ignore <description>
+    * @param string $eMail
+    */
     public function setEMail($eMail) {
         $this->EMail = $eMail;
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getEMail() {
@@ -1038,6 +1203,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $firstName
      */
     public function setFirstName($firstName) {
@@ -1045,6 +1211,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getFirstName() {
@@ -1052,6 +1219,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $infoText
      */
     public function setInfoText($infoText) {
@@ -1059,6 +1227,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getInfoText() {
@@ -1066,6 +1235,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $lastName
      */
     public function setLastName($lastName) {
@@ -1073,6 +1243,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getLastName() {
@@ -1080,6 +1251,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $transactionID
      */
     public function setTransactionID($transactionID) {
@@ -1087,6 +1259,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getTransactionID() {
@@ -1094,6 +1267,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $name
      */
     public function setName($name) {
@@ -1101,6 +1275,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getName() {
@@ -1108,6 +1283,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $accBank
      */
     public function setAccBank($accBank) {
@@ -1115,6 +1291,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAccBank() {
@@ -1122,6 +1299,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $accIban
      */
     public function setAccIBAN($accIban) {
@@ -1129,6 +1307,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAccIBAN() {
@@ -1136,6 +1315,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $accNr
      */
     public function setAccNr($accNr) {
@@ -1143,6 +1323,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAccNr() {
@@ -1150,6 +1331,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $paymentGuarantee
      */
     public function setPaymentGuarantee($paymentGuarantee) {
@@ -1157,6 +1339,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getPaymentGuarantee() {
@@ -1164,6 +1347,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $paymentPurpose
      */
     public function setPaymentPurpose($paymentPurpose) {
@@ -1171,6 +1355,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getPaymentPurpose() {
@@ -1178,6 +1363,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $RNo
      */
     public function setRNo($RNo) {
@@ -1185,6 +1371,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getRNo() {
@@ -1192,6 +1379,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param int $Age
      */
     public function setAge($Age) {
@@ -1199,23 +1387,31 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getAge() {
         return $this->Age;
     }
 
-
+    /**
+     * @ignore <description>
+     * @param $Birthday
+     */
     public function setBirthday($Birthday) {
         $this->Birthday = $Birthday;
     }
 
-
+    /**
+     * @ignore <description>
+     * @return datetime
+     */
     public function getBirthday() {
         return $this->Birthday;
     }
 
     /**
+     * @ignore <description>
      * @param string $InvNo
      */
     public function setInvNo($InvNo) {
@@ -1223,6 +1419,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getInvNo() {
@@ -1230,6 +1427,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param int $SecCriteria
      */
     public function setSecCriteria($SecCriteria) {
@@ -1237,6 +1435,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getSecCriteria() {
@@ -1244,6 +1443,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $AddrStreetNr
      */
     public function setAddrStreetNr($AddrStreetNr) {
@@ -1251,6 +1451,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getAddrStreetNr() {
@@ -1258,6 +1459,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param string $result
      */
     public function setResult($result) {
@@ -1265,6 +1467,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getResult() {
@@ -1272,6 +1475,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $partialResults
      */
     public function setPartialResults($partialResults) {
@@ -1279,6 +1483,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getPartialResults() {
@@ -1286,6 +1491,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $AmountAuth
      */
     public function setAmountAuth($AmountAuth) {
@@ -1293,6 +1499,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getAmountAuth() {
@@ -1300,6 +1507,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $AmountCap
      */
     public function setAmountCap($AmountCap) {
@@ -1307,6 +1515,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getAmountCap() {
@@ -1314,6 +1523,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $AmountCred
      */
     public function setAmountCred($AmountCred) {
@@ -1321,6 +1531,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getAmountCred() {
@@ -1328,6 +1539,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getUserid()
@@ -1336,6 +1548,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $userid
      */
     public function setUserid($userid)
@@ -1344,6 +1557,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBuyername()
@@ -1352,6 +1566,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $buyername
      */
     public function setBuyername($buyername)
@@ -1360,6 +1575,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBuyermail()
@@ -1368,6 +1584,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $buyermail
      */
     public function setBuyermail($buyermail)
@@ -1376,6 +1593,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getOrderid()
@@ -1384,6 +1602,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $orderid
      */
     public function setOrderid($orderid)
@@ -1392,6 +1611,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getAmazonstatus()
@@ -1400,6 +1620,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $amazonstatus
      */
     public function setAmazonstatus($amazonstatus)
@@ -1408,6 +1629,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getAddrname()
@@ -1416,6 +1638,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $addrname
      */
     public function setAddrname($addrname)
@@ -1424,6 +1647,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getPhonenumber()
@@ -1432,6 +1656,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $phonenumber
      */
     public function setPhonenumber($phonenumber)
@@ -1440,6 +1665,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBdaddrstreet2()
@@ -1448,6 +1674,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $bdaddrstreet2
      */
     public function setBdaddrstreet2($bdaddrstreet2)
@@ -1456,6 +1683,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBdaddrcity()
@@ -1464,6 +1692,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $bdaddrcity
      */
     public function setBdaddrcity($bdaddrcity)
@@ -1472,6 +1701,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBdaddrcountrycode()
@@ -1480,6 +1710,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $bdaddrcountrycode
      */
     public function setBdaddrcountrycode($bdaddrcountrycode)
@@ -1488,6 +1719,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBdaddrname()
@@ -1496,6 +1728,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $bdaddrname
      */
     public function setBdaddrname($bdaddrname)
@@ -1504,6 +1737,7 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBdaddrzip()
@@ -1512,14 +1746,11 @@ class CTResponse
     }
 
     /**
+     * @ignore <description>
      * @param mixed $bdaddrzip
      */
     public function setBdaddrzip($bdaddrzip)
     {
         $this->bdaddrzip = $bdaddrzip;
     }
-
-
-
-
 }

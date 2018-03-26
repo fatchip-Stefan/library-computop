@@ -1,10 +1,39 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 
+/**
+ * Class Lastschrift
+ * @package Fatchip\CTPayment\CTPaymentMethodsIframe
+ */
 abstract class Lastschrift extends CTPaymentMethodIframe
 {
 
@@ -74,6 +103,18 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     protected $IBAN;
 
 
+    /**
+     * Lastschrift constructor
+     *
+     * @param array $config
+     * @param \Fatchip\CTPayment\CTOrder\CTOrder|null $order
+     * @param null|string $urlSuccess
+     * @param null|string $urlFailure
+     * @param $urlNotify
+     * @param $orderDesc
+     * @param $userData
+     * @param $capture
+     */
     public function __construct(
         $config,
         $order,
@@ -101,6 +142,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $capture
      */
     public function setCapture($capture)
@@ -109,6 +151,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCapture()
@@ -117,6 +160,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param mixed $dienst
      */
     public function setDienst($dienst)
@@ -125,6 +169,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getDienst()
@@ -133,6 +178,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $template
      */
     public function setTemplate($template)
@@ -141,6 +187,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getTemplate()
@@ -149,6 +196,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $mandateID
      */
     public function setMandateID($mandateID)
@@ -159,6 +207,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getMandateID()
@@ -167,6 +216,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $dtOfSgntr
      */
     public function setDtOfSgntr($dtOfSgntr)
@@ -175,6 +225,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getDtOfSgntr()
@@ -183,6 +234,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $AccBank
      */
     public function setAccBank($AccBank) {
@@ -190,6 +242,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAccBank() {
@@ -197,6 +250,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $AccOwner
      */
     public function setAccOwner($AccOwner) {
@@ -204,6 +258,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAccOwner() {
@@ -211,6 +266,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $IBAN
      */
     public function setIBAN($IBAN) {
@@ -218,6 +274,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getIBAN() {
@@ -237,6 +294,10 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         return $orderID . date('yzGis');
     }
 
+    /**
+     * returns the paymentURL
+     * @return string
+     */
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/edddirect.aspx';

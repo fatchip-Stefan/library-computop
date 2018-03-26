@@ -1,10 +1,39 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTAddress\CTAddress;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
+/**
+ * Class PaypalStandard
+ * @package Fatchip\CTPayment\CTPaymentMethodsIframe
+ */
 class PaypalStandard extends CTPaymentMethodIframe
 {
 
@@ -94,11 +123,15 @@ class PaypalStandard extends CTPaymentMethodIframe
     protected $NoShipping = 1;
 
     /**
-     * @param $config
-     * @param CTOrder $order
-     * @param $urlSuccess
-     * @param $urlFailure
+     * PaypalStandard constructor
+     *
+     * @param array $config
+     * @param \Fatchip\CTPayment\CTOrder\CTOrder|null $order
+     * @param null|string $urlSuccess
+     * @param null|string $urlFailure
      * @param $urlNotify
+     * @param $orderDesc
+     * @param $userData
      */
     public function __construct(
         $config,
@@ -119,6 +152,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $capture
      */
     public function setCapture($capture)
@@ -127,6 +161,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCapture()
@@ -135,6 +170,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $txType
      */
     public function setTxType($txType)
@@ -143,6 +179,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getTxType()
@@ -151,6 +188,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrCity
      */
     public function setAddrCity($addrCity)
@@ -159,6 +197,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrCity()
@@ -167,6 +206,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrCountryCode
      */
     public function setAddrCountryCode($addrCountryCode)
@@ -175,6 +215,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrCountryCode()
@@ -183,6 +224,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrState
      */
     public function setAddrState($addrState)
@@ -191,6 +233,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrState()
@@ -199,6 +242,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrStreet
      */
     public function setAddrStreet($addrStreet)
@@ -207,6 +251,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrStreet()
@@ -215,6 +260,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrStreet2
      */
     public function setAddrStreet2($addrStreet2)
@@ -223,6 +269,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrStreet2()
@@ -231,6 +278,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $addrZip
      */
     public function setAddrZip($addrZip)
@@ -239,6 +287,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrZip()
@@ -247,6 +296,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -255,6 +305,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getFirstName()
@@ -263,6 +314,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -271,6 +323,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getPayPalMethod()
@@ -279,7 +332,8 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
-     * @param string $lastName
+     * @ignore <description>
+     * @param $payPalMethod
      */
     public function setPayPalMethod($payPalMethod)
     {
@@ -287,6 +341,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getLastName()
@@ -295,6 +350,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param int $NoShipping
      */
     public function setNoShipping($NoShipping) {
@@ -302,6 +358,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getNoShipping() {
@@ -309,6 +366,7 @@ class PaypalStandard extends CTPaymentMethodIframe
     }
 
     /**
+     * sets all addressfields for shipping address
      * @param $shippingAddress CTAddress
      */
     public function setShippingAddress($shippingAddress)
@@ -326,23 +384,31 @@ class PaypalStandard extends CTPaymentMethodIframe
         $this->setAddrCountryCode($shippingAddress->getCountryCode());
     }
 
+    /**
+     * returns paymentURL
+     * @return string
+     */
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/paypal.aspx';
     }
 
+    /**
+     * returns captureURL
+     * @return string
+     */
     public function getCaptureURL()
     {
         return 'https://www.computop-paygate.com/capture.aspx';
     }
 
+    /**
+     * returns ReverseURL
+     * @return string
+     */
     public function getReverseURL()
     {
         return 'https://www.computop-paygate.com/reverse.aspx';
     }
 
-    public function getSettingsDefinitions()
-    {
-        return 'Capture (2 ausprägungen)';
-    }
 }

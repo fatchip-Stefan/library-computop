@@ -1,16 +1,39 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
 /**
- * Created by PhpStorm.
- * User: stefan
- * Date: 15.01.18
- * Time: 11:00
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTCrif
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
  */
 
 namespace Fatchip\CTPayment\CTCrif;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
-
+/**
+ * Class CRIF
+ * @package Fatchip\CTPayment\CTCrif
+ */
 class CRIF extends CTPaymentMethodIframe{
 
     /**
@@ -29,26 +52,31 @@ class CRIF extends CTPaymentMethodIframe{
     protected $customerID;
 
     /**
+     * Last name
      * @var string
      */
     protected $lastName;
 
     /**
+     * first name
      * @var string
      */
     protected  $firstName;
 
     /**
+     * Street
      * @var string
      */
     protected $addrStreet;
 
     /**
+     * Street Nr
      * @var string
      */
     protected $addrStreetNr;
 
     /**
+     * City
      * @var string
      */
     protected $addrCity;
@@ -62,37 +90,44 @@ class CRIF extends CTPaymentMethodIframe{
     protected $AddrCountryCode;
 
     /**
+     * ZIP-code
      * @var string
      */
     protected $addrZip;
 
     /**
-     * @var
+     * Last name shipping address
+     * @var string
      */
     protected $sdLastName;
 
     /**
-     * @var
+     * First name shipping address
+     * @var string
      */
     protected $sdFirstName;
 
     /**
+     * Gender Shipping address
      * @var
      */
     protected $sdGender;
 
     /**
+     * Street shipping address
      * @var
      */
     protected $sdStreet;
 
     /**
-     * @var
+     * street nr shipping address
+     * @var string
      */
     protected $sdStreetNr;
 
     /**
-     * @var
+     * City shipping address
+     * @var string
      */
     protected $sdCity;
 
@@ -106,6 +141,7 @@ class CRIF extends CTPaymentMethodIframe{
 
 
     /**
+     * CRIF constructor
      * @param $config
      * @param CTOrder $order
      * @param $orderDesc
@@ -156,6 +192,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $addrCity
      */
     public function setAddrCity($addrCity)
@@ -164,6 +201,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrCity()
@@ -172,6 +210,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $addrStreet
      */
     public function setAddrStreet($addrStreet)
@@ -180,6 +219,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrStreet()
@@ -188,6 +228,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $addrStreetNr
      */
     public function setAddrStreetNr($addrStreetNr)
@@ -196,6 +237,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrStreetNr()
@@ -204,6 +246,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $addrZip
      */
     public function setAddrZip($addrZip)
@@ -212,6 +255,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrZip()
@@ -220,6 +264,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $customerID
      */
     public function setCustomerID($customerID)
@@ -228,6 +273,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCustomerID()
@@ -236,6 +282,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -244,6 +291,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getFirstName()
@@ -252,6 +300,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -260,6 +309,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getLastName()
@@ -268,6 +318,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $productName
      */
     public function setProductName($productName)
@@ -276,6 +327,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getProductName()
@@ -284,6 +336,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param mixed $sdCity
      */
     public function setSdCity($sdCity)
@@ -292,6 +345,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getSdCity()
@@ -300,6 +354,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $sdCountryCode
      */
     public function setSdCountryCode($sdCountryCode)
@@ -308,6 +363,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getSdCountryCode()
@@ -316,6 +372,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param mixed $sdFirstName
      */
     public function setSdFirstName($sdFirstName)
@@ -324,6 +381,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getSdFirstName()
@@ -332,6 +390,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param mixed $sdGender
      */
     public function setSdGender($sdGender)
@@ -340,6 +399,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getSdGender()
@@ -348,6 +408,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param mixed $sdLastName
      */
     public function setSdLastName($sdLastName)
@@ -356,6 +417,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getSdLastName()
@@ -364,6 +426,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param mixed $sdStreet
      */
     public function setSdStreet($sdStreet)
@@ -372,6 +435,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getSdStreet()
@@ -380,6 +444,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param mixed $sdStreetNr
      */
     public function setSdStreetNr($sdStreetNr)
@@ -388,6 +453,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getSdStreetNr()
@@ -396,6 +462,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @param string $AddrCountryCode
      */
     public function setAddrCountryCode($AddrCountryCode)
@@ -404,6 +471,7 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getAddrCountryCode()
@@ -412,11 +480,19 @@ class CRIF extends CTPaymentMethodIframe{
     }
 
 
+    /**
+     * returns paymentURL
+     * @return mixed|string
+     */
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/deltavista.aspx';
     }
 
+    /**
+     * returns null for RefundURL because no refunds are possible with CRIF
+     * @return null|string
+     */
     public function getCTRefundURL()
     {
         return null;

@@ -1,9 +1,38 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
+/**
+ * Class LastschriftInterCard
+ * @package Fatchip\CTPayment\CTPaymentMethodsIframe
+ */
 class LastschriftInterCard extends Lastschrift
 {
     const paymentClass = 'LastschriftInterCard';
@@ -68,15 +97,18 @@ class LastschriftInterCard extends Lastschrift
     protected $bdCity;
 
     /**
-     * @param $amount
-     * @param $currency
-     * @param $urlSuccess
-     * @param $urlFailure
+     * LastschriftIntercard constructor
+     *
+     * @param array $config
+     * @param \Fatchip\CTPayment\CTOrder\CTOrder|null $order
+     * @param null|string $urlSuccess
+     * @param null|string $urlFailure
      * @param $urlNotify
      * @param $orderDesc
      * @param $userData
+     * @param $capture
+     * @param $orderDesc2
      */
-
     public function __construct(
         $config,
         $order,
@@ -93,6 +125,10 @@ class LastschriftInterCard extends Lastschrift
         $this->setBillingAddress($order->getBillingAddress());
     }
 
+    /**
+     * Sets all adressfields for billing address
+     * @param $billingAddress
+     */
     public function setBillingAddress($billingAddress)
     {
         //for companies, first name must be empty
@@ -104,6 +140,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getCustomerID()
@@ -112,6 +149,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @param string $customerID
      */
     public function setCustomerID($customerID)
@@ -120,6 +158,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdFirstName()
@@ -128,6 +167,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @param string $bdFirstName
      */
     public function setBdFirstName($bdFirstName)
@@ -136,6 +176,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdLastName()
@@ -144,6 +185,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @param string $bdLastName
      */
     public function setBdLastName($bdLastName)
@@ -152,6 +194,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdStreet()
@@ -160,6 +203,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @param string $bdStreet
      */
     public function setBdStreet($bdStreet)
@@ -168,6 +212,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdStreetNr()
@@ -176,6 +221,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @param string $bdStreetNr
      */
     public function setBdStreetNr($bdStreetNr)
@@ -184,6 +230,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @return int
      */
     public function getBdZip()
@@ -192,6 +239,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @param int $bdZip
      */
     public function setBdZip($bdZip)
@@ -200,6 +248,7 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getBdCity()
@@ -208,12 +257,11 @@ class LastschriftInterCard extends Lastschrift
     }
 
     /**
+     * @ignore <description>
      * @param string $bdCity
      */
     public function setBdCity($bdCity)
     {
         $this->bdCity = $bdCity;
     }
-
-
 }

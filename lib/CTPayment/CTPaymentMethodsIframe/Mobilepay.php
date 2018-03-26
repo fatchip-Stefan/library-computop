@@ -1,9 +1,38 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
+/**
+ * Class Mobilepay
+ * @package Fatchip\CTPayment\CTPaymentMethodsIframe
+ */
 class Mobilepay extends CTPaymentMethodIframe
 {
     const paymentClass = 'Mobilepay';
@@ -33,6 +62,7 @@ class Mobilepay extends CTPaymentMethodIframe
     protected $MobileNr;
 
     /**
+     * Mobilepay constructor
      * @param $config
      * @param $order
      * @param $urlSuccess
@@ -57,6 +87,7 @@ class Mobilepay extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $mobileNr
      */
     public function setMobileNr($mobileNr)
@@ -65,6 +96,7 @@ class Mobilepay extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getMobileNr()
@@ -73,6 +105,7 @@ class Mobilepay extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param boolean $sendMobileNumber
      */
     public function setSendMobileNumber($sendMobileNumber)
@@ -81,6 +114,7 @@ class Mobilepay extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return boolean
      */
     public function getSendMobileNumber()
@@ -89,6 +123,7 @@ class Mobilepay extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @param string $language
      */
     public function setLanguage($language)
@@ -97,6 +132,7 @@ class Mobilepay extends CTPaymentMethodIframe
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getLanguage()
@@ -104,6 +140,11 @@ class Mobilepay extends CTPaymentMethodIframe
         return $this->language;
     }
 
+    /**
+     * Returns TransactionArray. Overridden because vor Mobilepay we have to add Language
+     * and depending on pluginsettings the MobileNumber
+     * @return array
+     */
     protected function getTransactionArray()
     {
         //first get obligitory from parent
@@ -118,14 +159,13 @@ class Mobilepay extends CTPaymentMethodIframe
         return $queryarray;
     }
 
-
+    /**
+     * returns the PaymentURL
+     * @return string
+     */
     public function getCTPaymentURL()
     {
         return 'https://www.computop-paygate.com/MobilePayDB.aspx';
     }
 
-    public function getSettingsDefinitions()
-    {
-        return 'SendMobileNr';
-    }
 }

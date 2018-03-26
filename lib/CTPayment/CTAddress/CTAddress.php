@@ -1,28 +1,125 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
 /**
- * Created by PhpStorm.
- * User: stefan
- * Date: 08.12.17
- * Time: 17:00
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPaymentMethodsIframe
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
  */
 
 namespace Fatchip\CTPayment\CTAddress;
-
+/**
+ * Class CTAddress
+ * @package Fatchip\CTPayment\CTAddress
+ */
 class CTAddress
 {
+    /**
+     * Salutation
+     * @var string
+     */
     private $salutation;
+
+    /**
+     * company
+     * @var
+     */
     private $company;
+
+    /**
+     * First name
+     * @var string
+     */
     private $firstName;
+
+    /**
+     * Last name
+     * @var string
+     */
     private $lastName;
+
+    /**
+     * street
+     * @var string
+     */
     private $street;
+
+    /**
+     * street2
+     * @var string
+     */
     private $street2;
+
+    /**
+     * streetNr
+     * @var string
+     */
     private $streetNr;
+    /**
+     * ZIP code
+     * @var string
+     */
     private $zip;
+
+    /**
+     * City
+     * @var string
+     */
     private $city;
+
+    /**
+     * State
+     * @var string
+     */
     private $state;
+
+    /**
+     * countryCode
+     * @var string
+     */
     private $countryCode;
+
+    /**
+     * Country code ISO 3
+     * @var string
+     */
     private $countryCodeIso3;
 
+    /**
+     * CTAddress constructor
+     *
+     * @param $salutation
+     * @param $company
+     * @param $firstName
+     * @param $lastName
+     * @param $street
+     * @param $streetNr
+     * @param $zip
+     * @param $city
+     * @param $countryCode
+     * @param $countryCodeIso3
+     * @param string $street2
+     * @param string $state
+     */
     public function __construct(
         $salutation,
         $company,
@@ -55,6 +152,7 @@ class CTAddress
 
 
     /**
+     * @ignore <description>
      * @param mixed $zip
      */
     public function setZip($zip)
@@ -63,6 +161,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getZip()
@@ -71,6 +170,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $city
      */
     public function setCity($city)
@@ -79,6 +179,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getCity()
@@ -87,6 +188,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $countryCocde
      */
     public function setCountryCode($countryCocde)
@@ -95,6 +197,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getCountryCode()
@@ -103,6 +206,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $countryCodeIso3
      */
     public function setCountryCodeIso3($countryCodeIso3) {
@@ -110,6 +214,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getCountryCodeIso3() {
@@ -117,6 +222,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $firstName
      */
     public function setFirstName($firstName)
@@ -125,6 +231,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $salutation
      */
     public function setSalutation($salutation) {
@@ -132,6 +239,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getSalutation() {
@@ -139,6 +247,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getFirstName()
@@ -147,6 +256,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $lastName
      */
     public function setLastName($lastName)
@@ -155,6 +265,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getLastName()
@@ -163,6 +274,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $state
      */
     public function setState($state)
@@ -171,6 +283,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getState()
@@ -179,6 +292,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $street
      */
     public function setStreet($street)
@@ -187,6 +301,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getStreet()
@@ -195,6 +310,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $street2
      */
     public function setStreet2($street2)
@@ -203,6 +319,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getStreet2()
@@ -211,6 +328,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $streetNr
      */
     public function setStreetNr($streetNr)
@@ -219,6 +337,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getStreetNr()
@@ -227,6 +346,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @param mixed $company
      */
     public function setCompany($company) {
@@ -234,6 +354,7 @@ class CTAddress
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getCompany() {
