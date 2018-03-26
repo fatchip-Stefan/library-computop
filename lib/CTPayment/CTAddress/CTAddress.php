@@ -93,7 +93,7 @@ class CTAddress
     private $state;
 
     /**
-     * countryCode
+     * country Code
      * @var string
      */
     private $countryCode;
