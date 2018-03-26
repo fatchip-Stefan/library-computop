@@ -125,6 +125,7 @@ class Klarna extends CTPayment\CTPaymentMethodIframe
     protected $sdLastName;
 
     /**
+     * Strasse in der Lieferadresse
      * @var string
      */
     protected $sdStreet; //

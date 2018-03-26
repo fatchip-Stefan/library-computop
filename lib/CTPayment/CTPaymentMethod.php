@@ -1,5 +1,29 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 namespace Fatchip\CTPayment;
 
 abstract class CTPaymentMethod extends Blowfish
@@ -18,6 +42,7 @@ abstract class CTPaymentMethod extends Blowfish
     protected $payID;
 
     /**
+     * @ignore <description>
      * @param string $PayID
      */
     public function setPayID($PayID)
@@ -26,6 +51,7 @@ abstract class CTPaymentMethod extends Blowfish
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getPayID()
@@ -33,12 +59,24 @@ abstract class CTPaymentMethod extends Blowfish
         return $this->payID;
     }
 
+    /**
+     * ctHMAC
+     * @param $params
+     * @return string
+     */
     protected function ctHMAC($params)
     {
         $data = $params['payID'].'*'.$params['transID'].'*'.$this->merchantID.'*'.$params['amount'].'*'.$params['currency'];
         return hash_hmac("sha256", $data, $this->mac);
     }
 
+    /**
+     * Prepares CT Request. Takes all params, creates a querystring, determines Length and encrypts the data
+     *
+     * @param $params
+     * @param $url
+     * @return string
+     */
     public function prepareComputopRequest($params, $url)
     {
 
@@ -59,6 +97,11 @@ abstract class CTPaymentMethod extends Blowfish
             '&Data=' . $data;
     }
 
+    /**
+     * @param $ctRequest
+     * @param $url
+     * @return CTResponse
+     */
     public function callComputop($ctRequest, $url)
     {
         $curl = curl_init();
@@ -87,24 +130,50 @@ abstract class CTPaymentMethod extends Blowfish
         return $response;
     }
 
+    /**
+     * returns refund/debit URL
+     * @return string
+     */
     public function getCTRefundURL()
     {
         return 'https://www.computop-paygate.com/credit.aspx';
     }
 
+    /**
+     * returns Capture URL. Can be overridden to return null if Capture is impossible for a paymentmethod
+     * @return string
+     */
     public function getCTCaptureURL()
     {
         return 'https://www.computop-paygate.com/capture.aspx';
     }
 
+    /**
+     * returns InquireURL
+     * @return string
+     */
     public function getCTInquireURL() {
         return 'https://www.computop-paygate.com/inquire.aspx';
     }
 
+    /**
+     * returns RefNrChangeURL, used to set the refNr for a transaction in CT-Analytics
+     * @return string
+     */
     public function getCTRefNrChangeURL() {
         return 'https://www.computop-paygate.com/RefNrChange.aspx';
     }
 
+    /**
+     * @param $PayID
+     * @param $Amount
+     * @param $Currency
+     * @param null $transID
+     * @param null $xID
+     * @param null $orderDesc
+     * @param null $klarnaInvNo
+     * @return array
+     */
     public function getRefundParams($PayID, $Amount, $Currency, $transID = null, $xID = null, $orderDesc = null, $klarnaInvNo = null) {
         $params = [
             'payID' => $PayID,
@@ -123,6 +192,15 @@ abstract class CTPaymentMethod extends Blowfish
         return $params;
     }
 
+    /**
+     * @param $PayID
+     * @param $Amount
+     * @param $Currency
+     * @param null $transID
+     * @param null $xID
+     * @param null $orderDesc
+     * @return array
+     */
     public function getCaptureParams($PayID, $Amount, $Currency, $transID = null, $xID = null, $orderDesc = null) {
         $params = [
             'payID' => $PayID,
@@ -140,6 +218,10 @@ abstract class CTPaymentMethod extends Blowfish
         return $params;
     }
 
+    /**
+     * @param $PayID
+     * @return array
+     */
     public function getInquireParams($PayID) {
         $params = [
             'payID' => $PayID,
@@ -148,6 +230,11 @@ abstract class CTPaymentMethod extends Blowfish
         return $params;
     }
 
+    /**
+     * @param $PayID
+     * @param $RefNr
+     * @return array
+     */
     public function getRefNrChangeParams($PayID, $RefNr) {
         $params = [
           'payID' => $PayID,

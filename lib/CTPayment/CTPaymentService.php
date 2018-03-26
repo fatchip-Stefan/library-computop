@@ -29,8 +29,16 @@ use Fatchip\CTPayment\CTCrif\CRIF;
 use Fatchip\CTPayment\CTPaymentMethodsIframe\Sofort;
 use Fatchip\CTPayment\CTResponse;
 
+/**
+ * Class CTPaymentService
+ * @package Fatchip\CTPayment
+ */
 class CTPaymentService extends Blowfish
 {
+    /**
+     * CTPaymentService constructor
+     * @param $config
+     */
     public function __construct(
         $config
     )
@@ -40,6 +48,20 @@ class CTPaymentService extends Blowfish
         $this->mac = $config['mac'];
     }
 
+    /**
+     * @param $className
+     * @param $config
+     * @param null $ctOrder
+     * @param null $urlSuccess
+     * @param null $urlFailure
+     * @param null $urlNotify
+     * @param null $orderDesc
+     * @param null $userData
+     * @param null $eventToken
+     * @param null $isFirm
+     * @param null $klarnainvoice
+     * @return Sofort
+     */
     public function getIframePaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc = null, $userData = null, $eventToken = null, $isFirm = null, $klarnainvoice = null)
     {
         //Ideal can be called directly, or via Sofort with SofortAction=ideal.
@@ -65,22 +87,47 @@ class CTPaymentService extends Blowfish
         return new $class($config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $eventToken, $isFirm, $klarnainvoice);
     }
 
+    /**
+     * @param $className
+     * @param $config
+     * @param null $ctOrder
+     * @param null $urlSuccess
+     * @param null $urlFailure
+     * @param null $urlNotify
+     * @param $orderDesc
+     * @param null $userData
+     * @return mixed
+     */
     public function getPaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc, $userData = null)
     {
         $class = 'Fatchip\\CTPayment\\CTPaymentMethods\\' . $className;
         return new $class($config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
     }
 
+    /**
+     * @param $config
+     * @param $order
+     * @param $orderDesc
+     * @param $userData
+     * @return CRIF
+     */
     public function getCRIFClass($config, $order, $orderDesc, $userData)
     {
         return new CRIF($config, $order, $orderDesc, $userData);
     }
 
+    /**
+     * @return CTPaymentConfigForms
+     */
     public function getPaymentConfigForms()
     {
         return new CTPaymentConfigForms();
     }
 
+    /**
+     * @param array $rawRequest
+     * @return CTResponse
+     */
     public function getDecryptedResponse(array $rawRequest)
     {
         $decryptedRequest = $this->ctDecrypt($rawRequest['Data'], $rawRequest['Len'], $this->blowfishPassword);
@@ -89,6 +136,10 @@ class CTPaymentService extends Blowfish
         return $response;
     }
 
+    /**
+     * returns an array of paymentMethods
+     * @return array
+     */
     public function getPaymentMethods()
     {
         return CTPaymentMethods::paymentMethods;

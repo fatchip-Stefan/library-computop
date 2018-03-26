@@ -1,7 +1,36 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Computop Shopware Plugin is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Computop Shopware Plugin. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5.6, 7.0 , 7.1
+ *
+ * @category   Payment
+ * @package    FatchipCTPayment
+ * @subpackage CTPayment
+ * @author     FATCHIP GmbH <support@fatchip.de>
+ * @copyright  2018 Computop
+ * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
+ * @link       https://www.computop.com
+ */
 
 namespace Fatchip\CTPayment;
-
+/**
+ * Class Blowfish
+ * @package Fatchip\CTPayment
+ */
 class Blowfish
 {
     /**
@@ -21,9 +50,17 @@ class Blowfish
      */
     protected $mac = '';
 
+    /**
+     * $p
+     * @var array
+     */
     private $p = array(608135816, -2052912941, 320440878, 57701188, -1542899678, 698298832, 137296536, -330404727,
         1160258022, 953160567, -1101764913, 887688300, -1062458953, -914599715, 1065670069, -1253635817, -1843997223,
         -1988494565);
+    /**
+     * $s
+     * @var array
+     */
     private $s = array(-785314906, -1730169428, 805139163, -803545161, -1193168915, 1780907670, -1166241723,
         -248741991, 614570311, -1282315017, 134345442, -2054226922, 1667834072, 1901547113, -1537671517, -191677058,
         227898511, 1921955416, 1904987480, -2112533778, 2069144605, -1034266187, -1674521287, 720527379, -976113629,
@@ -140,11 +177,20 @@ class Blowfish
         424198748, 50039436, 29584100, -689184263, -1865090967, -1503863136, 1057563949, -1039604065, -1219600078,
         -831004069, 1469046755, 985887462);
 
+    /**
+     * $pk
+     * @var
+     */
     private $pk;
 
+    /**
+     * $sk
+     * @var
+     */
     private $sk;
 
     /**
+     * expand
      * @param $text
      * @return string
      */
@@ -157,6 +203,7 @@ class Blowfish
     }
 
     /**
+     * setKey
      * @param $key
      */
     protected function bfSetKey($key)
@@ -194,6 +241,7 @@ class Blowfish
     }
 
     /**
+     * asc2int
      * @param $asc
      * @return int
      */
@@ -204,6 +252,7 @@ class Blowfish
     }
 
     /**
+     * bdEncrypt
      * @param $l
      * @param $r
      * @return array
@@ -220,6 +269,7 @@ class Blowfish
     }
 
     /**
+     * bfEnc
      * @param $ll
      * @param $r
      * @param $n
@@ -239,6 +289,7 @@ class Blowfish
     }
 
     /**
+     * secAdd
      * @param $a
      * @param $b
      * @return int
@@ -261,6 +312,7 @@ class Blowfish
     }
 
     /**
+     * encrypt
      * @param $text
      * @return string
      */
@@ -278,6 +330,7 @@ class Blowfish
     }
 
     /**
+     * int2asc
      * @param $int
      * @return string
      */
@@ -288,6 +341,7 @@ class Blowfish
     }
 
     /**
+     * decrypt
      * @param $text
      * @return string
      */
@@ -305,6 +359,7 @@ class Blowfish
     }
 
     /**
+     * bfDecrypt
      * @param $l
      * @param $r
      * @return array
@@ -320,6 +375,12 @@ class Blowfish
         return array($r, $l);
     }
 
+    /**
+     * ctSplit
+     * @param $arText
+     * @param $sSplit
+     * @return array
+     */
     protected function ctSplit($arText, $sSplit)
     {
         $arr = [];
@@ -380,6 +441,7 @@ class Blowfish
     }
 
     /**
+     * @ignore <description>
      * @param string $merchantId
      */
     public function setMerchantID($merchantId)
@@ -388,6 +450,7 @@ class Blowfish
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getMerchantID()
@@ -396,6 +459,7 @@ class Blowfish
     }
 
     /**
+     * @ignore <description>
      * @param mixed $blowfishPassword
      */
     public function setBlowfishPassword($blowfishPassword)
@@ -404,6 +468,7 @@ class Blowfish
     }
 
     /**
+     * @ignore <description>
      * @return mixed
      */
     public function getBlowfishPassword()
@@ -412,6 +477,7 @@ class Blowfish
     }
 
     /**
+     * @ignore <description>
      * @param string $mac
      */
     public function setMac($mac)
@@ -420,6 +486,7 @@ class Blowfish
     }
 
     /**
+     * @ignore <description>
      * @return string
      */
     public function getMac()
