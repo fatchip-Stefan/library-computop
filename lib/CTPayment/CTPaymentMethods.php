@@ -38,7 +38,7 @@ class CTPaymentMethods
                 'shortname' => 'Kreditkarte',
                 'description' => 'Computop Kreditkarte',
                 'action' => 'FatchipCTCreditCard',
-                'template' => '',
+                //'template' => 'fatchip_computop_creditcard.tpl',
                 'additionalDescription' => '',
                 'className' => 'CreditCard',
                 //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
