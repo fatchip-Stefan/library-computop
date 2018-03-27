@@ -62,6 +62,9 @@ class AmazonPay extends CTPaymentMethod
     }
 
     /**
+     * sets and returns request parameters for amazon
+     * "LOGON" api call
+     *
      * @param $transID
      * @param $accessToken
      * @param $tokenType
@@ -89,6 +92,9 @@ class AmazonPay extends CTPaymentMethod
     }
 
     /**
+     * sets and returns request parameters for amazon
+     * "Set Order Details" api call
+     *
      * @param $payID
      * @param $transID
      * @param $amount
@@ -114,6 +120,9 @@ class AmazonPay extends CTPaymentMethod
     }
 
     /**
+     * sets and returns request parameters for amazon
+     * "Get Order Details" api call
+     *
      * @param $payID
      * @param $orderDesc
      * @param $referenceID
@@ -133,6 +142,9 @@ class AmazonPay extends CTPaymentMethod
     }
 
     /**
+     * sets and returns request parameters for amazon
+     * "Set Order Details and Confirm Order" api call
+     *
      * @param $payID
      * @param $transID
      * @param $amount

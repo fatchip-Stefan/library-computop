@@ -664,7 +664,7 @@ class CreditCard extends CTPaymentMethodIframe
 
 
     /**
-     * returns paynowURL
+     * returns encrypted url for preauthorizations for paynow silent mode
      *
      * @param $ctRequest
      * @return string
@@ -672,6 +672,16 @@ class CreditCard extends CTPaymentMethodIframe
     public function getPaynowURL($ctRequest)
     {
         return $this->prepareComputopRequest($ctRequest, $this->getCTPayNowURL());
+    }
+
+    /**
+     * returns url for preauthorizations for paynow silent mode
+     *
+     * @return string
+     */
+    public function getAuthorizeURL()
+    {
+        return 'https://www.computop-paygate.com/authorize.aspx';
     }
 
     /**
@@ -688,4 +698,29 @@ class CreditCard extends CTPaymentMethodIframe
         }
         return $url;
     }
+
+    /**
+     * sets and returns request parameters for server-to-server authorization calls
+     *
+     * @param $payID
+     * @param $transID
+     * @param $amount
+     * @param $currency
+     * @param $capture
+     * @return array
+     */
+    public function getAuthorizeParams($payID, $transID, $amount, $currency, $capture)
+    {
+        $params = [
+            'merchantID' => $this->merchantID,
+            'PayID' => $payID,
+            'TransID' => $transID,
+            'Amount' => $amount,
+            'Currency' => $currency,
+            'Capture' => $capture,
+        ];
+
+        return $params;
+    }
+
 }

@@ -26,6 +26,9 @@
  */
 namespace Fatchip\CTPayment;
 
+/**
+ * Class CTPaymentMethod
+ */
 abstract class CTPaymentMethod extends Blowfish
 {
 
@@ -98,8 +101,39 @@ abstract class CTPaymentMethod extends Blowfish
     }
 
     /**
+     * Prepares CT Request. Takes all params, creates a querystring, determines Length and encrypts the data
+     * this is used by creditcard payments in "paynow silent mode"
+     * @param $params
+     * @param $url
+     * @return array
+     */
+    public function prepareSilentRequest($params, $url)
+    {
+
+        $requestParams = [];
+        foreach ($params as $key => $value) {
+            if (!array_key_exists($key, $this::paramexcludes)) {
+                $requestParams[] = "$key=" . $value;
+            }
+        }
+        $requestParams[] = "MAC=" . $this->ctHMAC($params);
+        $request = join('&', $requestParams);
+        $len = mb_strlen($request);  // Length of the plain text string
+        $data = $this->ctEncrypt($request, $len, $this->blowfishPassword);
+
+        return ['MerchantID' => $this->merchantID , 'Len' => $len, 'Data' => $data, 'url' => $url ];
+    }
+
+    /**
+     * makes a server-to-server-call to the computop api
+     *
+     * uses curl for api communication
+     *
+     * @see prepareComputopRequest()
+     *
      * @param $ctRequest
      * @param $url
+     * @throws \Exception
      * @return CTResponse
      */
     public function callComputop($ctRequest, $url)
@@ -165,6 +199,8 @@ abstract class CTPaymentMethod extends Blowfish
     }
 
     /**
+     * sets and returns request parameters for refunds
+     *
      * @param $PayID
      * @param $Amount
      * @param $Currency
@@ -193,6 +229,8 @@ abstract class CTPaymentMethod extends Blowfish
     }
 
     /**
+     * sets and returns request parameters for captures
+     *
      * @param $PayID
      * @param $Amount
      * @param $Currency
@@ -219,6 +257,8 @@ abstract class CTPaymentMethod extends Blowfish
     }
 
     /**
+     * sets and returns request parameters for inquire api calls
+     *
      * @param $PayID
      * @return array
      */
@@ -231,6 +271,8 @@ abstract class CTPaymentMethod extends Blowfish
     }
 
     /**
+     * sets and returns request parameters for reference number change api call
+     *
      * @param $PayID
      * @param $RefNr
      * @return array
