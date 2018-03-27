@@ -38,8 +38,6 @@ class CTPaymentMethods
                 'shortname' => 'Kreditkarte',
                 'description' => 'Computop Kreditkarte',
                 'action' => 'FatchipCTCreditCard',
-                //'template' => 'fatchip_computop_creditcard.tpl',
-                //nicht auskommentieren, dann schlägt build fehl
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'CreditCard',

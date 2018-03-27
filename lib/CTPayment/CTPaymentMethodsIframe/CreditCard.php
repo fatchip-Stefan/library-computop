@@ -673,4 +673,19 @@ class CreditCard extends CTPaymentMethodIframe
     {
         return $this->prepareComputopRequest($ctRequest, $this->getCTPayNowURL());
     }
+
+    /**
+     * returns encoded url for a request with encoded Data and LEN queryparameters
+     * Overridden, because for CreditCard we need to put the template param in the undecrypted part of the querystring
+     * @param $ctRequest
+     * @return string
+     */
+    public function getHTTPGetURL($ctRequest)
+    {
+        $url =  parent::prepareComputopRequest($ctRequest, $this->getCTPaymentURL());
+        if (strlen($this->getTemplate()) > 0) {
+            $url .= '&Template=' . $this->getTemplate();
+        }
+        return $url;
+    }
 }
