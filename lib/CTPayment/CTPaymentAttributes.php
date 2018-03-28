@@ -66,6 +66,15 @@ class CTPaymentAttributes {
             'displayInBackend' => true,
           ]
       ],
+      'kreditkartepseudonummer' => [
+        'type' => 'VARCHAR(20)',
+      ],
+      'kreditkartebrand' => [
+        'type' => 'VARCHAR(25)',
+      ],
+      'kreditkarteexpiry' => [
+        'type' => 'VARCHAR(6)',
+      ],
     ];
 
     /**
