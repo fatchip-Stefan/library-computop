@@ -59,6 +59,13 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     protected $userData;
 
     /**
+     * ID die an CT übergeben wird damit CT reports über herkünft Transactionen machen kann
+     * Wird mit gleichen wert gefüllt als userData
+     * @var string
+     */
+    protected $EtiId;
+
+    /**
      * Vollständige URL, die das Paygate aufruft, wenn die Zahlung erfolgreich war.
      * Die URL darf nur über Port 443 aufgerufen werden.
      * Diese URL darf keine Para-meter enthalten:
@@ -163,6 +170,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $this->setCurrency($order->getCurrency());
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
+        $this->setEtiId($userData);
         $this->setIPAddr($_SERVER['REMOTE_ADDR']);
         // ToDO why set here sdzip????
         if ($order->getShippingAddress()) {
@@ -295,6 +303,23 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     {
         return $this->userData;
     }
+
+    /**
+     * @ignore <description>
+     * @param string $EtiId
+     */
+    public function setEtiId($EtiId) {
+        $this->EtiId = $EtiId;
+    }
+
+    /**
+     * @ignore <description>
+     * @return string
+     */
+    public function getEtiId() {
+        return $this->EtiId;
+    }
+
 
     /**
      * @ignore <description>
