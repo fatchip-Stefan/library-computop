@@ -107,7 +107,7 @@ abstract class CTPaymentMethod extends Blowfish
      * @param $url
      * @return array
      */
-    public function prepareSilentRequest($params, $url)
+    public function prepareSilentRequest($params)
     {
 
         $requestParams = [];
@@ -121,7 +121,7 @@ abstract class CTPaymentMethod extends Blowfish
         $len = mb_strlen($request);  // Length of the plain text string
         $data = $this->ctEncrypt($request, $len, $this->blowfishPassword);
 
-        return ['MerchantID' => $this->merchantID , 'Len' => $len, 'Data' => $data, 'url' => $url ];
+        return ['MerchantID' => $this->merchantID , 'Len' => $len, 'Data' => $data];
     }
 
     /**

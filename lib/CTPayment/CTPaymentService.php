@@ -60,7 +60,7 @@ class CTPaymentService extends Blowfish
      * @param null $eventToken
      * @param null $isFirm
      * @param null $klarnainvoice
-     * @return Sofort
+     * @return CTPaymentMethodIframe
      */
     public function getIframePaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc = null, $userData = null, $eventToken = null, $isFirm = null, $klarnainvoice = null)
     {
