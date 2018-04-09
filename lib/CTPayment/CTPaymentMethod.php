@@ -104,7 +104,6 @@ abstract class CTPaymentMethod extends Blowfish
      * Prepares CT Request. Takes all params, creates a querystring, determines Length and encrypts the data
      * this is used by creditcard payments in "paynow silent mode"
      * @param $params
-     * @param $url
      * @return array
      */
     public function prepareSilentRequest($params)
