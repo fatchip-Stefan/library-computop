@@ -96,9 +96,9 @@ class CTPaymentService extends Blowfish
      * @param null $urlNotify
      * @param $orderDesc
      * @param null $userData
-     * @return mixed
+     * @return CTPaymentMethod
      */
-    public function getPaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc, $userData = null)
+    public function getPaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc = null, $userData = null)
     {
         $class = 'Fatchip\\CTPayment\\CTPaymentMethods\\' . $className;
         return new $class($config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
