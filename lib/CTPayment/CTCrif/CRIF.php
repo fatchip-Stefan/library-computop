@@ -36,6 +36,8 @@ use Fatchip\CTPayment\CTPaymentMethodIframe;
  */
 class CRIF extends CTPaymentMethodIframe{
 
+    const paymentClass = 'RiskCheck';
+
     /**
      * Prüfmethode: <QuickCheckConsumer>, <CreditCheckConsumer>, <QuickCheckBusiness>,
      * <Cre-ditCheckBusiness>, <IdentCheckConsumer>
