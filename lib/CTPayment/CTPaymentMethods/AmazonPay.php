@@ -37,7 +37,6 @@ class AmazonPay extends CTPaymentMethod
 {
     const paymentClass = 'AmazonPay';
 
-
     /**
      * AmazonPay constructor
      * @param $config

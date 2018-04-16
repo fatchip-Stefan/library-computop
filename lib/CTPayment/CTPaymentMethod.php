@@ -45,6 +45,13 @@ abstract class CTPaymentMethod extends Blowfish
     protected $payID;
 
     /**
+     * ID die an CT übergeben wird damit CT reports über herkünft Transactionen machen kann
+     * Wird mit gleichen wert gefüllt als userData
+     * @var string
+     */
+    protected $EtiId;
+
+    /**
      * @ignore <description>
      * @param string $PayID
      */
@@ -60,6 +67,22 @@ abstract class CTPaymentMethod extends Blowfish
     public function getPayID()
     {
         return $this->payID;
+    }
+
+    /**
+     * @ignore <description>
+     * @param string $EtiId
+     */
+    public function setEtiId($EtiId) {
+        $this->EtiId = $EtiId;
+    }
+
+    /**
+     * @ignore <description>
+     * @return string
+     */
+    public function getEtiId() {
+        return $this->EtiId;
     }
 
     /**

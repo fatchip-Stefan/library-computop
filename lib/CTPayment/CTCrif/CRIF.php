@@ -188,8 +188,8 @@ class CRIF extends CTPaymentMethodIframe{
         }
 
         $this->setOrderDesc($orderDesc);
-
         $this->setCustomerID($order->getCustomerID());
+        $this->setEtiId($userData);
 
     }
 
