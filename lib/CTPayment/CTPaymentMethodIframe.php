@@ -149,6 +149,16 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     protected $sdZip;
 
+    /**
+     *  use for recurring payments
+     *
+     * 'I' for initial recurring payment
+     * 'R' for alle recurring Payments
+     *
+     * @var string
+     */
+    protected $RTF = null;
+
 
    /**
     * CTPaymentMethodIFrame constructor
@@ -474,5 +484,23 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     public function getHTTPGetURL($ctRequest)
     {
         return $this->prepareComputopRequest($ctRequest, $this->getCTPaymentURL());
+    }
+
+    /**
+     * @ignore <description>
+     * @param string $RTF
+     */
+    public function setRTF($RTF)
+    {
+        $this->RTF = $RTF;
+    }
+
+    /**
+     * @ignore <description>
+     * @return string
+     */
+    public function getRTF()
+    {
+        return $this->RTF;
     }
 }

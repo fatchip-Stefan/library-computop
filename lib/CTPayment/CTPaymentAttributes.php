@@ -75,6 +75,9 @@ class CTPaymentAttributes {
       'kreditkarteexpiry' => [
         'type' => 'VARCHAR(6)',
       ],
+      'paypalbillingagreementid' => [
+            'type' => 'VARCHAR(19)',
+      ],
     ];
 
     /**

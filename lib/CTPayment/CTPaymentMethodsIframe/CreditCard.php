@@ -232,6 +232,15 @@ class CreditCard extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/paynow.aspx';
     }
 
+    /**
+     * returns paymentURL
+     * @return string
+     */
+    public function getCTRecurringURL()
+    {
+        return 'https://www.computop-paygate.com/authorize.aspx';
+    }
+
 
     /**
      * Creditcard constructor

@@ -411,4 +411,14 @@ class PaypalStandard extends CTPaymentMethodIframe
         return 'https://www.computop-paygate.com/reverse.aspx';
     }
 
+    /**
+     * used for recurring payments
+     * returns RecurringURL
+     * @return string
+     */
+    public function getRecurringURL()
+    {
+        return 'https://www.computop-paygate.com/paypalAbo.aspx';
+    }
+
 }
