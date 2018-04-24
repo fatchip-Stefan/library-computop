@@ -76,6 +76,16 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     protected $MandateID;
 
     /**
+     * für SEPA: Gibt an, ob es sich um eine Erst-, Folge-, Einmal- oder letztmalige
+     * Lastschrift handelt.
+     * Zulässige Werte: FRST, RCUR, OOFF, FNAL
+     * Standard: OOFF (Einmal-Lastschrift)
+     *
+     * @var string
+     */
+    protected $MdtSeqType;
+
+    /**
      * für SEPA: Datum der Mandatserteilung im Format DD.MM.YYYY
      * Pflicht bei Übergabe von MandateID
      *
@@ -213,6 +223,24 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     public function getMandateID()
     {
         return $this->MandateID;
+    }
+
+    /**
+     * @ignore <description>
+     * @param string $mandateID
+     */
+    public function setMdtSeqType($MdtSeqType)
+    {
+        $this->MdtSeqType = $MdtSeqType;
+    }
+
+    /**
+     * @ignore <description>
+     * @return string
+     */
+    public function getMdtSeqType()
+    {
+        return $this->MdtSeqType;
     }
 
     /**

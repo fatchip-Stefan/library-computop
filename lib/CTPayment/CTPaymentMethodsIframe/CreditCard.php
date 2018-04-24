@@ -238,7 +238,7 @@ class CreditCard extends CTPaymentMethodIframe
      */
     public function getCTRecurringURL()
     {
-        return 'https://www.computop-paygate.com/authorize.aspx';
+        return 'https://www.computop-paygate.com/direct.aspx';
     }
 
 
