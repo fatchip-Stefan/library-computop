@@ -64,10 +64,9 @@ class PaypalExpress extends CTPaymentMethod
      * @param $transID
      * @param $amount
      * @param $currency
-     * @param $orderDesc
      * @return array
      */
-    public function getPaypalExpressCompleteParams($payID, $transID, $amount, $currency, $orderDesc)
+    public function getPaypalExpressCompleteParams($payID, $transID, $amount, $currency)
     {
         $params = [
             'PayID' => $payID,
