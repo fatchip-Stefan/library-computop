@@ -29,55 +29,63 @@ namespace Fatchip\CTPayment;
  * Class CTPaymentAttributes
  * @package Fatchip\CTPayment
  */
-class CTPaymentAttributes {
+class CTPaymentAttributes
+{
     /**
      * @var array
      */
     const orderAttributes = [
 
-      'status' => [
-        'type' => 'VARCHAR(255)',
-      ],
-      'transid' => [
-        'type' => 'VARCHAR(255)',
-      ],
-      'payid' => [
-        'type' => 'VARCHAR(255)',
-      ],
-      'xid' => [
-        'type' => 'VARCHAR(255)',
-      ],
-      'klarnainvno' => [
-        'type' => 'VARCHAR(30)',
-      ],
-      'shipcaptured' => [
-        'type' => 'float',
-        'additionalInfo' =>
-          ['label' => 'Versandkosten bisher eingezogen:',
-            'helpText' => '',
-            'displayInBackend' => true,
-          ]
-      ],
-      'shipdebit' => [
-        'type' => 'float',
-        'additionalInfo' =>
-          ['label' => 'Versandkosten bisher gutgeschrieben:',
-            'helpText' => '',
-            'displayInBackend' => true,
-          ]
-      ],
-      'kreditkartepseudonummer' => [
-        'type' => 'VARCHAR(20)',
-      ],
-      'kreditkartebrand' => [
-        'type' => 'VARCHAR(25)',
-      ],
-      'kreditkarteexpiry' => [
-        'type' => 'VARCHAR(6)',
-      ],
-      'paypalbillingagreementid' => [
+        'status' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'transid' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'payid' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'xid' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'klarnainvno' => [
+            'type' => 'VARCHAR(30)',
+        ],
+        'shipcaptured' => [
+            'type' => 'float',
+            'additionalInfo' =>
+                ['label' => 'Versandkosten bisher eingezogen:',
+                    'helpText' => '',
+                    'displayInBackend' => true,
+                ]
+        ],
+        'shipdebit' => [
+            'type' => 'float',
+            'additionalInfo' =>
+                ['label' => 'Versandkosten bisher gutgeschrieben:',
+                    'helpText' => '',
+                    'displayInBackend' => true,
+                ]
+        ],
+        'kreditkartepseudonummer' => [
+            'type' => 'VARCHAR(20)',
+        ],
+        'kreditkartebrand' => [
+            'type' => 'VARCHAR(25)',
+        ],
+        'kreditkarteexpiry' => [
+            'type' => 'VARCHAR(6)',
+        ],
+        'paypalbillingagreementid' => [
             'type' => 'VARCHAR(19)',
-      ],
+        ],
+        'lastschriftmandateid' => [
+            'type' => 'VARCHAR(40)',
+        ],
+        'lastschriftdos' => [
+            'type' => 'VARCHAR(10)',
+        ],
+
     ];
 
     /**
@@ -85,18 +93,18 @@ class CTPaymentAttributes {
      */
     const orderDetailsAttributes = [
 
-      'paymentstatus' => [
-        'type' => 'VARCHAR(255)',
-      ],
-      'shipmentdate' => [
-        'type' => 'DATE',
-      ],
-      'captured' => [
-        'type' => 'float',
-      ],
-      'debit' => [
-        'type' => 'float',
-      ]
+        'paymentstatus' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'shipmentdate' => [
+            'type' => 'DATE',
+        ],
+        'captured' => [
+            'type' => 'float',
+        ],
+        'debit' => [
+            'type' => 'float',
+        ]
     ];
 
     /**
@@ -105,35 +113,35 @@ class CTPaymentAttributes {
      */
     const userAddressAttributes = [
 
-      'crifresult' => [
-        'type' => 'VARCHAR(255)',
-      ],
-      'crifdate' => [
-        'type' => 'DATE',
-      ],
-      'crifstatus' => [
-        'type' => 'float',
-      ],
-      'crifdescription' => [
-        'type' => 'VARCHAR(255)',
-      ]
+        'crifresult' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'crifdate' => [
+            'type' => 'DATE',
+        ],
+        'crifstatus' => [
+            'type' => 'float',
+        ],
+        'crifdescription' => [
+            'type' => 'VARCHAR(255)',
+        ]
     ];
 
     const userAttributes = [
-      'SocialSecurityNumber' => [
-        'type' => 'VARCHAR(12)',
-      ],
-      'AnnualSalary' => [
-          'type' => 'float',
-      ],
-      'lastschriftbank' => [
-          'type' => 'VARCHAR(20)'
-      ],
-      'lastschriftaccowner' => [
-          'type' => 'VARCHAR(50)'
-      ],
-      'lastschriftiban' => [
-          'type' => 'VARCHAR(50)'
-      ]
+        'SocialSecurityNumber' => [
+            'type' => 'VARCHAR(12)',
+        ],
+        'AnnualSalary' => [
+            'type' => 'float',
+        ],
+        'lastschriftbank' => [
+            'type' => 'VARCHAR(20)'
+        ],
+        'lastschriftaccowner' => [
+            'type' => 'VARCHAR(50)'
+        ],
+        'lastschriftiban' => [
+            'type' => 'VARCHAR(50)'
+        ]
     ];
 }
