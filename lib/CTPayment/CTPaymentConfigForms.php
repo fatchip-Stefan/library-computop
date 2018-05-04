@@ -317,6 +317,20 @@ class CTPaymentConfigForms
 
     const formAmazonSelectElements =
         [
+            'amazonLiveMode' => [
+                'name' => 'amazonLiveMode',
+                'type' => 'select',
+                'value' => 'Test',
+                'label' => 'Amazon Modus',
+                'required' => true,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['Live', 'Live'],
+                        ['Test', 'Test'],
+                    ],
+                'description' => 'AmazonPay im Live oder Testmodus benutzen',
+            ],
             'amazonButtonType' => [
                 'name' => 'amazonButtonType',
                 'type' => 'select',
@@ -331,7 +345,6 @@ class CTPaymentConfigForms
                         ['A', 'A'],
                         ['LwA', 'LwA'],
                         ['Login', 'Login'],
-
                     ],
                 'description' => 'Typ des Amazon Buttons<BR>
                                   Das Aussehen der verschiedenen Buttons.<BR>
