@@ -104,7 +104,8 @@ class CTIdealIssuerService extends Blowfish
      */
     public function getIssuerList()
     {
-        /* does not work, for testing just update with static array)
+        $issuerList = [];
+        // does not work, for testing just update with static array)
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -116,8 +117,14 @@ class CTIdealIssuerService extends Blowfish
             $resp = curl_exec($curl);
 
             if (FALSE === $resp) {
-                throw new Exception(curl_error($curl), curl_errno($curl));
+                throw new \Exception(curl_error($curl), curl_errno($curl));
             }
+
+            $respArray = [];
+            parse_str($resp, $respArray);
+            $decryptedRequest = $this->ctDecrypt($respArray['Data'], $respArray['Len'], $this->blowfishPassword);
+            $decryptedArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
+            $issuerList = $decryptedArray['IdealIssuerList'];
 
         } catch (\Exception $e) {
             trigger_error(sprintf(
@@ -126,65 +133,60 @@ class CTIdealIssuerService extends Blowfish
                 E_USER_ERROR);
         }
 
-        $arr = array();
-        parse_str($resp, $arr);
-        $plaintext = $this->ctDecrypt($arr['Data'], $arr['Len'], $this->blowfishPassword);
-
-        return $arr;
-        */
-
-        $issuerList = [
-            [
-                'issuerId' => 'ABNANL2A',
-                'name' => 'ABN AMRO',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'ASNBNL21',
-                'name' => 'ASN Bank',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'BUNQNL2A',
-                'name' => 'Bunq',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'INGBNL2A',
-                'name' => 'INGING',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'KNABNL2H',
-                'name' => 'Knab',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'RABONL2U',
-                'name' => 'Rabo',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'RBRBNL21',
-                'name' => 'RegioBank',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'SNSBNL2A',
-                'name' => 'SNS Bank',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'TRIONL2U',
-                'name' => 'Triodos Bank',
-                'land' => 'DE',
-            ],
-            [
-                'issuerId' => 'FVLBNL22',
-                'name' => 'van Lanschot',
-                'land' => 'DE',
-            ],
-        ];
+        if (empty($issuerList)){
+            $issuerList = [
+                [
+                    'issuerId' => 'ABNANL2A',
+                    'name' => 'ABN AMRO',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'ASNBNL21',
+                    'name' => 'ASN Bank',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'BUNQNL2A',
+                    'name' => 'Bunq',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'INGBNL2A',
+                    'name' => 'INGING',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'KNABNL2H',
+                    'name' => 'Knab',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'RABONL2U',
+                    'name' => 'Rabo',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'RBRBNL21',
+                    'name' => 'RegioBank',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'SNSBNL2A',
+                    'name' => 'SNS Bank',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'TRIONL2U',
+                    'name' => 'Triodos Bank',
+                    'land' => 'DE',
+                ],
+                [
+                    'issuerId' => 'FVLBNL22',
+                    'name' => 'van Lanschot',
+                    'land' => 'DE',
+                ],
+            ];
+        }
         return $issuerList;
     }
 }
