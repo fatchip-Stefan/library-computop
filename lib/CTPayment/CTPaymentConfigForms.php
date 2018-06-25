@@ -58,6 +58,22 @@ class CTPaymentConfigForms
                 'required' => true,
                 'description' => 'Ihr Verschlüsselungs-Passwort',
             ],
+            'prefixOrdernumber' => [
+                'name' => 'prefixOrdernumber',
+                'type' => 'text',
+                'value' => '',
+                'label' => 'Bestellnummer Präfix',
+                'required' => true,
+                'description' => 'Präfix für Bestellnummern. Verwenden Sie %transactionid% als Platzhalter für die Computop Transaktionsid',
+            ],
+            'suffixOrdernumber' => [
+                'name' => 'suffixOrdernumber',
+                'type' => 'text',
+                'value' => '',
+                'label' => 'Bestellnummer Suffix',
+                'required' => true,
+                'description' => 'Suffix für Bestellnummern. Verwenden Sie %transactionid% als Platzhalter für die Computop Transaktionsid',
+            ],
         ];
 
     const formGeneralSelectElements =
