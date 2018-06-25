@@ -64,7 +64,7 @@ class CTPaymentConfigForms
                 'value' => '',
                 'label' => 'Bestellnummer Präfix',
                 'required' => true,
-                'description' => 'Präfix für Bestellnummern. Verwenden Sie %transactionid% als Platzhalter für die Computop Transaktionsid',
+                'description' => 'Präfix für Bestellnummern. Sie können folgende Platzhalter verwenden: %transid% , %payid%, %xid%',
             ],
             'suffixOrdernumber' => [
                 'name' => 'suffixOrdernumber',
@@ -72,7 +72,7 @@ class CTPaymentConfigForms
                 'value' => '',
                 'label' => 'Bestellnummer Suffix',
                 'required' => true,
-                'description' => 'Suffix für Bestellnummern. Verwenden Sie %transactionid% als Platzhalter für die Computop Transaktionsid',
+                'description' => 'Suffix für Bestellnummern. Sie können folgende Platzhalter verwenden: %transid% , %payid%, %xid%',
             ],
         ];
 
