@@ -224,6 +224,20 @@ class CTPaymentConfigForms
                             <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.<BR>
                             <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzügerung in Stunden',
         ],
+          'lastschriftAnon' => [
+              'name' => 'lastschriftAnon',
+              'type' => 'select',
+              'value' => 'Aus',
+              'label' => 'Iban anonymisieren',
+              'required' => true,
+              'editable' => false,
+              'store' =>
+                  [
+                      ['Aus', 'Aus'],
+                      ['An', 'An'],
+                  ],
+              'description' => 'Stellt im Checkout und im Mein Konto Bereich die Iban anonymisiert dar',
+          ],
       ];
 
     const formLastschriftNumberElements =
