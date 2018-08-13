@@ -469,4 +469,24 @@ class CTPaymentConfigForms
         ],
       ];
 
+    const formAfterpaySelectElements =
+        [
+            'afterpaymethod' => [
+                'name' => 'afterpaymethod',
+                'type' => 'select',
+                'value' => 'invoice',
+                'label' => 'Afterpay Zahlungsmethode',
+                'required' => true,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['invoice', 'Rechnung'],
+                        ['account', 'flexibler Zahlungsplan'],
+                        ['installment', 'Ratenzahlung'],
+                        ['consolidatedinvoice', 'konsolidierte Rechnung'],
+                    ],
+                'description' => '',
+            ],
+        ];
+
 }
