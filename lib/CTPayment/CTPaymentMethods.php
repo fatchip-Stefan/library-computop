@@ -176,5 +176,15 @@ class CTPaymentMethods
                 'className' => 'AmazonPay',
                 //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
+            [
+                'name' => 'fatchip_computop_afterpay',
+                'shortname' => 'Afterpay',
+                'description' => 'Computop Afterpay',
+                'action' => 'FatchipCTAfterpay',
+                'template' => '',
+                'additionalDescription' => '',
+                'className' => 'Afterpay',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
+            ],
         ];
 }
