@@ -105,7 +105,6 @@ abstract class CTPaymentMethod extends Blowfish
      */
     public function prepareComputopRequest($params, $url)
     {
-
         $requestParams = [];
         foreach ($params as $key => $value) {
             if (!array_key_exists($key, $this::paramexcludes)) {
@@ -131,7 +130,6 @@ abstract class CTPaymentMethod extends Blowfish
      */
     public function prepareSilentRequest($params)
     {
-
         $requestParams = [];
         foreach ($params as $key => $value) {
             if (!array_key_exists($key, $this::paramexcludes)) {

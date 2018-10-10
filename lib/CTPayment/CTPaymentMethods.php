@@ -177,14 +177,47 @@ class CTPaymentMethods
                 //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
-                'name' => 'fatchip_computop_afterpay',
-                'shortname' => 'Afterpay',
-                'description' => 'Computop Afterpay',
+                'name' => 'fatchip_computop_afterpay_invoice',
+                'shortname' => 'AfterpayInvoice',
+                'description' => 'Computop Afterpay Rechnung',
                 'action' => 'FatchipCTAfterpay',
                 'template' => '',
                 'additionalDescription' => '',
                 'className' => 'Afterpay',
                 //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
+/*            [
+                'name' => 'fatchip_computop_afterpay_account',
+                'shortname' => 'AfterpayAccount',
+                'description' => 'Computop Afterpay flex. Rechnungsplan',
+                'action' => 'FatchipCTAfterpay',
+                'template' => '',
+                'additionalDescription' => '',
+                'className' => 'Afterpay',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
+            ],
+*/
+            [
+                'name' => 'fatchip_computop_afterpay_installment',
+                'shortname' => 'AfterpayInstallment',
+                'description' => 'Computop Afterpay Ratenzahlung',
+                'action' => 'FatchipCTAfterpay',
+                'template' => 'fatchip_computop_afterpay.tpl',
+                'additionalDescription' => '',
+                'className' => 'Afterpay',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
+            ],
+/*
+            [
+                'name' => 'fatchip_computop_afterpay_consolidatedinvoice',
+                'shortname' => 'AfterpayConsolidatedInvoice',
+                'description' => 'Computop Afterpay konsolidierte Rechnung',
+                'action' => 'FatchipCTAfterpay',
+                'template' => '',
+                'additionalDescription' => '',
+                'className' => 'Afterpay',
+                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
+            ],
+*/
         ];
 }

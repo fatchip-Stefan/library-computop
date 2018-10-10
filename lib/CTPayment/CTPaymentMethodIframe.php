@@ -103,7 +103,6 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     protected $transID;
 
-
     /**
      * CT Order object
      * @var CTOrder
@@ -159,7 +158,6 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     protected $RTF = null;
 
-
    /**
     * CTPaymentMethodIFrame constructor
     * @param array $config
@@ -179,7 +177,6 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         if ($order->getShippingAddress()) {
             $this->setSdZip($order->getShippingAddress()->getZip());
         }
-
 
         if (count($config) > 0) {
             $this->init($config);

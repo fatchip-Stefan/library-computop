@@ -96,21 +96,21 @@ class CTPaymentConfigForms
 
     const formCreditCardSelectElements =
         [
-          'creditCardMode' => [
-            'name' => 'creditCardMode',
-            'type' => 'select',
-            'value' => 'IFrame',
-            'label' => 'Kreditkarte - Modus',
-            'required' => true,
-            'editable' => false,
-            'store' =>
-              [
-                ['IFRAME', 'IFrame'],
-                ['SILENT', 'Silent Mode'],
-              ],
-            'description' => '<b>IFrame</b>: Kreditkartendaten werden nach klick auf "Zahlungsplichtig bestellen" in ein IFrame eingegeben<BR>
+            'creditCardMode' => [
+                'name' => 'creditCardMode',
+                'type' => 'select',
+                'value' => 'IFrame',
+                'label' => 'Kreditkarte - Modus',
+                'required' => true,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['IFRAME', 'IFrame'],
+                        ['SILENT', 'Silent Mode'],
+                    ],
+                'description' => '<b>IFrame</b>: Kreditkartendaten werden nach klick auf "Zahlungsplichtig bestellen" in ein IFrame eingegeben<BR>
                                   <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Zahlungsart wählen" eingegeben.<BR>'
-          ],
+            ],
             'creditCardCaption' => [
                 'name' => 'creditCardCaption',
                 'type' => 'select',
@@ -160,16 +160,16 @@ class CTPaymentConfigForms
         ];
 
     const formCreditCardTextElements =
-      [
-        'creditCardTemplate' => [
-          'name' => 'creditCardTemplate',
-          'type' => 'text',
-          'value' => '',
-          'label' => 'Kreditkarte - Template Name',
-          'required' => false,
-          'description' => 'Name der XSLT-Datei mit Ihrem individuellen Layout für das Bezahlformular. Wenn Sie das neugestaltete und abwärtskompatible Computop-Template nutzen möchten, übergeben Sie den Templatenamen „ct_compatible“. Wenn Sie das Responsive Computop-Template für mobile Endgeräte nutzen möchten, übergeben Sie den Templatenamen „ct_responsive“.',
-        ],
-      ];
+        [
+            'creditCardTemplate' => [
+                'name' => 'creditCardTemplate',
+                'type' => 'text',
+                'value' => '',
+                'label' => 'Kreditkarte - Template Name',
+                'required' => false,
+                'description' => 'Name der XSLT-Datei mit Ihrem individuellen Layout für das Bezahlformular. Wenn Sie das neugestaltete und abwärtskompatible Computop-Template nutzen möchten, übergeben Sie den Templatenamen „ct_compatible“. Wenn Sie das Responsive Computop-Template für mobile Endgeräte nutzen möchten, übergeben Sie den Templatenamen „ct_responsive“.',
+            ],
+        ];
 
     const formIdealSelectElements =
         [
@@ -191,74 +191,74 @@ class CTPaymentConfigForms
 
 
     const formLastschriftSelectElements =
-      [
-        'lastschriftDienst' => [
-          'name' => 'lastschriftDienst',
-          'type' => 'select',
-          'value' => 'DIREKT',
-          'label' => 'Lastschrift - Dienst',
-          'required' => true,
-          'editable' => false,
-          'store' =>
-            [
-              ['DIREKT', 'Direktanbindung'],
-              ['EVO', 'EVO Payments'],
-              ['INTERCARD', 'Intercard'],
+        [
+            'lastschriftDienst' => [
+                'name' => 'lastschriftDienst',
+                'type' => 'select',
+                'value' => 'DIREKT',
+                'label' => 'Lastschrift - Dienst',
+                'required' => true,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['DIREKT', 'Direktanbindung'],
+                        ['EVO', 'EVO Payments'],
+                        ['INTERCARD', 'Intercard'],
+                    ],
+                'description' => 'Lastschrift Zahlungen können direkt, über EVO oder über INTERCARD abgewickelt werden.',
             ],
-          'description' => 'Lastschrift Zahlungen können direkt, über EVO oder über INTERCARD abgewickelt werden.',
-        ],
-        'lastschriftCaption' => [
-          'name' => 'lastschriftCaption',
-          'type' => 'select',
-          'value' => 'AUTO',
-          'label' => 'Lastschrift - Capture Modus',
-          'required' => true,
-          'editable' => false,
-          'store' =>
-            [
-              ['AUTO', 'Automatisch'],
-              ['MANUAL', 'Manuell'],
-              ['DELAYED', 'Verzögert'],
-            ],
-          'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
+            'lastschriftCaption' => [
+                'name' => 'lastschriftCaption',
+                'type' => 'select',
+                'value' => 'AUTO',
+                'label' => 'Lastschrift - Capture Modus',
+                'required' => true,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['AUTO', 'Automatisch'],
+                        ['MANUAL', 'Manuell'],
+                        ['DELAYED', 'Verzögert'],
+                    ],
+                'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
                             <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.<BR>
                             <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzügerung in Stunden',
-        ],
-          'lastschriftAnon' => [
-              'name' => 'lastschriftAnon',
-              'type' => 'select',
-              'value' => 'Aus',
-              'label' => 'Iban anonymisieren',
-              'required' => true,
-              'editable' => false,
-              'store' =>
-                  [
-                      ['Aus', 'Aus'],
-                      ['An', 'An'],
-                  ],
-              'description' => 'Stellt im Checkout und im Mein Konto Bereich die Iban anonymisiert dar',
-          ],
-      ];
+            ],
+            'lastschriftAnon' => [
+                'name' => 'lastschriftAnon',
+                'type' => 'select',
+                'value' => 'Aus',
+                'label' => 'Iban anonymisieren',
+                'required' => true,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['Aus', 'Aus'],
+                        ['An', 'An'],
+                    ],
+                'description' => 'Stellt im Checkout und im Mein Konto Bereich die Iban anonymisiert dar',
+            ],
+        ];
 
     const formLastschriftNumberElements =
-      [
-        'lastschriftDelay' => [
-          'name' => 'lastschriftDelay',
-          'type' => 'number',
-          'value' => '1',
-          'label' => 'Lastschrift - Verzögerung Capture',
-          'required' => true,
-          'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
-        ],
-        'lastschriftEVODebitDelay' => [
-          'name' => 'lastschriftEvoDebitDelay',
-          'type' => 'number',
-          'value' => '1',
-          'label' => 'Lastschrift - EVO Debit Delay',
-          'required' => true,
-          'description' => 'Nur wenn Dienst = EVO Payments: Anzahl Banktage>0, die für das Ausführungsdatum einer Lastschrift zum aktuellen Datum addiert werden',
-        ],
-      ];
+        [
+            'lastschriftDelay' => [
+                'name' => 'lastschriftDelay',
+                'type' => 'number',
+                'value' => '1',
+                'label' => 'Lastschrift - Verzögerung Capture',
+                'required' => true,
+                'description' => 'Verzögerung in Stunden wenn als Capture Modus "Verzögert" gewählt wurde',
+            ],
+            'lastschriftEVODebitDelay' => [
+                'name' => 'lastschriftEvoDebitDelay',
+                'type' => 'number',
+                'value' => '1',
+                'label' => 'Lastschrift - EVO Debit Delay',
+                'required' => true,
+                'description' => 'Nur wenn Dienst = EVO Payments: Anzahl Banktage>0, die für das Ausführungsdatum einer Lastschrift zum aktuellen Datum addiert werden',
+            ],
+        ];
 
     const formPayDirektTextElements =
         [
@@ -468,25 +468,5 @@ class CTPaymentConfigForms
           'description' => 'Der Wert ist von Laufzeiten und Monatsraten abhängig, die Sie mit Klarna vereinbart haben. Dieser Wert kann per Subshop unterschiedlich sein.',
         ],
       ];
-
-    const formAfterpaySelectElements =
-        [
-            'afterpaymethod' => [
-                'name' => 'afterpaymethod',
-                'type' => 'select',
-                'value' => 'invoice',
-                'label' => 'Afterpay Zahlungsmethode',
-                'required' => true,
-                'editable' => false,
-                'store' =>
-                    [
-                        ['invoice', 'Rechnung'],
-                        ['account', 'flexibler Zahlungsplan'],
-                        ['installment', 'Ratenzahlung'],
-                        ['consolidatedinvoice', 'konsolidierte Rechnung'],
-                    ],
-                'description' => '',
-            ],
-        ];
 
 }

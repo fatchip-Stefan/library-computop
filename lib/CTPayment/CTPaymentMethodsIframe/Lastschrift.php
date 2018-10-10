@@ -137,12 +137,10 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     ) {
         parent::__construct($config, $order, $orderDesc, $userData);
 
-
         $this->setUrlSuccess($urlSuccess);
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
         $this->setMandateID($this->createMandateID($order->getAmount()));
-
 
         if ($config['lastschriftCaption'] == CTEnumCapture::DELAYED && is_numeric($config['lastschriftDelay'])) {
             $this->setCapture($config['lastschriftDelay']);
@@ -308,8 +306,6 @@ abstract class Lastschrift extends CTPaymentMethodIframe
     public function getIBAN() {
         return $this->IBAN;
     }
-
-
 
     /**
      * Each ELV payment needs a unique mandateID.
