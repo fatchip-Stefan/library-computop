@@ -142,6 +142,9 @@ class CTPaymentAttributes
         ],
         'lastschriftiban' => [
             'type' => 'VARCHAR(50)'
+        ],
+        'afterpayinstallmentiban' => [
+            'type' => 'VARCHAR(50)'
         ]
     ];
 }
