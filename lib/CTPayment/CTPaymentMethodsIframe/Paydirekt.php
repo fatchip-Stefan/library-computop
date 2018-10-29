@@ -161,9 +161,6 @@ class Paydirekt extends CTPaymentMethodIframe
         } else {
             $this->setCapture($config['payDirektCaption']);
         }
-
-        //For Paydirekt, the transID has a max length of 20
-        $this->transID = substr($this->transID, 0, 20);
     }
 
 
