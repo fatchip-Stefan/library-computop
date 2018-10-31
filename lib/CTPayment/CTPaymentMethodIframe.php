@@ -507,6 +507,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      */
     public static function generateTransID($digitCount = 12) {
         mt_srand((double)microtime() * 1000000);
+
         $transID = (string)mt_rand();
         // y: 2 digits for year
         // m: 2 digits for month
@@ -515,7 +516,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         // i: 2 digits for minute
         // s: 2 digits for second
         $transID .= date('ymdHis');
-        $transID = md5($transID);
+        // $transID = md5($transID);
         $transID = substr($transID, 0, $digitCount);
 
         return $transID;
