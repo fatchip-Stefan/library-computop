@@ -182,9 +182,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
             $this->init($config);
         }
 
-        mt_srand((double)microtime() * 1000000);
-        $this->transID = (string)mt_rand();
-        $this->transID .= date('yzGis');
+        $this->transID = self::generateTransID();
         $this->setResponse('encrypt');
 
         mt_srand((double)microtime() * 1000000);
@@ -499,5 +497,28 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     public function getRTF()
     {
         return $this->RTF;
+    }
+
+    /**
+     * @param int $digitCount Optional parameter for the length of resulting
+     *                        transID. The default value is 12.
+     *
+     * @return string The transID with a length of $digitCount.
+     */
+    public static function generateTransID($digitCount = 12) {
+        mt_srand((double)microtime() * 1000000);
+
+        $transID = (string)mt_rand();
+        // y: 2 digits for year
+        // m: 2 digits for month
+        // d: 2 digits for day of month
+        // H: 2 digits for hour
+        // i: 2 digits for minute
+        // s: 2 digits for second
+        $transID .= date('ymdHis');
+        // $transID = md5($transID);
+        $transID = substr($transID, 0, $digitCount);
+
+        return $transID;
     }
 }
