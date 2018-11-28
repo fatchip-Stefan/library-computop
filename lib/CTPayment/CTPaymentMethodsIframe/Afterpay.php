@@ -414,6 +414,9 @@ class Afterpay extends CTPaymentMethodIframe
         $this->setUrlNotify($urlNotify);
         $this->setBillingAddress($order->getBillingAddress());
         $this->setShippingAddress($order->getShippingAddress());
+        $this->setBdEmail($order->getEmail());
+        $this->setEmail($order->getEmail());
+
     }
 
     /**
