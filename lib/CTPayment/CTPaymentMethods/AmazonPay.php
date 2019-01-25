@@ -167,4 +167,32 @@ class AmazonPay extends CTPaymentMethod
 
         return $params;
     }
+
+    /**
+     * sets and returns request parameters for amazon
+     * "ATH" api call
+     *
+     * @param $payID
+     * @param $transID
+     * @param $amount
+     * @param $currency
+     * @param $referenceID
+     * @param $orderDesc
+     * @return array
+     */
+    public function getAmazonATHParams($payID, $transID, $amount, $currency, $referenceID, $orderDesc)
+    {
+        $params = [
+            'payID' => $payID,
+            'merchantID' => $this->merchantID,
+            'transID' => $transID,
+            'amount' => $amount,
+            'currency' => $currency,
+            'OrderDesc' => $orderDesc,
+            'OrderReferenceID' => $referenceID,
+            'EventToken' => 'ATH',
+        ];
+
+        return $params;
+    }
 }
