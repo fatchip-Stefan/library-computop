@@ -125,8 +125,7 @@ class CTPaymentConfigForms
                         ['DELAYED', 'Verzögert'],
                     ],
                 'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
-                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.<BR>
-                                  <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzügerung in Stunden',
+                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.',
             ],
             'creditCardAcquirer' => [
                 'name' => 'creditCardAcquirer',
@@ -221,8 +220,7 @@ class CTPaymentConfigForms
                         ['DELAYED', 'Verzögert'],
                     ],
                 'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
-                            <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.<BR>
-                            <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzügerung in Stunden',
+                            <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.',
             ],
             'lastschriftAnon' => [
                 'name' => 'lastschriftAnon',
@@ -288,8 +286,7 @@ class CTPaymentConfigForms
                         ['DELAYED', 'Verzögert'],
                     ],
                 'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
-                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.<BR>
-                                  <b>VERZÖGERT</b>: Wie AUTO, aber mit einer Verzögerung in Stunden',
+                                  <b>MANUAL</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.',
             ],
         ];
 

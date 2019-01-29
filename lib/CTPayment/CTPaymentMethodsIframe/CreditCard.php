@@ -46,7 +46,7 @@ class CreditCard extends CTPaymentMethodIframe
      *
      * @var string
      */
-    protected $capture = 'AUTO';
+    protected $capture = 'MANUAL';
 
     /**
      * Name der XSLT-Datei mit Ihrem individuellen Layout für das Bezahlformular.
@@ -294,11 +294,8 @@ class CreditCard extends CTPaymentMethodIframe
                 break;
         }
 
-        if ($config['creditCardCaption'] == CTEnumCapture::DELAYED && is_numeric($config['creditCardDelay'])) {
-            $this->setCapture($config['creditCardDelay']);
-        } else {
-            $this->setCapture($config['creditCardCaption']);
-        }
+        //we will handle all captures manually
+        $this->setCapture('MANUAL');
 
         if (isset($config['creditCardTemplate'])) {
             $this->setTemplate($config['creditCardTemplate']);
