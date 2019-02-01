@@ -156,11 +156,7 @@ class Paydirekt extends CTPaymentMethodIframe
 
         $this->setShippingAddress($order->getShippingAddress());
 
-        if ($config['payDirektCaption'] == CTEnumCapture::DELAYED && is_numeric($config['payDirektCardDelay'])) {
-            $this->setCapture($config['payDirektCardDelay']);
-        } else {
-            $this->setCapture($config['payDirektCaption']);
-        }
+        $this->setCapture('MANUAL');
     }
 
 

@@ -142,11 +142,7 @@ abstract class Lastschrift extends CTPaymentMethodIframe
         $this->setUrlNotify($urlNotify);
         $this->setMandateID($this->createMandateID($order->getAmount()));
 
-        if ($config['lastschriftCaption'] == CTEnumCapture::DELAYED && is_numeric($config['lastschriftDelay'])) {
-            $this->setCapture($config['lastschriftDelay']);
-        } else {
-            $this->setCapture($config['lastschriftCaption']);
-        }
+        $this->setCapture('MANUAL');
     }
 
     /**
