@@ -63,7 +63,7 @@ class CTPaymentConfigForms
                 'type' => 'text',
                 'value' => '',
                 'label' => 'Bestellnummer Präfix',
-                'required' => true,
+                'required' => false,
                 'description' => 'Präfix für Bestellnummern. Sie können folgende Platzhalter verwenden: %transid% , %payid%, %xid%',
             ],
             'suffixOrdernumber' => [
@@ -71,7 +71,7 @@ class CTPaymentConfigForms
                 'type' => 'text',
                 'value' => '',
                 'label' => 'Bestellnummer Suffix',
-                'required' => true,
+                'required' => false,
                 'description' => 'Suffix für Bestellnummern. Sie können folgende Platzhalter verwenden: %transid% , %payid%, %xid%',
             ],
         ];
