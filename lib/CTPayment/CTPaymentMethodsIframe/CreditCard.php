@@ -28,6 +28,7 @@
 
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
+use Fatchip\CTPayment\CTAddress\CTAddress;
 use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
@@ -81,6 +82,20 @@ class CreditCard extends CTPaymentMethodIframe
      * @var string
      */
     protected $shippingAddress;
+
+    /**
+     * Rechnungskunde
+     *
+     * @var string
+     */
+    protected $billToCustomer;
+
+    /**
+     * Lieferkunde
+     *
+     * @var string
+     */
+    protected $shipToCustomer;
 
     /* FIELDS FOR AMEX/CAPN*/
     /**
@@ -228,26 +243,15 @@ class CreditCard extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
 
-
-        switch ($config['creditCardAcquirer']) {
-            case 'GICC':
-            case 'Omnipay':
-                $this->setMsgVer('2.0');
-                $this->setBillingAddress($order->getBillingAddress());
-                $this->setShippingAddress($order->getBillingAddress());
-                break;
-            case 'CAPN':
-                $this->setAmountAuth($order->getAmount());
-                $this->setFirstName($order->getBillingAddress()->getFirstName());
-                $this->setLastName($order->getBillingAddress()->getLastName());
-                $this->setAddrStreet($order->getBillingAddress()->getStreet() . ' ' . $order->getBillingAddress()->getStreetNr());
-                $this->setAddrZip($order->getBillingAddress()->getZip());
-                $this->setSdFirstName($order->getShippingAddress()->getFirstName());
-                $this->setSdLastName($order->getShippingAddress()->getLastName());
-                $this->setSdStreet($order->getShippingAddress()->getStreet() . ' ' . $order->getShippingAddress()->getStreetNr());
-                $this->setSdZip($order->getShippingAddress()->getZip());
-                $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3());
-                break;
+        $this->setMsgVer('2.0');
+        $this->setUserData(base64_encode($userData));
+        $this->setOrderDesc('Test:0000');
+        $this->setBillingAddress($order->getBillingAddress());
+        $this->setShippingAddress($order->getShippingAddress());
+        if ($config['creditCardAcquirer'] === 'CAPN') {
+            $this->setAmountAuth($order->getAmount());
+            $this->setBillToCustomer($order);
+            $this->setShipToCustomer($order);
         }
 
         //we will handle all captures manually
@@ -302,18 +306,11 @@ class CreditCard extends CTPaymentMethodIframe
 
     /**
      * @ignore <description>
-     * @param string $billingAddress
+     * @param CTAddress $CTAddress
      */
-    public function setBillingAddress($billingAddress)
+    public function setBillingAddress($CTAddress)
     {
-        $address['city'] = $billingAddress->getCity();
-        $address['countryCode'] = $billingAddress->getCountryCode();
-        $address['addressLine1']['street'] = $billingAddress->getStreet();
-        $address['addressLine1']['streetNumber'] = $billingAddress->getStreetNr();
-        $address['addressLine2'] = $billingAddress->getStreet2();
-        $address['postalCode'] = $billingAddress->getZip();
-        $address['state'] = $billingAddress->getCountryCode();
-        $this->billingAddress = base64_encode(json_encode($address));
+        $this->billingAddress = base64_encode(json_encode($this->declareAddress($CTAddress)));
     }
 
     /**
@@ -327,18 +324,66 @@ class CreditCard extends CTPaymentMethodIframe
 
     /**
      * @ignore <description>
-     * @param string $shippingAddress
+     * @param CTAddress $CTAddress
      */
-    public function setShippingAddress($shippingAddress)
+    public function setShippingAddress($CTAddress)
     {
-        $address['city'] = $shippingAddress->getCity();
-        $address['countryCode'] = $shippingAddress->getCountryCode();
-        $address['addressLine1']['street'] = $shippingAddress->getStreet();
-        $address['addressLine1']['streetNumber'] = $shippingAddress->getStreetNr();
-        $address['addressLine2'] = $shippingAddress->getStreet2();
-        $address['postalCode'] = $shippingAddress->getZip();
-        $address['state'] = $shippingAddress->getCountryCode();
-        $this->shippingAddress = base64_encode(json_encode($address));
+        $this->shippingAddress = base64_encode(json_encode($this->declareAddress($CTAddress)));
+    }
+
+    /**
+     * @param CTAddress $CTAddress
+     * @return array
+     */
+    protected function declareAddress($CTAddress)
+    {
+        $address['city'] = $CTAddress->getCity();
+        $address['country']['countryA3'] = $CTAddress->getCountryCodeIso3();
+        $address['addressLine1']['street'] = $CTAddress->getStreet();
+        $address['addressLine1']['streetNumber'] = $CTAddress->getStreetNr();
+        $address['postalCode'] = $CTAddress->getZip();
+        return $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBillToCustomer()
+    {
+        return $this->billToCustomer;
+    }
+
+    /**
+     * @param CTOrder $ctOrder
+     */
+    public function setBillToCustomer($ctOrder)
+    {
+        #$customer['consumer']['salutation'] = $ctOrder->getBillingAddress()->getSalutation();
+        $customer['consumer']['firstName'] = $ctOrder->getBillingAddress()->getFirstName();
+        $customer['consumer']['lastName'] = $ctOrder->getBillingAddress()->getLastName();
+        $customer['email'] = $ctOrder->getEmail();
+        $this->billToCustomer = base64_encode(json_encode($customer));
+    }
+
+    /**
+     * @return string
+     */
+    public function getShipToCustomer()
+    {
+        return $this->shipToCustomer;
+    }
+
+    /**
+     * @param CTOrder $ctOrder
+     */
+    public function setShipToCustomer($ctOrder)
+    {
+        #$customer['consumer']['salutation'] = $ctOrder->getShippingAddress()->getSalutation();
+        $customer['consumer']['firstName'] = $ctOrder->getShippingAddress()->getFirstName();
+        $customer['consumer']['lastName'] = $ctOrder->getShippingAddress()->getLastName();
+        $customer['email'] = $ctOrder->getEmail();
+        $customer['customerNumber'] = $ctOrder->getCustomerID();
+        $this->shipToCustomer = base64_encode(json_encode($customer));
     }
 
     /**
