@@ -757,7 +757,7 @@ class KlarnaPayments extends CTPayment\CTPaymentMethodIframe
      */
     public function getCTPaymentURL()
     {
-        return 'https://www.computop-paygate.com/Klarna.aspx';
+        return 'https://www.computop-paygate.com/KlarnaPayments.aspx';
     }
 
     /**
