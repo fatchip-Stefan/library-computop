@@ -245,7 +245,7 @@ class CreditCard extends CTPaymentMethodIframe
 
         $this->setMsgVer('2.0');
         $this->setUserData(base64_encode($userData));
-        $this->setOrderDesc('Test:0000');
+        $this->setOrderDesc($orderDesc);
         $this->setBillingAddress($order->getBillingAddress());
         $this->setShippingAddress($order->getShippingAddress());
         if ($config['creditCardAcquirer'] === 'CAPN') {
