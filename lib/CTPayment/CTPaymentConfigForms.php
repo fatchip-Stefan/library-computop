@@ -83,7 +83,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'inactive',
                 'label' => 'Debug Protokoll',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -239,7 +239,7 @@ class CTPaymentConfigForms
                 'type' => 'text',
                 'value' => '',
                 'label' => 'Paydirekt - Shop Api Key',
-                'required' => true,
+                'required' => false,
                 'description' => 'Ihr Paydirekt Api Schlüssel',
             ],
         ];
@@ -293,7 +293,7 @@ class CTPaymentConfigForms
                 'type' => 'text',
                 'value' => '',
                 'label' => 'AmazonPay - SellerId',
-                'required' => true,
+                'required' => false,
                 'description' => 'Ihre Amazonpay SellerId',
             ],
             'amazonClientId' => [
@@ -301,7 +301,7 @@ class CTPaymentConfigForms
                 'type' => 'text',
                 'value' => '',
                 'label' => 'AmazonPay - ClientId',
-                'required' => true,
+                'required' => false,
                 'description' => 'Ihre Amazonpay ClientId',
             ],
 
@@ -392,7 +392,7 @@ class CTPaymentConfigForms
                 'type' => 'number',
                 'value' => '30',
                 'label' => 'Bonitätsprüfung - Gültigkeit der Bonitätsprüfung in Tagen',
-                'required' => true,
+                'required' => false,
                 'description' => 'Stellen Sie hier ein, wie lange ein bereits durchgeführte Bontitätsprüfung gültig bleibt',
             ],
         ];
@@ -420,15 +420,15 @@ class CTPaymentConfigForms
         ];
 
     const formKlarnaTextElements =
-      [
-        'klarnaaction' => [
-          'name' => 'klarnaaction',
-          'type' => 'text',
-          'value' => '',
-          'label' => 'Klarna Aktionscode',
-          'required' => true,
-          'description' => 'Der Wert ist von Laufzeiten und Monatsraten abhängig, die Sie mit Klarna vereinbart haben. Dieser Wert kann per Subshop unterschiedlich sein.',
-        ],
-      ];
+        [
+            'klarnaaction' => [
+                'name' => 'klarnaaction',
+                'type' => 'text',
+                'value' => '',
+                'label' => 'Klarna Aktionscode',
+                'required' => false,
+                'description' => 'Der Wert ist von Laufzeiten und Monatsraten abhängig, die Sie mit Klarna vereinbart haben. Dieser Wert kann per Subshop unterschiedlich sein.',
+            ],
+        ];
 
 }
