@@ -105,7 +105,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
     /**
      * CT Order object
-     * @var CTOrder
+     * @var CTOrder\CTOrder
      */
     protected $order;
 
@@ -414,7 +414,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
     /**
      * @ignore <description>
-     * @param \Fatchip\CTPayment\CTOrder $order
+     * @param Fatchip\CTPayment\CTOrder $order
      */
     public function setOrder($order)
     {

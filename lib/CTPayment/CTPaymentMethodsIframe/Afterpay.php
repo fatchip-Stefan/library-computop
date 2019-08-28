@@ -128,6 +128,15 @@ class Afterpay extends CTPaymentMethodIframe
     protected $AddrZip;
 
     /**
+     * Postleitzahl
+     *
+     * Optional Parameter
+     *
+     * @var string
+     */
+    protected $sdAddrZip;
+
+    /**
      * Straße oder Packstation
      *
      * Optional Parameter
