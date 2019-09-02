@@ -619,9 +619,9 @@ class CreditCard extends CTPaymentMethodIframe
      * @param $ctRequest
      * @return string
      */
-    public function getHTTPGetURL($ctRequest)
+    public function getHTTPGetURL($ctRequest, $addTemplate = '')
     {
-        return parent::prepareComputopRequest($ctRequest, $this->getCTPaymentURL());
+        return parent::prepareComputopRequest($ctRequest, $this->getCTPaymentURL(), $addTemplate);
     }
 
     /**
