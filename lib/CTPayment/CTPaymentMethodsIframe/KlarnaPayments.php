@@ -37,6 +37,13 @@ class KlarnaPayments extends CTPayment\CTPaymentMethodIframe
 {
     const paymentClass = 'Klarna';
 
+    protected $taxAmount;
+    protected $articleList;
+    protected $URLConfirm;
+    protected $payType;
+
+    protected $Account;
+
     /**
      * Für Privatpersonen optional, für Unternehmen Pflicht, z.B. Kontaktperson für den Kauf.
      * Über diesen Parameter können Mitteilungen und wichtige Informationen an den Kunden
@@ -209,15 +216,15 @@ class KlarnaPayments extends CTPayment\CTPaymentMethodIframe
      * @var string
      */
     protected $CompanyOrPerson;
-
-    /**
-     * Aktionscode legt Rechnungs- oder Finanzierungskauf fest.
-     * <-1> ist Rechnungskauf.
-     * Werte für Finanzkauf  von Laufzeiten und Monatsraten abhängig, die zwischen Klarna und Händler vereinbart wurden.
-     *
-     * @var int
-     */
-    protected $KlarnaAction;
+//
+//    /**
+//     * Aktionscode legt Rechnungs- oder Finanzierungskauf fest.
+//     * <-1> ist Rechnungskauf.
+//     * Werte für Finanzkauf  von Laufzeiten und Monatsraten abhängig, die zwischen Klarna und Händler vereinbart wurden.
+//     *
+//     * @var int
+//     */
+//    protected $KlarnaAction;
 
     /**
      * Kennzeichnung der Rechnung:
@@ -273,13 +280,77 @@ class KlarnaPayments extends CTPayment\CTPaymentMethodIframe
         } else {
             $this->setCompanyOrPerson('P');
             if ($order->getBillingAddress()->getSalutation() == 'Herr') {
-                $this->setGender('m');
+                $this->setGender('male');
             } else {
                 $this->setGender('f');
             }
         }
 
-        $this->setKlarnaAction($klarnaAction);
+//        $this->setKlarnaAction($klarnaAction);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaxAmount()
+    {
+        return $this->taxAmount;
+    }
+
+    /**
+     * @param mixed $taxAmount
+     */
+    public function setTaxAmount($taxAmount)
+    {
+        $this->taxAmount = $taxAmount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticleList()
+    {
+        return $this->articleList;
+    }
+
+    /**
+     * @param mixed $articleList
+     */
+    public function setArticleList($articleList)
+    {
+        $this->articleList = $articleList;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getURLConfirm()
+    {
+        return $this->URLConfirm;
+    }
+
+    /**
+     * @param mixed $URLConfirm
+     */
+    public function setURLConfirm($URLConfirm)
+    {
+        $this->URLConfirm = $URLConfirm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPayType()
+    {
+        return $this->payType;
+    }
+
+    /**
+     * @param mixed $payType
+     */
+    public function setPayType($payType)
+    {
+        $this->payType = $payType;
     }
 
     /**
@@ -389,24 +460,24 @@ class KlarnaPayments extends CTPayment\CTPaymentMethodIframe
     {
         return $this->InvoiceFlag;
     }
+//
+//    /**
+//     * @ignore <description>
+//     * @param int $klarnaAction
+//     */
+//    public function setKlarnaAction($klarnaAction)
+//    {
+//        $this->KlarnaAction = $klarnaAction;
+//    }
 
-    /**
-     * @ignore <description>
-     * @param int $klarnaAction
-     */
-    public function setKlarnaAction($klarnaAction)
-    {
-        $this->KlarnaAction = $klarnaAction;
-    }
-
-    /**
-     * @ignore <description>
-     * @return int
-     */
-    public function getKlarnaAction()
-    {
-        return $this->KlarnaAction;
-    }
+//    /**
+//     * @ignore <description>
+//     * @return int
+//     */
+//    public function getKlarnaAction()
+//    {
+//        return $this->KlarnaAction;
+//    }
 
     /**
      * @ignore <description>
@@ -729,7 +800,7 @@ class KlarnaPayments extends CTPayment\CTPaymentMethodIframe
         $this->setSdStreetNr($shippingAddress->getStreetNr());
         $this->setSdZip($shippingAddress->getZip());
         $this->setSdCity($shippingAddress->getCity());
-        $this->setSdCountryCode($shippingAddress->getCountryCodeIso3());
+        $this->setSdCountryCode($shippingAddress->getCountryCode());
     }
 
     /**
@@ -770,5 +841,26 @@ class KlarnaPayments extends CTPayment\CTPaymentMethodIframe
     public function sendEmailWithInvoice($merchantID, $payID)
     {
         // TODO - Implement this method
+    }
+
+    public function setAmount($Amount)
+    {
+        parent::setAmount((int)$Amount);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAccount()
+    {
+        return $this->Account;
+    }
+
+    /**
+     * @param mixed $Account
+     */
+    public function setAccount($Account)
+    {
+        $this->Account = $Account;
     }
 }

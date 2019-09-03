@@ -112,7 +112,30 @@ abstract class CTPaymentMethod extends Blowfish
             }
         }
         $requestParams[] = "MAC=" . $this->ctHMAC($params);
-        $request = join('&', $requestParams);
+
+        $test = [
+            'transID',
+            'amount',
+            'taxAmount',
+            'currency',
+            'bdCountryCode',
+            'IPAddr',
+            'Account',
+            'articleList',
+            'URLConfirm',
+            'payType',
+        ];
+
+        $test2 = [];
+
+        foreach ($requestParams as $index => $requestParam) {
+            if (in_array(explode('=', $requestParam)[0], $test)) {
+                $test2[] = ucfirst($requestParam);
+            }
+        }
+
+        $request = join('&', $test2);
+
         $len = mb_strlen($request);  // Length of the plain text string
         $data = $this->ctEncrypt($request, $len, $this->blowfishPassword);
 
