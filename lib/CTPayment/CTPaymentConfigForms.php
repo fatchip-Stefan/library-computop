@@ -111,6 +111,19 @@ class CTPaymentConfigForms
                 'description' => '<b>IFrame</b>: Kreditkartendaten werden nach klick auf "Zahlungsplichtig bestellen" in ein IFrame eingegeben<BR>
                                   <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Zahlungsart wählen" eingegeben.<BR>'
             ],
+            'creditCardTestMode' => [
+                'name' => 'creditCardTestMode',
+                'type' => 'select',
+                'value' => 1,
+                'label' => 'Kreditkarte - Test-Modus',
+                'required' => true,
+                'editable' => false,
+                'store' =>
+                    [
+                        [0, 'inaktiv'],
+                        [1, 'aktiv'],
+                    ],
+            ],
             'creditCardCaption' => [
                 'name' => 'creditCardCaption',
                 'type' => 'select',
