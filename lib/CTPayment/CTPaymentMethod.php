@@ -308,7 +308,4 @@ abstract class CTPaymentMethod extends Blowfish
 
         return $params;
     }
-
-    public function generateValues() {
-    }
 }
