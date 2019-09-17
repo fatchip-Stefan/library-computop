@@ -32,6 +32,8 @@ namespace Fatchip\CTPayment;
 abstract class CTPaymentMethod extends Blowfish
 {
 
+    const paymentClass = '';
+
     /**
      * These params should not be send with the computop requests and are filtered out in prepareComputopRequest
      */
@@ -113,29 +115,7 @@ abstract class CTPaymentMethod extends Blowfish
         }
         $requestParams[] = "MAC=" . $this->ctHMAC($params);
 
-        $test = [
-            'transID',
-            'amount',
-            'taxAmount',
-            'currency',
-            'bdCountryCode',
-            'IPAddr',
-            'Account',
-            'articleList',
-            'URLConfirm',
-            'payType',
-        ];
-
-        $test2 = [];
-
-        foreach ($requestParams as $index => $requestParam) {
-            if (in_array(explode('=', $requestParam)[0], $test)) {
-                $test2[] = ucfirst($requestParam);
-            }
-        }
-
-        $request = join('&', $test2);
-
+        $request = join('&', $requestParams);
         $len = mb_strlen($request);  // Length of the plain text string
         $data = $this->ctEncrypt($request, $len, $this->blowfishPassword);
 
@@ -327,5 +307,8 @@ abstract class CTPaymentMethod extends Blowfish
         ];
 
         return $params;
+    }
+
+    public function generateValues() {
     }
 }
