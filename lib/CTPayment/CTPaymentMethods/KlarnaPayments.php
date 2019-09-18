@@ -37,6 +37,8 @@ class KlarnaPayments extends CTPaymentMethod
 {
     const paymentClass = 'KlarnaPayments';
 
+    protected $klarnaSessionRequestParams;
+
     /**
      * AmazonPay constructor
      * @param $config
@@ -74,10 +76,8 @@ class KlarnaPayments extends CTPaymentMethod
      * @param $currency
      * @param $transId
      * @param $ipAddress
-     *
-     * @return array
      */
-    public function getKlarnaSessionRequestParams(
+    public function storeKlarnaSessionRequestParams(
         $taxAmount,
         $articleList,
         $urlConfirm,
@@ -90,7 +90,7 @@ class KlarnaPayments extends CTPaymentMethod
         $ipAddress
     )
     {
-        $params = [
+        $this->klarnaSessionRequestParams = [
             'TaxAmount' => $taxAmount,
             'ArticleList' => $articleList,
             'URLConfirm' => $urlConfirm,
@@ -102,8 +102,30 @@ class KlarnaPayments extends CTPaymentMethod
             'transID' => $transId,
             'IPAddr' => $ipAddress,
         ];
+    }
 
-        return $params;
+    /**
+     * @return mixed
+     */
+    public function getKlarnaSessionRequestParams() {
+        return $this->klarnaSessionRequestParams;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKlarnaSessionRequestParamsHash() {
+        $hashable = [
+            'TaxAmount' => $this->klarnaSessionRequestParams['taxAmount'],
+            'ArticleList' => $this->klarnaSessionRequestParams['articleList'],
+            'PayType' => $this->klarnaSessionRequestParams['payType'],
+            'bdCountryCode' => $this->klarnaSessionRequestParams['bdCountryCode'],
+            'amount' => $this->klarnaSessionRequestParams['amount'],
+            'currency' => $this->klarnaSessionRequestParams['currency'],
+            'IPAddr' => $this->klarnaSessionRequestParams['ipAddress'],
+        ];
+
+        return md5(serialize($hashable));
     }
 
     /**
