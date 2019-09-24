@@ -105,7 +105,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
     /**
      * CT Order object
-     * @var CTOrder
+     * @var CTOrder\CTOrder
      */
     protected $order;
 

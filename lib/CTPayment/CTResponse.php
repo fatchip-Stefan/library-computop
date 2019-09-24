@@ -497,12 +497,6 @@ class CTResponse
 
     // END AmazonPay
 
-    /**
-     * This token is for the widgets
-     * @var string
-     */
-    protected $accesstoken;
-
 
     /**
      * CTResponse constructor
@@ -1758,21 +1752,5 @@ class CTResponse
     public function setBdaddrzip($bdaddrzip)
     {
         $this->bdaddrzip = $bdaddrzip;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAccesstoken(): string
-    {
-        return $this->accesstoken;
-    }
-
-    /**
-     * @param string $accesstoken
-     */
-    public function setAccesstoken(string $accesstoken): void
-    {
-        $this->accesstoken = $accesstoken;
     }
 }
