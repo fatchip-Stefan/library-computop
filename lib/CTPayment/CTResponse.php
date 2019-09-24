@@ -1763,7 +1763,7 @@ class CTResponse
     /**
      * @return string
      */
-    public function getAccesstoken(): string
+    public function getAccesstoken()
     {
         return $this->accesstoken;
     }
@@ -1771,7 +1771,7 @@ class CTResponse
     /**
      * @param string $accesstoken
      */
-    public function setAccesstoken(string $accesstoken): void
+    public function setAccesstoken(string $accesstoken)
     {
         $this->accesstoken = $accesstoken;
     }

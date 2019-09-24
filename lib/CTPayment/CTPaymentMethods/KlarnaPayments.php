@@ -38,6 +38,8 @@ class KlarnaPayments extends CTPaymentMethod
     const paymentClass = 'KlarnaPayments';
 
     protected $klarnaSessionRequestParams;
+    
+    protected $klarnaOrderRequestParams;
 
     /**
      * AmazonPay constructor
@@ -63,8 +65,7 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * sets and returns request parameters for amazon
-     * "Set Order Details and Confirm Order" api call
+     * Stores session request parameters for Klarna
      *
      * @param $taxAmount
      * @param $articleList
@@ -101,6 +102,35 @@ class KlarnaPayments extends CTPaymentMethod
             'currency' => $currency,
             'transID' => $transId,
             'IPAddr' => $ipAddress,
+        ];
+    }
+
+    /**
+     * Stores order request parameters for Klarna
+     *
+     * @param $payId
+     * @param $transId
+     * @param $amount
+     * @param $currency
+     * @param $tokenExt
+     * @param $eventToken
+     */
+    public function storeKlarnaOrderRequestParams(
+        $payId,
+        $transId,
+        $amount,
+        $currency,
+        $tokenExt,
+        $eventToken
+    )
+    {
+        $this->klarnaOrderRequestParams = [
+            'PayID' => $payId,
+            'TransID' => $transId,
+            'Amount' => $amount,
+            'Currency' => $currency,
+            'TokenExt' => $tokenExt,
+            'EventToken' => $eventToken
         ];
     }
 
@@ -142,5 +172,13 @@ class KlarnaPayments extends CTPaymentMethod
             }
         }
         return $requestParams;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKlarnaOrderRequestParams()
+    {
+        return $this->klarnaOrderRequestParams;
     }
 }
