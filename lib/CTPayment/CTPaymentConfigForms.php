@@ -429,6 +429,14 @@ class CTPaymentConfigForms
           'required' => true,
           'description' => 'Der Wert ist von Laufzeiten und Monatsraten abhängig, die Sie mit Klarna vereinbart haben. Dieser Wert kann per Subshop unterschiedlich sein.',
         ],
+        'klarnaaccount' => [
+          'name' => 'klarnaaccount',
+          'type' => 'text',
+          'value' => '',
+          'label' => 'Klarna Konto',
+          'required' => true,
+          'description' => 'Das zu benutzende Klarna Konto.',
+        ],
       ];
 
 }
