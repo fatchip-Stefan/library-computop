@@ -125,10 +125,10 @@ class KlarnaPayments extends CTPaymentMethod
     )
     {
         $this->klarnaOrderRequestParams = [
-            'PayID' => $payId,
-            'TransID' => $transId,
-            'Amount' => $amount,
-            'Currency' => $currency,
+            'payID' => $payId,
+            'transID' => $transId,
+            'amount' => $amount,
+            'currency' => $currency,
             'TokenExt' => $tokenExt,
             'EventToken' => $eventToken
         ];
