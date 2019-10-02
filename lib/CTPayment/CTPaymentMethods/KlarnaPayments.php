@@ -146,13 +146,13 @@ class KlarnaPayments extends CTPaymentMethod
      */
     public function getKlarnaSessionRequestParamsHash() {
         $hashable = [
-            'TaxAmount' => $this->klarnaSessionRequestParams['taxAmount'],
-            'ArticleList' => $this->klarnaSessionRequestParams['articleList'],
-            'PayType' => $this->klarnaSessionRequestParams['payType'],
+            'TaxAmount' => $this->klarnaSessionRequestParams['TaxAmount'],
+            'ArticleList' => $this->klarnaSessionRequestParams['ArticleList'],
+            'PayType' => $this->klarnaSessionRequestParams['PayType'],
             'bdCountryCode' => $this->klarnaSessionRequestParams['bdCountryCode'],
             'amount' => $this->klarnaSessionRequestParams['amount'],
             'currency' => $this->klarnaSessionRequestParams['currency'],
-            'IPAddr' => $this->klarnaSessionRequestParams['ipAddress'],
+            'IPAddr' => $this->klarnaSessionRequestParams['IPAddr'],
         ];
 
         return md5(serialize($hashable));
