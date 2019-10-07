@@ -25,6 +25,7 @@
  * @license    <http://www.gnu.org/licenses/> GNU Lesser General Public License
  * @link       https://www.computop.com
  */
+
 namespace Fatchip\CTPayment\CTPaymentMethods;
 
 use Fatchip\CTPayment\CTPaymentMethod;
@@ -38,8 +39,8 @@ class KlarnaPayments extends CTPaymentMethod
     const paymentClass = 'KlarnaPayments';
 
     protected $klarnaSessionRequestParams;
-    
     protected $klarnaOrderRequestParams;
+    protected $klarnaRefNrChangeRequestParams;
 
     /**
      * AmazonPay constructor
@@ -54,6 +55,50 @@ class KlarnaPayments extends CTPaymentMethod
         $this->mac = $config['mac'];
     }
 
+    /**
+     * returns RefNrChangeURL, used to set the refNr for a transaction in CT-Analytics
+     * @return string
+     */
+    public function getCTRefNrChangeURL()
+    {
+        return 'https://www.computop-paygate.com/KlarnaPayments.aspx';
+    }
+
+    /**
+     * Stores refNrChange request parameters for Klarna
+     *
+     * @param $payId
+     * @param $eventToken
+     * @param $refNr
+     */
+    public function storeKlarnaRefNrChangeRequestParams(
+        $payId,
+        $eventToken,
+        $refNr
+    )
+    {
+        $this->klarnaRefNrChangeRequestParams = [
+            'payID' => $payId,
+            'EventToken' => $eventToken,
+            'RefNr' => $refNr,
+        ];
+    }
+
+    /**
+     * sets and returns request parameters for reference number change api call
+     *
+     * @param $payId
+     * @param $refNr
+     * @return array
+     */
+    public function getRefNrChangeParams($payId, $refNr)
+    {
+        $eventToken = 'UMR';
+
+        $this->storeKlarnaRefNrChangeRequestParams($payId, $eventToken, $refNr);
+
+        return $this->klarnaRefNrChangeRequestParams;
+    }
 
     /**
      * returns PaymentURL
