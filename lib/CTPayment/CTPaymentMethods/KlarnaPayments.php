@@ -182,14 +182,16 @@ class KlarnaPayments extends CTPaymentMethod
     /**
      * @return mixed
      */
-    public function getKlarnaSessionRequestParams() {
+    public function getKlarnaSessionRequestParams()
+    {
         return $this->klarnaSessionRequestParams;
     }
 
     /**
      * @return mixed
      */
-    public function getKlarnaSessionRequestParamsHash() {
+    public function getKlarnaSessionRequestParamsHash()
+    {
         $hashable = [
             'TaxAmount' => $this->klarnaSessionRequestParams['TaxAmount'],
             'ArticleList' => $this->klarnaSessionRequestParams['ArticleList'],
@@ -212,7 +214,7 @@ class KlarnaPayments extends CTPaymentMethod
     {
         $requestParams = [];
         foreach ($params as $key => $value) {
-            if (!is_null($value) && !array_key_exists($key, $this::paramexcludes)){
+            if (!is_null($value) && !array_key_exists($key, $this::paramexcludes)) {
                 $requestParams[$key] = $value;
             }
         }
