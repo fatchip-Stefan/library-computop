@@ -144,33 +144,20 @@ class KlarnaPayments extends CTPaymentMethod
         $this->klarnaChangeBillingShippingRequestParams = [
             'payID' => $payId,
             'EventToken' => $eventToken,
-
-            'bdTitle'  => $billingData['bdTitle'],
-            'bdFirstName'  => $billingData['bdFirstName'],
-            'bdLastName'  => $billingData['bdLastName'],
-            'bdCompany'  => $billingData['bdCompany'],
-            'bdStreet'  => $billingData['bdStreet'],
-            'bdAddrAddition'  => $billingData['bdAddrAddition'],
-            'bdZip'  => $billingData['bdZip'],
-            'bdCity'  => $billingData['bdCity'],
-            'bdRegion'  => $billingData['bdRegion'],
-            'bdCountryCode'  => $billingData['bdCountryCode'],
-            'bdEmail'  => $billingData['bdEmail'],
-            'bdPhone'  => $billingData['bdPhone'],
-
-            'sdTitle' => $shippingData['sdTitle'],
-            'sdFirstName' => $shippingData['sdFirstName'],
-            'sdLastName' => $shippingData['sdLastName'],
-            'sdCompany' => $shippingData['sdCompany'],
-            'sdStreet' => $shippingData['sdStreet'],
-            'sdAddrAddition' => $shippingData['sdAddrAddition'],
-            'sdZip' => $shippingData['sdZip'],
-            'sdCity' => $shippingData['sdCity'],
-            'sdRegion' => $shippingData['sdRegion'],
-            'sdCountryCode' => $shippingData['sdCountryCode'],
-            'sdEmail' => $shippingData['sdEmail'],
-            'sdPhone' => $shippingData['sdPhone'],
         ];
+
+        // Only set meaningful values
+        foreach ($billingData as $key => $value) {
+            if ($value) {
+                $this->klarnaChangeBillingShippingRequestParams['bd' . $key] = $value;
+            }
+        }
+
+        foreach ($shippingData as $key => $value) {
+            if ($value) {
+                $this->klarnaChangeBillingShippingRequestParams['sd' . $key] = $value;
+            }
+        }
     }
 
     /**
