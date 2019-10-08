@@ -31,19 +31,22 @@ namespace Fatchip\CTPayment\CTPaymentMethods;
 use Fatchip\CTPayment\CTPaymentMethod;
 
 /**
- * Class AmazonPay
  * @package Fatchip\CTPayment\CTPaymentMethods
  */
 class KlarnaPayments extends CTPaymentMethod
 {
     const paymentClass = 'KlarnaPayments';
 
+    /** @var array */
     protected $klarnaSessionRequestParams;
+    /** @var array */
     protected $klarnaOrderRequestParams;
+    /** @var array */
     protected $klarnaRefNrChangeRequestParams;
+    /** @var array */
+    protected $klarnaChangeBillingShippingRequestParams;
 
     /**
-     * AmazonPay constructor
      * @param $config
      */
     public function __construct(
@@ -56,7 +59,8 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * returns RefNrChangeURL, used to set the refNr for a transaction in CT-Analytics
+     * Returns RefNrChangeURL, used to set the refNr for a transaction in CT-Analytics
+     *
      * @return string
      */
     public function getCTRefNrChangeURL()
@@ -85,14 +89,18 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * sets and returns request parameters for reference number change api call
+     * Sets and returns request parameters for reference number change api call
      *
      * @param $payId
      * @param $refNr
+     *
      * @return array
      */
     public function getRefNrChangeParams($payId, $refNr)
     {
+        // TODO: refactor this to two separate calls
+        // storeKlarnaRefNrChangeRequestParams($payId, $eventToken, $refNr) and
+        // getRefNrChangeParams() without any parameters
         $eventToken = 'UMR';
 
         $this->storeKlarnaRefNrChangeRequestParams($payId, $eventToken, $refNr);
@@ -101,7 +109,8 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * returns PaymentURL
+     * Returns PaymentURL
+     *
      * @return string
      */
     public function getCTPaymentURL()
@@ -180,7 +189,7 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getKlarnaSessionRequestParams()
     {
@@ -188,7 +197,7 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getKlarnaSessionRequestParamsHash()
     {
@@ -206,8 +215,10 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * returns parameters for redirectURL
+     * Returns parameters for redirectURL
+     *
      * @param $params
+     *
      * @return array
      */
     public function cleanUrlParams($params)
@@ -222,7 +233,7 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getKlarnaOrderRequestParams()
     {

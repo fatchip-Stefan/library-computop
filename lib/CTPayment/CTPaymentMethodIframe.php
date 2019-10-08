@@ -489,6 +489,8 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      *                        transID. The default value is 12.
      *
      * @return string The transID with a length of $digitCount.
+     * @deprecated
+     * use Utils->generateTransID()
      */
     public static function generateTransID($digitCount = 12) {
         mt_srand((double)microtime() * 1000000);
