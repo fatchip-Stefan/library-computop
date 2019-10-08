@@ -109,6 +109,71 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
+     * @return array
+     */
+    public function getKlarnaChangeBillingShippingRequestParams()
+    {
+        return $this->klarnaChangeBillingShippingRequestParams;
+    }
+
+    /**
+     * $billingData = [
+     *     'bdTitle' => '',
+     *     'bdFirstName' => '',
+     *     'bdLastName' => '',
+     *     'bdCompany' => '',
+     *     'bdStreet' => '',
+     *     'bdAddrAddition' => '',
+     *     'bdZip' => '',
+     *     'bdCity' => '',
+     *     'bdRegion' => '',
+     *     'bdCountryCode' => '',
+     *     'bdEmail' => '',
+     *     'bdPhone' => '',
+     * ];
+     *
+     * The $shippingData array is the same, but the key prefix is 'sd'.
+     * 
+     * @param $payId
+     * @param $eventToken
+     * @param array $billingData
+     * @param array $shippingData
+     */
+    public function storeKlarnaChangeBillingShippingRequestParams($payId, $eventToken, $billingData, $shippingData)
+    {
+        $this->klarnaChangeBillingShippingRequestParams = [
+            'payID' => $payId,
+            'EventToken' => $eventToken,
+
+            'bdTitle'  => $billingData['bdTitle'],
+            'bdFirstName'  => $billingData['bdFirstName'],
+            'bdLastName'  => $billingData['bdLastName'],
+            'bdCompany'  => $billingData['bdCompany'],
+            'bdStreet'  => $billingData['bdStreet'],
+            'bdAddrAddition'  => $billingData['bdAddrAddition'],
+            'bdZip'  => $billingData['bdZip'],
+            'bdCity'  => $billingData['bdCity'],
+            'bdRegion'  => $billingData['bdRegion'],
+            'bdCountryCode'  => $billingData['bdCountryCode'],
+            'bdEmail'  => $billingData['bdEmail'],
+            'bdPhone'  => $billingData['bdPhone'],
+
+            'sdTitle' => $shippingData['sdTitle'],
+            'sdFirstName' => $shippingData['sdFirstName'],
+            'sdLastName' => $shippingData['sdLastName'],
+            'sdCompany' => $shippingData['sdCompany'],
+            'sdStreet' => $shippingData['sdStreet'],
+            'sdAddrAddition' => $shippingData['sdAddrAddition'],
+            'sdZip' => $shippingData['sdZip'],
+            'sdCity' => $shippingData['sdCity'],
+            'sdRegion' => $shippingData['sdRegion'],
+            'sdCountryCode' => $shippingData['sdCountryCode'],
+            'sdEmail' => $shippingData['sdEmail'],
+            'sdPhone' => $shippingData['sdPhone'],
+        ];
+    }
+
+    /**
      * Returns PaymentURL
      *
      * @return string
