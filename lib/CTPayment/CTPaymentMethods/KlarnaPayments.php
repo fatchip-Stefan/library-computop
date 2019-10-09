@@ -45,6 +45,8 @@ class KlarnaPayments extends CTPaymentMethod
     protected $klarnaRefNrChangeRequestParams;
     /** @var array */
     protected $klarnaChangeBillingShippingRequestParams;
+    /** @var array */
+    protected $klarnaUpdateArtikelListRequestParams;
 
     /**
      * @param $config
@@ -56,6 +58,44 @@ class KlarnaPayments extends CTPaymentMethod
         $this->merchantID = $config['merchantID'];
         $this->blowfishPassword = $config['blowfishPassword'];
         $this->mac = $config['mac'];
+    }
+
+    /**
+     * @return array
+     */
+    public function getKlarnaUpdateArtikelListRequestParams(): array
+    {
+        return $this->klarnaUpdateArtikelListRequestParams;
+    }
+
+    /**
+     * Stores update article list request parameters for Klarna
+     *
+     * @param $payId
+     * @param $transId
+     * @param $amount
+     * @param $currency
+     * @param $eventToken
+     * @param $articleList
+     */
+
+    public function storeKlarnaUpdateArtikelListRequestParams(
+        $payId,
+        $transId,
+        $amount,
+        $currency,
+        $eventToken,
+        $articleList
+    )
+    {
+        $this->klarnaUpdateArtikelListRequestParams = [
+            'payID' => $payId,
+            'transID' => $transId,
+            'amount' => $amount,
+            'currency' => $currency,
+            'EventToken' => $eventToken,
+            'ArticleList' => $articleList,
+        ];
     }
 
     /**
@@ -133,7 +173,7 @@ class KlarnaPayments extends CTPaymentMethod
      * ];
      *
      * The $shippingData array is the same, but the key prefix is 'sd'.
-     * 
+     *
      * @param $payId
      * @param $eventToken
      * @param array $billingData
