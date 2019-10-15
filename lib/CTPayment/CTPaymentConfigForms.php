@@ -101,7 +101,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'IFrame',
                 'label' => 'Kreditkarte - Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -116,7 +116,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 1,
                 'label' => 'Kreditkarte - Test-Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -129,7 +129,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'AUTO',
                 'label' => 'Kreditkarte - Capture Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -181,7 +181,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'DIREKT',
                 'label' => 'iDEAL - Dienst',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -200,7 +200,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'DIREKT',
                 'label' => 'Lastschrift - Dienst',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -215,7 +215,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'AUTO',
                 'label' => 'Lastschrift - Capture Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -230,7 +230,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'Aus',
                 'label' => 'Iban anonymisieren',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -264,7 +264,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'AUTO',
                 'label' => 'Paydirekt - Capture Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -287,7 +287,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'AUTO',
                 'label' => 'Paypal - Capture Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -327,7 +327,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'Test',
                 'label' => 'Amazon Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -341,7 +341,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'PwA',
                 'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_TYPE_PARAMETER" target="_blank">AmazonPay - Button Typ</a>',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -397,7 +397,7 @@ class CTPaymentConfigForms
                 'type' => 'boolean',
                 'value' => false,
                 'label' => 'Bonitätsprüfung - Zurückgelieferte Adressdaten verwenden',
-                'required' => true,
+                'required' => false,
                 'description' => 'Ersetzt die Rechnungsaddresse mit u.U. korrigierten Adressen aus der Bonitätsprüfung',
             ],
             'bonitaetinvalidateafterdays' => [
@@ -417,7 +417,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'inactive',
                 'label' => 'CRIF Bonitätsprüfung',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
