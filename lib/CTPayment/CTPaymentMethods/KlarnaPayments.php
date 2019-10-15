@@ -28,7 +28,10 @@
 
 namespace Fatchip\CTPayment\CTPaymentMethods;
 
+use Exception;
 use Fatchip\CTPayment\CTPaymentMethod;
+use Fatchip\CTPayment\CTResponse;
+use Shopware_Plugins_Frontend_FatchipCTPayment_Bootstrap as FatchipCTPayment;
 
 /**
  * @package Fatchip\CTPayment\CTPaymentMethods
@@ -51,9 +54,7 @@ class KlarnaPayments extends CTPaymentMethod
     /**
      * @param $config
      */
-    public function __construct(
-        $config
-    )
+    public function __construct($config)
     {
         $this->merchantID = $config['merchantID'];
         $this->blowfishPassword = $config['blowfishPassword'];
@@ -133,8 +134,9 @@ class KlarnaPayments extends CTPaymentMethod
      *
      * @param $payId
      * @param $refNr
-     *
      * @return array
+     * @deprecated
+     *
      */
     public function getRefNrChangeParams($payId, $refNr)
     {
@@ -145,6 +147,14 @@ class KlarnaPayments extends CTPaymentMethod
 
         $this->storeKlarnaRefNrChangeRequestParams($payId, $eventToken, $refNr);
 
+        return $this->klarnaRefNrChangeRequestParams;
+    }
+
+    /**
+     * @return array
+     */
+    public function getKlarnaRefNrChangeRequestParams()
+    {
         return $this->klarnaRefNrChangeRequestParams;
     }
 
@@ -307,6 +317,82 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
+     * @param int $digitCount Optional parameter for the length of resulting
+     *                        transID. The default value is 12.
+     *
+     * @return string The transID with a length of $digitCount.
+     */
+    public static function generateTransID($digitCount = 12)
+    {
+        mt_srand((double)microtime() * 1000000);
+
+        $transID = (string)mt_rand();
+        // y: 2 digits for year
+        // m: 2 digits for month
+        // d: 2 digits for day of month
+        // H: 2 digits for hour
+        // i: 2 digits for minute
+        // s: 2 digits for second
+        $transID .= date('ymdHis');
+        // $transID = md5($transID);
+        $transID = substr($transID, 0, $digitCount);
+
+        return $transID;
+    }
+
+    /**
+     * Creates the Klarna article list. The list is json and then base64 encoded.
+     *
+     * @return string
+     */
+    public static function createArticleList()
+    {
+        $articleList = [];
+
+        try {
+            foreach (Shopware()->Modules()->Basket()->sGetBasket()['content'] as $item) {
+                $quantity = (int)$item['quantity'];
+                $itemTaxAmount = round(str_replace(',', '.', $item['tax']) * 100);
+                $totalAmount = round(str_replace(',', '.', $item['price']) * 100) * $quantity;
+                $articleList['order_lines'][] = [
+                    'name' => $item['articlename'],
+                    'quantity' => $quantity,
+                    'unit_price' => round($item['priceNumeric'] * 100),
+                    'total_amount' => $totalAmount,
+                    'tax_rate' => $item['tax_rate'] * 100,
+                    'total_tax_amount' => $itemTaxAmount,
+                ];
+            }
+        } catch (Exception $e) {
+            return '';
+        }
+
+        /** @var string $articleList */
+        $articleList = base64_encode(json_encode($articleList));
+
+        return $articleList;
+    }
+
+    /**
+     * Calculates the Klarna tax amount by adding the tax amounts of each position in the article list.
+     *
+     * @param $articleList
+     *
+     * @return float
+     */
+    public static function calculateTaxAmount($articleList)
+    {
+        $taxAmount = 0;
+        $articleList = json_decode(base64_decode($articleList), true);
+        foreach ($articleList['order_lines'] as $article) {
+            $itemTaxAmount = $article['total_tax_amount'];
+            $taxAmount += $itemTaxAmount;
+        }
+
+        return $taxAmount;
+    }
+
+    /**
      * Returns parameters for redirectURL
      *
      * @param $params
@@ -330,5 +416,95 @@ class KlarnaPayments extends CTPaymentMethod
     public function getKlarnaOrderRequestParams()
     {
         return $this->klarnaOrderRequestParams;
+    }
+
+    /**
+     * @return CTResponse
+     */
+    public function requestSession()
+    {
+        $requestType = 'KLARNA_SESSION';
+        $params = $this->getKlarnaSessionRequestParams();
+        $ctRequest = $this->cleanUrlParams($params);
+
+
+        $response = $this->request($requestType, $ctRequest);
+
+        return $response;
+    }
+
+    /**
+     * @return CTResponse
+     */
+    public function requestKlarnaCreateOrder()
+    {
+        $requestType = 'KLARNA_ORDER (CNO)';
+        $params = $this->getKlarnaOrderRequestParams();
+        $ctRequest = $this->cleanUrlParams($params);
+
+        $response = $this->request($requestType, $ctRequest);
+
+        return $response;
+    }
+
+    /**
+     * @return CTResponse
+     */
+    public function requestKlarnaRefNrChange()
+    {
+        $requestType = 'KLARNA_REF_NR_CHANGE (UMR)';
+        $params = $this->getKlarnaRefNrChangeRequestParams();
+        $ctRequest = $this->cleanUrlParams($params);
+
+        $response = $this->request($requestType, $ctRequest);
+
+        return $response;
+    }
+
+    /**
+     * @return CTResponse
+     */
+    public function requestKlarnaUpdateArticleList()
+    {
+        $requestType = 'KLARNA_UPDATE_ARTICLE_LIST (UEO)';
+        $params = $this->getKlarnaUpdateArtikelListRequestParams();
+        $ctRequest = $this->cleanUrlParams($params);
+
+        $response = $this->request($requestType, $ctRequest);
+
+        return $response;
+    }
+
+    /**
+     * @return CTResponse
+     */
+    public function requestKlarnaChangeBillingShipping()
+    {
+        $requestType = 'KLARNA_CHANGE_BILLING_SHIPPING (UCA)';
+        $params = $this->getKlarnaChangeBillingShippingRequestParams();
+        $ctRequest = $this->cleanUrlParams($params);
+
+        $response = $this->request($requestType, $ctRequest);
+
+        return $response;
+    }
+
+    /**
+     * @param $requestType
+     * @param $requestParams
+     *
+     * @return CTResponse
+     */
+    public function request($requestType, $requestParams)
+    {
+        $CTPaymentURL = $this->getCTPaymentURL();
+        $ctRequest = $this->cleanUrlParams($requestParams);
+        $response = null;
+
+        /** @var FatchipCTPayment $plugin */
+        $plugin = Shopware()->Container()->get('plugins')->Frontend()->FatchipCTPayment();
+        $response = $plugin->callComputopService($ctRequest, $this, $requestType, $CTPaymentURL);
+
+        return $response;
     }
 }

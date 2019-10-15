@@ -156,7 +156,6 @@ abstract class CTPaymentMethod extends Blowfish
      *
      * @param $ctRequest
      * @param $url
-     * @throws \Exception
      * @return CTResponse
      */
     public function callComputop($ctRequest, $url)
