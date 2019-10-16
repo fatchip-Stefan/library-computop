@@ -299,24 +299,6 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * @return string
-     */
-    public function getKlarnaSessionRequestParamsHash()
-    {
-        $hashable = [
-            'TaxAmount' => $this->klarnaSessionRequestParams['TaxAmount'],
-            'ArticleList' => $this->klarnaSessionRequestParams['ArticleList'],
-            'PayType' => $this->klarnaSessionRequestParams['PayType'],
-            'bdCountryCode' => $this->klarnaSessionRequestParams['bdCountryCode'],
-            'amount' => $this->klarnaSessionRequestParams['amount'],
-            'currency' => $this->klarnaSessionRequestParams['currency'],
-            'IPAddr' => $this->klarnaSessionRequestParams['IPAddr'],
-        ];
-
-        return md5(serialize($hashable));
-    }
-
-    /**
      * @param int $digitCount Optional parameter for the length of resulting
      *                        transID. The default value is 12.
      *
