@@ -345,7 +345,7 @@ class KlarnaPayments extends CTPaymentMethod
      *
      * @return string
      */
-    public static function createArticleList()
+    public static function createArticleListBase64()
     {
         $articleList = [];
 
@@ -371,6 +371,21 @@ class KlarnaPayments extends CTPaymentMethod
         $articleList = base64_encode(json_encode($articleList));
 
         return $articleList;
+    }
+
+    /**
+     * Creates an md5 hash from current billing and shipping addresses.
+     *
+     * @return string
+     */
+    public static function createAddressHash()
+    {
+        $userData = Shopware()->Modules()->Admin()->sGetUserData();
+
+        /** @var string $address */
+        $address = md5(serialize($userData['billingaddress']) . serialize($userData['shippingaddress']));
+
+        return $address;
     }
 
     /**
