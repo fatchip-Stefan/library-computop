@@ -105,7 +105,7 @@ abstract class CTPaymentMethod extends Blowfish
      * @param $url
      * @return string
      */
-    public function prepareComputopRequest($params, $url)
+    public function prepareComputopRequest($params, $url, $addTemplate = '')
     {
         $requestParams = [];
         foreach ($params as $key => $value) {
@@ -119,10 +119,16 @@ abstract class CTPaymentMethod extends Blowfish
         $len = mb_strlen($request);  // Length of the plain text string
         $data = $this->ctEncrypt($request, $len, $this->blowfishPassword);
 
-        return $url .
+        $url .=
             '?MerchantID=' . $this->merchantID .
             '&Len=' . $len .
             '&Data=' . $data;
+
+        if($addTemplate) {
+            $url .= '&template=' . $addTemplate;
+        }
+
+        return $url;
     }
 
     /**
