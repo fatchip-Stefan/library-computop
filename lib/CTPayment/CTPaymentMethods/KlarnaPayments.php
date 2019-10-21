@@ -29,6 +29,7 @@
 namespace Fatchip\CTPayment\CTPaymentMethods;
 
 use Exception;
+use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethod;
 use Fatchip\CTPayment\CTResponse;
 use Shopware\Plugins\FatchipCTPayment\Util;
@@ -520,5 +521,39 @@ class KlarnaPayments extends CTPaymentMethod
         $response = $plugin->callComputopService($ctRequest, $this, $requestType, $CTPaymentURL);
 
         return $response;
+    }
+
+    public function needNewKlarnaSession()
+    {
+        /** @var Util $utils */
+        $utils = Shopware()->Container()->get('FatchipCTPaymentUtils');
+
+        /** @var CTOrder $ctOrder */
+        $ctOrder = $utils->createCTOrder();
+        /** @var KlarnaPayments $payment */
+        $session = Shopware()->Session();
+
+        $sessionAmount = $session->get('FatchipCTKlarnaPaymentAmount', '');
+        $currentAmount = $ctOrder->getAmount();
+        $amountChanged = $currentAmount !== $sessionAmount;
+
+        $sessionArticleListBase64 = $session->get('FatchipCTKlarnaPaymentArticleListBase64', '');
+        $currentArticleListBase64 = $this->createArticleListBase64();
+        $articleListChanged = $sessionArticleListBase64 !== $currentArticleListBase64;
+
+        $sessionAddressHash = $session->get('FatchipCTKlarnaPaymentAddressHash', '');
+        $currentAddressHash = $this->createAddressHash();
+        $addressChanged = $sessionAddressHash !== $currentAddressHash;
+
+        $sessionDispatch = $session->get('FatchipCTKlarnaPaymentDispatchID', '');
+        $currentDispatch = $session->offsetGet('sDispatch');
+        $dispatchChanged = $sessionDispatch !== $currentDispatch;
+
+
+        return !$session->offsetExists('FatchipCTKlarnaAccessToken')
+            || $amountChanged
+            || $articleListChanged
+            || $addressChanged
+            || $dispatchChanged;
     }
 }
