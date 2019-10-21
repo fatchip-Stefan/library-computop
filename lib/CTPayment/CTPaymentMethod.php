@@ -32,6 +32,8 @@ namespace Fatchip\CTPayment;
 abstract class CTPaymentMethod extends Blowfish
 {
 
+    const paymentClass = '';
+
     /**
      * These params should not be send with the computop requests and are filtered out in prepareComputopRequest
      */
@@ -112,6 +114,7 @@ abstract class CTPaymentMethod extends Blowfish
             }
         }
         $requestParams[] = "MAC=" . $this->ctHMAC($params);
+
         $request = join('&', $requestParams);
         $len = mb_strlen($request);  // Length of the plain text string
         $data = $this->ctEncrypt($request, $len, $this->blowfishPassword);
@@ -159,7 +162,6 @@ abstract class CTPaymentMethod extends Blowfish
      *
      * @param $ctRequest
      * @param $url
-     * @throws \Exception
      * @return CTResponse
      */
     public function callComputop($ctRequest, $url)

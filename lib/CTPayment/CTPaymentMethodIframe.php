@@ -457,21 +457,6 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
 
 
     /**
-     * returns parameters for redirectURL
-     * @return array
-     */
-    public function getRedirectUrlParams()
-    {
-        $requestParams = [];
-        foreach ($this as $key => $value) {
-            if (!is_null($value) && !array_key_exists($key, $this::paramexcludes)){
-                $requestParams[$key] = $value;
-            }
-        }
-        return $requestParams;
-    }
-
-    /**
      * returns encoded url for a request with encoded Data and LEN queryparameters
      * @param $ctRequest
      * @return string
@@ -504,6 +489,8 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
      *                        transID. The default value is 12.
      *
      * @return string The transID with a length of $digitCount.
+     * @deprecated
+     * use Utils->generateTransID()
      */
     public static function generateTransID($digitCount = 12) {
         mt_srand((double)microtime() * 1000000);
@@ -520,5 +507,21 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $transID = substr($transID, 0, $digitCount);
 
         return $transID;
+    }
+
+    /**
+     * @deprecated
+     * returns parameters for redirectURL
+     * @return array
+     */
+    public function getRedirectUrlParams()
+    {
+        $requestParams = [];
+        foreach ($this as $key => $value) {
+            if (!is_null($value) && !array_key_exists($key, $this::paramexcludes)){
+                $requestParams[$key] = $value;
+            }
+        }
+        return $requestParams;
     }
 }
