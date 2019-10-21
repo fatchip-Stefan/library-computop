@@ -31,6 +31,7 @@ namespace Fatchip\CTPayment\CTPaymentMethods;
 use Exception;
 use Fatchip\CTPayment\CTPaymentMethod;
 use Fatchip\CTPayment\CTResponse;
+use Shopware\Plugins\FatchipCTPayment\Util;
 use Shopware_Plugins_Frontend_FatchipCTPayment_Bootstrap as FatchipCTPayment;
 
 /**
@@ -329,6 +330,9 @@ class KlarnaPayments extends CTPaymentMethod
      */
     public static function createArticleListBase64()
     {
+        /** @var Util $utils */
+        $utils = Shopware()->Container()->get('FatchipCTPaymentUtils');
+
         $articleList = [];
 
         try {
@@ -347,6 +351,19 @@ class KlarnaPayments extends CTPaymentMethod
             }
         } catch (Exception $e) {
             return '';
+        }
+
+        $shippingCosts = $utils->calculateShippingCosts();
+
+        if ($shippingCosts) {
+            $articleList['order_lines'][] = [
+                'name' => 'shippingcosts',
+                'quantity' => 1,
+                'unit_price' => $shippingCosts * 100,
+                'total_amount' => $shippingCosts * 100,
+                'tax_rate' => 0,
+                'total_tax_amount' => 0,
+            ];
         }
 
         /** @var string $articleList */
