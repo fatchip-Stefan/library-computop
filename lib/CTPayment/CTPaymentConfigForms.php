@@ -83,7 +83,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'inactive',
                 'label' => 'Debug Protokoll',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -101,7 +101,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'IFrame',
                 'label' => 'Kreditkarte - Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -111,12 +111,25 @@ class CTPaymentConfigForms
                 'description' => '<b>IFrame</b>: Kreditkartendaten werden nach klick auf "Zahlungsplichtig bestellen" in ein IFrame eingegeben<BR>
                                   <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Zahlungsart wählen" eingegeben.<BR>'
             ],
+            'creditCardTestMode' => [
+                'name' => 'creditCardTestMode',
+                'type' => 'select',
+                'value' => 1,
+                'label' => 'Kreditkarte - Test-Modus',
+                'required' => false,
+                'editable' => false,
+                'store' =>
+                    [
+                        [0, 'inaktiv'],
+                        [1, 'aktiv'],
+                    ],
+            ],
             'creditCardCaption' => [
                 'name' => 'creditCardCaption',
                 'type' => 'select',
                 'value' => 'AUTO',
                 'label' => 'Kreditkarte - Capture Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -154,10 +167,10 @@ class CTPaymentConfigForms
             'creditCardTemplate' => [
                 'name' => 'creditCardTemplate',
                 'type' => 'text',
-                'value' => '',
+                'value' => 'ct_responsive_ch',
                 'label' => 'Kreditkarte - Template Name',
                 'required' => false,
-                'description' => 'Name der XSLT-Datei mit Ihrem individuellen Layout für das Bezahlformular. Wenn Sie das neugestaltete und abwärtskompatible Computop-Template nutzen möchten, übergeben Sie den Templatenamen „ct_compatible“. Wenn Sie das Responsive Computop-Template für mobile Endgeräte nutzen möchten, übergeben Sie den Templatenamen „ct_responsive“.',
+                'description' => 'Name der XSLT-Datei mit Ihrem individuellen Layout für das Bezahlformular. Wenn Sie das neugestaltete und abwärtskompatible Computop-Template nutzen möchten, übergeben Sie den Templatenamen „ct_compatible“. Wenn Sie das Responsive Computop-Template für mobile Endgeräte nutzen möchten, übergeben Sie den Templatenamen „ct_responsive“ oder "ct_responsive_ch".',
             ],
         ];
 
@@ -168,7 +181,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'DIREKT',
                 'label' => 'iDEAL - Dienst',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -187,7 +200,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'DIREKT',
                 'label' => 'Lastschrift - Dienst',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -202,7 +215,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'AUTO',
                 'label' => 'Lastschrift - Capture Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -217,7 +230,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'Aus',
                 'label' => 'Iban anonymisieren',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -239,7 +252,7 @@ class CTPaymentConfigForms
                 'type' => 'text',
                 'value' => '',
                 'label' => 'Paydirekt - Shop Api Key',
-                'required' => true,
+                'required' => false,
                 'description' => 'Ihr Paydirekt Api Schlüssel',
             ],
         ];
@@ -251,7 +264,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'AUTO',
                 'label' => 'Paydirekt - Capture Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -274,7 +287,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'AUTO',
                 'label' => 'Paypal - Capture Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -293,7 +306,7 @@ class CTPaymentConfigForms
                 'type' => 'text',
                 'value' => '',
                 'label' => 'AmazonPay - SellerId',
-                'required' => true,
+                'required' => false,
                 'description' => 'Ihre Amazonpay SellerId',
             ],
             'amazonClientId' => [
@@ -301,7 +314,7 @@ class CTPaymentConfigForms
                 'type' => 'text',
                 'value' => '',
                 'label' => 'AmazonPay - ClientId',
-                'required' => true,
+                'required' => false,
                 'description' => 'Ihre Amazonpay ClientId',
             ],
 
@@ -314,7 +327,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'Test',
                 'label' => 'Amazon Modus',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -328,7 +341,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'PwA',
                 'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_TYPE_PARAMETER" target="_blank">AmazonPay - Button Typ</a>',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -384,7 +397,7 @@ class CTPaymentConfigForms
                 'type' => 'boolean',
                 'value' => false,
                 'label' => 'Bonitätsprüfung - Zurückgelieferte Adressdaten verwenden',
-                'required' => true,
+                'required' => false,
                 'description' => 'Ersetzt die Rechnungsaddresse mit u.U. korrigierten Adressen aus der Bonitätsprüfung',
             ],
             'bonitaetinvalidateafterdays' => [
@@ -392,7 +405,7 @@ class CTPaymentConfigForms
                 'type' => 'number',
                 'value' => '30',
                 'label' => 'Bonitätsprüfung - Gültigkeit der Bonitätsprüfung in Tagen',
-                'required' => true,
+                'required' => false,
                 'description' => 'Stellen Sie hier ein, wie lange ein bereits durchgeführte Bontitätsprüfung gültig bleibt',
             ],
         ];
@@ -404,7 +417,7 @@ class CTPaymentConfigForms
                 'type' => 'select',
                 'value' => 'inactive',
                 'label' => 'CRIF Bonitätsprüfung',
-                'required' => true,
+                'required' => false,
                 'editable' => false,
                 'store' =>
                     [
@@ -426,7 +439,7 @@ class CTPaymentConfigForms
           'type' => 'text',
           'value' => '',
           'label' => 'Klarna Aktionscode',
-          'required' => true,
+          'required' => false,
           'description' => 'Der Wert ist von Laufzeiten und Monatsraten abhängig, die Sie mit Klarna vereinbart haben. Dieser Wert kann per Subshop unterschiedlich sein.',
         ],
         'klarnaaccount' => [
@@ -434,7 +447,7 @@ class CTPaymentConfigForms
           'type' => 'text',
           'value' => '',
           'label' => 'Klarna Konto',
-          'required' => true,
+          'required' => false,
           'description' => 'Das zu benutzende Klarna Konto.',
         ],
       ];

@@ -44,6 +44,8 @@ class Ideal extends CTPaymentMethodIframe
      */
     protected $issuerID;
 
+    protected $idealDirekt;
+
     /**
      * Ideal constructor
      * @param array $config
@@ -140,7 +142,6 @@ class Ideal extends CTPaymentMethodIframe
         $data = $this->ctEncrypt($query, $Len, $this->getBlowfishPassword());
 
         return 'https://www.computop-paygate.com/idealIssuerList.aspx' .  '?merchantID=' . $this->getMerchantID() . '&Len=' . $Len . "&Data=" . $data;
-        ;
     }
 
 }

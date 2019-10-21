@@ -28,6 +28,7 @@
 
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
+use Fatchip\CTPayment\CTAddress\CTAddress;
 use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
@@ -49,13 +50,9 @@ class CreditCard extends CTPaymentMethodIframe
     protected $capture = 'MANUAL';
 
     /**
-     * Name der XSLT-Datei mit Ihrem individuellen Layout für das Bezahlformular.
-     * Wenn Sie das neugestaltete und abwärtskompatible Computop-Template nut-zen möchten,
-     * übergeben Sie den Templatenamen „ct_compatible“. Wenn Sie das Responsive Computop-Template für mobile Endgeräte
-     * nutzen möchten, übergeben Sie den Templatenamen „ct_responsive“.
      * @var string
      */
-    protected $Template;
+    protected $msgVer;
 
     /**
      * Creditcard acquirer
@@ -73,49 +70,32 @@ class CreditCard extends CTPaymentMethodIframe
     /*FIELD FOR AVS*/
 
     /**
-     * Straßenname (für AVS)
-     *
-     * für GICC und Omnipay ohne hausnummer, für CAPN mit hausnummer
+     * Rechnungsadresse
      *
      * @var string
      */
-    protected $AddrStreet;
+    protected $billingAddress;
 
     /**
-     * Hausnummer zur Verifizierung durch American Express (für AVS)
+     * Lieferaddresse
      *
      * @var string
      */
-    protected $AddrStreetNr;
+    protected $shippingAddress;
 
     /**
-     * Postleitzahl (für AVS)
+     * Rechnungskunde
      *
      * @var string
      */
-    protected $AddrZip;
+    protected $billToCustomer;
 
     /**
-     * Ortsname (für AVS)
+     * Lieferkunde
      *
      * @var string
      */
-    protected $AddrCity;
-
-    /**
-     * Code des Bundeslandes des Kunden
-     *
-     * @var string
-     */
-    protected $AddrState;
-
-    /**
-     * Ländercode im Format ISO-3166-1:
-     * er kann wahlweise 2-stellig oder 3-istellig übergeben werden – Format a2 / a3 (für AVS)
-     *
-     * @var string
-     */
-    protected $addrCountryCode;
+    protected $shipToCustomer;
 
     /* FIELDS FOR AMEX/CAPN*/
     /**
@@ -168,12 +148,6 @@ class CreditCard extends CTPaymentMethodIframe
      */
 
     protected $sdCountryCode;
-
-    /**
-     * Optional: URL für Schaltfläche „Abbrechen“
-     * @var string
-     */
-    protected $URLBack;
 
     /**
      * For Paynow/Silentmode:
@@ -269,37 +243,26 @@ class CreditCard extends CTPaymentMethodIframe
         $this->setUrlFailure($urlFailure);
         $this->setUrlNotify($urlNotify);
 
+        $this->setMsgVer('2.0');
+        $this->setUserData(base64_encode($userData));
 
-        switch ($config['creditCardAcquirer']) {
-            case 'GICC':
-            case 'Omnipay':
-                $this->setAddrStreet($order->getBillingAddress()->getStreet());
-                $this->setAddrStreetNr($order->getBillingAddress()->getStreetNr());
-                $this->setAddrZip($order->getBillingAddress()->getZip());
-                $this->setAddrCity($order->getBillingAddress()->getCity());
-                $this->setAddrCountryCode($order->getBillingAddress()->getCountryCode());
-                $this->setAddrState($order->getBillingAddress()->getState());
-                break;
-            case 'CAPN':
-                $this->setAmountAuth($order->getAmount());
-                $this->setFirstName($order->getBillingAddress()->getFirstName());
-                $this->setLastName($order->getBillingAddress()->getLastName());
-                $this->setAddrStreet($order->getBillingAddress()->getStreet() . ' ' . $order->getBillingAddress()->getStreetNr());
-                $this->setAddrZip($order->getBillingAddress()->getZip());
-                $this->setSdFirstName($order->getShippingAddress()->getFirstName());
-                $this->setSdLastName($order->getShippingAddress()->getLastName());
-                $this->setSdStreet($order->getShippingAddress()->getStreet() . ' ' . $order->getShippingAddress()->getStreetNr());
-                $this->setSdZip($order->getShippingAddress()->getZip());
-                $this->setSdCountryCode($order->getShippingAddress()->getCountryCodeIso3());
-                break;
+        if($config['creditCardTestMode']) {
+            $this->setOrderDesc('Test:0000');
+        }
+        else {
+            $this->setOrderDesc($orderDesc);
+        }
+
+        $this->setBillingAddress($order->getBillingAddress());
+        $this->setShippingAddress($order->getShippingAddress());
+        if ($config['creditCardAcquirer'] === 'CAPN') {
+            $this->setAmountAuth($order->getAmount());
+            $this->setBillToCustomer($order);
+            $this->setShipToCustomer($order);
         }
 
         //we will handle all captures manually
         $this->setCapture('MANUAL');
-
-        if (isset($config['creditCardTemplate'])) {
-            $this->setTemplate($config['creditCardTemplate']);
-        }
 
     }
 
@@ -323,110 +286,111 @@ class CreditCard extends CTPaymentMethodIframe
 
     /**
      * @ignore <description>
-     * @param string $addrStreet
+     * @return string
      */
-    public function setAddrStreet($addrStreet)
+    public function getMsgVer()
     {
-        $this->AddrStreet = $addrStreet;
+        return $this->msgVer;
+    }
+
+    /**
+     * @ignore <description>
+     * @param string $msgVer
+     */
+    public function setMsgVer($msgVer)
+    {
+        $this->msgVer = $msgVer;
     }
 
     /**
      * @ignore <description>
      * @return string
      */
-    public function getAddrStreet()
+    public function getBillingAddress()
     {
-        return $this->AddrStreet;
+        return $this->billingAddress;
     }
 
     /**
      * @ignore <description>
-     * @param string $addrStreetNr
+     * @param CTAddress $CTAddress
      */
-    public function setAddrStreetNr($addrStreetNr)
+    public function setBillingAddress($CTAddress)
     {
-        $this->AddrStreetNr = $addrStreetNr;
-    }
-
-    /**
-     * @ignore <description>
-     * @return string
-     */
-    public function getAddrStreetNr()
-    {
-        return $this->AddrStreetNr;
-    }
-
-    /**
-     * @ignore <description>
-     * @param string $addrCity
-     */
-    public function setAddrCity($addrCity)
-    {
-        $this->AddrCity = $addrCity;
+        $this->billingAddress = base64_encode(json_encode($this->declareAddress($CTAddress)));
     }
 
     /**
      * @ignore <description>
      * @return string
      */
-    public function getAddrCity()
+    public function getShippingAddress()
     {
-        return $this->AddrCity;
+        return $this->shippingAddress;
     }
 
     /**
      * @ignore <description>
-     * @param string $addrZip
+     * @param CTAddress $CTAddress
      */
-    public function setAddrZip($addrZip)
+    public function setShippingAddress($CTAddress)
     {
-        $this->AddrZip = $addrZip;
+        $this->shippingAddress = base64_encode(json_encode($this->declareAddress($CTAddress)));
     }
 
     /**
-     * @ignore <description>
+     * @param CTAddress $CTAddress
+     * @return array
+     */
+    protected function declareAddress($CTAddress)
+    {
+        $address['city'] = $CTAddress->getCity();
+        $address['country']['countryA3'] = $CTAddress->getCountryCodeIso3();
+        $address['addressLine1']['street'] = $CTAddress->getStreet();
+        $address['addressLine1']['streetNumber'] = $CTAddress->getStreetNr();
+        $address['postalCode'] = $CTAddress->getZip();
+        return $address;
+    }
+
+    /**
      * @return string
      */
-    public function getAddrZip()
+    public function getBillToCustomer()
     {
-        return $this->AddrZip;
+        return $this->billToCustomer;
     }
 
     /**
-     * @ignore <description>
-     * @param string $addrCountryCode
+     * @param CTOrder $ctOrder
      */
-    public function setAddrCountryCode($addrCountryCode)
+    public function setBillToCustomer($ctOrder)
     {
-        $this->addrCountryCode = $addrCountryCode;
+        #$customer['consumer']['salutation'] = $ctOrder->getBillingAddress()->getSalutation();
+        $customer['consumer']['firstName'] = $ctOrder->getBillingAddress()->getFirstName();
+        $customer['consumer']['lastName'] = $ctOrder->getBillingAddress()->getLastName();
+        $customer['email'] = $ctOrder->getEmail();
+        $this->billToCustomer = base64_encode(json_encode($customer));
     }
 
     /**
-     * @ignore <description>
      * @return string
      */
-    public function getAddrCountryCode()
+    public function getShipToCustomer()
     {
-        return $this->addrCountryCode;
+        return $this->shipToCustomer;
     }
 
     /**
-     * @ignore <description>
-     * @param string $addrState
+     * @param CTOrder $ctOrder
      */
-    public function setAddrState($addrState)
+    public function setShipToCustomer($ctOrder)
     {
-        $this->AddrState = $addrState;
-    }
-
-    /**
-     * @ignore <description>
-     * @return string
-     */
-    public function getAddrState()
-    {
-        return $this->AddrState;
+        #$customer['consumer']['salutation'] = $ctOrder->getShippingAddress()->getSalutation();
+        $customer['consumer']['firstName'] = $ctOrder->getShippingAddress()->getFirstName();
+        $customer['consumer']['lastName'] = $ctOrder->getShippingAddress()->getLastName();
+        $customer['email'] = $ctOrder->getEmail();
+        $customer['customerNumber'] = $ctOrder->getCustomerID();
+        $this->shipToCustomer = base64_encode(json_encode($customer));
     }
 
     /**
@@ -635,40 +599,6 @@ class CreditCard extends CTPaymentMethodIframe
         return $this->TxType;
     }
 
-
-    /**
-     * @ignore <description>
-     * @param string $urlBack
-     */
-    public function setURLBack($urlBack) {
-        $this->URLBack = $urlBack;
-    }
-
-    /**
-     * @ignore <description>
-     * @param string $Template
-     */
-    public function setTemplate($Template) {
-        $this->Template = $Template;
-    }
-
-    /**
-     * @ignore <description>
-     * @return string
-     */
-    public function getTemplate() {
-        return $this->Template;
-    }
-
-    /**
-     * @ignore <description>
-     * @return string
-     */
-    public function getURLBack() {
-        return $this->URLBack;
-    }
-
-
     /**
      * returns encrypted url for preauthorizations for paynow silent mode
      *
@@ -696,13 +626,9 @@ class CreditCard extends CTPaymentMethodIframe
      * @param $ctRequest
      * @return string
      */
-    public function getHTTPGetURL($ctRequest)
+    public function getHTTPGetURL($ctRequest, $addTemplate = '')
     {
-        $url =  parent::prepareComputopRequest($ctRequest, $this->getCTPaymentURL());
-        if (strlen($this->getTemplate()) > 0) {
-            $url .= '&Template=' . $this->getTemplate();
-        }
-        return $url;
+        return parent::prepareComputopRequest($ctRequest, $this->getCTPaymentURL(), $addTemplate);
     }
 
     /**
