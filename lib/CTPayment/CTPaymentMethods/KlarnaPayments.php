@@ -549,7 +549,6 @@ class KlarnaPayments extends CTPaymentMethod
         $currentDispatch = $session->offsetGet('sDispatch');
         $dispatchChanged = $sessionDispatch !== $currentDispatch;
 
-
         return !$session->offsetExists('FatchipCTKlarnaAccessToken')
             || $amountChanged
             || $articleListChanged
