@@ -375,7 +375,7 @@ class CTPaymentConfigForms
             'amazonButtonSize' => [
                 'name' => 'amazonButtonSize',
                 'type' => 'select',
-                'value' => 'small',
+                'value' => 'medium',
                 'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_SIZE_PARAMETER" target="_blank">AmazonPay - Button Größe</a>',
                 'required' => 'true',
                 'editable' => false,
