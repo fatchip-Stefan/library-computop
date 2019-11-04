@@ -38,19 +38,6 @@ class PaypalExpress extends CTPaymentMethod
     const paymentClass = 'PaypalExpress';
 
     /**
-     * PaypalExpress constructor
-     * @param $config
-     */
-    public function __construct(
-        $config
-    )
-    {
-        $this->merchantID = $config['merchantID'];
-        $this->blowfishPassword = $config['blowfishPassword'];
-        $this->mac = $config['mac'];
-    }
-
-    /**
      * returns PaymentURL
      * @return string
      */

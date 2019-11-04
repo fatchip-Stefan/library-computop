@@ -53,19 +53,6 @@ class KlarnaPayments extends CTPaymentMethod
     /** @var array */
     protected $klarnaUpdateArtikelListRequestParams;
 
-    public $helper;
-
-    /**
-     * @param $config
-     */
-    public function __construct($config)
-    {
-        $this->merchantID = $config['merchantID'];
-        $this->blowfishPassword = $config['blowfishPassword'];
-        $this->mac = $config['mac'];
-        $this->helper = new \Fatchip\CTPayment\Helper\KlarnaPayments();
-    }
-
     /**
      * @return array
      */

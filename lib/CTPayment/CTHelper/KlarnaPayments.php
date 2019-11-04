@@ -35,7 +35,7 @@ use Shopware\Plugins\FatchipCTPayment\Util;
 /**
  * @package Fatchip\CTPayment\CTPaymentMethods
  */
-class KlarnaPayments
+class KlarnaPayments extends Util
 {
     /**
      * @return \Fatchip\CTPayment\CTPaymentMethods\KlarnaPayments

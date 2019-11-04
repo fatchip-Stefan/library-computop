@@ -38,20 +38,6 @@ class AmazonPay extends CTPaymentMethod
     const paymentClass = 'AmazonPay';
 
     /**
-     * AmazonPay constructor
-     * @param $config
-     */
-    public function __construct(
-        $config
-    )
-    {
-        $this->merchantID = $config['merchantID'];
-        $this->blowfishPassword = $config['blowfishPassword'];
-        $this->mac = $config['mac'];
-    }
-
-
-    /**
      * returns PaymentURL
      * @return string
      */
