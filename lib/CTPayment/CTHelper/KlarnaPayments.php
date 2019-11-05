@@ -1,6 +1,4 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,12 +26,14 @@
 
 namespace Fatchip\CTPayment\CTHelper;
 
+use Exception;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Shopware\Plugins\FatchipCTPayment\Util;
 
 
 /**
  * @package Fatchip\CTPayment\CTPaymentMethods
+ * @property Util $utils
  */
 trait KlarnaPayments
 {
@@ -94,9 +94,8 @@ trait KlarnaPayments
             return null;
         }
 
-        //TODO: from this helper
-        $articleList = \Fatchip\CTPayment\CTPaymentMethods\KlarnaPayments::createArticleListBase64();
-        $taxAmount = \Fatchip\CTPayment\CTPaymentMethods\KlarnaPayments::calculateTaxAmount($articleList);
+        $articleList = $this->createArticleListBase64();
+        $taxAmount = $this->calculateTaxAmount($articleList);
 
         $URLConfirm = Shopware()->Front()->Router()->assemble([
             'controller' => 'checkout',
@@ -112,7 +111,7 @@ trait KlarnaPayments
 
         $klarnaAccount = $this->config['klarnaaccount'];
 
-        $this->storeKlarnaSessionRequestParams(
+        $params = $this->getKlarnaSessionRequestParams(
             $taxAmount,
             $articleList,
             $URLConfirm,
@@ -122,10 +121,9 @@ trait KlarnaPayments
             $ctOrder->getAmount(),
             $ctOrder->getCurrency(),
             \Fatchip\CTPayment\CTPaymentMethods\KlarnaPayments::generateTransID(),
-            $_SERVER['REMOTE_ADDR']
-        );
+            $_SERVER['REMOTE_ADDR']);
 
-        return $this;
+        return $params;
     }
 
     public function cleanSessionVars()
@@ -212,11 +210,8 @@ trait KlarnaPayments
      *
      * @return string
      */
-    public static function createArticleListBase64()
+    public function createArticleListBase64()
     {
-        /** @var Util $utils */
-        $utils = Shopware()->Container()->get('FatchipCTPaymentUtils');
-
         $articleList = [];
 
         try {
@@ -237,7 +232,7 @@ trait KlarnaPayments
             return '';
         }
 
-        $shippingCosts = $utils->calculateShippingCosts();
+        $shippingCosts = $this->utils->calculateShippingCosts();
 
         if ($shippingCosts) {
             $articleList['order_lines'][] = [
@@ -254,23 +249,5 @@ trait KlarnaPayments
         $articleList = base64_encode(json_encode($articleList));
 
         return $articleList;
-    }
-
-    /**
-     * Returns parameters for redirectURL
-     *
-     * @param $params
-     *
-     * @return array
-     */
-    public function cleanUrlParams($params)
-    {
-        $requestParams = [];
-        foreach ($params as $key => $value) {
-            if (!is_null($value) && !array_key_exists($key, $this::paramexcludes)) {
-                $requestParams[$key] = $value;
-            }
-        }
-        return $requestParams;
     }
 }

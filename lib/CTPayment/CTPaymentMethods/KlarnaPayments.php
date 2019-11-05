@@ -39,15 +39,8 @@ class KlarnaPayments extends CTPaymentMethod
 
     const paymentClass = 'KlarnaPayments';
 
-    /** @var array */
-    protected $klarnaSessionRequestParams;
-    /** @var array */
-    protected $klarnaOrderRequestParams;
-
     /**
-     * Returns PaymentURL
-     *
-     * @return string
+     * @inheritDoc
      */
     public function getCTPaymentURL()
     {
@@ -55,9 +48,7 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * Returns RefNrChangeURL, used to set the refNr for a transaction in CT-Analytics
-     *
-     * @return string
+     * @inheritDoc
      */
     public function getCTRefNrChangeURL()
     {
@@ -113,8 +104,6 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * Stores session request parameters for Klarna
-     *
      * @param $taxAmount
      * @param $articleList
      * @param $urlConfirm
@@ -125,8 +114,9 @@ class KlarnaPayments extends CTPaymentMethod
      * @param $currency
      * @param $transId
      * @param $ipAddress
+     * @return array
      */
-    public function storeKlarnaSessionRequestParams(
+    public function getKlarnaSessionRequestParams(
         $taxAmount,
         $articleList,
         $urlConfirm,
@@ -139,7 +129,7 @@ class KlarnaPayments extends CTPaymentMethod
         $ipAddress
     )
     {
-        $this->klarnaSessionRequestParams = [
+        $params = [
             'TaxAmount' => $taxAmount,
             'ArticleList' => $articleList,
             'URLConfirm' => $urlConfirm,
@@ -151,47 +141,22 @@ class KlarnaPayments extends CTPaymentMethod
             'transID' => $transId,
             'IPAddr' => $ipAddress
         ];
-    }
 
-
-
-    /**
-     * @return array
-     */
-    public function getKlarnaSessionRequestParams()
-    {
-        return $this->klarnaSessionRequestParams;
+        return $params;
     }
 
     /**
+     * @param $params
      * @return CTResponse
      */
-    public function requestSession()
+    public function requestSession($params)
     {
         $requestType = 'KLARNA_SESSION';
-        $params = $this->getKlarnaSessionRequestParams();
         $ctRequest = $this->cleanUrlParams($params);
 
-
-        $response = $this->request($requestType, $ctRequest);
-
-        return $response;
-    }
-
-    /**
-     * @param $requestType
-     * @param $requestParams
-     *
-     * @return CTResponse
-     */
-    public function request($requestType, $requestParams)
-    {
-        $CTPaymentURL = $this->getCTPaymentURL();
-        $ctRequest = $this->cleanUrlParams($requestParams);
-
-        /** @var FatchipCTPayment $plugin */
+        /* @var FatchipCTPayment $plugin */
         $plugin = Shopware()->Container()->get('plugins')->Frontend()->FatchipCTPayment();
-        $response = $plugin->callComputopService($ctRequest, $this, $requestType, $CTPaymentURL);
+        $response = $plugin->callComputopService($ctRequest, $this, $requestType, $this->getCTPaymentURL());
 
         return $response;
     }
