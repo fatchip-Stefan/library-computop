@@ -255,4 +255,22 @@ trait KlarnaPayments
 
         return $articleList;
     }
+
+    /**
+     * Returns parameters for redirectURL
+     *
+     * @param $params
+     *
+     * @return array
+     */
+    public function cleanUrlParams($params)
+    {
+        $requestParams = [];
+        foreach ($params as $key => $value) {
+            if (!is_null($value) && !array_key_exists($key, $this::paramexcludes)) {
+                $requestParams[$key] = $value;
+            }
+        }
+        return $requestParams;
+    }
 }

@@ -26,11 +26,8 @@
 
 namespace Fatchip\CTPayment\CTPaymentMethods;
 
-use Exception;
-use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethod;
 use Fatchip\CTPayment\CTResponse;
-use Shopware\Plugins\FatchipCTPayment\Util;
 use Shopware_Plugins_Frontend_FatchipCTPayment_Bootstrap as FatchipCTPayment;
 
 /**
@@ -46,8 +43,6 @@ class KlarnaPayments extends CTPaymentMethod
     protected $klarnaSessionRequestParams;
     /** @var array */
     protected $klarnaOrderRequestParams;
-    /** @var array */
-    protected $klarnaRefNrChangeRequestParams;
 
     /**
      * Returns PaymentURL
@@ -70,26 +65,6 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * Stores refNrChange request parameters for Klarna
-     *
-     * @param $payId
-     * @param $eventToken
-     * @param $refNr
-     */
-    public function storeKlarnaRefNrChangeRequestParams(
-        $payId,
-        $eventToken,
-        $refNr
-    )
-    {
-        $this->klarnaRefNrChangeRequestParams = [
-            'payID' => $payId,
-            'EventToken' => $eventToken,
-            'RefNr' => $refNr,
-        ];
-    }
-
-    /**
      * Sets and returns request parameters for reference number change api call
      *
      * @param $payId
@@ -100,22 +75,41 @@ class KlarnaPayments extends CTPaymentMethod
      */
     public function getRefNrChangeParams($payId, $refNr)
     {
-        // TODO: refactor this to two separate calls
-        // storeKlarnaRefNrChangeRequestParams($payId, $eventToken, $refNr) and
-        // getRefNrChangeParams() without any parameters
-        $eventToken = 'UMR';
+        $params = [
+            'payID' => $payId,
+            'EventToken' => 'UMR',
+            'RefNr' => $refNr,
+        ];
 
-        $this->storeKlarnaRefNrChangeRequestParams($payId, $eventToken, $refNr);
-
-        return $this->klarnaRefNrChangeRequestParams;
+        return $params;
     }
 
     /**
+     * @param $payId
+     * @param $transId
+     * @param $amount
+     * @param $currency
+     * @param $tokenExt
      * @return array
      */
-    public function getKlarnaRefNrChangeRequestParams()
+    public function getKlarnaOrderRequestParams(
+        $payId,
+        $transId,
+        $amount,
+        $currency,
+        $tokenExt
+    )
     {
-        return $this->klarnaRefNrChangeRequestParams;
+        $params = [
+            'payID' => $payId,
+            'transID' => $transId,
+            'amount' => $amount,
+            'currency' => $currency,
+            'TokenExt' => $tokenExt,
+            'EventToken' => 'CNO'
+        ];
+
+        return $params;
     }
 
     /**
@@ -155,38 +149,11 @@ class KlarnaPayments extends CTPaymentMethod
             'amount' => $amount,
             'currency' => $currency,
             'transID' => $transId,
-            'IPAddr' => $ipAddress,
+            'IPAddr' => $ipAddress
         ];
     }
 
-    /**
-     * Stores order request parameters for Klarna
-     *
-     * @param $payId
-     * @param $transId
-     * @param $amount
-     * @param $currency
-     * @param $tokenExt
-     * @param $eventToken
-     */
-    public function storeKlarnaOrderRequestParams(
-        $payId,
-        $transId,
-        $amount,
-        $currency,
-        $tokenExt,
-        $eventToken
-    )
-    {
-        $this->klarnaOrderRequestParams = [
-            'payID' => $payId,
-            'transID' => $transId,
-            'amount' => $amount,
-            'currency' => $currency,
-            'TokenExt' => $tokenExt,
-            'EventToken' => $eventToken
-        ];
-    }
+
 
     /**
      * @return array
@@ -194,36 +161,6 @@ class KlarnaPayments extends CTPaymentMethod
     public function getKlarnaSessionRequestParams()
     {
         return $this->klarnaSessionRequestParams;
-    }
-
-
-
-
-
-    /**
-     * Returns parameters for redirectURL
-     *
-     * @param $params
-     *
-     * @return array
-     */
-    public function cleanUrlParams($params)
-    {
-        $requestParams = [];
-        foreach ($params as $key => $value) {
-            if (!is_null($value) && !array_key_exists($key, $this::paramexcludes)) {
-                $requestParams[$key] = $value;
-            }
-        }
-        return $requestParams;
-    }
-
-    /**
-     * @return array
-     */
-    public function getKlarnaOrderRequestParams()
-    {
-        return $this->klarnaOrderRequestParams;
     }
 
     /**
@@ -242,34 +179,6 @@ class KlarnaPayments extends CTPaymentMethod
     }
 
     /**
-     * @return CTResponse
-     */
-    public function requestKlarnaCreateOrder()
-    {
-        $requestType = 'KLARNA_ORDER (CNO)';
-        $params = $this->getKlarnaOrderRequestParams();
-        $ctRequest = $this->cleanUrlParams($params);
-
-        $response = $this->request($requestType, $ctRequest);
-
-        return $response;
-    }
-
-    /**
-     * @return CTResponse
-     */
-    public function requestKlarnaRefNrChange()
-    {
-        $requestType = 'KLARNA_REF_NR_CHANGE (UMR)';
-        $params = $this->getKlarnaRefNrChangeRequestParams();
-        $ctRequest = $this->cleanUrlParams($params);
-
-        $response = $this->request($requestType, $ctRequest);
-
-        return $response;
-    }
-
-    /**
      * @param $requestType
      * @param $requestParams
      *
@@ -279,7 +188,6 @@ class KlarnaPayments extends CTPaymentMethod
     {
         $CTPaymentURL = $this->getCTPaymentURL();
         $ctRequest = $this->cleanUrlParams($requestParams);
-        $response = null;
 
         /** @var FatchipCTPayment $plugin */
         $plugin = Shopware()->Container()->get('plugins')->Frontend()->FatchipCTPayment();
