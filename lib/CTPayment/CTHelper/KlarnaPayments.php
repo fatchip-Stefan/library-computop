@@ -35,8 +35,38 @@ use Shopware\Plugins\FatchipCTPayment\Util;
 /**
  * @package Fatchip\CTPayment\CTPaymentMethods
  */
-class KlarnaPayments extends Util
+trait KlarnaPayments
 {
+    public function needNewKlarnaSession()
+    {
+        /** @var CTOrder $ctOrder */
+        $ctOrder = $this->utils->createCTOrder();
+        /** @var \Fatchip\CTPayment\CTPaymentMethods\KlarnaPayments $payment */
+        $session = Shopware()->Session();
+
+        $sessionAmount = $session->get('FatchipCTKlarnaPaymentAmount', '');
+        $currentAmount = $ctOrder->getAmount();
+        $amountChanged = $currentAmount !== $sessionAmount;
+
+        $sessionArticleListBase64 = $session->get('FatchipCTKlarnaPaymentArticleListBase64', '');
+        $currentArticleListBase64 = $this->createArticleListBase64();
+        $articleListChanged = $sessionArticleListBase64 !== $currentArticleListBase64;
+
+        $sessionAddressHash = $session->get('FatchipCTKlarnaPaymentAddressHash', '');
+        $currentAddressHash = $this->createAddressHash();
+        $addressChanged = $sessionAddressHash !== $currentAddressHash;
+
+        $sessionDispatch = $session->get('FatchipCTKlarnaPaymentDispatchID', '');
+        $currentDispatch = $session->offsetGet('sDispatch');
+        $dispatchChanged = $sessionDispatch != $currentDispatch;
+
+        return !$session->offsetExists('FatchipCTKlarnaAccessToken')
+            || $amountChanged
+            || $articleListChanged
+            || $addressChanged
+            || $dispatchChanged;
+    }
+
     /**
      * @return \Fatchip\CTPayment\CTPaymentMethods\KlarnaPayments
      */
@@ -74,17 +104,15 @@ class KlarnaPayments extends Util
             'forceSecure' => true,
         ]);
 
-        $ctOrder = $this->createCTOrder();
+        $ctOrder = $this->utils->createCTOrder();
 
         if (!$ctOrder instanceof CTOrder) {
             return null;
         }
 
-        $klarnaAccount = $this->pluginConfig['klarnaaccount'];
+        $klarnaAccount = $this->config['klarnaaccount'];
 
-        /** @var KlarnaPayments $payment */
-        $payment = $this->container->get('FatchipCTPaymentApiClient')->getPaymentClass('KlarnaPayments', $this->pluginConfig);
-        $payment->storeKlarnaSessionRequestParams(
+        $this->storeKlarnaSessionRequestParams(
             $taxAmount,
             $articleList,
             $URLConfirm,
@@ -97,7 +125,7 @@ class KlarnaPayments extends Util
             $_SERVER['REMOTE_ADDR']
         );
 
-        return $payment;
+        return $this;
     }
 
     public function cleanSessionVars()
@@ -119,5 +147,112 @@ class KlarnaPayments extends Util
         foreach ($sessionVars as $sessionVar) {
             $session->offsetUnset($sessionVar);
         }
+    }
+
+    /**
+     * Calculates the Klarna tax amount by adding the tax amounts of each position in the article list.
+     *
+     * @param $articleList
+     *
+     * @return float
+     */
+    public static function calculateTaxAmount($articleList)
+    {
+        $taxAmount = 0;
+        $articleList = json_decode(base64_decode($articleList), true);
+        foreach ($articleList['order_lines'] as $article) {
+            $itemTaxAmount = $article['total_tax_amount'];
+            $taxAmount += $itemTaxAmount;
+        }
+
+        return $taxAmount;
+    }
+
+    /**
+     * Creates an md5 hash from current billing and shipping addresses.
+     *
+     * @return string
+     */
+    public static function createAddressHash()
+    {
+        $userData = Shopware()->Modules()->Admin()->sGetUserData();
+
+        /** @var string $address */
+        $address = md5(serialize($userData['billingaddress']) . serialize($userData['shippingaddress']));
+
+        return $address;
+    }
+
+    /**
+     * @param int $digitCount Optional parameter for the length of resulting
+     *                        transID. The default value is 12.
+     *
+     * @return string The transID with a length of $digitCount.
+     */
+    public static function generateTransID($digitCount = 12)
+    {
+        mt_srand((double)microtime() * 1000000);
+
+        $transID = (string)mt_rand();
+        // y: 2 digits for year
+        // m: 2 digits for month
+        // d: 2 digits for day of month
+        // H: 2 digits for hour
+        // i: 2 digits for minute
+        // s: 2 digits for second
+        $transID .= date('ymdHis');
+        // $transID = md5($transID);
+        $transID = substr($transID, 0, $digitCount);
+
+        return $transID;
+    }
+
+    /**
+     * Creates the Klarna article list. The list is json and then base64 encoded.
+     *
+     * @return string
+     */
+    public static function createArticleListBase64()
+    {
+        /** @var Util $utils */
+        $utils = Shopware()->Container()->get('FatchipCTPaymentUtils');
+
+        $articleList = [];
+
+        try {
+            foreach (Shopware()->Modules()->Basket()->sGetBasket()['content'] as $item) {
+                $quantity = (int)$item['quantity'];
+                $itemTaxAmount = round(str_replace(',', '.', $item['tax']) * 100);
+                $totalAmount = round(str_replace(',', '.', $item['price']) * 100) * $quantity;
+                $articleList['order_lines'][] = [
+                    'name' => $item['articlename'],
+                    'quantity' => $quantity,
+                    'unit_price' => round($item['priceNumeric'] * 100),
+                    'total_amount' => $totalAmount,
+                    'tax_rate' => $item['tax_rate'] * 100,
+                    'total_tax_amount' => $itemTaxAmount,
+                ];
+            }
+        } catch (Exception $e) {
+            return '';
+        }
+
+        $shippingCosts = $utils->calculateShippingCosts();
+
+        if ($shippingCosts) {
+            $articleList['order_lines'][] = [
+                'name' => 'shippingcosts',
+                'quantity' => 1,
+                'unit_price' => $shippingCosts * 100,
+                'total_amount' => $shippingCosts * 100,
+                'tax_rate' => 0,
+                'total_tax_amount' => 0,
+            ];
+        }
+
+        /** @var string $articleList */
+        $articleList = base64_encode(json_encode($articleList));
+
+        return $articleList;
     }
 }
