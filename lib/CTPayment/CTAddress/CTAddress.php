@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+/** @noinspection PhpUnused */
 
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify

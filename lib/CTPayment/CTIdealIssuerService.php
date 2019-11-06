@@ -1,6 +1,4 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,6 +25,8 @@
  */
 
 namespace Fatchip\CTPayment;
+
+use Exception;
 
 /**
  * Class CTIdealIssuerService.
@@ -73,10 +73,6 @@ class CTIdealIssuerService extends Blowfish
         $len = strlen($query);  // Length of the plain text string
         $data = $this->ctEncrypt($query, $len, $this->blowfishPassword);
 
-        $test = 'https://www.computop-paygate.com/idealIssuerList.aspx' .
-            '?MerchantID=' . $this->merchantID .
-            '&Len=' . $len .
-            '&Data=' . $data;
         return 'https://www.computop-paygate.com/idealIssuerList.aspx' .
             '?MerchantID=' . $this->merchantID .
             '&Len=' . $len .
@@ -117,7 +113,7 @@ class CTIdealIssuerService extends Blowfish
             $resp = curl_exec($curl);
 
             if (FALSE === $resp) {
-                throw new \Exception(curl_error($curl), curl_errno($curl));
+                throw new Exception(curl_error($curl), curl_errno($curl));
             }
 
             $respArray = [];
@@ -126,7 +122,7 @@ class CTIdealIssuerService extends Blowfish
             $decryptedArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
             $issuerList = $decryptedArray['IdealIssuerList'];
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             trigger_error(sprintf(
                 'Curl failed with error #%d: %s',
                 $e->getCode(), $e->getMessage()),

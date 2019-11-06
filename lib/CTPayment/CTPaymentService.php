@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpUnused */
+
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,7 +28,7 @@ namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTCrif\CRIF;
 use Fatchip\CTPayment\CTPaymentMethodsIframe\Sofort;
-use Fatchip\CTPayment\CTResponse;
+
 
 /**
  * Class CTPaymentService

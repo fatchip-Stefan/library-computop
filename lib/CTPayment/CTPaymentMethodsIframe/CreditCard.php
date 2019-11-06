@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+/** @noinspection PhpUnused */
 
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
@@ -29,7 +29,6 @@
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTAddress\CTAddress;
-use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 /**
@@ -624,6 +623,7 @@ class CreditCard extends CTPaymentMethodIframe
      * returns encoded url for a request with encoded Data and LEN queryparameters
      * Overridden, because for CreditCard we need to put the template param in the undecrypted part of the querystring
      * @param $ctRequest
+     * @param string $addTemplate
      * @return string
      */
     public function getHTTPGetURL($ctRequest, $addTemplate = '')

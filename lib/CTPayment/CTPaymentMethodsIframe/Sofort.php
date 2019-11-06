@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnused */
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -27,6 +27,7 @@
  */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
+use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 /**
@@ -75,7 +76,7 @@ class Sofort extends CTPaymentMethodIframe
      * Sofort constructor
      *
      * @param array $config
-     * @param \Fatchip\CTPayment\CTOrder\CTOrder|null $order
+     * @param CTOrder|null $order
      * @param null|string $urlSuccess
      * @param null|string $urlFailure
      * @param $urlNotify

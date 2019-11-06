@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+/** @noinspection PhpUnused */
 
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
@@ -27,7 +27,8 @@
  */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
-use Fatchip\CTPayment\CTPaymentMethodIframe;
+use Fatchip\CTPayment\CTAddress\CTAddress;
+use Fatchip\CTPayment\CTOrder\CTOrder;
 
 /**
  * Class LastschriftInterCard
@@ -100,7 +101,7 @@ class LastschriftInterCard extends Lastschrift
      * LastschriftIntercard constructor
      *
      * @param array $config
-     * @param \Fatchip\CTPayment\CTOrder\CTOrder|null $order
+     * @param CTOrder|null $order
      * @param null|string $urlSuccess
      * @param null|string $urlFailure
      * @param $urlNotify
@@ -118,6 +119,7 @@ class LastschriftInterCard extends Lastschrift
         $orderDesc,
         $userData,
         $capture,
+        /** @noinspection PhpUnusedParameterInspection */
         $orderDesc2
     ) {
         parent::__construct($config, $order, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData, $capture);
@@ -127,7 +129,7 @@ class LastschriftInterCard extends Lastschrift
 
     /**
      * Sets all adressfields for billing address
-     * @param $billingAddress
+     * @param CTAddress $billingAddress
      */
     public function setBillingAddress($billingAddress)
     {

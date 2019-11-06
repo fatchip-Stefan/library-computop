@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection MissingService */
+/** @noinspection PhpUnused */
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -25,6 +26,8 @@
  * @link       https://www.computop.com
  */
 namespace Fatchip\CTPayment;
+
+use Exception;
 
 /**
  * Class CTPaymentMethod
@@ -59,6 +62,7 @@ abstract class CTPaymentMethod extends Blowfish
 
     public function __construct()
     {
+        /** @noinspection PhpUndefinedMethodInspection */
         $this->config = Shopware()->Plugins()->Frontend()->FatchipCTPayment()->Config()->toArray();
 
         $this->merchantID = $this->config['merchantID'];
@@ -118,6 +122,7 @@ abstract class CTPaymentMethod extends Blowfish
      *
      * @param $params
      * @param $url
+     * @param string $addTemplate
      * @return string
      */
     public function prepareComputopRequest($params, $url, $addTemplate = '')
@@ -191,10 +196,10 @@ abstract class CTPaymentMethod extends Blowfish
             $resp = curl_exec($curl);
 
             if (false === $resp) {
-                throw new \Exception(curl_error($curl), curl_errno($curl));
+                throw new Exception(curl_error($curl), curl_errno($curl));
             }
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             trigger_error(sprintf(
                 'Curl failed with error #%d: %s',
                 $e->getCode(), $e->getMessage()),

@@ -1,5 +1,5 @@
-<?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+<?php /** @noinspection PhpUnused */
+
 
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
@@ -28,10 +28,9 @@
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
 use Fatchip\CTPayment\CTAddress\CTAddress;
-use Fatchip\CTPayment\CTEnums\CTEnumCapture;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 use Fatchip\CTPayment\CTOrder\CTOrder;
-use Zend\EventManager\Exception\RuntimeException;
+use RuntimeException;
 
 /**
  * Class Paydirekt
@@ -131,7 +130,7 @@ class Paydirekt extends CTPaymentMethodIframe
      * @param $orderDesc
      * @param $userData
      *
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function __construct(
         $config,
@@ -149,7 +148,7 @@ class Paydirekt extends CTPaymentMethodIframe
         $this->setUrlNotify($urlNotify);
 
         if (empty($config['payDirektShopApiKey'])) {
-            throw new \RuntimeException('Paydirekt ShopApiKey is not set in Plugin Config');
+            throw new RuntimeException('Paydirekt ShopApiKey is not set in Plugin Config');
         }
 
         $this->setShopApiKey($config['payDirektShopApiKey']);

@@ -1,5 +1,4 @@
-<?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+<?php /** @noinspection PhpUnused */
 
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
@@ -27,6 +26,7 @@
  */
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
+use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
 /**
@@ -48,7 +48,7 @@ class PostFinance extends CTPaymentMethodIframe
      * PostFinance constructor
      *
      * @param array $config
-     * @param \Fatchip\CTPayment\CTOrder\CTOrder|null $order
+     * @param CTOrder|null $order
      * @param null|string $urlSuccess
      * @param null|string $urlFailure
      * @param $urlNotify

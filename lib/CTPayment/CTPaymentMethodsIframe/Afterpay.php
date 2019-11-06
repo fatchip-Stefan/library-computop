@@ -1,6 +1,5 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
+/** @noinspection PhpUnused */
 /**
  * The Computop Shopware Plugin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,7 +27,7 @@
 
 namespace Fatchip\CTPayment\CTPaymentMethodsIframe;
 
-use Fatchip\CTPayment\CTEnums\CTEnumCapture;
+use Fatchip\CTPayment\CTAddress\CTAddress;
 use Fatchip\CTPayment\CTOrder\CTOrder;
 use Fatchip\CTPayment\CTPaymentMethodIframe;
 
@@ -439,7 +438,7 @@ class Afterpay extends CTPaymentMethodIframe
 
     /**
      * sets all address fields for shipping address
-     * @param $shippingAddress
+     * @param CTAddress $shippingAddress
      */
     public function setShippingAddress($shippingAddress)
     {
@@ -456,7 +455,7 @@ class Afterpay extends CTPaymentMethodIframe
 
     /**
      * sets all address fields for shipping address
-     * @param $billingAddress
+     * @param CTAddress $billingAddress
      */
     public function setBillingAddress($billingAddress)
     {
@@ -496,11 +495,7 @@ class Afterpay extends CTPaymentMethodIframe
         }
         $order['items'] = $orderItem;
         $jsonTmp = json_encode($order);
-        // die(header('Content-Type: application/json').$jsonTmp);
         $this->Order = base64_encode($jsonTmp);
-
-        // fix type of prices from string to float
-
     }
 
     /**
