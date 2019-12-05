@@ -123,6 +123,45 @@ class CTPaymentConfigForms
                         [1, 'aktiv'],
                     ],
             ],
+            'creditCardSilentModeBrandsVisa' => [
+                'name' => 'creditCardSilentModeBrandsVisa',
+                'type' => 'select',
+                'value' => 1,
+                'label' => 'Kreditkarte - Visa (Silent Mode)',
+                'required' => false,
+                'editable' => false,
+                'store' =>
+                    [
+                        [0, 'inaktiv'],
+                        [1, 'aktiv'],
+                    ],
+            ],
+            'creditCardSilentModeBrandsMaster' => [
+                'name' => 'creditCardSilentModeBrandsMaster',
+                'type' => 'select',
+                'value' => 1,
+                'label' => 'Kreditkarte - MasterCard (Silent Mode)',
+                'required' => false,
+                'editable' => false,
+                'store' =>
+                    [
+                        [0, 'inaktiv'],
+                        [1, 'aktiv'],
+                    ],
+            ],
+            'creditCardSilentModeBrandsAmex' => [
+                'name' => 'creditCardSilentModeBrandsAmex',
+                'type' => 'select',
+                'value' => 1,
+                'label' => 'Kreditkarte - American Express (Silent Mode)',
+                'required' => false,
+                'editable' => false,
+                'store' =>
+                    [
+                        [0, 'inaktiv'],
+                        [1, 'aktiv'],
+                    ],
+            ],
             'creditCardCaption' => [
                 'name' => 'creditCardCaption',
                 'type' => 'select',
