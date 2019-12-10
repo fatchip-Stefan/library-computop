@@ -78,7 +78,9 @@ trait KlarnaPayments
         $payTypes = [
             'pay_now' => 'pay_now',
             'pay_later' => 'pay_later',
-            'slice_it' => 'pay_over_time'
+            'slice_it' => 'pay_over_time',
+            'direct_bank_transfer' => 'direct_bank_transfer',
+            'direct_debit' => 'direct_debit',
         ];
 
         // set payType to correct value
