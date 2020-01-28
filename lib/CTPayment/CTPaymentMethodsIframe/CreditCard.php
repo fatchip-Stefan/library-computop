@@ -150,6 +150,14 @@ class CreditCard extends CTPaymentMethodIframe
 
     /**
      * For Paynow/Silentmode:
+     * Kreditkarteninhaber
+     * @var string
+     *
+     */
+    protected $CreditCardHolder;
+
+    /**
+     * For Paynow/Silentmode:
      * Kreditkartennummer: mindestens 12stellig ohne Leerzeichen
      * @var string
      *
@@ -564,6 +572,22 @@ class CreditCard extends CTPaymentMethodIframe
      */
     public function getCCExpiry() {
         return $this->CCExpiry;
+    }
+
+    /**
+     * @ignore <description>
+     * @param string $CreditCardHolder
+     */
+    public function setCreditCardHolder($CreditCardHolder) {
+        $this->CreditCardHolder = $CreditCardHolder;
+    }
+
+    /**
+     * @ignore <description>
+     * @return string
+     */
+    public function getCreditCardHolder() {
+        return $this->CreditCardHolder;
     }
 
     /**
