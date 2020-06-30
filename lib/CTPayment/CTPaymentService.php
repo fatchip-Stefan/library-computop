@@ -65,14 +65,6 @@ class CTPaymentService extends Blowfish
      */
     public function getIframePaymentClass($className, $config, $ctOrder = null, $urlSuccess = null, $urlFailure = null, $urlNotify = null, $orderDesc = null, $userData = null, $eventToken = null, $isFirm = null, $klarnainvoice = null)
     {
-        //Ideal can be called directly, or via Sofort with SofortAction=ideal.
-        //If set to 'via sofort' in Pluginsettings, return a class of type Sofort with Sofortaction = ideal
-        if ($className == 'Ideal' && $config['idealDirektOderUeberSofort'] == 'SOFORT') {
-            $obj = new Sofort($config, $ctOrder, $urlSuccess, $urlFailure, $urlNotify, $orderDesc, $userData);
-            $obj->setSofortAction('ideal');
-            return $obj;
-        }
-
         //Lastschrift is an abstract class and cannot be instantiated directly
         if ($className == 'Lastschrift') {
             if ($config['lastschriftDienst'] == 'EVO') {

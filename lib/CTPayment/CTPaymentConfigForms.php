@@ -224,10 +224,9 @@ class CTPaymentConfigForms
                 'store' =>
                     [
                         ['DIREKT', 'iDEAL Direkt'],
-                        ['SOFORT', 'via Sofort'],
                         ['PPRO', 'via PPRO'],
                     ],
-                'description' => 'Ideal Zahlungen können direkt über Ideal oder über Sofort oder über PPRO abgewickelt werden',
+                'description' => 'Ideal Zahlungen können direkt über Ideal oder über PPRO abgewickelt werden',
             ],
         ];
 
