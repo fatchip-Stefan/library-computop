@@ -101,17 +101,6 @@ class CTPaymentMethods
                 //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
             ],
             [
-                'name' => 'fatchip_computop_mobilepay',
-                'shortname' => 'Mobile Pay',
-                'description' => 'Computop Mobile Pay',
-                'action' => 'FatchipCTMobilepay',
-                'countries' => ['DK', 'NO', 'FI', 'SE'],
-                'template' => '',
-                'additionalDescription' => '',
-                'className' => 'MobilePay',
-                //'countries' => ['DE', 'NL', 'DK', 'FI', 'SE', 'NO'],
-            ],
-            [
                 'name' => 'fatchip_computop_paydirekt',
                 'shortname' => 'Paydirekt',
                 'description' => 'Computop Paydirekt',
