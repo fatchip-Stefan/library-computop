@@ -481,7 +481,6 @@ class Afterpay extends CTPaymentMethodIframe
         $order = [];
         $orderItem = [];
 
-        $order['number'] = "TEST1234";
         $order['totalGrossAmount'] = str_replace(',','.',$basket['Amount']);
         $order['currency'] = "EUR";
 
