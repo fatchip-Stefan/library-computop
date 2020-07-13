@@ -489,7 +489,7 @@ class Afterpay extends CTPaymentMethodIframe
             $orderItem[$i]['productId'] = $article['ordernumber'];
             $orderItem[$i]['description'] = $article['articlename'];
             $orderItem[$i]['grossUnitPrice'] =  str_replace(',', '.',$article['price']);;
-            $orderItem[$i]['quantity'] = $article['quantity'];
+            $orderItem[$i]['quantity'] = intval($article['quantity']);
             $i++;
         }
         $order['items'] = $orderItem;
