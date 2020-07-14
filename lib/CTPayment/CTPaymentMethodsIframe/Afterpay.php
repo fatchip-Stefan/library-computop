@@ -490,6 +490,9 @@ class Afterpay extends CTPaymentMethodIframe
             $orderItem[$i]['description'] = $article['articlename'];
             $orderItem[$i]['grossUnitPrice'] =  str_replace(',', '.',$article['price']);;
             $orderItem[$i]['quantity'] = intval($article['quantity']);
+            $orderItem[$i]['netUnitPrice'] = str_replace(',', '.', $article['netprice']);
+            $orderItem[$i]['vatAmount'] = str_replace(',', '.', $article['tax']);
+            $orderItem[$i]['vatPercent'] = intval($article['tax_rate']);
             $i++;
         }
         $order['items'] = $orderItem;
