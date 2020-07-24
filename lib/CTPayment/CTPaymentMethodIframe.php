@@ -165,7 +165,9 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
     */
     public function __construct($config, $order = null, $orderDesc = null, $userData = null)
     {
-        $this->setAmount($order->getAmount());
+        $amount = round($order->getAmount(), 0);
+        $intAmount = (int)$amount;
+        $this->setAmount($intAmount);
         $this->setCurrency($order->getCurrency());
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);

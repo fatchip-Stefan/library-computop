@@ -480,18 +480,36 @@ class Afterpay extends CTPaymentMethodIframe
     {
         $order = [];
         $orderItem = [];
+        $orderVariables = Shopware()->Session()->offsetGet('sOrderVariables')->getArrayCopy();
 
-        $order['number'] = "TEST1234";
-        $order['totalGrossAmount'] = str_replace(',','.',$basket['Amount']);
+        $order['totalGrossAmount'] = (string) $orderVariables['sAmount'];
+        $order['totalNetAmount'] = (string) $orderVariables['sAmountNet'];
         $order['currency'] = "EUR";
 
         $i = 0;
         foreach ($basket['content'] as $article) {
             $orderItem[$i]['productId'] = $article['ordernumber'];
             $orderItem[$i]['description'] = $article['articlename'];
-            $orderItem[$i]['grossUnitPrice'] =  str_replace(',', '.',$article['price']);;
+            $orderItem[$i]['grossUnitPrice'] = str_replace(',', '.',$article['price']);
+            $orderItem[$i]['netUnitPrice'] = round($article['netprice'], 2);
+            $orderItem[$i]['vatAmount'] = $orderItem[$i]['grossUnitPrice'] - $orderItem[$i]['netUnitPrice'] ;
+            $orderItem[$i]['vatPercent'] = $article['tax_rate'];
             $orderItem[$i]['quantity'] = $article['quantity'];
             $i++;
+        }
+
+        // handle shipping costs
+        $shipping = $orderVariables['sDispatch'];
+        if (is_array($shipping)) {
+            $taxFactor = (float)('1.' . $shipping['max_tax']);
+
+            $orderItem[$i]['productId'] = (string)$shipping['id'];
+            $orderItem[$i]['description'] = $shipping['name'];
+            $orderItem[$i]['grossUnitPrice'] = (string)$orderVariables['sShippingcosts'];
+            $orderItem[$i]['netUnitPrice'] = round($orderVariables['sShippingcosts'] / $taxFactor, 2);
+            $orderItem[$i]['vatAmount'] = (float)($orderVariables['sShippingcosts'] - $orderItem[$i]['netUnitPrice']);
+            $orderItem[$i]['vatPercent'] = (string)$shipping['max_tax'];
+            $orderItem[$i]['quantity'] = (string)1;
         }
         $order['items'] = $orderItem;
         $jsonTmp = json_encode($order);
