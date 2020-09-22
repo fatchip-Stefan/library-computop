@@ -194,6 +194,17 @@ class CreditCard extends CTPaymentMethodIframe
      */
     protected  $TxType;
 
+    protected $Custom;
+
+    /**
+     * Send the user sessionid in the custom field
+     * CT returns the custom parameter unencrypted in the reuqests response.
+     * This is only used for restoring the session after iframe payments as a workaround for Safari 6+ browsers
+     */
+    public function setCustom()
+    {
+        $this->Custom = 'session=' . Shopware()->Modules()->Admin()->sSYSTEM->sSESSION_ID;
+    }
 
     /**
      * returns paymentURL
@@ -270,6 +281,8 @@ class CreditCard extends CTPaymentMethodIframe
 
         //we will handle all captures manually
         $this->setCapture('MANUAL');
+
+        $this->setCustom();
 
     }
 
