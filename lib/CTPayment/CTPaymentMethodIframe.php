@@ -28,6 +28,7 @@
 namespace Fatchip\CTPayment;
 
 use Fatchip\CTPayment\CTOrder;
+use Shopware\Plugins\FatchipCTPayment\Util;
 
 /**
  * Class CTPaymentMethodIframe
@@ -172,7 +173,7 @@ abstract class CTPaymentMethodIframe extends CTPaymentMethod
         $this->setOrderDesc($orderDesc);
         $this->setUserData($userData);
         $this->setEtiId($userData);
-        $this->setIPAddr($_SERVER['REMOTE_ADDR']);
+        $this->setIPAddr(Util::getRemoteAddress());
         // ToDO why set here sdzip????
         if ($order->getShippingAddress()) {
             $this->setSdZip($order->getShippingAddress()->getZip());

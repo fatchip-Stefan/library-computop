@@ -123,7 +123,7 @@ trait KlarnaPayments
             $ctOrder->getAmount(),
             $ctOrder->getCurrency(),
             \Fatchip\CTPayment\CTPaymentMethods\KlarnaPayments::generateTransID(),
-            $_SERVER['REMOTE_ADDR']);
+            Util::getRemoteAddress());
 
         return $params;
     }
