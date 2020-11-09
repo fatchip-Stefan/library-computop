@@ -194,6 +194,15 @@ class CreditCard extends CTPaymentMethodIframe
      */
     protected  $TxType;
 
+    /**
+     * JSON Object specifying type and series of transactions using payment account credentials
+     * (e.g. account number or payment token) that is stored by a merchant to process future purchases
+     * for a customer. Required if applicable.
+     *
+     * @var $credentialOnFile
+     */
+    protected $credentialOnFile;
+
     protected $Custom;
 
     /**
@@ -411,6 +420,24 @@ class CreditCard extends CTPaymentMethodIframe
         $customer['email'] = $ctOrder->getEmail();
         $customer['customerNumber'] = $ctOrder->getCustomerID();
         $this->shipToCustomer = base64_encode(json_encode($customer));
+    }
+
+    /**
+     * @return string
+     */
+    public function getCredentialsOnFile()
+    {
+        return $this->credentialOnFile;
+    }
+
+    /**
+     * return string
+     */
+    public function setCredentialsOnFile($initalPayment = true)
+    {
+        $credentialsOnFile['type']['unscheduled'] = 'CIT';
+        $credentialsOnFile['initialPayment'] = $initalPayment;
+        $this->credentialOnFile = base64_encode(json_encode($credentialsOnFile));
     }
 
     /**

@@ -145,6 +145,10 @@ class CTPaymentAttributes
         ],
         'afterpayinstallmentiban' => [
             'type' => 'VARCHAR(50)'
-        ]
+        ],
+        'creditcardinitialpaymentsuccess' => [
+            'type' => 'TINYINT(1)'
+        ],
+
     ];
 }
