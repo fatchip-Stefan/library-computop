@@ -520,6 +520,17 @@ class CTResponse
     }
 
     /**
+     * Converts the response object into a json String
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $return = json_encode($this->toArray(), 0);
+        return ($return !== false) ? $return: '';
+    }
+
+    /**
      * Converts the response object into an array
      * @return array
      */
