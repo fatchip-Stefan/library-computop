@@ -194,6 +194,22 @@ class CTPaymentConfigForms
                                   <b>CAPN</b>: American Express<BR>
                                   <b>Omnipay</b>: EMS payment solutions, Global Payments, Paysquare',
             ],
+            'creditCardAccVerify' => [
+                'name' => 'creditCardAccVerify',
+                'type' => 'select',
+                'value' => 0,
+                'label' => 'Kreditkarte - Kontoverifizierung anfordern ',
+                'required' => false,
+                'editable' => false,
+                'store' =>
+                    [
+                        [0, 'inaktiv'],
+                        [1, 'aktiv'],
+                    ],
+                'description' => 'Indikator für Anforderung einer Kontoverifizierung (alias Nullwert-Authorisierung). <BR>
+                                  Bei einer angeforderten Kontoverifizierung ist der übermittelte Betrag optional und <BR>
+                                  wird für die tatsächliche Zahlungstransaktion ignoriert (z.B. Autorisierung).',
+            ],
         ];
 
     const formCreditCardNumberElements =

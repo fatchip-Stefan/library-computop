@@ -205,6 +205,8 @@ class CreditCard extends CTPaymentMethodIframe
 
     protected $Custom;
 
+    protected $AccVerify;
+
     /**
      * Send the user sessionid in the custom field
      * CT returns the custom parameter unencrypted in the reuqests response.
@@ -278,6 +280,10 @@ class CreditCard extends CTPaymentMethodIframe
         }
         else {
             $this->setOrderDesc($orderDesc);
+        }
+
+        if($config['creditCardAccVerify']) {
+            $this->setAccVerify('Yes');
         }
 
         $this->setBillingAddress($order->getBillingAddress());
@@ -660,6 +666,22 @@ class CreditCard extends CTPaymentMethodIframe
      */
     public function getTxType() {
         return $this->TxType;
+    }
+
+    /**
+     * @ignore <description>
+     * @param string $accVerify
+     */
+    public function setAccVerify($accVerify) {
+        $this->AccVerify = $accVerify;
+    }
+
+    /**
+     * @ignore <description>
+     * @return string
+     */
+    public function getAccVerify() {
+        return $this->AccVerify;
     }
 
     /**
