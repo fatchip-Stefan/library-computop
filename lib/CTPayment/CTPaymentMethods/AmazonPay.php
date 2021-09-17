@@ -185,6 +185,7 @@ class AmazonPay extends CTPaymentMethod
             'OrderDesc' => $orderDesc,
             'OrderReferenceID' => $referenceID,
             'EventToken' => 'ATH',
+            'Capture' => $this->config['amazonCaptureType'],
         ];
 
         return $params;

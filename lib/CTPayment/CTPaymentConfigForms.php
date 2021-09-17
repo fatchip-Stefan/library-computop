@@ -390,6 +390,21 @@ class CTPaymentConfigForms
                     ],
                 'description' => 'AmazonPay im Live oder Testmodus benutzen',
             ],
+            'amazonCaptureType' => [
+                'name' => 'amazonCaptureType',
+                'type' => 'select',
+                'value' => 'AUTO',
+                'label' => 'Amazon Capture Modus',
+                'required' => false,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['AUTO', 'Automatisch'],
+                        ['MANUAL', 'Manuell'],
+                    ],
+                'description' => '<b>Automatisch</b>: Reservierte Beträge werden automatisch eingezogen.<BR>
+                                  <b>Manuell</b>: Geldeinzüge werden von Ihnen manuell im Shopbackend durchgeführt.',
+            ],
             'amazonButtonType' => [
                 'name' => 'amazonButtonType',
                 'type' => 'select',
