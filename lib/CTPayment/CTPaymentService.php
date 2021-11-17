@@ -118,6 +118,8 @@ class CTPaymentService extends Blowfish
     {
         $decryptedRequest = $this->ctDecrypt($rawRequest['Data'], $rawRequest['Len'], $this->blowfishPassword);
         $requestArray = $this->ctSplit(explode('&', $decryptedRequest), '=');
+        // uncomment below to inject schemeReferenceID into Computop Responses for testing
+        // $requestArray['schemeReferenceID'] = 'schemeReferenceID_' . date('Y-m-d H-i-s');
         $response = new CTResponse($requestArray);
         return $response;
     }

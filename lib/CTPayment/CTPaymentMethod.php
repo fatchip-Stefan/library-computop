@@ -256,9 +256,10 @@ abstract class CTPaymentMethod extends Blowfish
      * @param null $xID
      * @param null $orderDesc
      * @param null $klarnaInvNo
+     * @param null $schemeReferenceID
      * @return array
      */
-    public function getRefundParams($PayID, $Amount, $Currency, $transID = null, $xID = null, $orderDesc = null, $klarnaInvNo = null) {
+    public function getRefundParams($PayID, $Amount, $Currency, $transID = null, $xID = null, $orderDesc = null, $klarnaInvNo = null, $schemeReferenceID = null ) {
         $params = [
             'payID' => $PayID,
             'amount' => $Amount,
@@ -271,6 +272,8 @@ abstract class CTPaymentMethod extends Blowfish
             //used by klarna
             'orderDesc' => $orderDesc,
             'invNo' => $klarnaInvNo,
+            // used by creditcard 3DS 2
+            'schemeReferenceID' => $schemeReferenceID,
         ];
 
         return $params;
@@ -285,9 +288,10 @@ abstract class CTPaymentMethod extends Blowfish
      * @param null $transID
      * @param null $xID
      * @param null $orderDesc
+     * @param null $schemeReferenceID
      * @return array
      */
-    public function getCaptureParams($PayID, $Amount, $Currency, $transID = null, $xID = null, $orderDesc = null) {
+    public function getCaptureParams($PayID, $Amount, $Currency, $transID = null, $xID = null, $orderDesc = null, $schemeReferenceID = null) {
         $params = [
             'payID' => $PayID,
             'amount' => $Amount,
@@ -299,6 +303,8 @@ abstract class CTPaymentMethod extends Blowfish
             'xID' => $xID,
             //used by klarna
             'orderDesc' => $orderDesc,
+            // used by creditcard 3DS 2
+            'schemeReferenceID' => $schemeReferenceID,
         ];
 
         return $params;
