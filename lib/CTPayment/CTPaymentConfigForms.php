@@ -351,6 +351,20 @@ class CTPaymentConfigForms
                 'description' => 'bestimmt, ob der angefragte Betrag sofort oder erst später eingezogen wird. <br>
                                   <b>Wichtig:<br>Bitte kontaktieren Sie den Computop Support für Manual, um die unterschiedlichen Einsatzmöglichkeiten abzuklären.</b>',
             ],
+            'paypalSetOrderStatus' => [
+                'name' => 'paypalSetOrderStatus',
+                'type' => 'select',
+                'value' => 'Aus',
+                'label' => 'Paypal - Bestellstatus bei Capture',
+                'required' => false,
+                'editable' => false,
+                'store' =>
+                    [
+                        ['Aus', 'Aus'],
+                        ['An', 'An'],
+                    ],
+                'description' => 'Wenn diese Option An ist, dann wird der Bestellstatus bei Paypal Bestellungen,<br>bei denen der Capture fehlschlägt, auf "Klärung notwendig" gesetzt"  <br>',
+            ],
         ];
 
     const formAmazonTextElements =

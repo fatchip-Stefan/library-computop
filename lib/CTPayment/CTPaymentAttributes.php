@@ -85,7 +85,9 @@ class CTPaymentAttributes
         'lastschriftdos' => [
             'type' => 'VARCHAR(10)',
         ],
-
+        'kreditkarteschemereferenceid' => [
+            'type' => 'VARCHAR(255)',
+        ],
     ];
 
     /**

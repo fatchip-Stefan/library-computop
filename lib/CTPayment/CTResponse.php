@@ -502,6 +502,15 @@ class CTResponse
      */
     protected $accesstoken;
 
+    /**
+     * @see https://developer.computop.com/display/DE/schemeReferenceID
+     * @see https://tickets.fatchip.de/view.php?id=80394
+     *
+     * Unique transaction ID for credit card payments
+     *
+     * @var string
+     */
+    protected $schemeReferenceID;
 
     /**
      * CTResponse constructor
@@ -1784,5 +1793,21 @@ class CTResponse
     public function setAccesstoken(string $accesstoken)
     {
         $this->accesstoken = $accesstoken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSchemeReferenceID()
+    {
+        return $this->schemeReferenceID;
+    }
+
+    /**
+     * @param string $schemeReferenceID
+     */
+    public function setSchemeReferenceID(string $schemeReferenceID)
+    {
+        $this->schemeReferenceID = $schemeReferenceID;
     }
 }
