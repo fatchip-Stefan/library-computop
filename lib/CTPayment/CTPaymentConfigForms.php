@@ -108,7 +108,7 @@ class CTPaymentConfigForms
                         ['SILENT', 'Silent Mode'],
                     ],
                 'description' => '<b>IFrame</b>: Kreditkartendaten werden nach klick auf "Zahlungsplichtig bestellen" in ein IFrame eingegeben<BR>
-                                  <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Zahlungsart wählen" eingegeben.<BR>'
+                                  <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Prüfen und Bestellen" eingegeben.<BR>'
             ],
             'creditCardTestMode' => [
                 'name' => 'creditCardTestMode',
