@@ -89,12 +89,12 @@ class CTPaymentConfigForms
                         ['inactive', [
                             'de_DE' => 'keine Protokollierung',
                             'en_GB' => 'disable logging',
-                            'fr_FR' => 'disable logging',
+                            'fr_FR' => 'désactiver la journalisation',
                         ]],
                         ['active', [
                             'de_DE' => 'Protokollierung',
                             'en_GB' => 'enable logging',
-                            'fr_FR' => 'enable logging',
+                            'fr_FR' => 'activer la journalisation',
                         ]],
                     ],
                 'description' => 'Erzeugt eine Log Datei <FatchipCTPayment_.log> mit Debug Ausgaben im Shopware Protokollverzeichnis.<BR>',
@@ -130,12 +130,12 @@ class CTPaymentConfigForms
                     [0, [
                         'de_DE' => 'inaktiv',
                         'en_GB' => 'disabled',
-                        'fr_FR' => 'disabled',
+                        'fr_FR' => 'désactivé',
                     ]],
                     [1, [
                         'de_DE' => 'aktiv',
                         'en_GB' => 'enabled',
-                        'fr_FR' => 'enabled',
+                        'fr_FR' => 'activé',
                     ]],
                 ],
             ],
@@ -151,12 +151,12 @@ class CTPaymentConfigForms
                         [0, [
                             'de_DE' => 'inaktiv',
                             'en_GB' => 'disabled',
-                            'fr_FR' => 'disabled',
+                            'fr_FR' => 'désactivé',
                         ]],
                         [1, [
                             'de_DE' => 'aktiv',
                             'en_GB' => 'enabled',
-                            'fr_FR' => 'enabled',
+                            'fr_FR' => 'activé',
                         ]],
                     ],
             ],
@@ -172,12 +172,12 @@ class CTPaymentConfigForms
                         [0, [
                             'de_DE' => 'inaktiv',
                             'en_GB' => 'disabled',
-                            'fr_FR' => 'disabled',
+                            'fr_FR' => 'désactivé',
                         ]],
                         [1, [
                             'de_DE' => 'aktiv',
                             'en_GB' => 'enabled',
-                            'fr_FR' => 'enabled',
+                            'fr_FR' => 'activé',
                         ]],
                     ],
             ],
@@ -193,12 +193,12 @@ class CTPaymentConfigForms
                         [0, [
                             'de_DE' => 'inaktiv',
                             'en_GB' => 'disabled',
-                            'fr_FR' => 'disabled',
+                            'fr_FR' => 'désactivé',
                         ]],
                         [1, [
                             'de_DE' => 'aktiv',
                             'en_GB' => 'enabled',
-                            'fr_FR' => 'enabled',
+                            'fr_FR' => 'activé',
                         ]],
                     ],
             ],
@@ -214,12 +214,12 @@ class CTPaymentConfigForms
                         ['AUTO', [
                             'de_DE' => 'Automatisch',
                             'en_GB' => 'automatic',
-                            'fr_FR' => 'automatic',
+                            'fr_FR' => 'automatique',
                         ]],
                         ['MANUAL', [
                             'de_DE' => 'Manuell',
                             'en_GB' => 'manual',
-                            'fr_FR' => 'manual',
+                            'fr_FR' => 'manuel',
                         ]],
                     ],
                 'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
@@ -254,12 +254,12 @@ class CTPaymentConfigForms
                         [0, [
                             'de_DE' => 'inaktiv',
                             'en_GB' => 'disabled',
-                            'fr_FR' => 'disabled',
+                            'fr_FR' => 'désactivé',
                         ]],
                         [1, [
                             'de_DE' => 'aktiv',
                             'en_GB' => 'enabled',
-                            'fr_FR' => 'enabled',
+                            'fr_FR' => 'activé',
                         ]],
                     ],
                 'description' => 'Indikator für Anforderung einer Kontoverifizierung (alias Nullwert-Authorisierung). <BR>
@@ -344,12 +344,12 @@ class CTPaymentConfigForms
                         ['AUTO', [
                             'de_DE' => 'Automatisch',
                             'en_GB' => 'automatic',
-                            'fr_FR' => 'automatic',
+                            'fr_FR' => 'automatique',
                         ]],
                         ['MANUAL', [
                             'de_DE' => 'Manuell',
                             'en_GB' => 'manual',
-                            'fr_FR' => 'manual',
+                            'fr_FR' => 'manuel',
                         ]],
                     ],
                 'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
@@ -371,7 +371,7 @@ class CTPaymentConfigForms
                         ]],
                         ['An', [
                             'de_DE' => 'An',
-                            'en_GB' => 'an',
+                            'en_GB' => 'on',
                             'fr_FR' => 'on',
                         ]],
                     ],
@@ -409,12 +409,12 @@ class CTPaymentConfigForms
                         ['AUTO', [
                             'de_DE' => 'Automatisch',
                             'en_GB' => 'automatic',
-                            'fr_FR' => 'automatic',
+                            'fr_FR' => 'automatique',
                         ]],
                         ['MANUAL', [
                             'de_DE' => 'Manuell',
                             'en_GB' => 'manual',
-                            'fr_FR' => 'manual',
+                            'fr_FR' => 'manuel',
                         ]],
                     ],
                 'description' => '<b>AUTO</b>: Reservierte Beträge werden sofort automatisch eingezogen.<BR>
@@ -440,12 +440,12 @@ class CTPaymentConfigForms
                         ['AUTO', [
                             'de_DE' => 'Automatisch',
                             'en_GB' => 'automatic',
-                            'fr_FR' => 'automatic',
+                            'fr_FR' => 'automatique',
                         ]],
                         ['MANUAL', [
                             'de_DE' => 'Manuell',
                             'en_GB' => 'manual',
-                            'fr_FR' => 'manual',
+                            'fr_FR' => 'manuel',
                         ]],
                     ],
                 'description' => 'bestimmt, ob der angefragte Betrag sofort oder erst später eingezogen wird. <br>
@@ -467,7 +467,7 @@ class CTPaymentConfigForms
                         ]],
                         ['An', [
                             'de_DE' => 'An',
-                            'en_GB' => 'an',
+                            'en_GB' => 'on',
                             'fr_FR' => 'on',
                         ]],
                     ],
@@ -524,12 +524,12 @@ class CTPaymentConfigForms
                         ['AUTO', [
                             'de_DE' => 'Automatisch',
                             'en_GB' => 'automatic',
-                            'fr_FR' => 'automatic',
+                            'fr_FR' => 'automatique',
                         ]],
                         ['MANUAL', [
                             'de_DE' => 'Manuell',
                             'en_GB' => 'manual',
-                            'fr_FR' => 'manual',
+                            'fr_FR' => 'manuel',
                         ]],
                     ],
                 'description' => '<b>Automatisch</b>: Reservierte Beträge werden automatisch eingezogen.<BR>
@@ -583,12 +583,12 @@ class CTPaymentConfigForms
                         ['small', [
                             'de_DE' => 'klein',
                             'en_GB' => 'small',
-                            'fr_FR' => 'small',
+                            'fr_FR' => 'petit',
                         ]],
                         ['medium', [
                             'de_DE' => 'mittel',
                             'en_GB' => 'medium',
-                            'fr_FR' => 'medium',
+                            'fr_FR' => 'moyen',
                         ]],
                     ],
                 'description' => 'Größe des Amazon Buttons<BR>
@@ -631,17 +631,17 @@ class CTPaymentConfigForms
                         ['inactive', [
                             'de_DE' => 'Inaktiv',
                             'en_GB' => 'inactive',
-                            'fr_FR' => 'inactive',
+                            'fr_FR' => 'inactif',
                         ]],
                         ['QuickCheck', [
                             'de_DE' => 'QuickCheck',
                             'en_GB' => 'quick check',
-                            'fr_FR' => 'quick check',
+                            'fr_FR' => 'vérification rapide',
                         ]],
                         ['CreditCheck', [
                             'de_DE' => 'Kredit Check',
                             'en_GB' => 'Creditcard check',
-                            'fr_FR' => 'CreditCheck',
+                            'fr_FR' => 'Vérification CreditCheck',
                         ]],
                     ],
                 'description' => 'führt eine Bonitätsprüfung aus, bevor ein Benutzer Zahlarten auswählen kann.<BR>
@@ -1014,161 +1014,162 @@ class CTPaymentConfigForms
                 ],
                 'mac' => [
                     'label' => 'MAC',
-                    'description' => 'Votre HMAC-Key',
+                    'description' => 'Votre clé HMAC',
                 ],
                 'blowfishPassword' => [
-                    'label' => 'Blowfish Password',
-                    'description' => 'Votre blowfish mot de passe',
+                    'label' => 'Mot de passe Blowfish',
+                    'description' => 'Votre mot de passe Blowfish',
                 ],
                 'prefixOrdernumber' => [
-                    'label' => 'Ordernumber prefix',
-                    'description' => 'Prefix for ordernumbers. You can use the following placeholders: %transid% , %payid%, %xid%',
+                    'label' => 'Préfixe de numéro de commande',
+                    'description' => 'Préfixe pour les numéros de commande. Vous pouvez utiliser les paramètres fictifs suivants: %transid% , %payid%, %xid%',
                 ],
                 'suffixOrdernumber' => [
-                    'label' => 'Ordernumber suffix',
-                    'description' => 'Suffix for ordernumbers. You can use the following placeholders: %transid% , %payid%, %xid%',
+                    'label' => 'Suffixe de numéro de commande',
+                    'description' => 'Suffixe pour les numéros de commande. Vous pouvez utiliser les paramètres fictifs suivants: %transid% , %payid%, %xid%',
                 ],
                 'debuglog' => [
-                    'label' => 'Debug protocol',
-                    'description' => 'Creates a log file <FatchipCTPayment_.log> with debugging output on the shopware log folder',
+                    'label' => 'Journalisation de déboggage',
+                    'description' => 'Créer un journal <FatchipCTPayment_.log> avec les traces de déboggage dans le dossier de journaux de shopware',
                 ],
                 'creditCardMode' => [
-                    'label' => 'Creditcard - Mode',
-                    'description' => '<b>IFrame</b>: The creditcard form will be displayed after clicking "confirm payment" in an iframe<BR>
-                                  <b>Silent Mode</b>: The creditcard form will be displayed on the "select payments" page.<BR>',
+                    'label' => 'Carte de crédit - Mode',
+                    'description' => '<b>IFrame</b>: Le formulaire sera affiché après avoir cliqué sur "Confirmer le paiement" dans un iframe<BR>
+                                  <b>Mode silencieux</b>: Le formulaire sera affiché sur la page "Sélectionner les paiements".<BR>',
                 ],
                 'creditCardTestMode' => [
-                    'label' => 'Creditcard - Testmode',
+                    'label' => 'Carte de crédit - Mode test',
                     // 'description' => '',
                 ],
                 'creditCardSilentModeBrandsVisa' => [
-                    'label' => 'Creditcard - Visa (Silent Mode)',
+                    'label' => 'Carte de crédit - Visa (Mode silencieux)',
                     // 'description' => '',
                 ],
                 'creditCardSilentModeBrandsMaster' => [
-                    'label' => 'Creditcard - MasterCard (Silent Mode)',
+                    'label' => 'Carte de crédit - MasterCard (Mode silencieux)',
                     // 'description' => '',
                 ],
                 'creditCardSilentModeBrandsAmex' => [
-                    'label' => 'Creditcard - American Express (Silent Mode)',
+                    'label' => 'Carte de crédit - American Express (Mode silencieux)',
                     // 'description' => '',
                 ],
                 'creditCardCaption' => [
-                    'label' => 'Creditcard - Capture Mode',
-                    'description' => '<b>AUTO</b>: Reserved amounts will be captured automatically.<BR>
-                                  <b>MANUAL</b>: Reserverd amounts have to be captured manuelly in the shop backend.',
+                    'label' => 'Carte de crédit - Mode de débit',
+                    'description' => '<b>AUTO</b>: Les montants réservés seront débités automatiquement.<BR>
+                                  <b>MANUEL</b>: Les montants réservés doivent être débités manuellement via l\'administration de la boutique.',
                 ],
                 'creditCardAcquirer' => [
-                    'label' => 'Creditcard - Acquirer',
+                    'label' => 'Carte de crédit - Acquéreur',
                     'description' => '<b>GICC</b>: Concardis, B+S Card Service, EVO Payments, American Express, Elavon, SIX Payment Service<BR>
                                   <b>CAPN</b>: American Express<BR>
                                   <b>Omnipay</b>: EMS payment solutions, Global Payments, Paysquare',
                 ],
                 'creditCardAccVerify' => [
-                    'label' => 'Creditcard - Account verification',
-                    'description' => 'Indicator for an account verification request (alias Null-Auth).<BR>
-                                  By using an account verification request the amount is optional and<BR>
-                                  will be ignored for the real payment (E.g. authorization).',
+                    'label' => 'Carte de crédit - Vérification de compte',
+                    'description' => 'Indicateur pour une requête de vérification de compte (alias Null-Auth).<BR>
+                                  En utilisant une demande de vérification de compte, le montant est<BR>
+                                  facultatif et sera ignoré pour le paiement réel (Exemple, autorisation).',
                 ],
                 'creditCardTemplate' => [
-                    'label' => 'Creditcard - Template name',
-                    'description' => 'Name of the XSLT-file with your individual payment form layout. If you want to use the new an backward compatible computop template, please use the template name „ct_compatible“. If you want to use the responsive computop template for mobile devices, please use the template name „ct_compatible“ or "ct_responsive_ch".',
+                    'label' => 'Carte de crédit - Nom du modèle',
+                    'description' => 'Nom du fichier XSLT avec votre disposition de formulaire de paiment individuel. Si vous souhaitez utiliser le nouveau modèle computop retro-compatible, veuillez utiliser le nom de modèle "ct_compatible". Si vous souhaitez utiliser le modèle computop adaptable pour les appareils mobiles, veuillez utiliser le nom de modèle "ct_responsive" ou "ct_responsive_ch".',
                 ],
                 'idealDirektOderUeberSofort' => [
                     'label' => 'iDEAL - Service',
                     'description' => 'iDEAL payments can be handled by using direct (Sofort) or PPRO.',
+                    'description' => 'Les paiements iDEAL peuvent être gérés en utilisant direct (Sofort) ou PPRO.',
                 ],
                 'lastschriftDienst' => [
                     'label' => 'Direct debit - Service',
-                    'description' => 'Direct debit payments can be handled by using direct, EVO or INTERCARD',
+                    'description' => 'Les paiements par prélèvement peuvent être gérés en utilisant direct, EVO ou INTERCARD.',
                 ],
                 'lastschriftCaption' => [
-                    'label' => 'Direct debit - Capture Mode',
-                    'description' => '<b>AUTO</b>: Reserved amounts will be captured automatically.<BR>
-                                  <b>MANUAL</b>: Reserverd amounts have to be captured manuelly in the shop backend.',
+                    'label' => 'Direct debit - Mode de débit',
+                    'description' => '<b>AUTO</b>: Les montants réservés seront débités automatiquement.<BR>
+                                  <b>MANUEL</b>: Les montants réservés doivent être débités manuellement via l\'administration de la boutique.',
                 ],
                 'lastschriftAnon' => [
-                    'label' => 'Anonymize IBAN',
-                    'description' => 'The customers IBAN will be displayed anonymized in checkout and on the my accoutn page',
+                    'label' => 'Anonymiser l\'IBAN',
+                    'description' => 'L\'IBAN du client sera affiché de manière anonyme durant la transaction et sur la page \'Mon compte\'.',
                 ],
                 'payDirektShopApiKey' => [
-                    'label' => 'Paydirekt - Shop Api Key',
-                    'description' => 'Your Paydirekt Api Key',
+                    'label' => 'Paydirekt - Clé API',
+                    'description' => 'Votre clé API Paydirekt',
                 ],
                 'payDirektCaption' => [
-                    'label' => 'Paydirekt - Capture Modus',
-                    'description' => '<b>AUTO</b>: Reserved amounts will be captured automatically.<BR>
-                                  <b>MANUAL</b>: Reserverd amounts have to be captured manuelly in the shop backend.',
+                    'label' => 'Paydirekt - Mode de débit',
+                    'description' => '<b>AUTO</b>: Les montants réservés seront débités automatiquement.<BR>
+                                  <b>MANUEL</b>: Les montants réservés doivent être débités manuellement via l\'administration de la boutique.',
                 ],
                 'paypalCaption' => [
-                    'label' => 'Paypal - Capture Modus',
-                    'description' => 'capture reserverd amounts now or manually later. <br>
-                                  <b>Important:<br>Please contact the computop customer support before using the manual setting to clarify possible use cases .</b>',
+                    'label' => 'Paypal - Mode de débit',
+                    'description' => 'Les montants réservés seront débités maintenant ou manuellement plus tard. <br>
+                                  <b>Important:<br>Veuillez contacter le service client computop avant d\'utiliser le paramètre manuel, pour clarifier les possibles cas d\'usage.</b>',
                 ],
                 'paypalSetOrderStatus' => [
-                    'label' => 'Paypal - Order status on captures',
-                    'description' => 'If this option is enabled, the orderstatus of failed paypal captures will be set to "review necessary"<br>',
+                    'label' => 'Paypal - Statut de la commande sur les débits',
+                    'description' => 'Si cette option est activée, le statut de commande d\'un débit Paypal échoué sera converti en "révision nécessaire"<br>',
                 ],
                 'amazonSellerId' => [
                     'label' => 'AmazonPay - SellerId',
-                    'description' => 'Your Amazonpay SellerId',
+                    'description' => 'Voire SellerId Amazonpay',
                 ],
                 'amazonClientId' => [
                     'label' => 'AmazonPay - ClientId',
-                    'description' => 'Your Amazonpay ClientId',
+                    'description' => 'Votre ClientId Amazonpay',
                 ],
                 'amazonLiveMode' => [
-                    'label' => 'Amazon Modus',
-                    'description' => 'Use AmazonPay in live or test mode',
+                    'label' => 'Mode Amazon',
+                    'description' => 'Utiliser AmazonPay en mode live ou test',
                 ],
                 'amazonCaptureType' => [
-                    'label' => 'Amazon Capture Mode',
-                    'description' => '<b>AUTO</b>: Reserved amounts will be captured automatically.<BR>
-                                  <b>MANUAL</b>: Reserverd amounts have to be captured manuelly in the shop backend.',
+                    'label' => 'Amazon Mode de débit',
+                    'description' => '<b>AUTO</b>: Les montants réservés seront débités automatiquement.<BR>
+                                  <b>MANUEL</b>: Les montants réservés doivent être débités manuellement via l\'administration de la boutique.',
                 ],
                 'amazonButtonType' => [
-                    'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_TYPE_PARAMETER" target="_blank">AmazonPay - Button Type</a>',
-                    'description' => 'Type of the Amazon button<BR>
-                                  The look of the different buttons.<BR>
-                                  Please click on the left link "AmazonPay - Button Type"',
+                    'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_TYPE_PARAMETER" target="_blank">AmazonPay - Type de bouton</a>',
+                    'description' => 'Type du bouton Amazon<BR>
+                                  L\'aspect des différents boutons.<BR>
+                                  Veuillez cliquer sur le lien à gauche "AmazonPay - Type de bouton"',
                 ],
                 'amazonButtonColor' => [
-                    'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_COLOR_PARAMETER" target="_blank">AmazonPay - Button Color</a>',
-                    'description' => 'Color of the Amazon button<BR>
-                                  The look of the different button.<BR>
-                                  Please click on the left link "AmazonPay - Button Color"',
+                    'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_COLOR_PARAMETER" target="_blank">AmazonPay - Couleur de bouton</a>',
+                    'description' => 'Couleur du bouton Amazon<BR>
+                                  L\'aspect des différents boutons.<BR>
+                                  Veuillez cliquer sur le lien à gauche "AmazonPay - Couleur de bouton"',
                 ],
                 'amazonButtonSize' => [
-                    'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_SIZE_PARAMETER" target="_blank">AmazonPay - Button Size</a>',
-                    'description' => 'Size of the amazon button<BR>
-                                  The look of the different button.<BR>
-                                  Please click on the left link "AmazonPay - Button Size"',
+                    'label' => '<a href="https://pay.amazon.com/de/developer/documentation/lpwa/201952050#ENTER_SIZE_PARAMETER" target="_blank">AmazonPay - Taille de bouton</a>',
+                    'description' => 'Taille du bouton Amazon<BR>
+                                  L\'aspect des différents boutons.<BR>
+                                  Veuillez cliquer sur le lien à gauche "AmazonPay - Taille de bouton"',
                 ],
                 'bonitaetusereturnaddress' => [
-                    'label' => 'Credit check  - Use customer addresses from credit check response',
-                    'description' => 'Replaces the customers addresses with the addresses from the credit check response',
+                    'label' => 'Vérification de crédit  - Utiliser l\'adresse du client de la vérification de crédit',
+                    'description' => 'Remplace l\'adresse du client par celle reçue dans la réponse de vérification de crédit',
                 ],
                 'bonitaetinvalidateafterdays' => [
-                    'label' => 'Credit check - Validity of the credit check in days',
-                    'description' => 'Set how many days a credit check stays valid for a customer befor re-cehecking',
+                    'label' => 'Vérification de crédit - Validité de la vérification de crédit en jours',
+                    'description' => 'Définir combien de jours une vérification de crédit reste valide pour un client avant re-vérification',
                 ],
                 'crifmethod' => [
-                    'label' => 'CRIF Credit check',
-                    'description' => 'checks credit worthiness before displaying possible payments.<BR>
-                                  Create your own rules in "Riskmanagement" with the conditions <BR>
-                                  "Computop Traffic light IS <Color>"<BR>and<BR>
+                    'label' => 'Vérification de crédit CRIF',
+                    'description' => 'Vérifie la validité du crédit avant d\'afficher les paiements disponibles.<BR>
+                                  Créez vos propre règles dans "Gestion de risque" avec les conditions <BR>
+                                  "Computop Traffic light IS <Color>"<BR>et<BR>
                                   "Computop Traffic light IST NOT <Color>"<BR>',
                 ],
                 'klarnaaction' => [
-                    'label' => 'Klarna action code',
-                    'description' => 'This value depends on durations and monthly rates term you arranged with Klarna. This value can be different for each subshop.',
+                    'label' => 'Code action Klarna',
+                    'description' => 'Cette valeur dépend de la durée et des termes de taux mensuels que vous avez convenus avec Klarna. Cette valeur peut différer entre chaque sous-boutique.',
                 ],
                 'klarnaaccount' => [
-                    'label' => 'Klarna Account',
-                    'description' => 'Your Klarna account. <br/><br/>
-                                    <b>Available Klarna Payments depending on your Klarna account configuration</b><BR>
-                                    If <u>Klarna PayNow</u> is active, you cant activate <u>Klarna Direct debit</u> und <u>Klarna Sofort</u><BR>
-                                    if <u>Klarna Direct debit</u> and/or <u>Klarna Sofort</u> are active, then <u>Klarna PayNow</u> can not be activated',
+                    'label' => 'Compte Klarna',
+                    'description' => 'Votre compte Klarna. <br/><br/>
+                                    <b>Paiement Klarna disponibles selon la configuration de votre compte Klarna</b><BR>
+                                    Si <u>Klarna PayNow</u> est actif, vous ne pouvez pas activer <u>Klarna Direct debit</u> et <u>Klarna Sofort</u><BR>
+                                    si <u>Klarna Direct debit</u> et/ou <u>Klarna Sofort</u> sont actifs, alors <u>Klarna PayNow</u> ne peut pas être activé',
                 ],
             ],
         ];
