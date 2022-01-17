@@ -706,12 +706,12 @@ class CTPaymentConfigForms
                 'creditCardMode' => [
                     'label' => 'Kreditkarte - Modus',
                     'description' => '<b>IFrame</b>: Kreditkartendaten werden nach klick auf "Zahlungsplichtig bestellen" in ein IFrame eingegeben<BR>
-                                  <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Zahlungsart wählen" eingegeben.<BR>',
+                                  <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Prüfen und Bestellen" eingegeben.<BR>',
                 ],
                 'creditCardTestMode' => [
                     'label' => 'Kreditkarte - Test-Modus',
                     'description' => '<b>IFrame</b>: Kreditkartendaten werden nach klick auf "Zahlungsplichtig bestellen" in ein IFrame eingegeben<BR>
-                                  <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Zahlungsart wählen" eingegeben.<BR>',
+                                  <b>Silent Mode</b>: Kreditkartendaten werden auf der Seite "Prüfen und Bestellen" eingegeben.<BR>',
                 ],
                 'creditCardSilentModeBrandsVisa' => [
                     'label' => 'Kreditkarte - Visa (Silent Mode)',
@@ -871,7 +871,7 @@ class CTPaymentConfigForms
                 'creditCardMode' => [
                     'label' => 'Creditcard - Mode',
                     'description' => '<b>IFrame</b>: The creditcard form will be displayed after clicking "confirm payment" in an iframe<BR>
-                                  <b>Silent Mode</b>: The creditcard form will be displayed on the "select payments" page.<BR>',
+                                  <b>Silent Mode</b>: The creditcard form will be displayed on the "complete order" page.<BR>',
                 ],
                 'creditCardTestMode' => [
                     'label' => 'Creditcard - Testmode',
@@ -1035,7 +1035,7 @@ class CTPaymentConfigForms
                 'creditCardMode' => [
                     'label' => 'Carte de crédit - Mode',
                     'description' => '<b>IFrame</b>: Le formulaire sera affiché après avoir cliqué sur "Confirmer le paiement" dans un iframe<BR>
-                                  <b>Mode silencieux</b>: Le formulaire sera affiché sur la page "Sélectionner les paiements".<BR>',
+                                  <b>Mode silencieux</b>: Le formulaire sera affiché sur la page "Vérifier et Commander".<BR>',
                 ],
                 'creditCardTestMode' => [
                     'label' => 'Carte de crédit - Mode test',
