@@ -1432,46 +1432,7 @@ class CTResponse
      * @return datetime
      */
     public function getBirthday() {
-        if (empty($this->Birthday)) {
-            return '1910-01-01';
-        }
         return $this->Birthday;
-    }
-
-    /**
-     * @ignore <description>
-     * @return datetime
-     */
-    public function getBirthdayDay() {
-        if (empty($this->Birthday)) {
-            return '1';
-        }
-        $date = explode("-", $this->Birthday);
-        return $date[2];
-    }
-
-    /**
-     * @ignore <description>
-     * @return datetime
-     */
-    public function getBirthdayMonth() {
-        if (empty($this->Birthday)) {
-            return '1';
-        }
-        $date = explode("-", $this->Birthday);
-        return $date[2];
-    }
-
-    /**
-     * @ignore <description>
-     * @return datetime
-     */
-    public function getBirthdayYear() {
-        if (empty($this->Birthday)) {
-            return '1910';
-        }
-        $date = explode("-", $this->Birthday);
-        return $date[0];
     }
 
     /**
